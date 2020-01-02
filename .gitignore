@@ -1,0 +1,10 @@
+# Node
+node_modules
+npm-debug.log
+yarn.lock
+dist/*
+
+# Artifacts
+bundles/
+build/
+.next/

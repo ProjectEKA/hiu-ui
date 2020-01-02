@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render properly  1`] = `
+"<styled.div>
+  <WithStyles(ForwardRef(Button)) className=\\"lo\\">
+    logo
+  </WithStyles(ForwardRef(Button))>
+  <NavigationBar />
+</styled.div>"
+`;
