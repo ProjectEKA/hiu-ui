@@ -6,7 +6,7 @@ var parentDir = path.join(__dirname, "../");
 console.log(parentDir);
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   context: path.join(parentDir, ""),
   plugins: [
     new CopyWebpackPlugin([{ from: "static" }, { from: "index.html" }])
