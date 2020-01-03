@@ -16,8 +16,14 @@ const HeaderStyles = styled.div`
     margin-left: 24px;
     width: 80px;
     height: 40px;
-    background-color: #009688;
+    background-color: #dedede;
     color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
   }
 `;
 
