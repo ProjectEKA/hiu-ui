@@ -12,13 +12,6 @@ const RequestAccessStyles = styled.div`
       color: #009688;
     }
   }
-  .submit-button {
-    font-size: 14px;
-    background-color: #009688;
-    &:hover {
-      background-color: #009688;
-    }
-  }
 `;
 
 export default RequestAccessStyles;
