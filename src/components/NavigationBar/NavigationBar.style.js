@@ -10,7 +10,7 @@ const NavigationBarStyles = styled.div`
       float: left;
       a {
         color: #000000;
-        font-size: 16px;
+        font-size: 20px;
         margin: 0 10px;
         padding: 23px 15px 21px;
         text-decoration: none;

@@ -2,9 +2,24 @@ import styled from "styled-components";
 
 const RequestAccessStyles = styled.div`
   h2 {
-    color: #9e9e9e;
+    color: #000000;
     font-size: 24px;
-    margin: 20px 0;
+    line-height: 24px;
+    font-weight: 300;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #000000;
+  }
+  .text-field-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    .text-field-label {
+      flex-basis: 20%;
+      margin-right: 20px;
+      font-size: 16px;
+    }
   }
   .auto-complete {
     color: #009688;

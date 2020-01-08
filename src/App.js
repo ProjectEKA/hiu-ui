@@ -1,5 +1,5 @@
 import React from "react";
-import OuterDiv, { HeaderStyles, HeaderSpan } from "./App.style";
+import ContainerStyles from "./App.style";
 import Header from "./components/Header/Header";
 import ContentContainer from "./components/Container/Container";
 import Container from "@material-ui/core/Container";
@@ -9,12 +9,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <OuterDiv>
-          <Container>
+        <ContainerStyles>
+          <Container className="container">
             <Header />
             <ContentContainer />
           </Container>
-        </OuterDiv>
+        </ContainerStyles>
       </Router>
     </div>
   );
