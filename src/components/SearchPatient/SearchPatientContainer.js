@@ -1,29 +1,14 @@
-import SearchPatient from "./SearchPatient";
 import React from "react";
+import { connect } from "react-redux";
+import SearchPatient from "./SearchPatient";
+import { onSearch } from "./../../redux/actions/searchAction";
 
-const patient = {
-  id: "batman@NCG",
-  display: "batman"
+const mapStateToProps = state => ({
+  patientId: state.patientDetail.result
+});
+
+const mapDispatchToProps = {
+  onSearch
 };
 
-const options = {
-  method: "POST",
-  body: JSON.stringify(patient),
-  headers: {
-    "Content-Type": "application/json"
-  }
-};
-
-const searchPatient = () => {
-  fetch("https://reqres.in/api/users", options)
-    .then(res => {
-      return res.json();
-    })
-    .then(res => console.log(res));
-};
-
-const SearchPatientContainer = () => {
-  return <SearchPatient onSearch={searchPatient} />;
-};
-
-export default SearchPatientContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPatient);
