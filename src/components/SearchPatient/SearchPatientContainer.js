@@ -4,7 +4,8 @@ import SearchPatient from "./SearchPatient";
 import { onSearch } from "./../../redux/actions/searchAction";
 
 const mapStateToProps = state => ({
-  patientId: state.patientDetail.result
+  patientId: state.patientDetail.result,
+  loading: state.patientDetail.loading
 });
 
 const mapDispatchToProps = {

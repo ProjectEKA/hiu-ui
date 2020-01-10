@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
-import { Paper, IconButton, InputBase } from "@material-ui/core";
+import {
+  IconButton,
+  InputBase,
+  Paper,
+  CircularProgress
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
-const SearchPatient = ({ onSearch, patientId }) => {
+const SearchPatient = ({ onSearch, patientId, loading }) => {
   const [localPatientId, setPatientId] = useState(patientId);
   return (
     <SearchPatientStyles>
-      <Paper elevation={1}>
+      <Paper className="root" elevation={3}>
         <InputBase
-          className="text-field"
-          inputProps={{ "aria-label": "search google maps" }}
-          value={localPatientId}
+          id="outlined-basic"
+          variant="outlined"
+          value={
+            loading
+              ? `Searching for patient : ${localPatientId}@NCG`
+              : localPatientId
+          }
           onChange={e => setPatientId(e.target.value)}
+          size="small"
         />
         <InputBase className="text-field" disabled placeholder="@NCG" />
         <IconButton
@@ -22,15 +32,23 @@ const SearchPatient = ({ onSearch, patientId }) => {
           theme="primary"
           onClick={() => onSearch(localPatientId)}
         >
-          <SearchIcon
-            className="icon-button"
-            variant="outlined"
-            theme="primary"
-          />
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <SearchIcon
+              className="icon-button"
+              variant="outlined"
+              theme="primary"
+            />
+          )}
         </IconButton>
       </Paper>
     </SearchPatientStyles>
   );
+};
+
+SearchPatient.defaultProps = {
+  patientId: ""
 };
 
 export default SearchPatient;

@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 const SearchPatientStyles = styled.div`
-  .icon-button {
-    border-radius: 0%;
+  .root {
+    padding: 2px 2px 2px 10px;
+    display: flex;
+    alignitems: center;
+    width: 400;
   }
 `;
 
