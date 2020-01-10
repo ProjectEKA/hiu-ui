@@ -18,7 +18,6 @@ const RequestAccessStyles = styled.div`
     .text-field-label {
       flex-basis: 20%;
       margin-right: 20px;
-      font-size: 16px;
     }
   }
   .auto-complete {
