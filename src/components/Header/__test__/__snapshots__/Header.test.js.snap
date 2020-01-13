@@ -2,9 +2,9 @@
 
 exports[`Header should render properly  1`] = `
 "<styled.div>
-  <WithStyles(ForwardRef(Button)) className=\\"lo\\">
+  <a href=\\"/\\" className=\\"logo\\">
     logo
-  </WithStyles(ForwardRef(Button))>
+  </a>
   <NavigationBar />
 </styled.div>"
 `;

@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/searchAction";
+import { ACTION_TYPES } from "../actions/searchPatientIdActions";
 
 export default (state = {}, action) => {
   switch (action.type) {

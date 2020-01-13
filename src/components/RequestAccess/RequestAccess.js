@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import RequestAccessStyles from "./RequestAccess.style";
-import SearchPatient from "./../SearchPatient";
+import SearchPatient from "../SearchPatient";
 // import DatePicker from "./../DatePicker/DatePicker";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";

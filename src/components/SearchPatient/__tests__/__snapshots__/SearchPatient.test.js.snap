@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchPatient should render properly 1`] = `
+<styled.div>
+  <WithStyles(ForwardRef(Paper))
+    className="root"
+    elevation={3}
+  >
+    <WithStyles(ForwardRef(InputBase))
+      disabled={false}
+      id="outlined-basic"
+      onChange={[Function]}
+      size="small"
+      value=""
+      variant="outlined"
+    />
+    <WithStyles(ForwardRef(InputBase))
+      className="text-field"
+      disabled={true}
+      placeholder="@NCG"
+    />
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="search"
+      className="icon-button"
+      disabled={true}
+      onClick={[Function]}
+      theme="primary"
+      type="button"
+    >
+      <SearchIcon
+        className="icon-button"
+        theme="primary"
+        variant="outlined"
+      />
+    </WithStyles(ForwardRef(IconButton))>
+  </WithStyles(ForwardRef(Paper))>
+</styled.div>
+`;

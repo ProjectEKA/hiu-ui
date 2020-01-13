@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import patientDetail from "./simpleReducer";
+import patientDetail from "./searchPatientIdReducer";
 export default combineReducers({
   patientDetail
 });

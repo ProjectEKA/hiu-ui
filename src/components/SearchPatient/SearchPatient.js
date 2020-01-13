@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
 import {
   IconButton,
@@ -10,30 +10,45 @@ import SearchIcon from "@material-ui/icons/Search";
 
 const SearchPatient = ({ onSearch, patientId, loading }) => {
   const [localPatientId, setPatientId] = useState(patientId);
+  const [textInput, setTextInput] = useState("");
+
+  useEffect(() => {
+    if (loading) {
+      setPatientId(textInput);
+      setTextInput("Searching");
+    } else {
+      setTextInput(localPatientId);
+    }
+  }, [loading]);
+
   return (
     <SearchPatientStyles>
       <Paper className="root" elevation={3}>
         <InputBase
           id="outlined-basic"
+          disabled={loading}
           variant="outlined"
-          value={
-            loading
-              ? `Searching for patient : ${localPatientId}@NCG`
-              : localPatientId
-          }
-          onChange={e => setPatientId(e.target.value)}
+          value={textInput}
+          onChange={e => setTextInput(e.target.value)}
           size="small"
         />
         <InputBase className="text-field" disabled placeholder="@NCG" />
         <IconButton
+          disabled={textInput.length == 0 || loading}
           type="button"
           className="icon-button"
           aria-label="search"
           theme="primary"
-          onClick={() => onSearch(localPatientId)}
+          onClick={() => onSearch(textInput)}
         >
           {loading ? (
-            <CircularProgress />
+            <CircularProgress
+              className="loader"
+              variant="indeterminate"
+              disableShrink
+              size={24}
+              thickness={4}
+            />
           ) : (
             <SearchIcon
               className="icon-button"
