@@ -7,9 +7,9 @@ export const onSearch = payload => ({
   type: ACTION_TYPES.PATIENT_FETCH_REQUESTED,
   payload
 });
-export const onSearchSuccess = () => ({
+export const onSearchSuccess = payload => ({
   type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
-  payload: { id: "batman" }
+  payload
 });
 export const onSearchFailure = () => ({
   type: ACTION_TYPES.PATIENT_FETCH_FAILED,

@@ -43,6 +43,7 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
         >
           {loading ? (
             <CircularProgress
+              id="loader"
               className="loader"
               variant="indeterminate"
               disableShrink
@@ -51,7 +52,8 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
             />
           ) : (
             <SearchIcon
-              className="icon-button"
+              id="search-button"
+              className="search-button"
               variant="outlined"
               theme="primary"
             />
@@ -63,7 +65,8 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
 };
 
 SearchPatient.defaultProps = {
-  patientId: ""
+  patientId: "",
+  loading: false
 };
 
 export default SearchPatient;

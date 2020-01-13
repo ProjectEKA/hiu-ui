@@ -28,7 +28,8 @@ exports[`SearchPatient should render properly 1`] = `
       type="button"
     >
       <SearchIcon
-        className="icon-button"
+        className="search-button"
+        id="search-button"
         theme="primary"
         variant="outlined"
       />
