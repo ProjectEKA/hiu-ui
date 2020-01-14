@@ -1,15 +1,24 @@
 import { ACTION_TYPES } from "../actions/searchPatientIdActions";
 import { call, put } from "redux-saga/effects";
-import axios from "axios";
+import fetchPatientApi from "./../apiWrapper";
 
 function* fetchPatient(action) {
-  const BASEURL = "http://hiu-dev.projecteka.in/";
   try {
-    const patient = yield call(axios.get, `patients/${action.payload}`, {
-      baseURL: BASEURL,
-      responseType: "json"
-    });
-    yield put({ type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED, payload: patient });
+    const patient = yield call(
+      fetchPatientApi,
+      "get",
+      `http://hiu-dev.projecteka.in/patients/${action.payload}`,
+      {},
+      {
+        "Access-Control-Allow-Origin": "*"
+      }
+    );
+    if (patient) {
+      yield put({
+        type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
+        payload: patient
+      });
+    }
   } catch (e) {
     yield put({ type: ACTION_TYPES.PATIENT_FETCH_FAILED, message: e });
   }
