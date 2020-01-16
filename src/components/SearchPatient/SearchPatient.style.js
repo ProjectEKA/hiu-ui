@@ -7,6 +7,9 @@ const SearchPatientStyles = styled.div`
     alignitems: center;
     width: 400;
   }
+  .fiduciary-text-field {
+    width: 60px;
+  }
 `;
 
 export default SearchPatientStyles;

@@ -32,7 +32,11 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
           onChange={e => setTextInput(e.target.value)}
           size="small"
         />
-        <InputBase className="text-field" disabled placeholder="@NCG" />
+        <InputBase
+          className="fiduciary-text-field"
+          disabled
+          placeholder="@NCG"
+        />
         <IconButton
           disabled={textInput.length == 0 || loading}
           type="button"
