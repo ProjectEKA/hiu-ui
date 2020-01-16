@@ -7,11 +7,7 @@ function* fetchPatient(action) {
     const patient = yield call(
       fetchPatientApi,
       "get",
-      `http://hiu-dev.projecteka.in/patients/${action.payload}`,
-      {},
-      {
-        "Access-Control-Allow-Origin": "*"
-      }
+      `${BACKEND_BASE_URL}/patients/${action.payload}`
     );
     if (patient) {
       yield put({

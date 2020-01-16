@@ -1,14 +1,12 @@
 import axios from "axios";
-const ContentTypes = {
-  JSON: "application/json;charset=UTF-8"
-};
-const defaultHeader = () => ({
-  accept: ContentTypes.JSON,
-  "Content-Type": ContentTypes.JSON
-});
+import { contentTypes } from "../constants";
 
-export default (method, url, data, headers = defaultHeader()) => {
-  debugger;
+const defaultHeaders = {
+  accept: contentTypes.JSON,
+  "Content-Type": contentTypes.JSON
+};
+
+export default (method, url, data, headers = defaultHeaders) => {
   return axios(url, {
     headers,
     method,

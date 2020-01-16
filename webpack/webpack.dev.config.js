@@ -1,31 +1,21 @@
 var webpack = require("webpack");
 var path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+var commonWebpackConfig = require("./webpack.common");
 
 var parentDir = path.join(__dirname, "../");
-console.log(parentDir);
 
 module.exports = {
   mode: "development",
-  context: path.join(parentDir, ""),
+  ...commonWebpackConfig,
   plugins: [
-    new CopyWebpackPlugin([{ from: "static" }, { from: "index.html" }])
+    ...commonWebpackConfig.plugins,
+    new webpack.DefinePlugin({
+      BACKEND_BASE_URL: JSON.stringify("http://localhost:3000")
+    })
   ],
-  entry: [path.join(parentDir, "index.js")],
-  module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
-  },
-  resolve: {
-    alias: {
-      Components: path.resolve(__dirname, "../src/components/")
-    }
-  },
-  output: {
-    path: parentDir + "/dist",
-    filename: "bundle.js"
-  },
   devServer: {
     contentBase: parentDir,
     historyApiFallback: true
-  }
+  },
+  devtool: "eval-source-map"
 };

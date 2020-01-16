@@ -1,31 +1,13 @@
 var webpack = require("webpack");
-var path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
-var parentDir = path.join(__dirname, "../");
-console.log(parentDir);
+var commonWebpackConfig = require("./webpack.common");
 
 module.exports = {
   mode: "production",
-  context: path.join(parentDir, ""),
+  ...commonWebpackConfig,
   plugins: [
-    new CopyWebpackPlugin([{ from: "static" }, { from: "index.html" }])
-  ],
-  entry: [path.join(parentDir, "index.js")],
-  module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
-  },
-  resolve: {
-    alias: {
-      Components: path.resolve(__dirname, "../src/components/")
-    }
-  },
-  output: {
-    path: parentDir + "/dist",
-    filename: "bundle.js"
-  },
-  devServer: {
-    contentBase: parentDir,
-    historyApiFallback: true
-  }
+    ...commonWebpackConfig.plugins,
+    new webpack.DefinePlugin({
+      BACKEND_BASE_URL: JSON.stringify("http://hiu-dev.projecteka.in")
+    })
+  ]
 };
