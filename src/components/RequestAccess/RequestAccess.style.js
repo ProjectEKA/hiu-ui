@@ -10,15 +10,8 @@ const RequestAccessStyles = styled.div`
     margin-bottom: 30px;
     border-bottom: 1px solid #000000;
   }
-  .text-field-container {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    .text-field-label {
-      flex-basis: 20%;
-      margin-right: 20px;
-    }
+  .MuiGrid-container {
+    padding: 10px 0;
   }
   .auto-complete {
     color: #009688;

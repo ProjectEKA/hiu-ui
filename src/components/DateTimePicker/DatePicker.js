@@ -10,12 +10,9 @@ const DatePicker = () => {
 
   return (
     <KeyboardDatePicker
-      disableToolbar
-      variant="inline"
-      format="MM/dd/yyyy"
       margin="normal"
-      id="date-picker-inline"
-      // label="Choose Date"
+      id="date-picker-dialog"
+      format="MM/dd/yyyy"
       value={selectedDate}
       onChange={handleDateChange}
       KeyboardButtonProps={{

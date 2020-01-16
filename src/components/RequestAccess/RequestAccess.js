@@ -17,60 +17,78 @@ const RequestAccess = ({ purposeTypes }) => {
     <RequestAccessStyles>
       <h2>Consent request form</h2>
       <form>
-        <span className="text-field-container">
-          <InputLabel className="text-field-label">
-            Patient Identifier
-          </InputLabel>
-          <SearchPatient />
-        </span>
-        <span className="text-field-container">
-          <InputLabel className="text-field-label">
-            Purpose of request
-          </InputLabel>
-          <Select
-            value={purpose}
-            onChange={e => {
-              setPurpose(e.target.value);
-              console.log(e);
-            }}
-          >
-            {purposeTypes.map(type => (
-              <MenuItem key={type.value} value={type.value}>
-                {type.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </span>
-        <span className="text-field-container">
-          <InputLabel className="text-field-label">Request from</InputLabel>
-          <DatePicker />
-        </span>
-        <span className="text-field-container">
-          <InputLabel className="text-field-label">Request to</InputLabel>
-          <DatePicker />
-        </span>
-        <span className="text-field-container">
-          <InputLabel className="text-field-label">Request type</InputLabel>
-          <RequestType />
-        </span>
-        <span className="text-field-container">
-          <Grid container spacing={2}>
-            <Grid item basis={20}>
-              <InputLabel className="text-field-label">
-                Consent Expiry
-              </InputLabel>
-            </Grid>
-            <Grid item>
-              <DatePicker />
-            </Grid>
-            <Grid item>
-              <TimePicker />
-            </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">
+              Patient Identifier
+            </InputLabel>
           </Grid>
-        </span>
-        <Button variant="contained" color="primary">
-          Request Consent
-        </Button>
+          <Grid item xs={3}>
+            <SearchPatient />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">
+              Purpose of request
+            </InputLabel>
+          </Grid>
+          <Grid item xs={2}>
+            <Select
+              value={purpose}
+              onChange={e => {
+                setPurpose(e.target.value);
+                console.log(e);
+              }}
+            >
+              {purposeTypes.map(type => (
+                <MenuItem key={type.value} value={type.value}>
+                  {type.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">Request from</InputLabel>
+          </Grid>
+          <Grid item xs={2}>
+            <DatePicker />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">Request to</InputLabel>
+          </Grid>
+          <Grid item xs={2}>
+            <DatePicker />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">Request type</InputLabel>
+          </Grid>
+          <Grid item xs={10}>
+            <RequestType />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label">Consent Expiry</InputLabel>
+          </Grid>
+          <Grid item xs={2}>
+            <DatePicker />
+          </Grid>
+          <Grid item xs={2}>
+            <TimePicker />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Button variant="contained" color="primary">
+            Request Consent
+          </Button>
+        </Grid>
       </form>
     </RequestAccessStyles>
   );
