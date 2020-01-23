@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Request Access should render properly  1`] = `
+"<styled.div>
+  <h2>
+    Consent request form
+  </h2>
+  <form>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+          Patient Identifier
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={5}>
+        <Connect(SearchPatient) />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+          Purpose of request
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <SimpleMenu menuItems={{...}} handleChange={[Function: handlePurposeSelection]} selectedValue=\\"GeneralConsulting\\" />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+           Request from 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <DatePicker disableFuture={true} handleDateChange={[Function: handleStarteDateChange]} selectedDate={[undefined]} />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+           Request to 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <DatePicker disableFuture={true} handleDateChange={[Function: handleEndDateChange]} selectedDate={[undefined]} />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+           Request type 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={10}>
+        <RequestType requestTypes={{...}} handleChange={[Function: handlePITypeChange]} />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
+        <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
+          Consent Expiry
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid)) item={true} xs={3}>
+        <DateTimePicker handleDateChange={[Function: handleExpiryDateChange]} selectedDate={[undefined]} disableFuture={false} />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
+      <WithStyles(ForwardRef(Button)) variant=\\"contained\\" color=\\"primary\\" onClick={[Function: onClick]}>
+        Request Consent
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Grid))>
+  </form>
+</styled.div>"
+`;

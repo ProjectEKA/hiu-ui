@@ -2,20 +2,19 @@
 
 exports[`SearchPatient should render properly 1`] = `
 <styled.div>
-  <WithStyles(ForwardRef(Paper))
-    className="root"
-    elevation={3}
+  <div
+    className="search-bar"
   >
-    <WithStyles(ForwardRef(InputBase))
+    <WithStyles(ForwardRef(TextField))
       disabled={false}
-      id="outlined-basic"
+      error={false}
+      helperText=""
+      id="search-field"
       onChange={[Function]}
-      size="small"
       value=""
-      variant="outlined"
     />
-    <WithStyles(ForwardRef(InputBase))
-      className="text-field"
+    <WithStyles(ForwardRef(TextField))
+      className="fiduciary-text-field"
       disabled={true}
       placeholder="@NCG"
     />
@@ -34,6 +33,6 @@ exports[`SearchPatient should render properly 1`] = `
         variant="outlined"
       />
     </WithStyles(ForwardRef(IconButton))>
-  </WithStyles(ForwardRef(Paper))>
+  </div>
 </styled.div>
 `;

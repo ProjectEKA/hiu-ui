@@ -1,29 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import RequestAccessStyles from "./RequestAccess.style";
 import SearchPatient from "../SearchPatient";
+import DateTimePicker from "./../DateTimePicker/DateTimePicker";
 import DatePicker from "./../DateTimePicker/DatePicker";
-import TimePicker from "./../DateTimePicker/TimePicker";
 import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import { FormControl, FormHelperText } from "@material-ui/core";
 import RequestType from "./../RequestType/RequestType";
+import SimpleMenu from "./../SimpleMenu/SimpleMenu";
 
-const RequestAccess = ({ purposeTypes }) => {
-  const [purpose, setPurpose] = useState("");
+const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
+  const purposeTypes = [
+    {
+      label: "General Consulting",
+      value: "GeneralConsulting"
+    },
+    {
+      label: "Referral services",
+      value: "ReferralServices"
+    },
+    {
+      label: "Episode of Care",
+      value: "EpisodeOfCare"
+    },
+    {
+      label: "Encounter",
+      value: "Encounter"
+    }
+  ];
+
+  const requestTypes = [
+    "PatientHistory",
+    "Medications",
+    "DiagnosisLab",
+    "RadiologyLab",
+    "Observations"
+  ];
+  const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
+    purposeTypes[0].value
+  );
+  const [selectedStartDate, setSelectedStartDate] = React.useState();
+  const [selectedEndDate, setSelectedEndDate] = React.useState();
+  const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
+    PatientHistory: false,
+    Medications: false,
+    DiagnosisLab: false,
+    RadiologyLab: false,
+    Observations: false
+  });
+  const [selectedExpiryDate, setSelectedExpiryDate] = React.useState();
+
+  const handlePITypeChange = name => event => {
+    setselectedRequestTypes({
+      ...selectedRequestTypes,
+      [name]: event.target.checked
+    });
+  };
+  const handleStarteDateChange = date => {
+    var startDate = date;
+    setSelectedStartDate(startDate);
+  };
+  const handleEndDateChange = date => {
+    var startDate = selectedStartDate;
+    var endDate = date;
+    if (startDate.getTime() < endDate.getTime()) {
+      setSelectedEndDate(endDate);
+    }
+  };
+  const handleExpiryDateChange = date => {
+    setSelectedExpiryDate(date);
+  };
+
+  const handlePurposeSelection = event => {
+    setSelectedPurposeValue(event.target.value);
+  };
 
   return (
     <RequestAccessStyles>
       <h2>Consent request form</h2>
       <form>
+        <span class="label">All the fields are mandatory.</span>
+        {error && (
+          <span className="error">Error occured while creating consent.</span>
+        )}
+        {success && (
+          <span className="Success">Consent created successfylly.</span>
+        )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
             <InputLabel className="text-field-label">
               Patient Identifier
             </InputLabel>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={5}>
             <SearchPatient />
           </Grid>
         </Grid>
@@ -34,58 +104,76 @@ const RequestAccess = ({ purposeTypes }) => {
             </InputLabel>
           </Grid>
           <Grid item xs={2}>
-            <Select
-              value={purpose}
-              onChange={e => {
-                setPurpose(e.target.value);
-                console.log(e);
-              }}
-            >
-              {purposeTypes.map(type => (
-                <MenuItem key={type.value} value={type.value}>
-                  {type.label}
-                </MenuItem>
-              ))}
-            </Select>
+            <SimpleMenu
+              menuItems={purposeTypes}
+              handleChange={handlePurposeSelection}
+              selectedValue={selectedPurposeValue}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
-            <InputLabel className="text-field-label">Request from</InputLabel>
+            <InputLabel className="text-field-label"> Request from </InputLabel>
           </Grid>
           <Grid item xs={2}>
-            <DatePicker />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
-            <InputLabel className="text-field-label">Request to</InputLabel>
-          </Grid>
-          <Grid item xs={2}>
-            <DatePicker />
+            <DatePicker
+              disableFuture={true}
+              handleDateChange={handleStarteDateChange}
+              selectedDate={selectedStartDate}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
-            <InputLabel className="text-field-label">Request type</InputLabel>
+            <InputLabel className="text-field-label"> Request to </InputLabel>
+          </Grid>
+          <Grid item xs={2}>
+            <DatePicker
+              disableFuture={true}
+              minDate={selectedStartDate}
+              handleDateChange={handleEndDateChange}
+              selectedDate={selectedEndDate}
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={2}>
+            <InputLabel className="text-field-label"> Request type </InputLabel>
           </Grid>
           <Grid item xs={10}>
-            <RequestType />
+            <RequestType
+              requestTypes={requestTypes}
+              handleChange={handlePITypeChange}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
             <InputLabel className="text-field-label">Consent Expiry</InputLabel>
           </Grid>
-          <Grid item xs={2}>
-            <DatePicker />
-          </Grid>
-          <Grid item xs={2}>
-            <TimePicker />
+          <Grid item xs={3}>
+            <DateTimePicker
+              minDate={selectedStartDate}
+              handleDateChange={handleExpiryDateChange}
+              selectedDate={selectedExpiryDate}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={3} alignItems="center">
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              onCreateConsent({
+                patientId,
+                selectedPurposeValue,
+                selectedStartDate,
+                selectedEndDate,
+                selectedExpiryDate,
+                selectedRequestTypes
+              });
+            }}
+          >
             Request Consent
           </Button>
         </Grid>
@@ -94,8 +182,9 @@ const RequestAccess = ({ purposeTypes }) => {
   );
 };
 
-RequestAccess.defaultProps = {
-  purposeTypes: [{ label: "General Consulting", value: "general_consulting" }]
+SearchPatient.defaultProps = {
+  success: false,
+  error: false
 };
 
 export default RequestAccess;

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
-import {
-  IconButton,
-  InputBase,
-  Paper,
-  CircularProgress
-} from "@material-ui/core";
+import { IconButton, TextField, CircularProgress } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import Error from "@material-ui/icons/Error";
 
-const SearchPatient = ({ onSearch, patientId, loading }) => {
+const SearchPatient = ({
+  onSearch,
+  patientId,
+  loading,
+  error,
+  serverError
+}) => {
   const [localPatientId, setPatientId] = useState(patientId);
   const [textInput, setTextInput] = useState("");
 
@@ -23,16 +25,16 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
 
   return (
     <SearchPatientStyles>
-      <Paper className="root" elevation={3}>
-        <InputBase
-          id="outlined-basic"
+      <div className="search-bar">
+        <TextField
+          id="search-field"
           disabled={loading}
-          variant="outlined"
+          error={error}
+          helperText={error ? `Id doesnt exists` : ""}
           value={textInput}
           onChange={e => setTextInput(e.target.value)}
-          size="small"
         />
-        <InputBase
+        <TextField
           className="fiduciary-text-field"
           disabled
           placeholder="@NCG"
@@ -63,14 +65,17 @@ const SearchPatient = ({ onSearch, patientId, loading }) => {
             />
           )}
         </IconButton>
-      </Paper>
+        {serverError && <Error color="action" />}
+      </div>
     </SearchPatientStyles>
   );
 };
 
 SearchPatient.defaultProps = {
   patientId: "",
-  loading: false
+  loading: false,
+  error: false,
+  serverError: false
 };
 
 export default SearchPatient;

@@ -6,19 +6,18 @@ const defaultHeaders = {
   "Content-Type": contentTypes.JSON
 };
 
-export default (method, url, data, headers = defaultHeaders) => {
-  return axios(url, {
+export default (
+  method,
+  url,
+  data,
+  headers = defaultHeaders,
+  baseURL = BACKEND_BASE_URL
+) => {
+  return axios({
     headers,
     method,
-    data
-  })
-    .then(response => {
-      return {
-        data: response.data,
-        status: response.status
-      };
-    })
-    .catch(error => {
-      error: true;
-    });
+    data,
+    url,
+    baseURL
+  });
 };

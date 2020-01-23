@@ -18,7 +18,7 @@ describe("SearchPatient", () => {
     expect(wrapper).toMatchSnapshot();
     expect(
       wrapper
-        .find("#outlined-basic")
+        .find("#search-field")
         .at(0)
         .props()["disabled"]
     ).toBe(false);
@@ -29,14 +29,14 @@ describe("SearchPatient", () => {
     const wrapper = mount(<SearchPatient {...props} />);
     expect(
       wrapper
-        .find("#outlined-basic")
+        .find("#search-field")
         .at(0)
         .props()["disabled"]
     ).toBe(true);
 
     expect(
       wrapper
-        .find("#outlined-basic")
+        .find("#search-field")
         .at(0)
         .props()["value"]
     ).toBe("Searching");
@@ -48,14 +48,14 @@ describe("SearchPatient", () => {
     // const setTextInput = jest.fn();
     expect(
       wrapper
-        .find("#outlined-basic")
+        .find("#search-field")
         .at(0)
         .props()["disabled"]
     ).toBe(true);
     // expect(setTextInput).toHaveBeenCalledWith("1");
     expect(
       wrapper
-        .find("#outlined-basic")
+        .find("#search-field")
         .at(0)
         .props()["value"]
     ).toBe("Searching");

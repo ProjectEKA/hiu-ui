@@ -1,31 +1,39 @@
 import { ACTION_TYPES } from "../actions/searchPatientIdActions";
 import { call, put } from "redux-saga/effects";
-import fetchPatientApi from "./../apiWrapper";
+import fetchPatientApi from "../apiCalls/fetchPatientApi";
 
 function* fetchPatient(action) {
   try {
-    const patient = yield call(
-      fetchPatientApi,
-      "get",
-      `${BACKEND_BASE_URL}/patients/${action.payload}`
-    );
-    if (patient) {
-      yield put({
-        type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
-        payload: patient
-      });
-    }
+    const patient = yield call(fetchPatientApi, action.payload);
+    yield put({
+      type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
+      payload: patient
+    });
   } catch (e) {
-    yield put({ type: ACTION_TYPES.PATIENT_FETCH_FAILED, message: e });
+    yield put({
+      type: ACTION_TYPES.PATIENT_FETCH_FAILED,
+      payload: e
+    });
   }
 }
 
-function* fetchPatientSuccess() {
-  console.log("success message");
+function* fetchPatientSuccess(action) {
+  console.log("success message", action.payload);
 }
 
 function* fetchPatientFailure(action) {
-  console.log("failure message", action);
+  if (action.payload.response.status === 400) {
+    yield put({
+      type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
+      payload: action.payload
+    });
+  }
+  if (action.payload.response.status === 500) {
+    yield put({
+      type: ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR,
+      payload: action.payload
+    });
+  }
 }
 
 export default {

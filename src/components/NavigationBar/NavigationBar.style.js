@@ -15,6 +15,7 @@ const NavigationBarStyles = styled.div`
         padding: 23px 15px 21px;
         text-decoration: none;
         border-bottom: 4px solid transparent;
+        font-family: "Roboto", sans-serif;
         &:hover {
           border-bottom: 4px solid #009688;
         }

@@ -1,7 +1,12 @@
 import React from "react";
+import LandingPage from "../LandingPage/LandingPage";
 
 const PatientView = () => {
-  return <h2>Patient View</h2>;
+  return (
+    <div>
+      <h2> Patient View </h2> <LandingPage />
+    </div>
+  );
 };
 
 export default PatientView;

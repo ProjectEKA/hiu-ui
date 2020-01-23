@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const IndexStyles = styled.div`
+export const IndexStyles = styled.div `
   * {
     margin: 0;
     font-family: -apple - system, BlinkMacSystemFont, "Segoe UI", "Roboto",

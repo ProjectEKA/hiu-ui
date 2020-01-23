@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { KeyboardDatePicker } from "@material-ui/pickers";
+import { KeyboardDateTimePicker } from "@material-ui/pickers";
 
-const DatePicker = ({
+const DateTimePicker = ({
   disableFuture,
   minDate,
+  maxDate,
   selectedDate,
   handleDateChange
 }) => {
   return (
-    <KeyboardDatePicker
+    <KeyboardDateTimePicker
       margin="normal"
       disableFuture={disableFuture}
       id="date-picker-dialog"
+      format="dd/MM/yyyy HH:mm"
       minDate={minDate}
-      format="dd/MM/yyyy"
+      maxDate={maxDate}
       value={selectedDate}
       onChange={handleDateChange}
       KeyboardButtonProps={{
@@ -23,9 +25,9 @@ const DatePicker = ({
   );
 };
 
-DatePicker.defaultProps = {
-  minDate: {},
-  disableFuture: false
+DateTimePicker.defaultProps = {
+  disableFuture: false,
+  minDate: {}
 };
 
-export default DatePicker;
+export default DateTimePicker;
