@@ -14,19 +14,21 @@ const createConsentApi = ({
     []
   );
   return apiWrapper("post", `/consent-requests/`, {
-    patient: {
-      id: patientId
-    },
-    purpose: {
-      code: selectedPurposeValue
-    },
-    hitypes: selectedRequests,
-    Permission: {
-      dateRange: {
-        from: selectedStartDate.toISOString(),
-        to: selectedEndDate.toISOString()
+    consent: {
+      patient: {
+        id: patientId
       },
-      dataExpiryAt: selectedExpiryDate.toISOString()
+      purpose: {
+        code: selectedPurposeValue
+      },
+      hiTypes: selectedRequests,
+      permission: {
+        dateRange: {
+          from: selectedStartDate.toISOString(),
+          to: selectedEndDate.toISOString()
+        },
+        dataExpiryAt: selectedExpiryDate.toISOString()
+      }
     }
   });
 };

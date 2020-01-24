@@ -13,7 +13,6 @@ const SearchPatient = ({
 }) => {
   const [localPatientId, setPatientId] = useState(patientId);
   const [textInput, setTextInput] = useState("");
-
   useEffect(() => {
     if (loading) {
       setPatientId(textInput);
@@ -23,6 +22,16 @@ const SearchPatient = ({
     }
   }, [loading]);
 
+  const generateHelperText = () => {
+    if (error) {
+      return "Id doesnt exists.";
+    } else if (serverError) {
+      return "Server Error.";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <SearchPatientStyles>
       <div className="search-bar">
@@ -30,7 +39,7 @@ const SearchPatient = ({
           id="search-field"
           disabled={loading}
           error={error}
-          helperText={error ? `Id doesnt exists` : ""}
+          helperText={generateHelperText()}
           value={textInput}
           onChange={e => setTextInput(e.target.value)}
         />
@@ -65,7 +74,6 @@ const SearchPatient = ({
             />
           )}
         </IconButton>
-        {serverError && <Error color="action" />}
       </div>
     </SearchPatientStyles>
   );

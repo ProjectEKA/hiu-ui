@@ -6,19 +6,14 @@ import DateTimePicker from "./../DateTimePicker/DateTimePicker";
 import DatePicker from "./../DateTimePicker/DatePicker";
 import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
-import { FormControl, FormHelperText } from "@material-ui/core";
 import RequestType from "./../RequestType/RequestType";
 import SimpleMenu from "./../SimpleMenu/SimpleMenu";
 
 const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
   const purposeTypes = [
     {
-      label: "General Consulting",
-      value: "GeneralConsulting"
-    },
-    {
       label: "Referral services",
-      value: "ReferralServices"
+      value: "ReferralService"
     },
     {
       label: "Episode of Care",
@@ -27,15 +22,18 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
     {
       label: "Encounter",
       value: "Encounter"
+    },
+    {
+      label: "Remote Consulting",
+      value: "RemoteConsulting"
     }
   ];
 
   const requestTypes = [
-    "PatientHistory",
-    "Medications",
-    "DiagnosisLab",
-    "RadiologyLab",
-    "Observations"
+    "Condition",
+    "Observation",
+    "DiagnosticReport",
+    "MedicationRequest"
   ];
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
@@ -47,7 +45,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
     Medications: false,
     DiagnosisLab: false,
     RadiologyLab: false,
-    Observations: false
+    Condition: false
   });
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState();
 
@@ -75,12 +73,6 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
   const handlePurposeSelection = event => {
     setSelectedPurposeValue(event.target.value);
   };
-
-  useEffect(() => {
-    if (error) {
-      setOpen(true);
-    }
-  }, [error]);
 
   return (
     <RequestAccessStyles>

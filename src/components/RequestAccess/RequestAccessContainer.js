@@ -4,7 +4,9 @@ import RequestAccess from "./RequestAccess";
 import { onCreateConsent } from "../../redux/actions/createConsentActions";
 
 const mapStateToProps = state => ({
-  patientId: state.patientDetail.patientData.id,
+  patientId: state.patientDetail.patientData.patient
+    ? state.patientDetail.patientData.patient.id
+    : undefined,
   error: state.createConsent.error,
   success: state.createConsent.success
 });

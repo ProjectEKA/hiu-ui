@@ -14,6 +14,9 @@ const SearchPatientStyles = styled.div`
   .fiduciary-text-field {
     width: 60px;
   }
+  #search-field-helper-text {
+    color: red;
+  }
 `;
 
 export default SearchPatientStyles;
