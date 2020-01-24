@@ -15,6 +15,7 @@ const RequestAccessStyles = styled.div`
     display: block;
     color: #000;
     font-size: 16px;
+    font-weight: 300;
     font-family: "Roboto", sans-serif;
   }
   .MuiGrid-container {
@@ -34,6 +35,7 @@ const RequestAccessStyles = styled.div`
     padding: 10px 0;
     color: #f44336;
     font-size: 16px;
+    font-weight: 300;
     font-family: "Roboto", sans-serif;
   }
 `;

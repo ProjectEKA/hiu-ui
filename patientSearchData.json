@@ -1,12 +1,8 @@
 {
   "patients": [
     {
-      "id": "David@NCG",
+      "id": "David@ncg",
       "display": "David"
-    },
-    {
-      "id": "Anu@NCG",
-      "display": "Anu"
     }
   ]
 }

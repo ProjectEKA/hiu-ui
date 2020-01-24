@@ -76,11 +76,17 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
     setSelectedPurposeValue(event.target.value);
   };
 
+  useEffect(() => {
+    if (error) {
+      setOpen(true);
+    }
+  }, [error]);
+
   return (
     <RequestAccessStyles>
       <h2>Consent request form</h2>
       <form>
-        <span class="label">All the fields are mandatory.</span>
+        <span className="label">All the fields are mandatory.</span>
         {error && (
           <span className="error">Error occured while creating consent.</span>
         )}

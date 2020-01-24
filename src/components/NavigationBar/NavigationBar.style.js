@@ -11,6 +11,7 @@ const NavigationBarStyles = styled.div`
       a {
         color: #000000;
         font-size: 20px;
+        font-weight: 300;
         margin: 0 10px;
         padding: 23px 15px 21px;
         text-decoration: none;

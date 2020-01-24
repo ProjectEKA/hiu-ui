@@ -15,6 +15,7 @@ const RequestType = ({ requestTypes, handleChange }) => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    className="check-box"
                     checked={RequestType.checked}
                     onChange={handleChange(type)}
                     value={type}

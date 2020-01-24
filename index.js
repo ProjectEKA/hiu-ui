@@ -17,7 +17,10 @@ const theme = createMuiTheme({
     secondary: teal
   },
   typography: {
-    fontFamily: '"Roboto", sans-serif'
+    fontFamily: '"Roboto", sans-serif',
+    body1: {
+      fontWeight: 300
+    }
   }
 });
 
