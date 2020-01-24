@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
 import { IconButton, TextField, CircularProgress } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Error from "@material-ui/icons/Error";
 
 const SearchPatient = ({
   onSearch,
   patientId,
   loading,
+  success,
   error,
   serverError
 }) => {
@@ -23,21 +23,33 @@ const SearchPatient = ({
     }
   }, [loading]);
 
+  const generateSearchHealperText = () => {
+    if (serverError) {
+      return "Something went wrong.";
+    } else if (error) {
+      return "id doesnt found.";
+    } else if (success) {
+      return "Id found";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <SearchPatientStyles>
       <div className="search-bar">
         <TextField
           id="search-field"
           disabled={loading}
-          error={error}
-          helperText={error ? `Id doesnt exists` : ""}
+          error={error || serverError}
+          helperText={generateSearchHealperText()}
           value={textInput}
           onChange={e => setTextInput(e.target.value)}
         />
         <TextField
           className="fiduciary-text-field"
           disabled
-          placeholder="@NCG"
+          placeholder="@ncg"
         />
         <IconButton
           disabled={textInput.length == 0 || loading}
@@ -65,7 +77,6 @@ const SearchPatient = ({
             />
           )}
         </IconButton>
-        {serverError && <Error color="action" />}
       </div>
     </SearchPatientStyles>
   );
@@ -74,6 +85,7 @@ const SearchPatient = ({
 SearchPatient.defaultProps = {
   patientId: "",
   loading: false,
+  success: false,
   error: false,
   serverError: false
 };

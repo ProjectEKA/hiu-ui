@@ -6,6 +6,7 @@ import { onSearch } from "../../redux/actions/searchPatientIdActions";
 const mapStateToProps = state => ({
   patientId: state.patientDetail.result,
   loading: state.patientDetail.loading,
+  success: state.patientDetail.success,
   error: state.patientDetail.error,
   serverError: state.patientDetail.serverError
 });

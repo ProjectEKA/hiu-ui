@@ -6,9 +6,9 @@ import DateTimePicker from "./../DateTimePicker/DateTimePicker";
 import DatePicker from "./../DateTimePicker/DatePicker";
 import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
-import { FormControl, FormHelperText } from "@material-ui/core";
 import RequestType from "./../RequestType/RequestType";
 import SimpleMenu from "./../SimpleMenu/SimpleMenu";
+import SnackBar from "./../SnackBar/SnackBar";
 
 const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
   const purposeTypes = [
@@ -50,6 +50,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
     Observations: false
   });
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState();
+  const [open, setOpen] = React.useState(false);
 
   const handlePITypeChange = name => event => {
     setselectedRequestTypes({
@@ -184,6 +185,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
           </Button>
         </Grid>
       </form>
+    <SnackBar open={open} setOpen={setOpen} />
     </RequestAccessStyles>
   );
 };

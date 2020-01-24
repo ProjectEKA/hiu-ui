@@ -16,7 +16,7 @@ exports[`SearchPatient should render properly 1`] = `
     <WithStyles(ForwardRef(TextField))
       className="fiduciary-text-field"
       disabled={true}
-      placeholder="@NCG"
+      placeholder="@ncg"
     />
     <WithStyles(ForwardRef(IconButton))
       aria-label="search"
