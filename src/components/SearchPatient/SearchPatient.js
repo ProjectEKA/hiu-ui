@@ -50,7 +50,7 @@ const SearchPatient = ({
         <TextField
           className="fiduciary-text-field"
           disabled
-          placeholder="@NCG"
+          placeholder="@ncg"
         />
         <IconButton
           disabled={textInput.length == 0 || loading}

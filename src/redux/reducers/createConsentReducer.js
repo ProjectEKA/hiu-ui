@@ -5,18 +5,21 @@ export default (state = {}, action) => {
     case ACTION_TYPES.CREATE_CONSENT_REQUESTED:
       return {
         ...state,
+        loading: true,
         error: false,
         success: false
       };
     case ACTION_TYPES.CREATE_CONSENT_SUCCEEDED:
       return {
         ...state,
+        loading: false,
         error: false,
         success: true
       };
     case ACTION_TYPES.CREATE_CONSENT_FAILED:
       return {
         ...state,
+        loading: false,
         error: true,
         success: false
       };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
+import { Button, CircularProgress } from "@material-ui/core";
 import RequestAccessStyles from "./RequestAccess.style";
 import SearchPatient from "../SearchPatient";
 import DateTimePicker from "./../DateTimePicker/DateTimePicker";
@@ -9,7 +9,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import RequestType from "./../RequestType/RequestType";
 import SimpleMenu from "./../SimpleMenu/SimpleMenu";
 
-const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
+const RequestAccess = ({
+  onCreateConsent,
+  patientId,
+  loading,
+  success,
+  error
+}) => {
   const purposeTypes = [
     {
       label: "Referral services",
@@ -153,6 +159,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
             <DateTimePicker
               handleDateChange={handleExpiryDateChange}
               selectedDate={selectedExpiryDate}
+              disablePast="true"
             />
           </Grid>
         </Grid>
@@ -176,6 +183,17 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
           </Button>
         </Grid>
       </form>
+      {loading && (
+        <div className="loader-container">
+          <CircularProgress
+            id="loader"
+            className="loader"
+            variant="indeterminate"
+            disableShrink
+            thickness={4}
+          />
+        </div>
+      )}
     </RequestAccessStyles>
   );
 };

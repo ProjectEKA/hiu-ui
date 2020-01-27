@@ -6,10 +6,13 @@ const DateTimePicker = ({
   minDate,
   maxDate,
   selectedDate,
-  handleDateChange
+  handleDateChange,
+  disablePast
 }) => {
   return (
     <KeyboardDateTimePicker
+      autoOk="true"
+      variant="inline"
       margin="normal"
       disableFuture={disableFuture}
       id="date-picker-dialog"
@@ -18,6 +21,7 @@ const DateTimePicker = ({
       maxDate={maxDate}
       value={selectedDate}
       onChange={handleDateChange}
+      disablePast={disablePast}
       KeyboardButtonProps={{
         "aria-label": "change date"
       }}

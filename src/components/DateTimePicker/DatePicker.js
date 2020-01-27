@@ -9,6 +9,8 @@ const DatePicker = ({
 }) => {
   return (
     <KeyboardDatePicker
+      autoOk="true"
+      variant="inline"
       margin="normal"
       disableFuture={disableFuture}
       id="date-picker-dialog"

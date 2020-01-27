@@ -1,10 +1,10 @@
 import React from "react";
-import LandingPage from "../LandingPage/LandingPage";
+// import LandingPage from "../LandingPage/LandingPage";
 
 const PatientView = () => {
   return (
     <div>
-      <h2> Patient View </h2> <LandingPage />
+      <h2> Patient View </h2>
     </div>
   );
 };
