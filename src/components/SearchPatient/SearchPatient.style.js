@@ -17,6 +17,10 @@ const SearchPatientStyles = styled.div`
   #search-field-helper-text {
     color: red;
   }
+  .icon-button {
+    margin-left: 15px;
+    margin-top: -8px;
+  }
 `;
 
 export default SearchPatientStyles;

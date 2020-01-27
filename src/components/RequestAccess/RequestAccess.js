@@ -158,6 +158,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Button
+            className="create-consent-button"
             variant="contained"
             color="primary"
             onClick={() => {

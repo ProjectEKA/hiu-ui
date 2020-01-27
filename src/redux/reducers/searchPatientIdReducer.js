@@ -7,6 +7,7 @@ export default (state = searchPatientInitialState, action) => {
       return {
         ...state,
         loading: true,
+        success: false,
         error: false,
         serverError: false
       };
@@ -15,6 +16,7 @@ export default (state = searchPatientInitialState, action) => {
         ...state,
         patientData: action.payload.data,
         loading: false,
+        success: true,
         error: false,
         serverError: false
       };
@@ -22,6 +24,7 @@ export default (state = searchPatientInitialState, action) => {
       return {
         ...state,
         loading: false,
+        success: false,
         error: false,
         serverError: false
       };
@@ -29,6 +32,7 @@ export default (state = searchPatientInitialState, action) => {
       return {
         ...state,
         loading: false,
+        success: false,
         error: true,
         serverError: false
       };
@@ -36,6 +40,7 @@ export default (state = searchPatientInitialState, action) => {
       return {
         ...state,
         loading: false,
+        success: false,
         error: false,
         serverError: true
       };

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
 import { IconButton, TextField, CircularProgress } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Error from "@material-ui/icons/Error";
 
 const SearchPatient = ({
   onSearch,
   patientId,
+  patientName,
+  success,
   loading,
   error,
   serverError
@@ -18,15 +19,18 @@ const SearchPatient = ({
       setPatientId(textInput);
       setTextInput("Searching");
     } else {
-      setTextInput(localPatientId);
+      const successText = localPatientId.concat(": ", patientName);
+      {
+        success ? setTextInput(successText) : setTextInput(localPatientId);
+      }
     }
   }, [loading]);
 
-  const generateHelperText = () => {
+  const generateErrorText = () => {
     if (error) {
-      return "Id doesnt exists.";
+      return "Id not found.";
     } else if (serverError) {
-      return "Server Error.";
+      return "Id not found.";
     } else {
       return "";
     }
@@ -39,7 +43,7 @@ const SearchPatient = ({
           id="search-field"
           disabled={loading}
           error={error}
-          helperText={generateHelperText()}
+          helperText={generateErrorText()}
           value={textInput}
           onChange={e => setTextInput(e.target.value)}
         />
