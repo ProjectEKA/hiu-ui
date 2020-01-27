@@ -9,7 +9,7 @@ const SearchPatientStyles = styled.div`
   }
   .search-bar {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
   .fiduciary-text-field {
     width: 60px;

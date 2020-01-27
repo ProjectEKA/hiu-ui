@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
-      BACKEND_BASE_URL: JSON.stringify("http://localhost:8080/")
+      BACKEND_BASE_URL: JSON.stringify("http://localhost:8080")
     })
   ],
   devServer: {
@@ -29,7 +29,7 @@ module.exports = {
       },
       "/consent-requests": {
         changeOrigin: true,
-        cookieDomainRewrite: "http://hiu-dev.projecteka.in",
+        cookieDomainRewrite: "localhost",
         target: "http://hiu-dev.projecteka.in",
         onProxyReq: proxyReq => {
           if (proxyReq.getHeader("origin")) {

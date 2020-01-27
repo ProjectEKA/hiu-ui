@@ -2,11 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import RequestAccess from "./RequestAccess";
 import { onCreateConsent } from "../../redux/actions/createConsentActions";
+import getNestedObject from "../../utils/getNestedObject";
 
 const mapStateToProps = state => ({
-  patientId: state.patientDetail.patientData.patient
-    ? state.patientDetail.patientData.patient.id
-    : undefined,
+  patientId: getNestedObject(state, "patientDetail.patientData.patient.id"),
   error: state.createConsent.error,
   success: state.createConsent.success
 });

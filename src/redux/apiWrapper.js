@@ -1,10 +1,5 @@
 import axios from "axios";
-import { contentTypes } from "../constants";
-
-const defaultHeaders = {
-  accept: contentTypes.JSON,
-  "Content-Type": contentTypes.JSON
-};
+import { defaultHeaders } from "../constants";
 
 export default (
   method,

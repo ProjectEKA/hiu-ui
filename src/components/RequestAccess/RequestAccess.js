@@ -83,7 +83,7 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
           <span className="error">Error occured while creating consent.</span>
         )}
         {success && (
-          <span className="Success">Consent created successfylly.</span>
+          <span className="success">Consent created successfylly.</span>
         )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
@@ -151,7 +151,6 @@ const RequestAccess = ({ onCreateConsent, patientId, success, error }) => {
           </Grid>
           <Grid item xs={3}>
             <DateTimePicker
-              minDate={selectedStartDate}
               handleDateChange={handleExpiryDateChange}
               selectedDate={selectedExpiryDate}
             />
