@@ -6,6 +6,9 @@ exports[`Request Access should render properly  1`] = `
     Consent request form
   </h2>
   <form>
+    <span className=\\"label\\">
+      All the fields are mandatory.
+    </span>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
       <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
         <WithStyles(ForwardRef(InputLabel)) className=\\"text-field-label\\">
@@ -13,7 +16,7 @@ exports[`Request Access should render properly  1`] = `
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid)) item={true} xs={5}>
-        <Connect(SearchPatient) />
+        <Connect(SearchPatient) success={false} error={false} />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
@@ -23,7 +26,7 @@ exports[`Request Access should render properly  1`] = `
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
-        <SimpleMenu menuItems={{...}} handleChange={[Function: handlePurposeSelection]} selectedValue=\\"GeneralConsulting\\" />
+        <SimpleMenu menuItems={{...}} handleChange={[Function: handlePurposeSelection]} selectedValue=\\"ReferralService\\" />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
@@ -33,7 +36,7 @@ exports[`Request Access should render properly  1`] = `
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
-        <DatePicker disableFuture={true} handleDateChange={[Function: handleStarteDateChange]} selectedDate={[undefined]} />
+        <DatePicker disableFuture={true} handleDateChange={[Function: handleStarteDateChange]} selectedDate={[undefined]} minDate={{...}} />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
@@ -43,7 +46,7 @@ exports[`Request Access should render properly  1`] = `
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid)) item={true} xs={2}>
-        <DatePicker disableFuture={true} handleDateChange={[Function: handleEndDateChange]} selectedDate={[undefined]} />
+        <DatePicker disableFuture={true} minDate={{...}} handleDateChange={[Function: handleEndDateChange]} selectedDate={[undefined]} />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
@@ -63,11 +66,11 @@ exports[`Request Access should render properly  1`] = `
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid)) item={true} xs={3}>
-        <DateTimePicker handleDateChange={[Function: handleExpiryDateChange]} selectedDate={[undefined]} disableFuture={false} />
+        <DateTimePicker handleDateChange={[Function: handleExpiryDateChange]} selectedDate={[undefined]} disablePast=\\"true\\" disableFuture={false} minDate={{...}} />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid)) container={true} spacing={3} alignItems=\\"center\\">
-      <WithStyles(ForwardRef(Button)) variant=\\"contained\\" color=\\"primary\\" onClick={[Function: onClick]}>
+      <WithStyles(ForwardRef(Button)) className=\\"create-consent-button\\" variant=\\"contained\\" color=\\"primary\\" onClick={[Function: onClick]}>
         Request Consent
       </WithStyles(ForwardRef(Button))>
     </WithStyles(ForwardRef(Grid))>

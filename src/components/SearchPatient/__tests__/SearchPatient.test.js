@@ -39,7 +39,7 @@ describe("SearchPatient", () => {
         .find("#search-field")
         .at(0)
         .props()["value"]
-    ).toBe("Searching");
+    ).toBe("Looking for ");
     // expect(wrapper.find("#loader").length).toBe(1);
   });
 
@@ -58,6 +58,6 @@ describe("SearchPatient", () => {
         .find("#search-field")
         .at(0)
         .props()["value"]
-    ).toBe("Searching");
+    ).toBe("Looking for ");
   });
 });

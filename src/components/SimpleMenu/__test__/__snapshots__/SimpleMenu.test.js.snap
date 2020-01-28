@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Simple Menu should render properly  1`] = `
-"<WithStyles(ForwardRef(Select)) id=\\"select-menu\\" value=\\"GeneralConsulting\\" onChange={[undefined]}>
-  <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"GeneralConsulting\\" onClick={[undefined]}>
-    General Consulting
-  </WithStyles(ForwardRef(MenuItem))>
-  <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"ReferralServices\\" onClick={[undefined]}>
-    Referral services
-  </WithStyles(ForwardRef(MenuItem))>
-  <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"EpisodeOfCare\\" onClick={[undefined]}>
-    Episode of Care
-  </WithStyles(ForwardRef(MenuItem))>
-  <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"Encounter\\" onClick={[undefined]}>
-    Encounter
-  </WithStyles(ForwardRef(MenuItem))>
-</WithStyles(ForwardRef(Select))>"
+"<styled.div>
+  <WithStyles(ForwardRef(Select)) id=\\"select-menu\\" className=\\"select-menu\\" value=\\"GeneralConsulting\\" onChange={[undefined]}>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"GeneralConsulting\\" onClick={[undefined]}>
+      General Consulting
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"ReferralServices\\" onClick={[undefined]}>
+      Referral services
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"EpisodeOfCare\\" onClick={[undefined]}>
+      Episode of Care
+    </WithStyles(ForwardRef(MenuItem))>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"Encounter\\" onClick={[undefined]}>
+      Encounter
+    </WithStyles(ForwardRef(MenuItem))>
+  </WithStyles(ForwardRef(Select))>
+</styled.div>"
 `;

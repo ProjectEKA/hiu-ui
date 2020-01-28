@@ -16,8 +16,9 @@ const SearchPatient = ({
   const [textInput, setTextInput] = useState("");
   useEffect(() => {
     if (loading) {
+      const loadingText = "Looking for ".concat(textInput);
+      setTextInput(loadingText);
       setPatientId(textInput);
-      setTextInput("Searching");
     } else {
       const successText = localPatientId.concat(": ", patientName);
       {
