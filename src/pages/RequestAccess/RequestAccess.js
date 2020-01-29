@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, CircularProgress } from "@material-ui/core";
 import RequestAccessStyles from "./RequestAccess.style";
-import SearchPatient from "../SearchPatient";
-import DateTimePicker from "./../DateTimePicker/DateTimePicker";
-import DatePicker from "./../DateTimePicker/DatePicker";
+import SearchPatient from "./../../components/SearchPatient";
+import DateTimePicker from "./../../components/DateTimePicker/DateTimePicker";
+import DatePicker from "./../../components/DateTimePicker/DatePicker";
 import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
 import RequestType from "./../RequestType/RequestType";
