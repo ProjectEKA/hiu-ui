@@ -1,4 +1,4 @@
-import RequestAccess from "Components/RequestAccess/RequestAccessContainer";
+import RequestAccess from "Components/RequestAccess";
 import PatientView from "Components/PatientView/PatientView";
 import ConsentLog from "Components/ConsentLog/ConsentLog";
 const routes = [

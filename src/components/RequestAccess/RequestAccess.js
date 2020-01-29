@@ -9,6 +9,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import RequestType from "./../RequestType/RequestType";
 import SimpleMenu from "./../SimpleMenu/SimpleMenu";
 import getNextDay from "./../../utils/getNextDay";
+import purposeTypes from "./../../constants/puposeTypes";
+import requestTypes from "./../../constants/requestTypes";
 
 const RequestAccess = ({
   onCreateConsent,
@@ -17,31 +19,6 @@ const RequestAccess = ({
   success,
   error
 }) => {
-  const purposeTypes = [
-    {
-      label: "Referral services",
-      value: "ReferralService"
-    },
-    {
-      label: "Episode of Care",
-      value: "EpisodeOfCare"
-    },
-    {
-      label: "Encounter",
-      value: "Encounter"
-    },
-    {
-      label: "Remote Consulting",
-      value: "RemoteConsulting"
-    }
-  ];
-
-  const requestTypes = [
-    "Condition",
-    "Observation",
-    "DiagnosticReport",
-    "MedicationRequest"
-  ];
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
   );
