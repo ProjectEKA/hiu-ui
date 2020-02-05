@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
 import RequestType from "./../RequestType/RequestType";
 import SimpleMenu from "./../SimpleMenu/SimpleMenu";
+import getNextDay from "./../../utils/getNextDay";
 
 const RequestAccess = ({
   onCreateConsent,
@@ -44,8 +45,8 @@ const RequestAccess = ({
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState();
-  const [selectedEndDate, setSelectedEndDate] = React.useState();
+  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
   const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
@@ -53,7 +54,10 @@ const RequestAccess = ({
     RadiologyLab: false,
     Condition: false
   });
-  const [selectedExpiryDate, setSelectedExpiryDate] = React.useState();
+
+  const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
+    getNextDay()
+  );
 
   const handlePITypeChange = name => event => {
     setselectedRequestTypes({
