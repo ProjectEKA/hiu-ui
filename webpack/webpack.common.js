@@ -5,7 +5,9 @@ var parentDir = path.join(__dirname, "../");
 
 module.exports = {
   context: path.join(parentDir, ""),
-  plugins: [new CopyWebpackPlugin([{ from: "static" }, { from: "index.js" }])],
+  plugins: [
+    new CopyWebpackPlugin([{ from: "static" }, { from: "index.html" }])
+  ],
   entry: [path.join(parentDir, "index.js")],
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
