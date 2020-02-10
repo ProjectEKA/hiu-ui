@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
-      BACKEND_BASE_URL: JSON.stringify("http://hiu-dev.projecteka.in")
+      BACKEND_BASE_URL: JSON.stringify("https://hiu-dev.projecteka.in")
     })
   ]
 };

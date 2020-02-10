@@ -19,21 +19,21 @@ module.exports = {
     proxy: {
       "/patients/*": {
         changeOrigin: true,
-        cookieDomainRewrite: "http://hiu-dev.projecteka.in",
-        target: "http://hiu-dev.projecteka.in",
+        cookieDomainRewrite: "https://hiu-dev.projecteka.in",
+        target: "https://hiu-dev.projecteka.in",
         onProxyReq: proxyReq => {
           if (proxyReq.getHeader("origin")) {
-            proxyReq.setHeader("origin", "http://hiu-dev.projecteka.in");
+            proxyReq.setHeader("origin", "https://hiu-dev.projecteka.in");
           }
         }
       },
       "/consent-requests": {
         changeOrigin: true,
         cookieDomainRewrite: "localhost",
-        target: "http://hiu-dev.projecteka.in",
+        target: "https://hiu-dev.projecteka.in",
         onProxyReq: proxyReq => {
           if (proxyReq.getHeader("origin")) {
-            proxyReq.setHeader("origin", "http://hiu-dev.projecteka.in");
+            proxyReq.setHeader("origin", "https://hiu-dev.projecteka.in");
           }
         }
       }
