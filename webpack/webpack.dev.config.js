@@ -17,6 +17,11 @@ module.exports = {
     contentBase: parentDir,
     historyApiFallback: true,
     proxy: {
+      "/dicom-web":{
+        changeOrigin:true,
+        cookieDomainRewrite: "",
+        target: "http://localhost:8042"
+      },
       "/patients/*": {
         changeOrigin: true,
         cookieDomainRewrite: "https://hiu-dev.projecteka.in",
