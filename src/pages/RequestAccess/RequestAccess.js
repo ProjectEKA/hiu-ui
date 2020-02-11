@@ -22,8 +22,12 @@ const RequestAccess = ({
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
+  const [selectedStartDate, setSelectedStartDate] = React.useState(
+    new Date().toISOString()
+  );
+  const [selectedEndDate, setSelectedEndDate] = React.useState(
+    new Date().toISOString()
+  );
   const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
@@ -33,7 +37,7 @@ const RequestAccess = ({
   });
 
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
-    getNextDay()
+    getNextDay().toISOString()
   );
 
   const handlePITypeChange = name => event => {
@@ -102,6 +106,7 @@ const RequestAccess = ({
           </Grid>
           <Grid item xs={2}>
             <DatePicker
+              minDate="01/01/1900"
               disableFuture={true}
               handleDateChange={handleStarteDateChange}
               selectedDate={selectedStartDate}
