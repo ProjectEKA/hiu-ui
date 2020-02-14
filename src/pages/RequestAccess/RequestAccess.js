@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Button, CircularProgress } from "@material-ui/core";
 import RequestAccessStyles from "./RequestAccess.style";
-import SearchPatient from "../SearchPatient";
-import DateTimePicker from "./../DateTimePicker/DateTimePicker";
-import DatePicker from "./../DateTimePicker/DatePicker";
+import SearchPatient from "./../../components/SearchPatient";
+import DateTimePicker from "./../../components/DateTimePicker/DateTimePicker";
+import DatePicker from "./../../components/DateTimePicker/DatePicker";
 import Grid from "@material-ui/core/Grid";
 import InputLabel from "@material-ui/core/InputLabel";
-import RequestType from "./../RequestType/RequestType";
-import SimpleMenu from "./../SimpleMenu/SimpleMenu";
+import RequestType from "./../../components/RequestType/RequestType";
+import SimpleMenu from "./../../components/SimpleMenu/SimpleMenu";
 import getNextDay from "./../../utils/getNextDay";
+import purposeTypes from "./../../constants/puposeTypes";
+import requestTypes from "./../../constants/requestTypes";
 
 const RequestAccess = ({
   onCreateConsent,
@@ -17,36 +19,15 @@ const RequestAccess = ({
   success,
   error
 }) => {
-  const purposeTypes = [
-    {
-      label: "Referral services",
-      value: "ReferralService"
-    },
-    {
-      label: "Episode of Care",
-      value: "EpisodeOfCare"
-    },
-    {
-      label: "Encounter",
-      value: "Encounter"
-    },
-    {
-      label: "Remote Consulting",
-      value: "RemoteConsulting"
-    }
-  ];
-
-  const requestTypes = [
-    "Condition",
-    "Observation",
-    "DiagnosticReport",
-    "MedicationRequest"
-  ];
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
+  const [selectedStartDate, setSelectedStartDate] = React.useState(
+    new Date().toISOString()
+  );
+  const [selectedEndDate, setSelectedEndDate] = React.useState(
+    new Date().toISOString()
+  );
   const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
@@ -56,7 +37,7 @@ const RequestAccess = ({
   });
 
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
-    getNextDay()
+    getNextDay().toISOString()
   );
 
   const handlePITypeChange = name => event => {
@@ -125,6 +106,7 @@ const RequestAccess = ({
           </Grid>
           <Grid item xs={2}>
             <DatePicker
+              minDate="01/01/1900"
               disableFuture={true}
               handleDateChange={handleStarteDateChange}
               selectedDate={selectedStartDate}

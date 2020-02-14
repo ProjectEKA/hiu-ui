@@ -6,7 +6,7 @@ const RequestAccessStyles = styled.div`
     font-size: 24px;
     line-height: 24px;
     font-weight: 300;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 25px;
     border-bottom: 1px solid #000000;
     font-family: "Roboto", sans-serif;

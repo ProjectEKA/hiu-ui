@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Request Access Should render properly 1`] = `
+<styled.div>
+  <h2>
+    Consent request form
+  </h2>
+  <form>
+    <span
+      className="label"
+    >
+      All the fields are mandatory.
+    </span>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+          Patient Identifier
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={5}
+      >
+        <Connect(SearchPatient)
+          error={false}
+          success={false}
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+          Purpose of request
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <SimpleMenu
+          handleChange={[Function]}
+          menuItems={
+            Array [
+              Object {
+                "label": "Referral services",
+                "value": "ReferralService",
+              },
+              Object {
+                "label": "Episode of Care",
+                "value": "EpisodeOfCare",
+              },
+              Object {
+                "label": "Encounter",
+                "value": "Encounter",
+              },
+              Object {
+                "label": "Remote Consulting",
+                "value": "RemoteConsulting",
+              },
+            ]
+          }
+          selectedValue="ReferralService"
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+           Request from 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <DatePicker
+          disableFuture={true}
+          handleDateChange={[Function]}
+          minDate="01/01/1900"
+          selectedDate="2019-05-14T11:01:58.135Z"
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+           Request to 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <DatePicker
+          disableFuture={true}
+          handleDateChange={[Function]}
+          minDate="2019-05-14T11:01:58.135Z"
+          selectedDate="2019-05-14T11:01:58.135Z"
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+           Request type 
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={10}
+      >
+        <RequestType
+          handleChange={[Function]}
+          requestTypes={
+            Array [
+              "Condition",
+              "Observation",
+              "DiagnosticReport",
+              "MedicationRequest",
+            ]
+          }
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(InputLabel))
+          className="text-field-label"
+        >
+          Consent Expiry
+        </WithStyles(ForwardRef(InputLabel))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={3}
+      >
+        <DateTimePicker
+          disableFuture={false}
+          disablePast="true"
+          handleDateChange={[Function]}
+          minDate={Object {}}
+          selectedDate="2019-05-15T11:01:58.135Z"
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      spacing={3}
+    >
+      <WithStyles(ForwardRef(Button))
+        className="create-consent-button"
+        color="primary"
+        onClick={[Function]}
+        variant="contained"
+      >
+        Request Consent
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Grid))>
+  </form>
+</styled.div>
+`;
