@@ -4,10 +4,6 @@ import PatientView from "Components/PatientView/PatientView";
 import ConsentLog from "Components/ConsentLog/ConsentLog";
 const routes = [
   {
-    component: LandingPage,
-    path: '/'
-  },
-  {
     component: RequestAccess,
     path: "/request-access"
   },

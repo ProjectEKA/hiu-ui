@@ -28,7 +28,7 @@ const RequestAccess = ({
   const [selectedEndDate, setSelectedEndDate] = React.useState(
     new Date().toISOString()
   );
-  const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
+  const [selectedRequestTypes, setSelectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
     DiagnosisLab: false,
@@ -41,7 +41,7 @@ const RequestAccess = ({
   );
 
   const handlePITypeChange = name => event => {
-    setselectedRequestTypes({
+    setSelectedRequestTypes({
       ...selectedRequestTypes,
       [name]: event.target.checked
     });
