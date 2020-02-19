@@ -9,6 +9,7 @@ const Container = () => {
       <Switch>
         {routes.map(route => (
           <Route
+            exact={route.isExact}
             key={route.path}
             path={route.path}
             component={route.component}

@@ -1,7 +1,7 @@
 import apiWrapper from "../apiWrapper";
 
-const loadConsentsApi = huiId => {
-  return apiWrapper("get", `/consents/${huiId}`);
+const loadConsentsApi = hiuId => {
+  return apiWrapper("get", `/consents/${hiuId}`);
 };
 
 export default loadConsentsApi;

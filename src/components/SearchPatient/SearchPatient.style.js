@@ -4,7 +4,7 @@ const SearchPatientStyles = styled.div`
   .root {
     padding: 2px 2px 2px 10px;
     display: flex;
-    alignitems: center;
+    align-items: center;
     width: 400;
   }
   .search-bar {
