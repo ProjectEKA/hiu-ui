@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
-import RequestAccess from "./../RequestAccess/RequestAccess";
+import RequestAccess from "./../RequestAccess/RequestAccessContainer";
 import LoadConsentsContainer from "../../components/ConsentsListTable/LoadConsentsContainer";
 import { makeStyles } from "@material-ui/core/styles";
 

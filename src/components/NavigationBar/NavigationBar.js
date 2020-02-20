@@ -13,7 +13,7 @@ const NavigationBar = () => {
             </NavLink>
           </li>
           <li key="Patient-view">
-            <NavLink activeClassName="active" to="/Patient-view">
+            <NavLink activeClassName="active" to="/patient-view">
               Patient view
             </NavLink>
           </li>

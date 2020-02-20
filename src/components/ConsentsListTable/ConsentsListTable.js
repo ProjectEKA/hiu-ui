@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -91,37 +92,37 @@ const ConsentsListTable = ({ loadConsents }) => {
   useEffect(() => {
     loadConsents();
   }, []);
+
   return (
     <TableContainer component={Paper}>
       <Table className={Styles().table} aria-label="simple table">
         <TableHead>
           {
             <TableRow className={Styles().tableHead}>
-              <TableCell align="left">{headerRow.name}</TableCell>
-              <TableCell align="left">{headerRow.jataayuId}</TableCell>
-              <TableCell align="left">{headerRow.requestStatus}</TableCell>
-              <TableCell align="left">{headerRow.consentGrantedDate}</TableCell>
-              <TableCell align="left">{headerRow.consentExpiryDate}</TableCell>
-              <TableCell align="left">{""}</TableCell>
+              <TableCell>{headerRow.name}</TableCell>
+              <TableCell>{headerRow.jataayuId}</TableCell>
+              <TableCell>{headerRow.requestStatus}</TableCell>
+              <TableCell>{headerRow.consentGrantedDate}</TableCell>
+              <TableCell>{headerRow.consentExpiryDate}</TableCell>
+              <TableCell>{""}</TableCell>
             </TableRow>
           }
         </TableHead>
         <TableBody>
           {rows.map((row, i) => (
             <TableRow
-              onClick={() => {
-                fetchHealthData(row.consentId);
-              }}
               className={i % 2 !== 0 ? Styles().evenTableRow : ""}
               key={row.consentId}
             >
-              <TableCell align="left">{row.name}</TableCell>
-              <TableCell align="left">{row.jataayuId}</TableCell>
-              <TableCell align="left">{row.requestStatus}</TableCell>
-              <TableCell align="left">{row.consentGrantedDate}</TableCell>
-              <TableCell align="left">{row.consentExpiryDate}</TableCell>
-              <TableCell align="left">
-                <ArrowForwardIosIcon color="primary" />
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.jataayuId}</TableCell>
+              <TableCell>{row.requestStatus}</TableCell>
+              <TableCell>{row.consentGrantedDate}</TableCell>
+              <TableCell>{row.consentExpiryDate}</TableCell>
+              <TableCell>
+                <Link to={`/patient-view/${row.consentId}`}>
+                  <ArrowForwardIosIcon color="primary" />
+                </Link>
               </TableCell>
             </TableRow>
           ))}

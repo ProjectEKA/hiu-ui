@@ -15,7 +15,7 @@ const routes = [
   },
   {
     component: PatientView,
-    path: "/patient-view",
+    path: "/patient-view/:id",
     isExact: false
   },
   {
