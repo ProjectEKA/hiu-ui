@@ -6,12 +6,12 @@ function* loadConsents(action) {
   try {
     const consents = yield call(loadConsentsApi, action.payload);
     yield put({
-      type: GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
+      type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED,
       payload: consents
     });
   } catch (e) {
     yield put({
-      type: GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_FAILED,
+      type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_FAILED,
       payload: e
     });
   }
@@ -24,14 +24,14 @@ function* loadConsentsSuccess(action) {
 function* loadConsentsFailure(action) {
   if (action.payload.response.status === 500) {
     yield put({
-      type: GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR,
+      type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SERVER_ERROR,
       payload: action.payload
     });
   }
 }
 
 export default {
-  [GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_REQUESTED]: loadConsents,
-  [GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_SUCCEEDED]: loadConsentsSuccess,
-  [GET_CONSENTS_ACTION_TYPES.PATIENT_FETCH_FAILED]: loadConsentsFailure
+  [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_REQUESTED]: loadConsents,
+  [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED]: loadConsentsSuccess,
+  [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_FAILED]: loadConsentsFailure
 };
