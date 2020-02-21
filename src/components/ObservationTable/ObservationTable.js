@@ -9,6 +9,30 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import generateObservationRows from "./ObservationTableContainer";
 import ResourceData from "./ResourceData";
+import FHIR from "fhirclient";
+window.FHIR = FHIR;
+// FHIR.oauth2.authorize({
+//   client_id: "my_web_app",
+//   scope: "observation/*.read"
+// });
+
+FHIR.oauth2
+  .init({
+    iss:
+      "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImIiOiJzbWFydC0xNjQyMDY4IiwiZSI6InNtYXJ0LVByYWN0aXRpb25lci03MTYxNDUwMiJ9/fhir",
+    clientId: "123"
+  })
+  .then(client =>
+    client
+      .request("http://localhost:3000/api/observation", {
+        resolveReferences: ["encounter", "observation", "medicationRequest"],
+        graph: false
+      })
+      .then(data => {
+        window.mydata = data;
+        console.log("***", data);
+      })
+  );
 
 const useStyles = makeStyles({
   table: {
