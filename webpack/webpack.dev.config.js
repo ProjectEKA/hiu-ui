@@ -27,7 +27,7 @@ module.exports = {
           }
         }
       },
-      "/consent-requests": {
+      "/consent-requests/": {
         changeOrigin: true,
         cookieDomainRewrite: "localhost",
         target: "https://hiu-dev.projecteka.in",

@@ -4,7 +4,7 @@ import LoadConsents from "./ConsentsListTable";
 import { loadConsents } from "../../redux/actions/loadConsentsActions";
 
 const mapStateToProps = state => ({
-  hiuId: "1",
+  ConsentsList: state.loadConsents.consents,
   success: state.loadConsents.success,
   loading: state.loadConsents.loading,
   error: state.loadConsents.error,

@@ -1,7 +1,8 @@
 const ConsentsList = [
   {
     status: "REQUESTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -18,7 +19,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -29,7 +29,8 @@ const ConsentsList = [
   },
   {
     status: "REQUESTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -46,7 +47,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -57,7 +57,8 @@ const ConsentsList = [
   },
   {
     status: "GRANTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -74,7 +75,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -85,7 +85,8 @@ const ConsentsList = [
   },
   {
     status: "REQUESTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -102,7 +103,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -113,7 +113,8 @@ const ConsentsList = [
   },
   {
     status: "GRANTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -130,7 +131,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -141,7 +141,8 @@ const ConsentsList = [
   },
   {
     status: "GRANTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -158,7 +159,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -169,7 +169,8 @@ const ConsentsList = [
   },
   {
     status: "REQUESTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -186,7 +187,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,
@@ -197,7 +197,8 @@ const ConsentsList = [
   },
   {
     status: "REQUESTED",
-    createdAt: "2020-01-27T07:08:48.843+0000",
+    createdDate: "2020-01-27T07:08:48.843+0000",
+    expiredDate: "2020-03-12T07:08:00.000+0000",
     purpose: {
       text: "REMOTE_CONSULTING",
       code: "RemoteConsulting",
@@ -214,7 +215,6 @@ const ConsentsList = [
         from: "2020-01-01T07:08:00.000+0000",
         to: "2020-01-08T07:08:00.000+0000"
       },
-      dataExpiryAt: "2020-03-12T07:08:00.000+0000",
       frequency: {
         unit: "HOUR",
         value: 1,

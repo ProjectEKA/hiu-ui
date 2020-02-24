@@ -61,8 +61,8 @@ function getConsents() {
             getPatientFullName(consent.patient),
             consent.patient.id,
             "Consent granted",
-            toIndiaDate(consent.createdAt),
-            toIndiaDate(consent.permission.dataExpiryAt),
+            toIndiaDate(consent.createdDate),
+            toIndiaDate(consent.expiredDate),
             consent.id
           )
         );
@@ -84,11 +84,8 @@ function getConsents() {
   return consents;
 }
 
-function fetchHealthData(id) {
-  console.log("consent clicked", id);
-}
-
-const ConsentsListTable = ({ loadConsents }) => {
+const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
+  console.log("###", ConsentsList);
   useEffect(() => {
     loadConsents();
   }, []);

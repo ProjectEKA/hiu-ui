@@ -74,7 +74,7 @@ const RequestAccess = ({
           <span className="error">Error occured while creating consent.</span>
         )}
         {success && (
-          <span className="success">Consent created successfylly.</span>
+          <span className="success">Consent created successfully.</span>
         )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
