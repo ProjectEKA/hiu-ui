@@ -9,83 +9,26 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Styles from "../../constants/tableConstants";
-import LoadConsents from "./ConsentsList";
+// import ConsentsList from "./ConsentsList";
 import { toIndiaDate } from "../../constants";
 
-const rows = getConsents();
-let headerRow = createConsentModel(
-  "Name",
-  "Jataayu ID",
-  "Request Status",
-  "Consent granted on",
-  "Consent expiry on",
-  "",
-  "consent Id"
-);
+let headerRow = {
+  name: "Name",
+  jataayuId: "Jataayu ID",
+  requestStatus: "Request Status",
+  consentGrantedDate: "Consent granted on",
+  consentExpiryDate: "Consent expiry on"
+};
 
-function createConsentModel(
-  name,
-  jataayuId,
-  requestStatus,
-  consentGrantedDate,
-  consentExpiryDate,
-  consentId
-) {
-  return {
-    name,
-    jataayuId,
-    requestStatus,
-    consentGrantedDate,
-    consentExpiryDate,
-    consentId
-  };
+function isGrantedConsent(status) {
+  return status === "GRANTED";
 }
 
-function getConsents() {
-  let consents = [];
-
-  function isGrantedConsent(status) {
-    return status === "GRANTED";
-  }
-
-  function getPatientFullName(patient) {
-    return patient.firstName + " " + patient.lastName;
-  }
-
-  for (let i = 0; i < LoadConsents.length; i++) {
-    let consent = LoadConsents[i];
-    if (consent != null) {
-      if (isGrantedConsent(consent.status)) {
-        consents.push(
-          createConsentModel(
-            getPatientFullName(consent.patient),
-            consent.patient.id,
-            "Consent granted",
-            toIndiaDate(consent.createdDate),
-            toIndiaDate(consent.expiredDate),
-            consent.id
-          )
-        );
-      } else {
-        consents.push(
-          createConsentModel(
-            getPatientFullName(consent.patient),
-            consent.patient.id,
-            "Request sent",
-            "-",
-            "-",
-            consent.id
-          )
-        );
-      }
-    }
-  }
-
-  return consents;
+function getPatientFullName(patient) {
+  return patient.firstName + " " + patient.lastName;
 }
 
 const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
-  console.log("###", ConsentsList);
   useEffect(() => {
     loadConsents();
   }, []);
@@ -106,20 +49,36 @@ const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
           }
         </TableHead>
         <TableBody>
-          {rows.map((row, i) => (
+          {ConsentsList.map((consent, i) => (
             <TableRow
               className={i % 2 !== 0 ? Styles().evenTableRow : ""}
-              key={row.consentId}
+              key={consent.id}
             >
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.jataayuId}</TableCell>
-              <TableCell>{row.requestStatus}</TableCell>
-              <TableCell>{row.consentGrantedDate}</TableCell>
-              <TableCell>{row.consentExpiryDate}</TableCell>
+              <TableCell>{getPatientFullName(consent.name)}</TableCell>
+              <TableCell>{consent.patient.id}</TableCell>
               <TableCell>
-                <Link to={`/patient-view/${row.consentId}`}>
-                  <ArrowForwardIosIcon color="primary" />
-                </Link>
+                {isGrantedConsent(consent.requestStatus)
+                  ? "Consent granted"
+                  : "Request sent"}
+              </TableCell>
+              <TableCell>
+                {isGrantedConsent(consent.requestStatus)
+                  ? toIndiaDate(consent.consentGrantedDate)
+                  : "-"}
+              </TableCell>
+              <TableCell>
+                {isGrantedConsent(consent.requestStatus)
+                  ? toIndiaDate(consent.consentExpiryDate)
+                  : "-"}
+              </TableCell>
+              <TableCell>
+                {isGrantedConsent(consent.requestStatus) ? (
+                  <Link to={`/patient-view/${consent.id}`}>
+                    <ArrowForwardIosIcon color="primary" />
+                  </Link>
+                ) : (
+                  ""
+                )}
               </TableCell>
             </TableRow>
           ))}
