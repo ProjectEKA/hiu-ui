@@ -28,7 +28,7 @@ const RequestAccess = ({
   const [selectedEndDate, setSelectedEndDate] = React.useState(
     new Date().toISOString()
   );
-  const [selectedRequestTypes, setselectedRequestTypes] = React.useState({
+  const [selectedRequestTypes, setSelectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
     DiagnosisLab: false,
@@ -41,7 +41,7 @@ const RequestAccess = ({
   );
 
   const handlePITypeChange = name => event => {
-    setselectedRequestTypes({
+    setSelectedRequestTypes({
       ...selectedRequestTypes,
       [name]: event.target.checked
     });
@@ -74,7 +74,7 @@ const RequestAccess = ({
           <span className="error">Error occured while creating consent.</span>
         )}
         {success && (
-          <span className="success">Consent created successfylly.</span>
+          <span className="success">Consent created successfully.</span>
         )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>

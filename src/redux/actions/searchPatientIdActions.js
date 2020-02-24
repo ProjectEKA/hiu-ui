@@ -18,7 +18,7 @@ export const onSearchFailure = () => ({
   payload: {}
 });
 
-export const onSeatchIdNotFound = () => ({
+export const onSearchIdNotFound = () => ({
   type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
   payload
 });

@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
-      BACKEND_BASE_URL: JSON.stringify("http://localhost:8081")
+      BACKEND_BASE_URL: JSON.stringify("http://localhost:3000")
     })
   ],
   devServer: {
@@ -27,7 +27,17 @@ module.exports = {
           }
         }
       },
-      "/consent-requests": {
+      "/consent-requests/": {
+        changeOrigin: true,
+        cookieDomainRewrite: "localhost",
+        target: "https://hiu-dev.projecteka.in",
+        onProxyReq: proxyReq => {
+          if (proxyReq.getHeader("origin")) {
+            proxyReq.setHeader("origin", "https://hiu-dev.projecteka.in");
+          }
+        }
+      },
+      "/health-information/*": {
         changeOrigin: true,
         cookieDomainRewrite: "localhost",
         target: "https://hiu-dev.projecteka.in",
