@@ -12,6 +12,7 @@ export default (state = {}, action) => {
     case GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED:
       return {
         ...state,
+        consentsList: action.payload.data,
         loading: false,
         error: false,
         success: true

@@ -2,13 +2,15 @@ import { GET_CONSENTS_ACTION_TYPES } from "../actions/loadConsentsActions";
 import { call, put } from "redux-saga/effects";
 import loadConsentsApi from "../apiCalls/loadConsentsApi";
 
-function* loadConsents(action) {
+function* loadConsents() {
   try {
-    const consents = yield call(loadConsentsApi, action.payload);
-    yield put({
-      type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED,
-      payload: consents
-    });
+    const consents = yield call(loadConsentsApi);
+    if (consents) {
+      yield put({
+        type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED,
+        payload: consents
+      });
+    }
   } catch (e) {
     yield put({
       type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_FAILED,

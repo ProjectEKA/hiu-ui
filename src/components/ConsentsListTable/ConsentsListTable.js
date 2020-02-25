@@ -9,29 +9,28 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Styles from "../../constants/tableConstants";
-// import ConsentsList from "./ConsentsList";
 import { toIndiaDate } from "../../constants";
 
-let headerRow = {
-  name: "Name",
-  jataayuId: "Jataayu ID",
-  requestStatus: "Request Status",
-  consentGrantedDate: "Consent granted on",
-  consentExpiryDate: "Consent expiry on"
-};
-
-function isGrantedConsent(status) {
-  return status === "GRANTED";
-}
-
-function getPatientFullName(patient) {
-  return patient.firstName + " " + patient.lastName;
-}
-
-const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
+const ConsentsListTable = ({ loadConsents, consentsList }) => {
   useEffect(() => {
     loadConsents();
   }, []);
+
+  let headerRow = {
+    name: "Name",
+    jataayuId: "Jataayu ID",
+    requestStatus: "Request Status",
+    consentGrantedDate: "Consent granted on",
+    consentExpiryDate: "Consent expiry on"
+  };
+
+  function isGrantedConsent(status) {
+    return status === "GRANTED";
+  }
+
+  function getPatientFullName(patient) {
+    return patient.firstName + " " + patient.lastName;
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -49,30 +48,30 @@ const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
           }
         </TableHead>
         <TableBody>
-          {ConsentsList.map((consent, i) => (
+          {consentsList.map((consent, i) => (
             <TableRow
-              className={i % 2 !== 0 ? Styles().evenTableRow : ""}
+              // className={i % 2 !== 0 ? Styles().evenTableRow : ""}
               key={consent.id}
             >
-              <TableCell>{getPatientFullName(consent.name)}</TableCell>
+              <TableCell>{getPatientFullName(consent.patient)}</TableCell>
               <TableCell>{consent.patient.id}</TableCell>
               <TableCell>
-                {isGrantedConsent(consent.requestStatus)
+                {isGrantedConsent(consent.status)
                   ? "Consent granted"
                   : "Request sent"}
               </TableCell>
               <TableCell>
-                {isGrantedConsent(consent.requestStatus)
-                  ? toIndiaDate(consent.consentGrantedDate)
+                {isGrantedConsent(consent.status)
+                  ? toIndiaDate(consent.approvedDate)
                   : "-"}
               </TableCell>
               <TableCell>
-                {isGrantedConsent(consent.requestStatus)
-                  ? toIndiaDate(consent.consentExpiryDate)
+                {isGrantedConsent(consent.status)
+                  ? toIndiaDate(consent.expiredDate)
                   : "-"}
               </TableCell>
               <TableCell>
-                {isGrantedConsent(consent.requestStatus) ? (
+                {isGrantedConsent(consent.status) ? (
                   <Link to={`/patient-view/${consent.id}`}>
                     <ArrowForwardIosIcon color="primary" />
                   </Link>
@@ -86,5 +85,9 @@ const ConsentsListTable = ({ loadConsents, ConsentsList }) => {
       </Table>
     </TableContainer>
   );
+};
+
+ConsentsListTable.defaultProps = {
+  consentsList: []
 };
 export default ConsentsListTable;
