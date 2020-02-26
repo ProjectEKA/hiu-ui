@@ -7,7 +7,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import generateObservationRows from "./ObservationTableContainer";
+import {
+  generateObservableEntity,
+  generateObservableEntityValue,
+  generateObservableEntityStatusInterpretation
+} from "./ObservationTableHelperFunctions";
 import ResourceData from "./ResourceData";
 
 const useStyles = makeStyles({
@@ -22,37 +26,39 @@ const useStyles = makeStyles({
   }
 });
 
-const Observation = ResourceData.entry.find(
-  item => item.resource.resourceType === "Observation"
-).resource;
-
-const ObservationTable = () => {
+const ObservationTable = ({ healthInfo }) => {
   const classes = useStyles();
-  const rows = generateObservationRows(Observation);
+
+  console.log("*healthInfo*", healthInfo);
+
+  const Observation = ResourceData.entry.find(
+    item => item.resource.resourceType === "Observation"
+  ).resource;
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow className={classes.tableHead}>
-            <TableCell align="left" colSpan={4}>
-              {Observation.resourceType}
-            </TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Observation</TableCell>
+            <TableCell align="left">Value</TableCell>
+            <TableCell align="left">Status and Interpretation</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, i) => (
-            <TableRow
-              className={
-                row.type === "header"
-                  ? classes.tableHead
-                  : i % 2 !== 0 && classes.evenTableRow
-              }
-              key={row.key}
-            >
-              <TableCell align="left">{row.key}</TableCell>
-              <TableCell align="left">{row.value}</TableCell>
-            </TableRow>
-          ))}
+          <TableRow key={Observation.id}>
+            <TableCell align="left">{Observation.effectiveDateTime}</TableCell>
+            <TableCell align="left">
+              {generateObservableEntity(Observation)}
+            </TableCell>
+            <TableCell align="left">
+              {generateObservableEntityValue(Observation)}
+            </TableCell>
+            <TableCell align="left">
+              {generateObservableEntityStatusInterpretation(Observation)}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
