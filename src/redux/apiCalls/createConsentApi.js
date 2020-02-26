@@ -1,5 +1,4 @@
 import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
 
 const createConsentApi = ({
   patientId,
@@ -14,32 +13,24 @@ const createConsentApi = ({
       selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue,
     []
   );
-  return apiWrapper(
-    "post",
-    `/api/consent-requests`,
-    {
-      consent: {
-        patient: {
-          id: patientId
+  return apiWrapper("post", `/api/consent-requests`, {
+    consent: {
+      patient: {
+        id: patientId
+      },
+      purpose: {
+        code: selectedPurposeValue
+      },
+      hiTypes: selectedRequests,
+      permission: {
+        dateRange: {
+          from: selectedStartDate.toISOString(),
+          to: selectedEndDate.toISOString()
         },
-        purpose: {
-          code: selectedPurposeValue
-        },
-        hiTypes: selectedRequests,
-        permission: {
-          dateRange: {
-            from: selectedStartDate.toISOString(),
-            to: selectedEndDate.toISOString()
-          },
-          dataExpiryAt: selectedExpiryDate.toISOString()
-        }
+        dataExpiryAt: selectedExpiryDate.toISOString()
       }
-    },
-    {
-      ...defaultHeaders,
-      Authorization: "RHIuIExha3NobWk="
     }
-  );
+  });
 };
 
 export default createConsentApi;
