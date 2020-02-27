@@ -37,7 +37,7 @@ module.exports = {
           }
         }
       },
-      "/health-information/*": {
+      "/health-information/fetch/*": {
         changeOrigin: true,
         cookieDomainRewrite: "localhost",
         target: "https://hiu-dev.projecteka.in",

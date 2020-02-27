@@ -1,4 +1,5 @@
 import apiWrapper from "../apiWrapper";
+import { defaultHeaders } from "../../constants";
 
 const createConsentApi = ({
   patientId,

@@ -1,6 +1,6 @@
 import RequestAccess from "./pages/RequestAccess/RequestAccessContainer";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import PatientView from "./components/PatientView/PatientViewContainer";
+import PatientView from "./pages/PatientView/PatientView";
 import ConsentLog from "./components/ConsentsListTable/LoadConsentsContainer";
 const routes = [
   {

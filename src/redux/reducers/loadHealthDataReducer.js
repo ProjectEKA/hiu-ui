@@ -12,6 +12,7 @@ export default (state = {}, action) => {
     case ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS:
       return {
         ...state,
+        healthData: action.payload.data,
         loading: false,
         error: false,
         success: true

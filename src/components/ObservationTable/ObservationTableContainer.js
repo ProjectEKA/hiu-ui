@@ -1,19 +1,18 @@
-function createData(type, key, value) {
-  return { type, key, value };
-}
-let rows = [];
-function generateObservationRows(Observation) {
-  let keys = Object.keys(Observation);
-  let values = Object.values(Observation);
-  for (var i = 0; i < Object.keys(Observation).length; i++) {
-    if (typeof values[i] === "string") {
-      rows.push(createData("row", keys[i], values[i]));
-    } else if (typeof values[i] === "object") {
-      let childObject = values[i];
-      generateObservationRows(childObject);
-    }
-  }
-  return rows;
-}
+import React from "react";
+import { connect } from "react-redux";
+import ObservationTable from "./ObservationTable";
+import { loadHealthData } from "../../redux/actions/loadHealthDataActions";
+import getNestedObject from "../../utils/getNestedObject";
 
-export default generateObservationRows;
+const mapStateToProps = state => ({
+  healthInfo: getNestedObject(state, "healthInfo.healthData"),
+  success: state.healthInfo.success,
+  loading: state.healthInfo.loading,
+  error: state.healthInfo.error
+});
+
+const mapDispatchToProps = {
+  loadHealthData
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ObservationTable);
