@@ -4,9 +4,10 @@ import PatientView from "./PatientView";
 import { loadHealthData } from "../../redux/actions/loadHealthDataActions";
 
 const mapStateToProps = state => ({
-  success: state.patientDetail.success,
-  loading: state.patientDetail.loading,
-  error: state.patientDetail.error
+  healthInfo: state.healthInfo.healthData,
+  success: state.healthInfo.success,
+  loading: state.healthInfo.loading,
+  error: state.healthInfo.error
 });
 
 const mapDispatchToProps = {
