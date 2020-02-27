@@ -7,12 +7,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import ObservationTableStyles from "./ObservationTable.style";
 import {
   generateObservableEntity,
   generateObservableEntityValue,
   generateObservableEntityStatusInterpretation
 } from "./ObservationTableHelperFunctions";
-import ResourceData from "./ResourceData";
 
 const useStyles = makeStyles({
   table: {
@@ -26,42 +27,71 @@ const useStyles = makeStyles({
   }
 });
 
-const ObservationTable = ({ healthInfo }) => {
+const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
   const classes = useStyles();
+  useEffect(() => {
+    loadHealthData(consentRequestId);
+  }, []);
 
-  console.log("*healthInfo*", healthInfo);
+  function extractObservation(healthInfo) {
+    if (healthInfo && healthInfo.entries) {
+      const ObservationData = JSON.parse(healthInfo.entries[0].entry.content);
+      if (ObservationData) {
+        const Observation = ObservationData.entry.find(
+          item => item.resource.resourceType === "Observation"
+        ).resource;
+        return Observation;
+      }
+    }
+    return undefined;
+  }
 
-  const Observation = ResourceData.entry.find(
-    item => item.resource.resourceType === "Observation"
-  ).resource;
+  const Observation = extractObservation(healthInfo);
 
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow className={classes.tableHead}>
-            <TableCell align="left">Date</TableCell>
-            <TableCell align="left">Observation</TableCell>
-            <TableCell align="left">Value</TableCell>
-            <TableCell align="left">Status and Interpretation</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow key={Observation.id}>
-            <TableCell align="left">{Observation.effectiveDateTime}</TableCell>
-            <TableCell align="left">
-              {generateObservableEntity(Observation)}
-            </TableCell>
-            <TableCell align="left">
-              {generateObservableEntityValue(Observation)}
-            </TableCell>
-            <TableCell align="left">
-              {generateObservableEntityStatusInterpretation(Observation)}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+  return Observation ? (
+    <ObservationTableStyles>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow className={classes.tableHead}>
+              <TableCell align="left">Date</TableCell>
+              <TableCell align="left">Observation</TableCell>
+              <TableCell align="left">Value</TableCell>
+              <TableCell align="left">Status and Interpretation</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow key={Observation.id}>
+              <TableCell align="left">
+                {Observation.effectiveDateTime}
+              </TableCell>
+              <TableCell align="left">
+                {generateObservableEntity(Observation)}
+              </TableCell>
+              <TableCell align="left">
+                {generateObservableEntityValue(Observation)}
+              </TableCell>
+              <TableCell align="left">
+                {generateObservableEntityStatusInterpretation(Observation)}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ObservationTableStyles>
+  ) : (
+    <ObservationTableStyles>
+      <div className="loader-container">
+        <CircularProgress
+          id="loader"
+          className="loader"
+          variant="indeterminate"
+          disableShrink
+          size={24}
+          thickness={4}
+        />
+      </div>
+    </ObservationTableStyles>
   );
 };
 export default ObservationTable;

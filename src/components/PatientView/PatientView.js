@@ -1,22 +1,14 @@
 import React, { useEffect } from "react";
-import ObservationTable from "../ObservationTable/ObservationTable";
+import ObservationTable from "../ObservationTable/ObservationTableContainer";
 import { useParams } from "react-router-dom";
 
-const PatientView = ({ loadHealthData, match, healthInfo }) => {
-  useEffect(() => {
-    loadHealthData(match.params.id);
-  }, []);
-
+const PatientView = ({ match }) => {
   return (
     <div>
       <h2> Patient View</h2>
-      <ObservationTable healthInfo={healthInfo} />
+      <ObservationTable consentRequestId={match.params.id} />
     </div>
   );
-};
-
-PatientView.defaultProps = {
-  healthInfo: {}
 };
 
 export default PatientView;

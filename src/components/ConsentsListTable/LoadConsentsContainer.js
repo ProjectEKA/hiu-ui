@@ -2,9 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import ConsentsListTable from "./ConsentsListTable";
 import { loadConsents } from "../../redux/actions/loadConsentsActions";
+import getNestedObject from "../../utils/getNestedObject";
 
 const mapStateToProps = state => ({
-  consentsList: state.loadConsents.consentsList
+  consentsList: getNestedObject(state, "loadConsents.consentsList")
 });
 
 const mapDispatchToProps = {
