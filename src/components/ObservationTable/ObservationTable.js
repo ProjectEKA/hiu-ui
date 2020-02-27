@@ -22,15 +22,6 @@ const useStyles = makeStyles({
   }
 });
 
-const ObservationTable = ({ healthInfo }) => {
-  const classes = useStyles();
-
-  console.log("*healthInfo*", healthInfo);
-
-  const Observation = ResourceData.entry.find(
-    item => item.resource.resourceType === "Observation"
-  ).resource;
-
 const ObservationTable = () => {
   const classes = useStyles();
   const rows = generateObservationRows(Observation);
