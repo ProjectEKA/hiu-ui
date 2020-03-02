@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,48 +11,61 @@ import ObservationTableStyles from "./ObservationTable.style";
 import {
   generateObservableEntity,
   generateObservableEntityValue,
-  generateObservableEntityStatusInterpretation
+  generateObservableEntityStatusInterpretation,
+  generateRowsForMembers
 } from "./ObservationTableHelperFunctions";
+import IconButton from "@material-ui/core/IconButton";
+import { ArrowDropDown, ArrowRight } from "@material-ui/icons";
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650
-  },
-  tableHead: {
-    backgroundColor: "#c8c8c8"
-  },
-  evenTableRow: {
-    backgroundColor: "#f3f3f3"
-  }
-});
+const ObservationMembers = ({ members, close }) => {
+  return members
+    ? members.map((member, i) => (
+        <TableRow
+          className={close ? "close" : ""}
+          style={{ backgroundColor: "primary" }}
+          key={i}
+        >
+          <TableCell></TableCell>
+          <TableCell></TableCell>
+          <TableCell>{generateObservableEntity(member)}</TableCell>
+          <TableCell>{generateObservableEntityValue(member)}</TableCell>
+          <TableCell>
+            {generateObservableEntityStatusInterpretation(member)}
+          </TableCell>
+        </TableRow>
+      ))
+    : null;
+};
 
 const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
-  const classes = useStyles();
+  const [close, setClose] = useState(0);
   useEffect(() => {
     loadHealthData(consentRequestId);
   }, []);
 
-  function extractObservation(healthInfo) {
+  function extractObservations(healthInfo) {
     if (healthInfo && healthInfo.entries) {
       const ObservationData = JSON.parse(healthInfo.entries[0].entry.content);
       if (ObservationData) {
-        const Observation = ObservationData.entry.find(
+        const Observations = ObservationData.entry.filter(
           item => item.resource.resourceType === "Observation"
-        ).resource;
-        return Observation;
+        );
+        return Observations;
       }
     }
     return undefined;
   }
 
-  const Observation = extractObservation(healthInfo);
+  const Observations = extractObservations(healthInfo);
+  const Members = Observations && generateRowsForMembers(Observations);
 
-  return Observation ? (
+  return Observations ? (
     <ObservationTableStyles>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table className="observation-table" aria-label="simple table">
           <TableHead>
-            <TableRow className={classes.tableHead}>
+            <TableRow className="table-head">
+              <TableCell></TableCell>
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Observation</TableCell>
               <TableCell align="left">Value</TableCell>
@@ -61,20 +73,46 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={Observation.id}>
-              <TableCell align="left">
-                {Observation.effectiveDateTime}
+            <TableRow key={Observations.id}>
+              <TableCell>
+                {Members ? (
+                  close ? (
+                    <IconButton
+                      className="expand-button"
+                      size="small"
+                      onClick={() => setClose(!close)}
+                      color="primary"
+                    >
+                      <ArrowRight />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      className="expand-button"
+                      size="small"
+                      onClick={() => setClose(!close)}
+                      color="primary"
+                    >
+                      <ArrowDropDown />
+                    </IconButton>
+                  )
+                ) : null}
               </TableCell>
               <TableCell align="left">
-                {generateObservableEntity(Observation)}
+                {Observations[0].resource.effectiveDateTime}
               </TableCell>
               <TableCell align="left">
-                {generateObservableEntityValue(Observation)}
+                {generateObservableEntity(Observations[0].resource)}
               </TableCell>
               <TableCell align="left">
-                {generateObservableEntityStatusInterpretation(Observation)}
+                {generateObservableEntityValue(Observations[0].resource)}
+              </TableCell>
+              <TableCell align="left">
+                {generateObservableEntityStatusInterpretation(
+                  Observations[0].resource
+                )}
               </TableCell>
             </TableRow>
+            <ObservationMembers members={Members} close={close} />
           </TableBody>
         </Table>
       </TableContainer>
