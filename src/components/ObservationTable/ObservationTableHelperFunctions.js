@@ -2,10 +2,10 @@ import React from "react";
 import valueForObs from "./ObsValueHandlers";
 
 function getConceptText(codeableConcept) {
-  if (codeableConcept.text) {
+  if (codeableConcept && codeableConcept.text) {
     return codeableConcept.text;
   } else {
-    if (codeableConcept.coding) {
+    if (codeableConcept && codeableConcept.coding) {
       return codeableConcept.coding[0].display;
     }
   }
@@ -14,21 +14,24 @@ function getConceptText(codeableConcept) {
 
 function getConceptTextForComponents(components) {
   const componentControls = [];
-  for (var i = 0; i < components.length; i++) {
-    componentControls.push({
-      text: getConceptText(components[i].code),
-      value: valueForObs(components[i])
-    });
+  if (components) {
+    for (var i = 0; i < components.length; i++) {
+      componentControls.push({
+        text: getConceptText(components[i].code),
+        value: valueForObs(components[i])
+      });
+    }
+    return (
+      <ul>
+        {componentControls.map(c => (
+          <li key={c.text}>
+            {c.text} : {c.value}
+          </li>
+        ))}
+      </ul>
+    );
   }
-  return (
-    <ul>
-      {componentControls.map(c => (
-        <li key={c.text}>
-          {c.text} : {c.value}
-        </li>
-      ))}
-    </ul>
-  );
+  return undefined;
 }
 
 export const generateObservableEntity = observation => {
@@ -57,4 +60,21 @@ export const generateObservableEntityStatusInterpretation = observation => {
       )}
     </div>
   );
+};
+
+export const generateRowsForMembers = observations => {
+  const members = [];
+  if (observations && observations[0].hasMember) {
+    for (var i = 0; i < observations[0].resource.hasMember.length; i++) {
+      const reference = observations[0].resource.hasMember[i].reference.split(
+        "/"
+      )[1];
+      const referenceData = observations.find(
+        item => item.resource.id === reference
+      ).resource;
+      members.push(referenceData);
+    }
+    return members;
+  }
+  return undefined;
 };
