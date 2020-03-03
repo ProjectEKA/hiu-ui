@@ -47,6 +47,11 @@ const SearchPatient = ({
           helperText={generateErrorText()}
           value={textInput}
           onChange={e => setTextInput(e.target.value)}
+          onKeyPress={e => {
+            if (event.key === "Enter") {
+              onSearch(textInput);
+            }
+          }}
         />
         <TextField
           className="fiduciary-text-field"
