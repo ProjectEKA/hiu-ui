@@ -8,29 +8,5 @@
     <div id="app"></div>
     <script type="text/javascript" src="/bundle.js"></script>
     <link type="text/css" rel="stylesheet" href="styles/fonts.css"></link>
-    <script src="https://unpkg.com/@ohif/viewer@1.0.3/dist/index.umd.js" crossorigin></script>
-    <script>
-      var containerId = "root";
-      var componentRenderedOrUpdatedCallback = function(){
-        console.log('OHIF Viewer rendered/updated');
-      }
-      window.OHIFViewer.installViewer(
-        {
-        //routerBasename: '/',
-        servers: {
-          dicomWeb: [
-            {
-              name: 'Orthanc',
-              wadoUriRoot: 'wado',
-              qidoRoot: 'http://localhost:8080/dicom-web',
-              wadoRoot: 'http://localhost:8080/dicom-web',
-              qidoSupportsIncludeField: false,
-              imageRendering: 'wadors',
-              thumbnailRendering: 'wadors',
-            },
-          ],
-        },
-      }, containerId, componentRenderedOrUpdatedCallback);
-    </script>
   </body>
 </html>

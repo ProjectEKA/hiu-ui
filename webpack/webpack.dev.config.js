@@ -15,10 +15,12 @@ module.exports = {
   ],
   devServer: {
     contentBase: parentDir,
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [{ from: /^\/viewer/, to: "dicomIndex.html" }]
+    },
     proxy: {
-      "/dicom-web":{
-        changeOrigin:true,
+      "/dicom-web": {
+        changeOrigin: true,
         cookieDomainRewrite: "",
         target: "http://localhost:8042"
       },
