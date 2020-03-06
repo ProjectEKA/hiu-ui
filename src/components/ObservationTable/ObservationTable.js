@@ -45,7 +45,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
 
   function extractObservations(healthInfo) {
     if (healthInfo && healthInfo.entries) {
-      const ObservationData = JSON.parse(healthInfo.entries[0].entry.content);
+      const ObservationData = healthInfo.entries[0].data;
       if (ObservationData) {
         const Observations = ObservationData.entry.filter(
           item => item.resource.resourceType === "Observation"
