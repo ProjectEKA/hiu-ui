@@ -7,19 +7,20 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ObservationTableStyles from "./ObservationTable.style";
+import DiagnosticReportTableStyles from "./DiagnosticReportTable.style";
 import {
   generateObservableEntity,
   generateObservableEntityValue,
   generateObservableEntityStatusInterpretation,
-  generateRowsForMembers
-} from "./ObservationTableHelperFunctions";
+  generateRowsForResults
+} from "./DiagnosticReportTableHelperFunctions";
 import IconButton from "@material-ui/core/IconButton";
 import { ArrowDropDown, ArrowRight } from "@material-ui/icons";
+import { toIndiaDate } from "../../constants";
 
-const ObservationMembers = ({ members, close }) => {
-  return members
-    ? members.map((member, i) => (
+const DiagnosticResults = ({ results, close }) => {
+  return results
+    ? results.map((result, i) => (
         <TableRow
           className={close ? "close" : ""}
           style={{ backgroundColor: "primary" }}
@@ -27,55 +28,67 @@ const ObservationMembers = ({ members, close }) => {
         >
           <TableCell></TableCell>
           <TableCell></TableCell>
-          <TableCell>{generateObservableEntity(member)}</TableCell>
-          <TableCell>{generateObservableEntityValue(member)}</TableCell>
           <TableCell>
-            {generateObservableEntityStatusInterpretation(member)}
+            {generateObservableEntityStatusInterpretation(result)}
           </TableCell>
+          <TableCell>{generateObservableEntity(result)}</TableCell>
+          <TableCell>{generateObservableEntityValue(result)}</TableCell>
+          <TableCell></TableCell>
         </TableRow>
       ))
     : null;
 };
 
-const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
+const DiagnosticReportTable = ({
+  loadHealthData,
+  healthInfo,
+  downloadPathology,
+  consentRequestId
+}) => {
   const [close, setClose] = useState(0);
   useEffect(() => {
     loadHealthData(consentRequestId);
   }, []);
 
-  function extractObservations(healthInfo) {
+  console.log("&&&&&&", consentRequestId);
+
+  function extractDiagnosticReport(healthInfo) {
     if (healthInfo && healthInfo.entries) {
       const ObservationData = healthInfo.entries[0].data;
       if (ObservationData) {
-        const Observations = ObservationData.entry.filter(
-          item => item.resource.resourceType === "Observation"
+        const DiagnosticReport = ObservationData.entry.filter(
+          item =>
+            item.resource.resourceType === "DiagnosticReport" ||
+            item.resource.resourceType === "Observation"
         );
-        return Observations;
+        return DiagnosticReport;
       }
     }
     return undefined;
   }
+  const DiagnosticReport = extractDiagnosticReport(healthInfo);
+  const Results = DiagnosticReport && generateRowsForResults(DiagnosticReport);
 
-  const Observations = extractObservations(healthInfo);
-  const Members = Observations && generateRowsForMembers(Observations);
+  console.log("*Results*", Results);
 
-  return Observations ? (
-    <ObservationTableStyles>
+  return DiagnosticReport ? (
+    <DiagnosticReportTableStyles>
       <TableContainer component={Paper}>
         <Table className="observation-table" aria-label="simple table">
           <TableHead>
             <TableRow className="table-head">
               <TableCell></TableCell>
-              <TableCell align="left">Date</TableCell>
-              <TableCell align="left">Observation</TableCell>
-              <TableCell align="left">Value</TableCell>
-              <TableCell align="left">Status and Interpretation</TableCell>
+              <TableCell align="left">Report Date</TableCell>
+              <TableCell align="left">Status of the report</TableCell>
+              <TableCell align="left">Report</TableCell>
+              <TableCell align="left">Result</TableCell>
+              <TableCell align="left">Performer</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={Observations.id}>
+            <TableRow>
               <TableCell>
-                {Members ? (
+                {Results ? (
                   close ? (
                     <IconButton
                       className="expand-button"
@@ -98,27 +111,33 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
                 ) : null}
               </TableCell>
               <TableCell align="left">
-                {Observations[0].resource.effectiveDateTime}
-              </TableCell>
-              <TableCell align="left">
-                {generateObservableEntity(Observations[0].resource)}
-              </TableCell>
-              <TableCell align="left">
-                {generateObservableEntityValue(Observations[0].resource)}
+                {toIndiaDate(DiagnosticReport[0].resource.effectiveDateTime)}
               </TableCell>
               <TableCell align="left">
                 {generateObservableEntityStatusInterpretation(
-                  Observations[0].resource
+                  DiagnosticReport[0].resource
                 )}
               </TableCell>
+              <TableCell align="left">
+                {generateObservableEntityValue(DiagnosticReport[0].resource)}
+              </TableCell>
+              <TableCell
+                align="left"
+                onClick={() => downloadPathology(consentRequestId)}
+              >
+                Reportname_Link
+              </TableCell>
+              <TableCell align="left">
+                {generateObservableEntity(DiagnosticReport[0].resource)}
+              </TableCell>
             </TableRow>
-            <ObservationMembers members={Members} close={close} />
+            <DiagnosticResults results={Results} close={close} />
           </TableBody>
         </Table>
       </TableContainer>
-    </ObservationTableStyles>
+    </DiagnosticReportTableStyles>
   ) : (
-    <ObservationTableStyles>
+    <DiagnosticReportTableStyles>
       <div className="loader-container">
         <CircularProgress
           id="loader"
@@ -129,7 +148,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
           thickness={4}
         />
       </div>
-    </ObservationTableStyles>
+    </DiagnosticReportTableStyles>
   );
 };
-export default ObservationTable;
+export default DiagnosticReportTable;
