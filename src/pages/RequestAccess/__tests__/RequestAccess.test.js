@@ -4,14 +4,16 @@ import RequestAccess from "../RequestAccess";
 import DatePicker from "../../../../src/components/DateTimePicker/DatePicker";
 import DateTimePicker from "../../../../src/components/DateTimePicker/DateTimePicker";
 import SimpleMenu from "../../../../src/components/SimpleMenu/SimpleMenu";
-// import RequestType from "../../../../src/components/RequestType/RequestType";
-// import requestTypes from "./../../../constants/requestTypes";
+import getNextDay from "./../../../utils/getNextDay";
+
+jest.mock("./../../../utils/getNextDay");
 
 describe("Request Access", () => {
   let realDate;
 
   beforeEach(() => {
     const currentDate = new Date("2019-05-14T11:01:58.135Z");
+    getNextDay.mockImplementation(() => new Date("2019-05-15T11:01:58.135Z"));
     realDate = Date;
     global.Date = class extends Date {
       constructor(date) {
@@ -48,7 +50,8 @@ describe("Request Access", () => {
       wrapper
         .find(DatePicker)
         .at(0)
-        .props().selectedDate
+        .props()
+        .selectedDate.toISOString()
     ).toEqual("2019-05-14T11:01:58.135Z");
   });
 
@@ -58,13 +61,17 @@ describe("Request Access", () => {
       wrapper
         .find(DatePicker)
         .at(1)
-        .props().selectedDate
+        .props()
+        .selectedDate.toISOString()
     ).toEqual("2019-05-14T11:01:58.135Z");
   });
 
   it("Expiry: date component, should have next day as current date when no date is selected ", () => {
     const wrapper = shallow(<RequestAccess />);
-    const ActualExpiryDate = wrapper.find(DateTimePicker).props().selectedDate;
+    const ActualExpiryDate = wrapper
+      .find(DateTimePicker)
+      .props()
+      .selectedDate.toISOString();
     const expectedExpiryDate = "2019-05-15T11:01:58.135Z";
     expect(ActualExpiryDate).toEqual(expectedExpiryDate);
   });

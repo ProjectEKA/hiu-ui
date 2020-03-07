@@ -22,12 +22,8 @@ const RequestAccess = ({
   const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState(
-    new Date().toISOString()
-  );
-  const [selectedEndDate, setSelectedEndDate] = React.useState(
-    new Date().toISOString()
-  );
+  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
   const [selectedRequestTypes, setSelectedRequestTypes] = React.useState({
     PatientHistory: false,
     Medications: false,
@@ -37,7 +33,7 @@ const RequestAccess = ({
   });
 
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
-    getNextDay().toISOString()
+    getNextDay()
   );
 
   const handlePITypeChange = name => event => {

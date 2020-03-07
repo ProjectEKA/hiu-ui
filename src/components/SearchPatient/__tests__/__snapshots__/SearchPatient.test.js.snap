@@ -11,6 +11,7 @@ exports[`SearchPatient should render properly 1`] = `
       helperText=""
       id="search-field"
       onChange={[Function]}
+      onKeyPress={[Function]}
       value=""
     />
     <WithStyles(ForwardRef(TextField))
