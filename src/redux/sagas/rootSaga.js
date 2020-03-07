@@ -3,6 +3,7 @@ import searchPatientSaga from "./searchPatientSaga";
 import createConsentSaga from "./createConsentSaga";
 import loadConsentsSaga from "./loadConsentsSaga";
 import loadHealthDataSaga from "./loadHealthDataSaga";
+import downloadPathologySaga from "./downloadPathologySaga";
 
 function* rootSaga() {
   const sagas = [];
@@ -17,6 +18,9 @@ function* rootSaga() {
   }
   for (const action in loadHealthDataSaga) {
     sagas.push(takeEvery(action, loadHealthDataSaga[action]));
+  }
+  for (const action in downloadPathologySaga) {
+    sagas.push(takeEvery(action, downloadPathologySaga));
   }
   yield all(sagas);
 }
