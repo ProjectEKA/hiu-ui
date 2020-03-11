@@ -1,8 +1,16 @@
 import styled from "styled-components";
 
 const ObservationTableStyles = styled.div`
+  .observation-table-container {
+    margin-bottom: 20px;
+  }
   .observation-table {
     min-width: 650px;
+  }
+  .header {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 40px;
   }
   .table-head {
     background-color: #c8c8c8;
