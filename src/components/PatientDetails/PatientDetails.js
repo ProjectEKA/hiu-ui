@@ -1,17 +1,20 @@
 import React from "react";
+import PatientDetailsStyles from "./PatientDetails.style";
 
 const PatientDetails = ({ patient }) => {
   return (
-    <div>
-      <span>
-        Name:
-        {patient.name}
-      </span>
-      <span>
-        Age:
-        {patient.age}
-      </span>
-    </div>
+    <PatientDetailsStyles>
+      <div className="patient-details-container">
+        <span>
+          Name:
+          {patient.name}
+        </span>
+        <span>
+          Age:
+          {patient.age}
+        </span>
+      </div>
+    </PatientDetailsStyles>
   );
 };
 

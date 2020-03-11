@@ -47,6 +47,16 @@ const patient = {
   age: 20
 };
 
+const DateArray = [
+  "01/01/2000",
+  "02/01/2000",
+  "05/01/2000",
+  "12/01/2000",
+  "26/01/2000",
+  "29/01/2000"
+];
+const selectedDate = "12/01/2000";
+
 const PatientHealthInformation = ({ loadHealthData, match }) => {
   useEffect(() => {
     loadHealthData({ id: match.params.requestId, groupFunction: groupByDate });
@@ -54,7 +64,7 @@ const PatientHealthInformation = ({ loadHealthData, match }) => {
   return (
     <div>
       <PatientDetails patient={patient} />
-      <HealthInfoNav />
+      <HealthInfoNav dates={DateArray} selectedDate={selectedDate} />
       <HealthInfoContainer />
     </div>
   );

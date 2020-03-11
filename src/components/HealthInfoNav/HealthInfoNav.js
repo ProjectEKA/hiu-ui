@@ -1,28 +1,52 @@
 import React from "react";
-import { IconButton, TextField } from "@material-ui/core";
-import { ArrowLeft, ArrowRight } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core";
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+import HealthInfoNavStyles from "./HealthInfoNav.style";
 
-const HealthInfoNav = () => {
+const HealthInfoNav = ({ dates, selectedDate }) => {
+  const [newSelectedDate, setNewSelectedDate] = React.useState(selectedDate);
+
+  function selectNextDate(dates, selectedDate) {
+    const nextIndex = dates.indexOf(selectedDate) + 1;
+    setNewSelectedDate(dates[nextIndex]);
+  }
+
+  function selectPreviousDate(dates, selectedDate) {
+    const previousIndex = dates.indexOf(selectedDate) - 1;
+    setNewSelectedDate(dates[previousIndex]);
+  }
+
   return (
-    <div>
-      <IconButton
-        type="button"
-        className="icon-button"
-        aria-label="search"
-        theme="primary"
-      >
-        <ArrowLeft variant="outlined" theme="primary" />
-      </IconButton>
-      <TextField disabled={true} value="12/03/2010" />
-      <IconButton
-        type="button"
-        className="icon-button"
-        aria-label="search"
-        theme="primary"
-      >
-        <ArrowRight variant="outlined" theme="primary" />
-      </IconButton>
-    </div>
+    <HealthInfoNavStyles>
+      <div className="health-info-nav">
+        <span className="date-navigator-heading">View by recorded date</span>
+        <div className="date-navigator">
+          <IconButton
+            disabled={dates.indexOf(newSelectedDate) === 0}
+            type="button"
+            className="icon-button"
+            aria-label="search"
+            theme="primary"
+            size="small"
+            onClick={() => selectPreviousDate(dates, newSelectedDate)}
+          >
+            <ChevronLeft variant="outlined" theme="primary" />
+          </IconButton>
+          <div className="date-text">{newSelectedDate}</div>
+          <IconButton
+            disabled={dates.indexOf(newSelectedDate) === dates.length - 1}
+            type="button"
+            className="icon-button"
+            aria-label="search"
+            theme="primary"
+            size="small"
+            onClick={() => selectNextDate(dates, newSelectedDate)}
+          >
+            <ChevronRight variant="outlined" theme="primary" />
+          </IconButton>
+        </div>
+      </div>
+    </HealthInfoNavStyles>
   );
 };
 
