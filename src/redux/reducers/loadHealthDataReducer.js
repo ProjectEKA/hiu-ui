@@ -1,4 +1,5 @@
 import { ACTION_TYPES } from "../actions/loadHealthDataActions";
+import transformData from "../../utils/transformHealthData";
 
 export default (state = {}, action) => {
   switch (action.type) {
