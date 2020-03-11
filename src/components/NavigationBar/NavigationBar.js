@@ -22,6 +22,11 @@ const NavigationBar = () => {
               Consent log
             </NavLink>
           </li>
+          <li key="consent-log">
+            <NavLink activeClassName="active" to="/health-info">
+              Health Info
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </NavigationBarStyles>

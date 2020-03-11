@@ -4,11 +4,11 @@ import loadHealthDataApi from "../apiCalls/loadHealthDataApi";
 
 function* loadHealthData(action) {
   try {
-    const HealthData = yield call(loadHealthDataApi, action.payload);
+    const HealthData = yield call(loadHealthDataApi, action.payload.id);
     if (HealthData) {
       yield put({
         type: ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS,
-        payload: HealthData
+        payload: action.payload.groupFunction(HealthData)
       });
     }
   } catch (e) {
@@ -24,7 +24,7 @@ function* loadHealthDataSuccess(action) {
 }
 
 function* loadHealthDataFailure(action) {
-  console.log("failure message", action);
+  console.log("failure message", action.payload);
 }
 
 export default {

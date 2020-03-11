@@ -1,7 +1,7 @@
 import apiWrapper from "../apiWrapper";
 import { defaultHeaders } from "../../constants";
 
-const loadHealthDataApi = consentRequestId => {
+const loadHealthDataApi = (consentRequestId, groupFunction) => {
   return apiWrapper(
     "get",
     `/api/health-information/fetch/${consentRequestId}`,
