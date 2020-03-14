@@ -16,7 +16,7 @@ const createConsentApi = ({
   );
   return apiWrapper(
     "post",
-    `/api/consent-requests`,
+    `/consent-requests`,
     {
       consent: {
         patient: {

@@ -4,7 +4,7 @@ import { defaultHeaders } from "../../constants";
 const loadHealthDataApi = consentRequestId => {
   return apiWrapper(
     "get",
-    `/api/health-information/fetch/${consentRequestId}`,
+    `/health-information/fetch/${consentRequestId}`,
     {},
     {
       ...defaultHeaders,
