@@ -8,7 +8,7 @@ function* loadHealthData(action) {
     if (HealthData) {
       yield put({
         type: ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS,
-        payload: action.payload.groupFunction(HealthData)
+        payload: action.payload.groupFunction ? action.payload.groupFunction(HealthData) : HealthData
       });
     }
   } catch (e) {
