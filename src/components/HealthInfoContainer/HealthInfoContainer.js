@@ -1,10 +1,15 @@
 import React from "react";
+import DiagnosticReportTable from "../../components/DiagnosticReport/DiagnosticReportTable";
 
 const HealthInfoContainer = ({ healthInfo, selectedDate }) => {
-  return (
-    <div>
-      HealthInfoContainer<div>selectedDate is: {selectedDate}</div>
-    </div>
+  const healthInfoForSelectedDate = healthInfo ? healthInfo[selectedDate] : "";
+
+  return healthInfoForSelectedDate ? (
+    healthInfoForSelectedDate.map(hip => {
+      return <DiagnosticReportTable hipName={hip.hipName} data={hip.data} />;
+    })
+  ) : (
+    <div></div>
   );
 };
 

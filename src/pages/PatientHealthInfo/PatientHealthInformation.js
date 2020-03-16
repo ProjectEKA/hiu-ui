@@ -23,6 +23,10 @@ const PatientHealthInformation = ({
     loadHealthData({ id: match.params.requestId, groupFunction: dayGrouper });
   }, []);
 
+  useEffect(() => {
+    setSelectedDate(defaultSelectedDate);
+  }, defaultSelectedDate);
+
   function onChange(newSelectedDate) {
     setSelectedDate(newSelectedDate);
   }
