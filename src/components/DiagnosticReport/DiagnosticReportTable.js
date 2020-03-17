@@ -8,16 +8,13 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DiagnosticReportTableStyles from "./DiagnosticReportTable.style";
-import Typography from "@material-ui/core/Typography";
+
 import { toIndiaDate } from "../../constants";
 import getNestedObject from "./../../utils/getNestedObject";
 
-const DiagnosticReportTable = ({ hipName, data }) => {
-  return hipName && data ? (
+const DiagnosticReportTable = ({ data }) => {
+  return data ? (
     <DiagnosticReportTableStyles>
-      <Typography className="header" gutterBottom variant="h6" component="h2">
-        {hipName}
-      </Typography>
       <TableContainer component={Paper}>
         <Table className="observation-table" aria-label="simple table">
           <TableHead>
