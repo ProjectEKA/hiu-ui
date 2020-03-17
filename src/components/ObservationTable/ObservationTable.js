@@ -8,111 +8,58 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ObservationTableStyles from "./ObservationTable.style";
-import {
-  generateObservableEntity,
-  generateObservableEntityValue,
-  generateObservableEntityStatusInterpretation,
-  generateRowsForMembers
-} from "./ObservationTableHelperFunctions";
-import IconButton from "@material-ui/core/IconButton";
-import { ArrowDropDown, ArrowRight } from "@material-ui/icons";
+import Typography from "@material-ui/core/Typography";
 
-const ObservationMembers = ({ members, close }) => {
-  return members
-    ? members.map((member, i) => (
-        <TableRow
-          className={close ? "close" : ""}
-          style={{ backgroundColor: "primary" }}
-          key={i}
-        >
-          <TableCell></TableCell>
-          <TableCell></TableCell>
-          <TableCell>{generateObservableEntity(member)}</TableCell>
-          <TableCell>{generateObservableEntityValue(member)}</TableCell>
-          <TableCell>
-            {generateObservableEntityStatusInterpretation(member)}
-          </TableCell>
-        </TableRow>
+const Components = ({ components }) => {
+  return components
+    ? components.map((component, i) => (
+        <li style={{ backgroundColor: "primary" }} key={i}>
+          <span>{component.observation} :</span>
+          <span> {component.value} :</span>
+          <span> {component.interpretationText}</span>
+        </li>
       ))
     : null;
 };
 
 const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
-  const [close, setClose] = useState(0);
   useEffect(() => {
     loadHealthData(consentRequestId);
   }, []);
-
-  function extractObservations(healthInfo) {
-    if (healthInfo && healthInfo.entries) {
-      const ObservationData = healthInfo.entries[0].data;
-      if (ObservationData) {
-        const Observations = ObservationData.entry.filter(
-          item => item.resource.resourceType === "Observation"
-        );
-        return Observations;
-      }
-    }
-    return undefined;
-  }
-
-  const Observations = extractObservations(healthInfo);
-  const Members = Observations && generateRowsForMembers(Observations);
-
-  return Observations ? (
+  return healthInfo ? (
     <ObservationTableStyles>
-      <TableContainer component={Paper}>
+      <Typography className="header" gutterBottom variant="h6" component="h2">
+        {healthInfo.Observation.resource_type}
+      </Typography>
+      <TableContainer className="observation-table-container" component={Paper}>
         <Table className="observation-table" aria-label="simple table">
           <TableHead>
             <TableRow className="table-head">
-              <TableCell></TableCell>
-              <TableCell align="left">Date</TableCell>
-              <TableCell align="left">Observation</TableCell>
-              <TableCell align="left">Value</TableCell>
-              <TableCell align="left">Status and Interpretation</TableCell>
+              {Object.values(healthInfo.Observation.headings).map(
+                (heading, i) => (
+                  <TableCell align="left">{heading}</TableCell>
+                )
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={Observations.id}>
-              <TableCell>
-                {Members ? (
-                  close ? (
-                    <IconButton
-                      className="expand-button"
-                      size="small"
-                      onClick={() => setClose(!close)}
-                      color="primary"
-                    >
-                      <ArrowRight />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      className="expand-button"
-                      size="small"
-                      onClick={() => setClose(!close)}
-                      color="primary"
-                    >
-                      <ArrowDropDown />
-                    </IconButton>
-                  )
-                ) : null}
-              </TableCell>
-              <TableCell align="left">
-                {Observations[0].resource.effectiveDateTime}
-              </TableCell>
-              <TableCell align="left">
-                {generateObservableEntity(Observations[0].resource)}
-              </TableCell>
-              <TableCell align="left">
-                {generateObservableEntityValue(Observations[0].resource)}
-              </TableCell>
-              <TableCell align="left">
-                {generateObservableEntityStatusInterpretation(
-                  Observations[0].resource
-                )}
-              </TableCell>
-            </TableRow>
-            <ObservationMembers members={Members} close={close} />
+            {healthInfo.Observation.data.map((row, i) => (
+              <TableRow>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>
+                  {row.observation}
+                  <ul>
+                    <Components components={row.components} />
+                  </ul>
+                </TableCell>
+                <TableCell>{row.value}</TableCell>
+                <TableCell>
+                  {row.status_and_interpretation.status}
+                  <br />
+                  {row.status_and_interpretation.interpretation}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -132,4 +79,5 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
     </ObservationTableStyles>
   );
 };
+
 export default ObservationTable;

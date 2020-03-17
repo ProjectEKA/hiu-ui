@@ -72,7 +72,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
               </TableCell>
               <TableCell>
                 {isGrantedConsent(consent.status) ? (
-                  <Link to={`/patient-view/${consent.id}`}>
+                  <Link to={`/health-info/${consent.id}`}>
                     <ArrowForwardIosIcon color="primary" />
                   </Link>
                 ) : (

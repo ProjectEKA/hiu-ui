@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const ObservationTableStyles = styled.div`
-  .observation-table-container {
+const DiagnosticReportTableStyles = styled.div`
+  .diagnostic-report-table-container {
     margin-bottom: 20px;
   }
-  .observation-table {
+  .diagnostic-report-table {
     min-width: 650px;
   }
   .header {
@@ -28,4 +28,4 @@ const ObservationTableStyles = styled.div`
   }
 `;
 
-export default ObservationTableStyles;
+export default DiagnosticReportTableStyles;
