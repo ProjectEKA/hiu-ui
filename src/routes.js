@@ -1,6 +1,5 @@
 import RequestAccess from "./pages/RequestAccess/RequestAccessContainer";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import PatientView from "./pages/PatientView/PatientView";
 import ConsentLog from "./components/ConsentsListTable/LoadConsentsContainer";
 import PatientHealthInformation from "./pages/PatientHealthInfo/PatientHealthInformationContainer";
 const routes = [
@@ -12,11 +11,6 @@ const routes = [
   {
     component: RequestAccess,
     path: "/request-access",
-    isExact: false
-  },
-  {
-    component: PatientView,
-    path: "/patient-view/:id",
     isExact: false
   },
   {
