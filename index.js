@@ -20,6 +20,9 @@ const theme = createMuiTheme({
     fontFamily: '"Roboto", sans-serif',
     body1: {
       fontWeight: 300
+    },
+    h6: {
+      fontSize: 18
     }
   }
 });

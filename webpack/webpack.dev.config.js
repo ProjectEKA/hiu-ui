@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
-      BACKEND_BASE_URL: JSON.stringify("http://localhost:3000")
+      BACKEND_BASE_URL: JSON.stringify("http://localhost:3000/api")
     })
   ],
   devServer: {

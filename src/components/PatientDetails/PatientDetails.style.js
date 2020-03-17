@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const PatientDetailsStyles = styled.div`
   .patient-details-container {
+    font-family: "Roboto", sans-serif;
     background: #f1f1f1;
     display: flex;
     height: 32px;

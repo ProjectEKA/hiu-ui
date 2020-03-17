@@ -39,6 +39,7 @@ const PatientHealthInformation = ({
         setSelectedDate={onChange}
       />
       <HealthInfoContainer
+        consentReqId={match.params.requestId}
         healthInfo={healthInfo}
         selectedDate={selectedDate}
       />

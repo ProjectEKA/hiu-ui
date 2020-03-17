@@ -6,6 +6,7 @@ const HealthInfoNavStyles = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 10px 0;
+    font-family: "Roboto", sans-serif;
   }
   .date-navigator {
     display: flex;

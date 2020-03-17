@@ -14,49 +14,55 @@ const Components = ({ components }) => {
   return components
     ? components.map((component, i) => (
         <li style={{ backgroundColor: "primary" }} key={i}>
-          <span>{component.observation} :</span>
-          <span> {component.value} :</span>
-          <span> {component.interpretationText}</span>
+          <span>{component.code.text} : </span>
+          <span>{component.valueString}</span>
         </li>
       ))
     : null;
 };
 
-const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
-  useEffect(() => {
-    loadHealthData(consentRequestId);
-  }, []);
-  return healthInfo ? (
+const ObservationTable = ({ data }) => {
+  const entries = [];
+  data
+    ? data.map(entry => {
+        if (entry.resourceType === "Observation" && !entry.parentResource) {
+          entries.push(entry);
+        }
+      })
+    : undefined;
+
+  function extractInterpretation(entry) {
+    return entry.interpretation ? entry.interpretation[0].text : "-";
+  }
+
+  return entries && entries.length !== 0 ? (
     <ObservationTableStyles>
-      <Typography className="header" gutterBottom variant="h6" component="h2">
-        {healthInfo.Observation.resource_type}
-      </Typography>
       <TableContainer className="observation-table-container" component={Paper}>
         <Table className="observation-table" aria-label="simple table">
           <TableHead>
             <TableRow className="table-head">
-              {Object.values(healthInfo.Observation.headings).map(
-                (heading, i) => (
-                  <TableCell align="left">{heading}</TableCell>
-                )
-              )}
+              <TableCell align="left">Date</TableCell>
+              <TableCell align="left">Observation</TableCell>
+              <TableCell align="left">Value</TableCell>
+              <TableCell align="left">Status and Interpretation</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {healthInfo.Observation.data.map((row, i) => (
-              <TableRow>
-                <TableCell>{row.date}</TableCell>
+            {entries.map((entry, i) => (
+              <TableRow key={i}>
                 <TableCell>
-                  {row.observation}
+                  {entry.effectiveDateTime ? entry.effectiveDateTime : ""}
+                </TableCell>
+                <TableCell>{entry.code.text}</TableCell>
+                <TableCell>
+                  {entry.valueString}
                   <ul>
-                    <Components components={row.components} />
+                    <Components components={entry.component} />
                   </ul>
                 </TableCell>
-                <TableCell>{row.value}</TableCell>
                 <TableCell>
-                  {row.status_and_interpretation.status}
-                  <br />
-                  {row.status_and_interpretation.interpretation}
+                  <div>{entry.status}</div>
+                  {extractInterpretation(entry)}
                 </TableCell>
               </TableRow>
             ))}
@@ -65,18 +71,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
       </TableContainer>
     </ObservationTableStyles>
   ) : (
-    <ObservationTableStyles>
-      <div className="loader-container">
-        <CircularProgress
-          id="loader"
-          className="loader"
-          variant="indeterminate"
-          disableShrink
-          size={24}
-          thickness={4}
-        />
-      </div>
-    </ObservationTableStyles>
+    <div></div>
   );
 };
 
