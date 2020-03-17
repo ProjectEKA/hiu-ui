@@ -12,11 +12,6 @@ const NavigationBar = () => {
               Request access
             </NavLink>
           </li>
-          <li key="Patient-view">
-            <NavLink activeClassName="active" to="/patient-view">
-              Patient view
-            </NavLink>
-          </li>
           <li key="consent-log">
             <NavLink activeClassName="active" to="/consent-log">
               Consent log
