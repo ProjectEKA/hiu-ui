@@ -93,7 +93,7 @@ exports[`Request Access Should render properly 1`] = `
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
         >
-           Request from 
+          Health info from
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
@@ -120,7 +120,7 @@ exports[`Request Access Should render properly 1`] = `
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
         >
-           Request to 
+          Health info to
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))

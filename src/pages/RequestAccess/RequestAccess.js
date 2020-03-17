@@ -102,7 +102,9 @@ const RequestAccess = ({
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
-            <InputLabel className="text-field-label"> Request from </InputLabel>
+            <InputLabel className="text-field-label">
+              Health info from
+            </InputLabel>
           </Grid>
           <Grid item xs={2}>
             <DatePicker
@@ -115,7 +117,7 @@ const RequestAccess = ({
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
-            <InputLabel className="text-field-label"> Request to </InputLabel>
+            <InputLabel className="text-field-label">Health info to</InputLabel>
           </Grid>
           <Grid item xs={2}>
             <DatePicker
