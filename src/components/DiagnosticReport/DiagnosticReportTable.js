@@ -8,6 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import DiagnosticReportTableStyles from "./DiagnosticReportTable.style";
 import Typography from "@material-ui/core/Typography";
+import valueForObs from "./ObsValueHandlers";
 import { useParams } from "react-router-dom";
 
 import { toIndiaDate } from "../../constants";
@@ -82,7 +83,7 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
                       {Ob.targetResource.code.text}
                     </TableCell>
                     <TableCell align="left">
-                      {Ob.targetResource.valueString}
+                      {valueForObs(Ob.targetResource)}
                     </TableCell>
                     <TableCell align="left">
                       <div>{Ob.targetResource.status}</div>

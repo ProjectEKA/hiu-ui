@@ -6,9 +6,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ObservationTableStyles from "./ObservationTable.style";
-import Typography from "@material-ui/core/Typography";
+import valueForObs from "./ObsValueHandlers";
 
 const Components = ({ components }) => {
   return components
@@ -55,7 +54,7 @@ const ObservationTable = ({ data }) => {
                 </TableCell>
                 <TableCell>{entry.code.text}</TableCell>
                 <TableCell>
-                  {entry.valueString}
+                  {valueForObs(entry)}
                   <ul>
                     <Components components={entry.component} />
                   </ul>
