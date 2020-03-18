@@ -3,6 +3,7 @@ import styled from "styled-components";
 const DiagnosticReportTableStyles = styled.div`
   .diagnostic-report-table-container {
     margin-bottom: 20px;
+    padding: 20px;
   }
   .diagnostic-report-table {
     min-width: 650px;
@@ -10,7 +11,6 @@ const DiagnosticReportTableStyles = styled.div`
   .header {
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 40px;
   }
   .table-head {
     background-color: #c8c8c8;
@@ -25,6 +25,11 @@ const DiagnosticReportTableStyles = styled.div`
   }
   .close {
     display: none;
+  }
+  .report-details-list {
+    li {
+      padding: 5px;
+    }
   }
 `;
 
