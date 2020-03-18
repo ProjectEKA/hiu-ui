@@ -6,14 +6,14 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import DiagnosticReportTableStyles from "./DiagnosticReportTable.style";
+import DiagnosticReportComponentStyles from "./DiagnosticReportComponent.style";
 import Typography from "@material-ui/core/Typography";
 import valueForObs from "./ObsValueHandlers";
 import { useParams } from "react-router-dom";
 
 import { toIndiaDate } from "../../constants";
 
-const DiagnosticReportTable = ({ data, consentReqId }) => {
+const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const entries = [];
   data
     ? data.map(entry => {
@@ -58,7 +58,7 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
   const Observations = ({ entry }) => {
     const Obs = entry.result;
     return Obs ? (
-      <DiagnosticReportTableStyles>
+      <DiagnosticReportComponentStyles>
         <TableContainer
           className="observation-table-container"
           component={Paper}
@@ -94,7 +94,7 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
             </TableBody>
           </Table>
         </TableContainer>
-      </DiagnosticReportTableStyles>
+      </DiagnosticReportComponentStyles>
     ) : (
       <div></div>
     );
@@ -103,9 +103,9 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
   return entries && entries.length !== 0 ? (
     entries.map(entry => {
       return (
-        <DiagnosticReportTableStyles>
+        <DiagnosticReportComponentStyles>
           <TableContainer
-            className="diagnostic-report-table-container"
+            className="diagnostic-report-container "
             component={Paper}
           >
             <Typography className="header" variant="h6" component="h6">
@@ -134,7 +134,7 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
             <Observations entry={entry} />
             <PresentedForm entry={entry} />
           </TableContainer>
-        </DiagnosticReportTableStyles>
+        </DiagnosticReportComponentStyles>
       );
     })
   ) : (
@@ -142,4 +142,4 @@ const DiagnosticReportTable = ({ data, consentReqId }) => {
   );
 };
 
-export default DiagnosticReportTable;
+export default DiagnosticReportComponent;
