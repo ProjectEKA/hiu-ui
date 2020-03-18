@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import DiagnosticReportTable from "../../components/DiagnosticReport/DiagnosticReportTable";
+import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
 import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 
@@ -12,7 +12,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
           {hipName}
         </Typography>
         <ObservationTable data={data} />
-        <DiagnosticReportTable consentReqId={consentReqId} data={data} />
+        <DiagnosticReportComponent consentReqId={consentReqId} data={data} />
       </div>
     </HipHealthInfoContainerStyles>
   );

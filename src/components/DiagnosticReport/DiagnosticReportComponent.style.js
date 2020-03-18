@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const DiagnosticReportTableStyles = styled.div`
-  .diagnostic-report-table-container {
+const DiagnosticReportComponentStyles = styled.div`
+  .diagnostic-report-container {
     margin-bottom: 20px;
     padding: 20px;
   }
@@ -33,4 +33,4 @@ const DiagnosticReportTableStyles = styled.div`
   }
 `;
 
-export default DiagnosticReportTableStyles;
+export default DiagnosticReportComponentStyles;
