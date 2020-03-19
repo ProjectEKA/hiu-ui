@@ -21,20 +21,11 @@ const Components = ({ components }) => {
 };
 
 const ObservationTable = ({ data }) => {
-  const entries = [];
-  data
-    ? data.map(entry => {
-        if (entry.resourceType === "Observation" && !entry.parentResource) {
-          entries.push(entry);
-        }
-      })
-    : undefined;
-
   function extractInterpretation(entry) {
     return entry.interpretation ? entry.interpretation[0].text : "-";
   }
 
-  return entries && entries.length !== 0 ? (
+  return data && data.length !== 0 ? (
     <ObservationTableStyles>
       <TableContainer className="observation-table-container" component={Paper}>
         <Table className="observation-table" aria-label="simple table">
@@ -47,7 +38,7 @@ const ObservationTable = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {entries.map((entry, i) => (
+            {data.map((entry, i) => (
               <TableRow key={i}>
                 <TableCell>
                   {entry.effectiveDateTime ? entry.effectiveDateTime : ""}
