@@ -27,7 +27,7 @@ const baseEntities = [
     "location"
 ];
 
-const rootResources = ["composition", "encounter", "diagnosticreport"];
+const rootResources = ["composition", "encounter", "diagnosticreport", "imagingstudy", "procedure", "observation"];
 
 const getFormattedDateString = function(dateString) {
     if (!dateString) {
@@ -36,6 +36,30 @@ const getFormattedDateString = function(dateString) {
     var dt = new Date(dateString);
     return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
 };
+
+const identifyFirstParent = function(resource) {
+  if (resource.parentResources) {
+    resource.parentResources.sort((r1, r2) => {
+      var i1 = rootResources.indexOf(r1.resourceType.toLowerCase());
+      var i2 = rootResources.indexOf(r2.resourceType.toLowerCase());
+      return i1 < i2 ? -1 : (i1 > i2 ? 1 : 0);
+    });
+    var firstParent = resource.parentResources[0];
+    return firstParent;
+  } else {
+    return undefined;
+  }
+};
+
+const identifyParentOfType = function(resource, parentType) {
+  if (resource.parentResources) {
+    return resource.parentResources.find(pr => {
+      return pr.resourceType.toLowerCase() === parentType.toLowerCase();
+    });
+  } else {
+    return undefined;
+  }
+}
 
 const resourceDateFormatter = {
     composition: function(res) {
@@ -87,13 +111,14 @@ const resourceDateFormatter = {
       return getFormattedDateString(res.authoredOn);
     },
     imagingstudy: function(res) {
-      if (res.parentResource) {
-        if (res.parentResource.hasOwnProperty("issued")) {
-          return getFormattedDateString(res.parentResource.issued);
-        } else if (res.parentResource.hasOwnProperty("effectiveDateTime")) {
-          return getFormattedDateString(res.parentResource.effectiveDateTime);
+      if (res.parentResources) {
+        var firstParent = identifyFirstParent(res);
+        if (firstParent.hasOwnProperty("issued")) {
+          return getFormattedDateString(firstParent.issued);
+        } else if (firstParent.hasOwnProperty("effectiveDateTime")) {
+          return getFormattedDateString(firstParent.effectiveDateTime);
         } else {
-          return getFormattedDateString(res.parentResource.effectivePeriod.start);
+          return getFormattedDateString(firstParent.effectivePeriod.start);
         }
       } else {
         return getFormattedDateString(res.started);
@@ -101,4 +126,4 @@ const resourceDateFormatter = {
     }
 };
 
-export { baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter };
+export { identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter };

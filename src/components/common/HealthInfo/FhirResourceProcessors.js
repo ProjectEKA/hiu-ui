@@ -6,6 +6,13 @@ export class FhirResourceProcessor {
       console.log("Noop. This should not have been called");
       throw new Error("Shouldn't be calling on FhirResourceProcessor.");
     }
+    addParentResource(target, parent) {
+      if (target.parentResources) {
+        target.parentResources.push(parent);
+      } else {
+        target.parentResources = [parent];
+      }
+    }
 };
 
 export class ImagingStudyProcessor extends FhirResourceProcessor {
@@ -18,7 +25,7 @@ export class ImagingStudyProcessor extends FhirResourceProcessor {
           var refResource = bundleContext.findReference("Endpoint", ep.reference);
           if (refResource) {
             ep.targetResource = refResource;
-            refResource.parentResource = imagingStudy;
+            this.addParentResource(refResource, imagingStudy);
           }
         });
       }
@@ -39,7 +46,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             m.link.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -52,7 +59,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             obs.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -65,7 +72,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             imageStudy.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -82,7 +89,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
         var refResource = bundleContext.findReference("Encounter", composition.encounter.reference);
         if (refResource) {
           composition.encounter.targetResource = refResource;
-          refResource.parentResource = composition;
+          this.addParentResource(refResource, composition);
         }
       }
       if (composition.section) {
@@ -93,7 +100,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
               var refResource = bundleContext.findReference(undefined, secEntry.reference);
               if (refResource) {
                 secEntry.targetResource = refResource;
-                refResource.parentResource = composition;
+                this.addParentResource(refResource, composition);
               } else {
                 unresolvedCompositionSectionEntryRefs.push[secEntry.reference];
               }
