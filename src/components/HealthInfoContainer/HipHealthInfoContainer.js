@@ -30,7 +30,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
         </Typography>
-        <CCRDocument consentReqId={consentReqId} data={data} />
+        {/* <CCRDocument consentReqId={consentReqId} data={data} /> */}
         <ObservationTable data={ObservationsWithNoParentResource} />
         <DiagnosticReportComponent
           consentReqId={consentReqId}

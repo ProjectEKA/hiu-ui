@@ -6,11 +6,10 @@ import ObservationTable from "../../components/ObservationTable/ObservationTable
 const CCRDocument = ({ consentReqId, data }) => {
   return (
     <div>
-        CCR Document: number
-        <ObservationTable data={data} />
-        <DiagnosticReportComponent consentReqId={consentReqId} data={data} />
+      CCR Document: number
+      <ObservationTable data={data} />
+      <DiagnosticReportComponent consentReqId={consentReqId} data={data} />
     </div>
-
   );
 };
 
