@@ -1,11 +1,29 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import DiagnosticReportTable from "../../components/DiagnosticReport/DiagnosticReportTable";
+import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
 import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
 
 const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
+  const ObservationsWithNoParentResource = [];
+  data
+    ? data.map(entry => {
+        if (entry.resourceType === "Observation" && !entry.parentResource) {
+          ObservationsWithNoParentResource.push(entry);
+        }
+      })
+    : undefined;
+
+  const DiagnosticReport = [];
+  data
+    ? data.map(entry => {
+        if (entry.resourceType === "DiagnosticReport") {
+          DiagnosticReport.push(entry);
+        }
+      })
+    : undefined;
+
   return (
     <HipHealthInfoContainerStyles>
       <div className="hip-health-info-container">
@@ -13,8 +31,11 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
           {hipName}
         </Typography>
         <CCRDocument consentReqId={consentReqId} data={data} />
-        <ObservationTable data={data} />
-        <DiagnosticReportTable consentReqId={consentReqId} data={data} />
+        <ObservationTable data={ObservationsWithNoParentResource} />
+        <DiagnosticReportComponent
+          consentReqId={consentReqId}
+          data={DiagnosticReport}
+        />
       </div>
     </HipHealthInfoContainerStyles>
   );
