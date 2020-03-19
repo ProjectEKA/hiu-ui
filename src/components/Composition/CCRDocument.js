@@ -1,6 +1,6 @@
 import React from "react";
 
-import DiagnosticReportTable from "../../components/DiagnosticReport/DiagnosticReportTable";
+import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
 
 const CCRDocument = ({ consentReqId, data }) => {
@@ -8,7 +8,7 @@ const CCRDocument = ({ consentReqId, data }) => {
     <div>
         CCR Document: number
         <ObservationTable data={data} />
-        <DiagnosticReportTable consentReqId={consentReqId} data={data} />
+        <DiagnosticReportComponent consentReqId={consentReqId} data={data} />
     </div>
 
   );
