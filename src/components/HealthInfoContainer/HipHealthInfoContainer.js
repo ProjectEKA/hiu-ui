@@ -49,7 +49,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
       if (entry.parentResources) {
         return !identifyParentOfType(entry, "Composition");
       }
-      return false;
+      return true;
     }) : [];
 
   return (
@@ -58,7 +58,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
         </Typography>
-        <CCRDocument consentReqId={consentReqId} data={compositionData} />
+        <CCRDocument consentReqId={consentReqId} compositionData={compositionData} />
         <ObservationTable data={ObservationsWithNoParentResource} />
         <DiagnosticReportComponent
           consentReqId={consentReqId}

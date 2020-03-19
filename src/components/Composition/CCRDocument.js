@@ -5,9 +5,9 @@ import ObservationTable from "../../components/ObservationTable/ObservationTable
 import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
 import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
 
-const CCRDocument = ({ consentReqId, data }) => {
-  const independentObservations =  data ? 
-    data.filter(entry => {
+const CCRDocument = ({ consentReqId, compositionData }) => {
+  const independentObservations =  compositionData ? 
+    compositionData.filter(entry => {
       if (entry.resourceType != "Observation") {
         return false;
       }
@@ -18,8 +18,8 @@ const CCRDocument = ({ consentReqId, data }) => {
       return false;
     }) : [];
   
-  const independentMedicationRequests =  data ? 
-    data.filter(entry => {
+  const independentMedicationRequests =  compositionData ? 
+    compositionData.filter(entry => {
       if (entry.resourceType != "MedicationRequest") {
         return false;
       }
@@ -30,13 +30,15 @@ const CCRDocument = ({ consentReqId, data }) => {
       return false;
     }) : [];
 
-  return (
+  return compositionData && compositionData.length > 0 ? (
     <div>
       Document type: TODO
       <ObservationTable data={independentObservations} />
       <MedicationRequestsComponent medicationRequests={independentMedicationRequests} />
       {/* <DiagnosticReportComponent consentReqId={consentReqId} data={data} /> */}
     </div>
+  ) : (
+    <div></div>
   );
 };
 

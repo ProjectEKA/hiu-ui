@@ -121,8 +121,8 @@ class HealthInfoProcessor {
             var dateFormatter;
             var firstParent;
             if (e.resource.parentResources) {
-              firstParent = identifyFirstParent(e.resource.parentResources);
-              dateFormatter = resourceDateFormatter[fistParent.resourceType.toLowerCase()];
+              firstParent = identifyFirstParent(e.resource);
+              dateFormatter = resourceDateFormatter[firstParent.resourceType.toLowerCase()];
             } else {
               dateFormatter = resourceDateFormatter[e.resource.resourceType.toLowerCase()];
             }
