@@ -4,6 +4,8 @@ import DiagnosticReportComponent from "../../components/DiagnosticReport/Diagnos
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
 import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
+import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
+import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
 
 const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
   const compositionData = data ? 
@@ -37,6 +39,18 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         }
       })
     : undefined;
+  
+
+  const medicationRequests =  data ? 
+    data.filter(entry => {
+      if (entry.resourceType != "MedicationRequest") {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, "Composition");
+      }
+      return false;
+    }) : [];
 
   return (
     <HipHealthInfoContainerStyles>
@@ -50,6 +64,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
           consentReqId={consentReqId}
           data={DiagnosticReport}
         />
+        <MedicationRequestsComponent medicationRequests={medicationRequests} />
       </div>
     </HipHealthInfoContainerStyles>
   );

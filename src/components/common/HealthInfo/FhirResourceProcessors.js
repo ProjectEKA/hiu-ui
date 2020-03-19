@@ -13,6 +13,21 @@ export class FhirResourceProcessor {
         target.parentResources = [parent];
       }
     }
+    findContainedResource(parent, reference, resourceType) {
+      if (parent.contained) {
+        return parent.contained.find(cr => {
+          if (!resourceType)  {
+            return reference.includes(cr.id);
+          }
+          if (cr.resourceType.toLowerCase() === resourceType.toLowerCase()) {
+            //TODO very simplistic includes. we would need regex
+            return reference.includes(cr.id);
+          }
+          return false;
+        });
+      }
+      return undefined;
+    }
 };
 
 export class ImagingStudyProcessor extends FhirResourceProcessor {
@@ -112,4 +127,24 @@ export class CompositionProcessor extends FhirResourceProcessor {
         }
       }
     }
+};
+
+export class MedicationRequestProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === "medicationrequest";
+  }
+  process(medicationRequest, bundleContext) {
+    if (medicationRequest.medicationReference) {
+      var medication = this.findContainedResource(medicationRequest, 
+        medicationRequest.medicationReference.reference, "Medication");
+      if (!medication) {
+        //try to find within bundle
+        medication = bundleContext.findReference("Medication", medicationRequest.medicationReference);
+      }
+      if (medication) {
+        medicationRequest.medicationReference.targetResource = medication;
+        this.addParentResource(medication, medicationRequest);
+      }
+    }
+  }
 };

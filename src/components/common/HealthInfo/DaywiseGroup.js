@@ -1,6 +1,6 @@
 import { identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter } from "./FhirResourcesUtils";
 import { BundleContext } from "./BundleContext";
-import { FhirResourceProcessor, CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor } from "./FhirResourceProcessors";
+import { CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor } from "./FhirResourceProcessors";
 
 class HealthInfoProcessor {
   filterByHipId(entriesByHips, hipId) {
@@ -157,7 +157,8 @@ class HealthInfoProcessor {
 const fhirProcessors = [
   new CompositionProcessor(),
   new DiagnosticReportProcessor(),
-  new ImagingStudyProcessor()
+  new ImagingStudyProcessor(),
+  new MedicationRequestProcessor()
 ];
 
 function dayGrouper(data) {
