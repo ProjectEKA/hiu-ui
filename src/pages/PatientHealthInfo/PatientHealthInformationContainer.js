@@ -26,7 +26,8 @@ const mapStateToProps = state => ({
   ),
   success: state.healthInfo.success,
   loading: state.healthInfo.loading,
-  error: state.healthInfo.error
+  error: state.healthInfo.error,
+  patientData: getNestedObject(state, "healthInfo.patientData")
 });
 
 const mapDispatchToProps = {

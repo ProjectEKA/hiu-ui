@@ -1,14 +1,44 @@
-import { ACTION_TYPES } from "../actions/loadHealthDataActions";
-import { call, put } from "redux-saga/effects";
+import {
+  ACTION_TYPES,
+  savePatientData
+} from "../actions/loadHealthDataActions";
+import { call, put, select, putResolve, take } from "redux-saga/effects";
 import loadHealthDataApi from "../apiCalls/loadHealthDataApi";
+import getNestedObject from "../../utils/getNestedObject";
+import {
+  loadConsents,
+  GET_CONSENTS_ACTION_TYPES,
+  loadConsentsSuccess
+} from "../../redux/actions/loadConsentsActions";
+const getPatientDataFromConsentState = (id, consentData) => {
+  console.log(consentData, id);
+  return consentData.find(currentConsent => currentConsent.id === id).patient;
+};
 
 function* loadHealthData(action) {
   try {
     const HealthData = yield call(loadHealthDataApi, action.payload.id);
+    let consentState = yield select(state =>
+      getNestedObject(state, "loadConsents.consentsList")
+    );
+    if (!consentState) {
+      yield put(loadConsents());
+      yield take(GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED);
+      consentState = yield select(state =>
+        getNestedObject(state, "loadConsents.consentsList")
+      );
+    }
+    const patientData = getPatientDataFromConsentState(
+      getNestedObject(action, "payload.id"),
+      consentState
+    );
+    yield put(savePatientData(patientData))
     if (HealthData) {
       yield put({
         type: ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS,
-        payload: action.payload.groupFunction ? action.payload.groupFunction(HealthData) : HealthData
+        payload: action.payload.groupFunction
+          ? action.payload.groupFunction(HealthData)
+          : HealthData
       });
     }
   } catch (e) {

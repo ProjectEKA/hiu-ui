@@ -1,17 +1,12 @@
 import React from "react";
 import PatientDetailsStyles from "./PatientDetails.style";
 
-const PatientDetails = ({ patient }) => {
+const PatientDetails = ({ firstName, lastName }) => {
   return (
     <PatientDetailsStyles>
       <div className="patient-details-container">
         <span>
-          Name:
-          {patient.name}
-        </span>
-        <span>
-          Age:
-          {patient.age}
+          Name : {firstName} {lastName}
         </span>
       </div>
     </PatientDetailsStyles>

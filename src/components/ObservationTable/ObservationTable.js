@@ -22,7 +22,7 @@ const Components = ({ components }) => {
 
 const ObservationTable = ({ data }) => {
   function extractInterpretation(entry) {
-    return entry.interpretation ? entry.interpretation[0].text : "-";
+    return entry.interpretation ? entry.interpretation[0].text : "";
   }
 
   return data && data.length !== 0 ? (

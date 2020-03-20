@@ -5,16 +5,12 @@ import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfo
 import { useParams } from "react-router-dom";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 
-const patient = {
-  name: "john",
-  age: 20
-};
-
 const PatientHealthInformation = ({
   loadHealthData,
   dateArray,
   defaultSelectedDate,
   healthInfo,
+  patientData,
   match
 }) => {
   const [selectedDate, setSelectedDate] = useState(defaultSelectedDate);
@@ -32,7 +28,7 @@ const PatientHealthInformation = ({
   }
   return (
     <div>
-      <PatientDetails patient={patient} />
+      <PatientDetails {...patientData} />
       <HealthInfoNav
         dates={dateArray}
         selectedDate={selectedDate}
