@@ -6,6 +6,28 @@ export class FhirResourceProcessor {
       console.log("Noop. This should not have been called");
       throw new Error("Shouldn't be calling on FhirResourceProcessor.");
     }
+    addParentResource(target, parent) {
+      if (target.parentResources) {
+        target.parentResources.push(parent);
+      } else {
+        target.parentResources = [parent];
+      }
+    }
+    findContainedResource(parent, reference, resourceType) {
+      if (parent.contained) {
+        return parent.contained.find(cr => {
+          if (!resourceType)  {
+            return reference.includes(cr.id);
+          }
+          if (cr.resourceType.toLowerCase() === resourceType.toLowerCase()) {
+            //TODO very simplistic includes. we would need regex
+            return reference.includes(cr.id);
+          }
+          return false;
+        });
+      }
+      return undefined;
+    }
 };
 
 export class ImagingStudyProcessor extends FhirResourceProcessor {
@@ -18,7 +40,7 @@ export class ImagingStudyProcessor extends FhirResourceProcessor {
           var refResource = bundleContext.findReference("Endpoint", ep.reference);
           if (refResource) {
             ep.targetResource = refResource;
-            refResource.parentResource = imagingStudy;
+            this.addParentResource(refResource, imagingStudy);
           }
         });
       }
@@ -39,7 +61,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             m.link.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -52,7 +74,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             obs.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -65,7 +87,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
           );
           if (refResource) {
             imageStudy.targetResource = refResource;
-            refResource.parentResource = diagnosticReport;
+            this.addParentResource(refResource, diagnosticReport);
           }
         });
       }
@@ -82,7 +104,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
         var refResource = bundleContext.findReference("Encounter", composition.encounter.reference);
         if (refResource) {
           composition.encounter.targetResource = refResource;
-          refResource.parentResource = composition;
+          this.addParentResource(refResource, composition);
         }
       }
       if (composition.section) {
@@ -93,7 +115,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
               var refResource = bundleContext.findReference(undefined, secEntry.reference);
               if (refResource) {
                 secEntry.targetResource = refResource;
-                refResource.parentResource = composition;
+                this.addParentResource(refResource, composition);
               } else {
                 unresolvedCompositionSectionEntryRefs.push[secEntry.reference];
               }
@@ -105,4 +127,24 @@ export class CompositionProcessor extends FhirResourceProcessor {
         }
       }
     }
+};
+
+export class MedicationRequestProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === "medicationrequest";
+  }
+  process(medicationRequest, bundleContext) {
+    if (medicationRequest.medicationReference) {
+      var medication = this.findContainedResource(medicationRequest, 
+        medicationRequest.medicationReference.reference, "Medication");
+      if (!medication) {
+        //try to find within bundle
+        medication = bundleContext.findReference("Medication", medicationRequest.medicationReference);
+      }
+      if (medication) {
+        medicationRequest.medicationReference.targetResource = medication;
+        this.addParentResource(medication, medicationRequest);
+      }
+    }
+  }
 };

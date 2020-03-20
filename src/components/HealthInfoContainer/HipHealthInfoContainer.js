@@ -4,12 +4,28 @@ import DiagnosticReportComponent from "../../components/DiagnosticReport/Diagnos
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
 import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
+import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
+import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
 
 const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
+  const compositionData = data ? 
+    data.filter(entry => entry.resourceType.toLowerCase() == "composition") : [];
+  
+  if (data) {
+    data.forEach(e => {
+      if (e.parentResources) {
+        var parentComposition = e.parentResources.find(pr => compositionData.indexOf(pr) >= 0);
+        if (parentComposition) {
+          compositionData.push(e);
+        }
+      }
+    });
+  }
+
   const ObservationsWithNoParentResource = [];
   data
     ? data.map(entry => {
-        if (entry.resourceType === "Observation" && !entry.parentResource) {
+        if (entry.resourceType === "Observation" && !entry.parentResources) {
           ObservationsWithNoParentResource.push(entry);
         }
       })
@@ -23,6 +39,18 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         }
       })
     : undefined;
+  
+
+  const medicationRequests =  data ? 
+    data.filter(entry => {
+      if (entry.resourceType != "MedicationRequest") {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, "Composition");
+      }
+      return true;
+    }) : [];
 
   return (
     <HipHealthInfoContainerStyles>
@@ -30,12 +58,13 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
         </Typography>
-        {/* <CCRDocument consentReqId={consentReqId} data={data} /> */}
+        <CCRDocument consentReqId={consentReqId} compositionData={compositionData} />
         <ObservationTable data={ObservationsWithNoParentResource} />
         <DiagnosticReportComponent
           consentReqId={consentReqId}
           data={DiagnosticReport}
         />
+        <MedicationRequestsComponent medicationRequests={medicationRequests} />
       </div>
     </HipHealthInfoContainerStyles>
   );

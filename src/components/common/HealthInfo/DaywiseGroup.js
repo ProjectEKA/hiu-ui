@@ -1,6 +1,6 @@
-import { baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter } from "./FhirResourcesUtils";
+import { identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter } from "./FhirResourcesUtils";
 import { BundleContext } from "./BundleContext";
-import { FhirResourceProcessor, CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor } from "./FhirResourceProcessors";
+import { CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor } from "./FhirResourceProcessors";
 
 class HealthInfoProcessor {
   filterByHipId(entriesByHips, hipId) {
@@ -119,14 +119,16 @@ class HealthInfoProcessor {
               resourceProcessor.process(e.resource, new BundleContext(bundle));
             }
             var dateFormatter;
-            if (e.resource.parentResource) {
-              dateFormatter = resourceDateFormatter[e.resource.parentResource.resourceType.toLowerCase()];
+            var firstParent;
+            if (e.resource.parentResources) {
+              firstParent = identifyFirstParent(e.resource);
+              dateFormatter = resourceDateFormatter[firstParent.resourceType.toLowerCase()];
             } else {
               dateFormatter = resourceDateFormatter[e.resource.resourceType.toLowerCase()];
             }
             if (dateFormatter) {
-              var resourceDate = e.resource.parentResource
-                ? dateFormatter(e.resource.parentResource)
+              var resourceDate = e.resource.parentResources
+                ? dateFormatter(firstParent)
                 : dateFormatter(e.resource);
               if (resourceDate) {
                 this.addResourceEntryForDate(
@@ -155,7 +157,8 @@ class HealthInfoProcessor {
 const fhirProcessors = [
   new CompositionProcessor(),
   new DiagnosticReportProcessor(),
-  new ImagingStudyProcessor()
+  new ImagingStudyProcessor(),
+  new MedicationRequestProcessor()
 ];
 
 function dayGrouper(data) {
