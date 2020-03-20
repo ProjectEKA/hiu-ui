@@ -139,7 +139,7 @@ export class MedicationRequestProcessor extends FhirResourceProcessor {
         medicationRequest.medicationReference.reference, "Medication");
       if (!medication) {
         //try to find within bundle
-        medication = bundleContext.findReference("Medication", medicationRequest.medicationReference);
+        medication = bundleContext.findReference("Medication", medicationRequest.medicationReference.reference);
       }
       if (medication) {
         medicationRequest.medicationReference.targetResource = medication;
