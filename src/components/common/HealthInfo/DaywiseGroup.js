@@ -11,26 +11,36 @@ class HealthInfoProcessor {
 
   groupByHip(entries) {
     var entriesByHips = [];
+    var errorEntries = [];
     entries.forEach(entry => {
-      var entryByHip;
-      var hipEntries = this.filterByHipId(entriesByHips, entry.hipId);
-      if (hipEntries && hipEntries.length > 0) {
-        entryByHip = hipEntries[0];
-      }
-      if (entryByHip == undefined) {
-        entryByHip = {
-          hipId: entry.hipId,
-          hipName: entry.hipName,
-          bundles: []
-        };
-        entriesByHips.push(entryByHip);
-        if (entry.data) {
-          entryByHip.bundles.push(entry.data);
+      if (entry.status === "SUCCEEDED") {
+        var entryByHip;
+        var hipEntries = this.filterByHipId(entriesByHips, entry.hipId);
+        if (hipEntries && hipEntries.length > 0) {
+          entryByHip = hipEntries[0];
+        }
+        if (entryByHip == undefined) {
+          entryByHip = {
+            hipId: entry.hipId,
+            hipName: entry.hipName,
+            bundles: []
+          };
+          entriesByHips.push(entryByHip);
+          if (entry.data) {
+            entryByHip.bundles.push(entry.data);
+          }
+        } else {
+          if (entry.data) {
+            entryByHip.bundles.push(entry.data); 
+          }
         }
       } else {
-        entryByHip.bundles.push(entry.data);
+        errorEntries.push(entry);
       }
     });
+    if (errorEntries.length > 0) {
+      console.log("Error: Some HIP entries had error status", errorEntries);
+    }
     return entriesByHips;
   }
 
