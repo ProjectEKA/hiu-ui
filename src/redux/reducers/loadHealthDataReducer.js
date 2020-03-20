@@ -25,6 +25,11 @@ export default (state = {}, action) => {
         error: true,
         success: false
       };
+    case ACTION_TYPES.FETCH_PATIENT_DATA:
+      return {
+        ...state,
+        patientData: action.payload
+      };
     default:
       return state;
   }
