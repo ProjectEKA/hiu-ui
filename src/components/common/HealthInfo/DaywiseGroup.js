@@ -161,6 +161,12 @@ const fhirProcessors = [
   new MedicationRequestProcessor()
 ];
 
+function getDateFromString(dateString) {
+  //NOTE: format is DD/MM/YYYY
+  var dateParts = dateString.split("/");
+  return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
+}
+
 function dayGrouper(data) {
   var processor = new HealthInfoProcessor();
   if (!data.data.entries) {
@@ -172,6 +178,11 @@ function dayGrouper(data) {
   var entriesByDays = processor.groupByDay(entriesByHips);
   console.log("Grouped entries by Date=>Hips: ", entriesByDays);
   var daywiseGroup = {};
+  entriesByDays.sort((a, b) => {
+    var dateA = getDateFromString(a.date);
+    var dateB = getDateFromString(b.date);
+    return dateA.getTime() == dateB.getTime() ? 0 : (dateA.getTime() > dateB.getTime() ? -1 : 1);
+  });
   entriesByDays.forEach(ebd => {
     daywiseGroup[ebd.date] = ebd.hipData;
   });
