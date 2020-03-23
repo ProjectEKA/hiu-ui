@@ -80,6 +80,13 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
     );
   }
 
+  function generateImageUrl(url) {
+    const urlArray = url.split("/");
+    const StudyInstanceUID = urlArray.slice(-1).pop();
+    // return `${BACKEND_BASE_URL}/viewer/${StudyInstanceUID}`;
+    return `https://hiu-dev.projecteka.in/viewer/${StudyInstanceUID}`;
+  }
+
   const Media = ({ entry }) => {
     const MediaList = getMediaList(getNestedObject(entry, "media"), "Media");
     return MediaList && MediaList.length != 0 ? (
@@ -89,7 +96,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
           {MediaList.map(link => {
             return (
               <li>
-                <a href={`${BACKEND_BASE_URL}${link.url}`} target="_blank">
+                <a href={generateImageUrl(link.url)} target="_blank">
                   {link.display}
                 </a>
               </li>

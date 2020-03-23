@@ -27,8 +27,15 @@ module.exports = {
   ],
   devServer: {
     contentBase: parentDir,
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [{ from: /^\/viewer/, to: "dicomIndex.html" }]
+    },
     proxy: {
+      "/dicom-web": {
+        changeOrigin: true,
+        cookieDomainRewrite: "",
+        target: "http://localhost:8042"
+      },
       "/patients/*": {
         changeOrigin: true,
         cookieDomainRewrite: "https://hiu-dev.projecteka.in",
