@@ -232,7 +232,7 @@ return medicationRequests && medicationRequests.length > 0 ? (
             {medicationRequests.map((mr, i) => (
               <TableRow key={i}>
                 <TableCell>
-                  {mr.authoredOn ? mr.authoredOn : ""}
+                  {mr.authoredOn ? formatDateString(mr.authoredOn) : ""}
                 </TableCell>
                 <TableCell>
                   {findMedicationName(mr.medicationReference.targetResource)}
