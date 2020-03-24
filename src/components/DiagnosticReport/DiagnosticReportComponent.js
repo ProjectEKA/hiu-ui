@@ -83,8 +83,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   function generateImageUrl(url) {
     const urlArray = url.split("/");
     const StudyInstanceUID = urlArray.slice(-1).pop();
-    // return `${BACKEND_BASE_URL}/viewer/${StudyInstanceUID}`;
-    return `https://hiu-dev.projecteka.in/viewer/${StudyInstanceUID}`;
+    return `https://ncg-dev.projecteka.in/viewer/${StudyInstanceUID}`;
   }
 
   const Media = ({ entry }) => {

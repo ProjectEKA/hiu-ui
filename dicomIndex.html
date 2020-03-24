@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>NCG</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/javascript" src="/bundle.js"></script>
+  </link>
+  <script src="https://unpkg.com/@ohif/viewer@3.7.4/dist/index.umd.js" crossorigin></script>
+  <script>
+    var containerId = "root";
+    var componentRenderedOrUpdatedCallback = function () {
+      console.log('OHIF Viewer rendered/updated');
+    }
+
+    window.config = {
+      showStudyList: false,
+      servers: {
+        dicomWeb: [
+          {
+            name: 'Orthanc',
+            wadoUriRoot: 'wado',
+            qidoRoot: 'https://ncg-dev.projecteka.in/dicom-server',
+            wadoRoot: 'https://ncg-dev.projecteka.in/dicom-server',
+            qidoSupportsIncludeField: true,
+            imageRendering: 'wadors',
+            thumbnailRendering: 'wadors',
+          },
+        ],
+      }
+    };
+    window.OHIFViewer.installViewer(
+      window.config, containerId, componentRenderedOrUpdatedCallback);
+  </script>
+</body>
+
+</html>
