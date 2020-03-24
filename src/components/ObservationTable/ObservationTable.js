@@ -8,6 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import ObservationTableStyles from "./ObservationTable.style";
 import valueForObs from "./ObsValueHandlers";
+import { toIndiaDate } from "../../constants";
 
 const Components = ({ components }) => {
   return components
@@ -39,10 +40,19 @@ const ObservationTable = ({ data }) => {
           </TableHead>
           <TableBody>
             {data.map((entry, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  {entry.effectiveDateTime ? entry.effectiveDateTime : ""}
-                </TableCell>
+              <TableRow
+                key={i}
+                className={entry.id ? "children-row" : "parent-row"}
+              >
+                {entry.id ? (
+                  <TableCell></TableCell>
+                ) : (
+                  <TableCell>
+                    {entry.effectiveDateTime
+                      ? toIndiaDate(entry.effectiveDateTime)
+                      : ""}
+                  </TableCell>
+                )}
                 <TableCell>{entry.code.text}</TableCell>
                 <TableCell>
                   {valueForObs(entry)}

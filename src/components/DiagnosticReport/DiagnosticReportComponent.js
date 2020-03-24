@@ -111,7 +111,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
             component={Paper}
           >
             <Typography className="header" variant="h6" component="h6">
-              {entry.resourceType}
+              {entry.resourceType} for {entry.code ? entry.code.text : ""}
             </Typography>
             <ul className="report-details-list">
               <li>
@@ -123,10 +123,6 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
               <li>
                 <span>Status: </span>
                 {entry.status}
-              </li>
-              <li>
-                <span>Report: </span>
-                {entry.code ? entry.code.text : ""}
               </li>
               <li>
                 <span>Performer: </span>
