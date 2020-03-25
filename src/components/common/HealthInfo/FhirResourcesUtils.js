@@ -59,7 +59,7 @@ const identifyParentOfType = function(resource, parentType) {
   } else {
     return undefined;
   }
-}
+};
 
 const resourceDateFormatter = {
     composition: function(res) {
@@ -126,4 +126,41 @@ const resourceDateFormatter = {
     }
 };
 
-export { identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter };
+const getConceptDisplay = function(codeableConcept) {
+  if (codeableConcept) {
+    if (codeableConcept.text) {
+      return codeableConcept.text;
+    }
+    if (codeableConcept.coding) {
+      for (var index = 0; index < codeableConcept.coding.length; index++) { 
+        var coding = codeableConcept.coding[index];
+        if (coding.display) {
+          return coding.display;
+        }
+        if (coding.code) {
+          return coding.code;
+        }
+      }
+    }
+  } 
+  return null;
+};
+
+const formatDateString = function(aDate, includeTime) {
+  if (aDate) { 
+    var dateString = aDate.toString();
+    if (dateString.length > 0) {
+      var dt = new Date(dateString);
+      var dtStr = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+      if (includeTime) {
+        dtStr = dtStr + " " + dt.getHours() + ":" + dt.getMinutes();
+      }
+      return dtStr;
+    } else {
+      return "";
+    }
+  }
+  return "";
+};
+
+export { identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString };
