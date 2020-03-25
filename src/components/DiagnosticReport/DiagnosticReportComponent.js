@@ -29,7 +29,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
             return (
               <li>
                 <a
-                  href={`${BACKEND_BASE_URL}/health-information/fetch/${consentReqId}${link.url}`}
+                  href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
                   target="_blank"
                 >
                   {link.title ? link.title : "Link"}
@@ -83,7 +83,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   function generateImageUrl(url) {
     const urlArray = url.split("/");
     const StudyInstanceUID = urlArray.slice(-1).pop();
-    return `${window.location.origin}/viewer/${StudyInstanceUID}`;
+    return `${DICOM_BASE_URL}viewer/${StudyInstanceUID}`;
   }
 
   const Media = ({ entry }) => {
