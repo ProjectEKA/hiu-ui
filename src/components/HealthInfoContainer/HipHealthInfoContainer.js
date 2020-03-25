@@ -6,6 +6,7 @@ import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
 import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
 import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
+import ConditionsComponent from "../Condition/ConditionsComponent";
 
 const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
   const compositionData = data ? 
@@ -51,6 +52,17 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
       }
       return true;
     }) : [];
+  
+  const conditionList =  data ? 
+    data.filter(entry => {
+      if (entry.resourceType != "Condition") {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, "Composition");
+      }
+      return true;
+    }) : [];
 
   return (
     <HipHealthInfoContainerStyles>
@@ -64,6 +76,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
           consentReqId={consentReqId}
           data={DiagnosticReport}
         />
+        <ConditionsComponent conditionList={conditionList}/>
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
       </div>
     </HipHealthInfoContainerStyles>

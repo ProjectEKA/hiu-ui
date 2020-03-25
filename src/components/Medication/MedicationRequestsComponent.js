@@ -8,6 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import MedicationTableStyles from "./MedicationRequests.style";
 import PropTypes from 'prop-types';
+import { getConceptDisplay, formatDateString } from "../common/HealthInfo/FhirResourcesUtils"
 
 
 const unitsOfTime = {
@@ -37,22 +38,6 @@ const eventTiming = {
   "PCV": "after dinner"
 };
 
-const formatDateString = function(aDate, includeTime) {
-  if (aDate) { 
-    var dateString = aDate.toString();
-    if (dateString.length > 0) {
-      var dt = new Date(dateString);
-      var dtStr = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
-      if (includeTime) {
-        dtStr = dtStr + " " + dt.getHours() + ":" + dt.getMinutes();
-      }
-      return dtStr;
-    } else {
-      return "";
-    }
-  }
-  return "";
-}
 
 
 const MedicationPriority = props => {
