@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 const MedicationTableStyles = styled.div`
   .medication-table-container {
-    margin-bottom: 20px;
+    margin-bottom: 60px;
   }
   .medication-table {
     min-width: 650px;
   }
   .header {
     text-transform: uppercase;
+    padding: 6px 16px;
     letter-spacing: 1px;
-    margin-top: 40px;
   }
   .table-head {
     background-color: #c8c8c8;

@@ -6,9 +6,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import ObservationTableStyles from "./ObservationTable.style";
 import valueForObs from "./ObsValueHandlers";
 import { toIndiaDate } from "../../constants";
+import TableStyles from "./../../components/common/Styles/Table.style";
 
 const Components = ({ components }) => {
   return components
@@ -27,10 +27,15 @@ const ObservationTable = ({ data }) => {
   }
 
   return data && data.length !== 0 ? (
-    <ObservationTableStyles>
-      <TableContainer className="observation-table-container" component={Paper}>
-        <Table className="observation-table" aria-label="simple table">
+    <TableStyles>
+      <TableContainer className="table-container" component={Paper}>
+        <Table className="table" aria-label="simple table">
           <TableHead>
+            <TableRow className="table-head">
+              <TableCell className="header" colSpan={4}>
+                Observation:
+              </TableCell>
+            </TableRow>
             <TableRow className="table-head">
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Observation</TableCell>
@@ -69,7 +74,7 @@ const ObservationTable = ({ data }) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </ObservationTableStyles>
+    </TableStyles>
   ) : (
     <div></div>
   );
