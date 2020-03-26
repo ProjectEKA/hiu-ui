@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -6,12 +6,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import ConditionTableStyles from "./Condition.style";
 import {
   getConceptDisplay,
   formatDateString
 } from "../common/HealthInfo/FhirResourcesUtils";
-import PropTypes from "prop-types";
+import TableStyles from "./../../components/common/Styles/Table.style";
 
 const ConditionNote = ({ condition }) => {
   if (condition.note && condition.note.length > 0) {
@@ -100,9 +99,9 @@ const ConditionOnset = ({ condition }) => {
 
 const ConditionsComponent = ({ conditionList }) => {
   return conditionList && conditionList.length > 0 ? (
-    <ConditionTableStyles>
-      <TableContainer className="condition-table-container" component={Paper}>
-        <Table className="condition-table" aria-label="simple table">
+    <TableStyles>
+      <TableContainer className="table-container" component={Paper}>
+        <Table className="table" aria-label="simple table">
           <TableHead>
             <TableRow className="table-head">
               <TableCell className="header" colSpan={4}>
@@ -153,7 +152,7 @@ const ConditionsComponent = ({ conditionList }) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </ConditionTableStyles>
+    </TableStyles>
   ) : (
     <div></div>
   );

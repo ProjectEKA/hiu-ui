@@ -107,31 +107,37 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
       return (
         <DiagnosticReportComponentStyles>
           <TableContainer
-            className="diagnostic-report-container "
+            className="diagnostic-report-table-container"
             component={Paper}
           >
-            <Typography className="header" variant="h6" component="h6">
-              {entry.resourceType} for {entry.code ? entry.code.text : ""}
+            <Typography
+              className="diagnostic-report-header"
+              variant="h6"
+              component="h6"
+            >
+              Diagnostic report : {entry.code ? entry.code.text : ""}
             </Typography>
-            <ul className="report-details-list">
-              <li>
-                <span>Date: </span>
-                {entry.effectiveDateTime
-                  ? toIndiaDate(entry.effectiveDateTime)
-                  : "-"}
-              </li>
-              <li>
-                <span>Status: </span>
-                {entry.status}
-              </li>
-              <li>
-                <span>Performer: </span>
-                {extractPerformer(entry)}
-              </li>
-            </ul>
-            <Observations entry={entry} />
-            <PresentedForm entry={entry} />
-            <Media entry={entry} />
+            <div className="diagnostic-report">
+              <ul className="report-details-list">
+                <li>
+                  <span>Date: </span>
+                  {entry.effectiveDateTime
+                    ? toIndiaDate(entry.effectiveDateTime)
+                    : "-"}
+                </li>
+                <li>
+                  <span>Status: </span>
+                  {entry.status}
+                </li>
+                <li>
+                  <span>Performer: </span>
+                  {extractPerformer(entry)}
+                </li>
+              </ul>
+              <Observations entry={entry} />
+              <PresentedForm entry={entry} />
+              <Media entry={entry} />
+            </div>
           </TableContainer>
         </DiagnosticReportComponentStyles>
       );

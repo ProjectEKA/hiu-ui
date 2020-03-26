@@ -1,30 +1,17 @@
 import styled from "styled-components";
 
 const DiagnosticReportComponentStyles = styled.div`
-  .diagnostic-report-container {
-    margin-bottom: 20px;
-    padding: 20px;
+  .diagnostic-report-table-container {
+    margin-bottom: 60px;
   }
-  .diagnostic-report-table {
-    min-width: 650px;
+  .diagnostic-report {
+    padding: 20px 16px;
   }
-  .header {
+  .diagnostic-report-header {
     text-transform: uppercase;
+    padding: 6px 16px;
     letter-spacing: 1px;
-  }
-  .table-head {
     background-color: #c8c8c8;
-  }
-  .loader-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  .expand-button {
-    margin-right: 10px;
-  }
-  .close {
-    display: none;
   }
   .report-details-list {
     li {
