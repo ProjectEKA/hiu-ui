@@ -12,6 +12,7 @@ const DiagnosticReportComponentStyles = styled.div`
     padding: 6px 16px;
     letter-spacing: 1px;
     background-color: #c8c8c8;
+    font-weight: 400;
   }
   .report-details-list {
     li {

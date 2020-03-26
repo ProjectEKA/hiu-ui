@@ -221,22 +221,22 @@ MedicationDose.propTypes = {
   dosageInstructions: PropTypes.any.isRequired
 };
 
-const MedicationRequestsComponent = ({ medicationRequests }) => {
-  function findMedicationName(medication) {
-    if (medication) {
-      var codeableConcept = medication.code;
-      if (codeableConcept.coding) {
-        return codeableConcept.coding[0].display
-          ? codeableConcept.coding[0].display
-          : codeableConcept.coding[0].code;
-      } else {
-        return "Unspecified";
-      }
+const findMedicationName = function(medication) {
+  if (medication) {
+    var codeableConcept = medication.code;
+    if (codeableConcept.coding) {
+      return codeableConcept.coding[0].display
+        ? codeableConcept.coding[0].display
+        : codeableConcept.coding[0].code;
     } else {
       return "Unspecified";
     }
+  } else {
+    return "Unspecified";
   }
+};
 
+const MedicationRequestsComponent = ({ medicationRequests }) => {
   return medicationRequests && medicationRequests.length > 0 ? (
     <TableStyles>
       <TableContainer className="table-container" component={Paper}>
