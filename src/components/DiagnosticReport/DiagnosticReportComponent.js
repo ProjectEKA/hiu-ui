@@ -4,9 +4,9 @@ import Paper from "@material-ui/core/Paper";
 import DiagnosticReportComponentStyles from "./DiagnosticReportComponent.style";
 import Typography from "@material-ui/core/Typography";
 import { useParams } from "react-router-dom";
-import { toIndiaDate } from "../../constants";
 import getNestedObject from "../../utils/getNestedObject";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
+import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
 
 const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const performerArray = [];
@@ -122,7 +122,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
                 <li>
                   <span>Date: </span>
                   {entry.effectiveDateTime
-                    ? toIndiaDate(entry.effectiveDateTime)
+                    ? formatDateString(entry.effectiveDateTime)
                     : "-"}
                 </li>
                 <li>
