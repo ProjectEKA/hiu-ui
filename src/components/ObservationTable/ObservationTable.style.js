@@ -15,6 +15,9 @@ const ObservationTableStyles = styled.div`
   .table-head {
     background-color: #c8c8c8;
   }
+  .parent-row {
+    background-color: #f1f1f1;
+  }
   .loader-container {
     display: flex;
     align-items: center;
