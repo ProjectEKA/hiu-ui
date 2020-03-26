@@ -6,9 +6,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import ObservationTableStyles from "./ObservationTable.style";
 import valueForObs from "./ObsValueHandlers";
-import { toIndiaDate } from "../../constants";
+import TableStyles from "./../../components/common/Styles/Table.style";
+import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
 
 const Components = ({ components }) => {
   return components
@@ -27,10 +27,15 @@ const ObservationTable = ({ data }) => {
   }
 
   return data && data.length !== 0 ? (
-    <ObservationTableStyles>
-      <TableContainer className="observation-table-container" component={Paper}>
-        <Table className="observation-table" aria-label="simple table">
+    <TableStyles>
+      <TableContainer className="table-container" component={Paper}>
+        <Table className="table" aria-label="simple table">
           <TableHead>
+            <TableRow className="table-head">
+              <TableCell className="header" colSpan={4}>
+                Observation:
+              </TableCell>
+            </TableRow>
             <TableRow className="table-head">
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Observation</TableCell>
@@ -45,22 +50,22 @@ const ObservationTable = ({ data }) => {
                 className={entry.id ? "children-row" : "parent-row"}
               >
                 {entry.id ? (
-                  <TableCell></TableCell>
+                  <TableCell className="table-cell"></TableCell>
                 ) : (
-                  <TableCell>
+                  <TableCell className="table-cell">
                     {entry.effectiveDateTime
-                      ? toIndiaDate(entry.effectiveDateTime)
+                      ? formatDateString(entry.effectiveDateTime)
                       : ""}
                   </TableCell>
                 )}
-                <TableCell>{entry.code.text}</TableCell>
-                <TableCell>
+                <TableCell className="table-cell">{entry.code.text}</TableCell>
+                <TableCell className="table-cell">
                   {valueForObs(entry)}
                   <ul>
                     <Components components={entry.component} />
                   </ul>
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   <div>{entry.status}</div>
                   {extractInterpretation(entry)}
                 </TableCell>
@@ -69,7 +74,7 @@ const ObservationTable = ({ data }) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </ObservationTableStyles>
+    </TableStyles>
   ) : (
     <div></div>
   );

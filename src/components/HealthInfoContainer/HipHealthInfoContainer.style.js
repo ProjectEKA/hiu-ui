@@ -7,6 +7,8 @@ const HipHealthInfoContainerStyles = styled.div`
   .header {
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 400;
+    margin-bottom: 20px;
   }
 `;
 

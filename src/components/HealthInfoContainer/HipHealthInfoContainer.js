@@ -5,17 +5,20 @@ import ObservationTable from "../../components/ObservationTable/ObservationTable
 import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
 import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
-import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
+import { identifyParentOfType } from "../../components/common/HealthInfo/FhirResourcesUtils";
 import ConditionsComponent from "../Condition/ConditionsComponent";
 
 const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
-  const compositionData = data ? 
-    data.filter(entry => entry.resourceType.toLowerCase() == "composition") : [];
-  
+  const compositionData = data
+    ? data.filter(entry => entry.resourceType.toLowerCase() == "composition")
+    : [];
+
   if (data) {
     data.forEach(e => {
       if (e.parentResources) {
-        var parentComposition = e.parentResources.find(pr => compositionData.indexOf(pr) >= 0);
+        var parentComposition = e.parentResources.find(
+          pr => compositionData.indexOf(pr) >= 0
+        );
         if (parentComposition) {
           compositionData.push(e);
         }
@@ -40,29 +43,30 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         }
       })
     : undefined;
-  
 
-  const medicationRequests =  data ? 
-    data.filter(entry => {
-      if (entry.resourceType != "MedicationRequest") {
-        return false;
-      }
-      if (entry.parentResources) {
-        return !identifyParentOfType(entry, "Composition");
-      }
-      return true;
-    }) : [];
-  
-  const conditionList =  data ? 
-    data.filter(entry => {
-      if (entry.resourceType != "Condition") {
-        return false;
-      }
-      if (entry.parentResources) {
-        return !identifyParentOfType(entry, "Composition");
-      }
-      return true;
-    }) : [];
+  const medicationRequests = data
+    ? data.filter(entry => {
+        if (entry.resourceType != "MedicationRequest") {
+          return false;
+        }
+        if (entry.parentResources) {
+          return !identifyParentOfType(entry, "Composition");
+        }
+        return true;
+      })
+    : [];
+
+  const conditionList = data
+    ? data.filter(entry => {
+        if (entry.resourceType != "Condition") {
+          return false;
+        }
+        if (entry.parentResources) {
+          return !identifyParentOfType(entry, "Composition");
+        }
+        return true;
+      })
+    : [];
 
   return (
     <HipHealthInfoContainerStyles>
@@ -70,13 +74,16 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
         </Typography>
-        <CCRDocument consentReqId={consentReqId} compositionData={compositionData} />
+        <CCRDocument
+          consentReqId={consentReqId}
+          compositionData={compositionData}
+        />
         <ObservationTable data={ObservationsWithNoParentResource} />
         <DiagnosticReportComponent
           consentReqId={consentReqId}
           data={DiagnosticReport}
         />
-        <ConditionsComponent conditionList={conditionList}/>
+        <ConditionsComponent conditionList={conditionList} />
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
       </div>
     </HipHealthInfoContainerStyles>

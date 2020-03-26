@@ -9,7 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Styles from "../../constants/tableConstants";
-import { toIndiaDate } from "../../constants";
+import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
 
 const ConsentsListTable = ({ loadConsents, consentsList }) => {
   useEffect(() => {
@@ -62,12 +62,12 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
               </TableCell>
               <TableCell>
                 {isGrantedConsent(consent.status)
-                  ? toIndiaDate(consent.approvedDate)
+                  ? formatDateString(consent.approvedDate)
                   : "-"}
               </TableCell>
               <TableCell>
                 {isGrantedConsent(consent.status)
-                  ? toIndiaDate(consent.expiredDate)
+                  ? formatDateString(consent.expiredDate)
                   : "-"}
               </TableCell>
               <TableCell>

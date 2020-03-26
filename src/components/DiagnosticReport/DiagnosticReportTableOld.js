@@ -16,7 +16,6 @@ import {
 } from "./DiagnosticReportTableHelperFunctions";
 import IconButton from "@material-ui/core/IconButton";
 import { ArrowDropDown, ArrowRight } from "@material-ui/icons";
-import { toIndiaDate } from "../../constants";
 
 const DiagnosticResults = ({ results, close }) => {
   return results
