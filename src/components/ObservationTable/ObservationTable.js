@@ -50,22 +50,22 @@ const ObservationTable = ({ data }) => {
                 className={entry.id ? "children-row" : "parent-row"}
               >
                 {entry.id ? (
-                  <TableCell></TableCell>
+                  <TableCell className="table-cell"></TableCell>
                 ) : (
-                  <TableCell>
+                  <TableCell className="table-cell">
                     {entry.effectiveDateTime
                       ? toIndiaDate(entry.effectiveDateTime)
                       : ""}
                   </TableCell>
                 )}
-                <TableCell>{entry.code.text}</TableCell>
-                <TableCell>
+                <TableCell className="table-cell">{entry.code.text}</TableCell>
+                <TableCell className="table-cell">
                   {valueForObs(entry)}
                   <ul>
                     <Components components={entry.component} />
                   </ul>
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   <div>{entry.status}</div>
                   {extractInterpretation(entry)}
                 </TableCell>

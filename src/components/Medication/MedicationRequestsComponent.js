@@ -257,17 +257,17 @@ const MedicationRequestsComponent = ({ medicationRequests }) => {
           <TableBody>
             {medicationRequests.map((mr, i) => (
               <TableRow key={i}>
-                <TableCell>
+                <TableCell className="table-cell">
                   {mr.authoredOn ? formatDateString(mr.authoredOn) : ""}
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   {findMedicationName(mr.medicationReference.targetResource)}
                   {" (" + mr.status + ")"}
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   {<MedicationDose dosageInstructions={mr.dosageInstruction} />}
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   <ul className="mediation-list-item">
                     {<MedicationPriority mr={mr} />}
                     {<MedicationNote mr={mr} />}

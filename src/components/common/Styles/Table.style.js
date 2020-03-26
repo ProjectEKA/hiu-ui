@@ -15,6 +15,13 @@ const TableStyles = styled.div`
   .table-head {
     background-color: #c8c8c8;
   }
+  .table-cell {
+    vertical-align: top;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 export default TableStyles;

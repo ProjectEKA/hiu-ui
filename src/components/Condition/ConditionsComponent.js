@@ -118,16 +118,16 @@ const ConditionsComponent = ({ conditionList }) => {
           <TableBody>
             {conditionList.map((condition, i) => (
               <TableRow key={i}>
-                <TableCell>
+                <TableCell className="table-cell">
                   {condition.recordedDate
                     ? formatDateString(condition.recordedDate)
                     : ""}
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   {getConceptDisplay(condition.code)}
                   <ConditionCategory condition={condition} />
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   {"Severity: " +
                     (getConceptDisplay(condition.severity) || "Unspecified")}
                   <br />
@@ -139,7 +139,7 @@ const ConditionsComponent = ({ conditionList }) => {
                     (getConceptDisplay(condition.verificationStatus) ||
                       "Unspecified")}
                 </TableCell>
-                <TableCell>
+                <TableCell className="table-cell">
                   <ul className="condition-list-item">
                     <li>
                       <ConditionOnset condition={condition} />
