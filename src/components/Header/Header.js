@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderStyles from "./Header.style";
-import NavigationBar from "../NavigationBar/NavigationBar";
 
 const Header = () => {
   return (
@@ -8,7 +7,6 @@ const Header = () => {
       <a href="/" className="logo">
         logo
       </a>
-      <NavigationBar />
     </HeaderStyles>
   );
 };

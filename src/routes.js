@@ -9,16 +9,6 @@ const routes = [
     isExact: true
   },
   {
-    component: RequestAccess,
-    path: "/request-access",
-    isExact: false
-  },
-  {
-    component: ConsentLog,
-    path: "/consent-log",
-    isExact: false
-  },
-  {
     component: PatientHealthInformation,
     path: "/health-info/:requestId",
     isExact: false
