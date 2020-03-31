@@ -15,7 +15,15 @@
     var componentRenderedOrUpdatedCallback = function () {
       console.log('OHIF Viewer rendered/updated');
     }
+    var searchParams = new URLSearchParams(window.location.search);
+    var dicomCtx = searchParams.get('dicomCtx');
+    var contextPath = atob(dicomCtx);
+    var index = window.location.pathname.lastIndexOf('/');
+    var studyInstanceUid = window.location.pathname.slice(index + 1);
 
+    const qidoRoot = window.location.origin + contextPath + studyInstanceUid;
+    const wadoRoot = window.location.origin + contextPath + studyInstanceUid;
+    
     window.config = {
       showStudyList: false,
       servers: {
@@ -23,10 +31,8 @@
           {
             name: 'Orthanc',
             wadoUriRoot: 'wado',
-            qidoRoot: 'http://localhost:8080/dicom-web',
-            qidoRoot: 'http://localhost:8080/dicom-web',
-            // qidoRoot: DICOM_BASE_URL ? `${DICOM_BASE_URL}${DICOM_SERVER_PATH}` : `${window.location.origin}${DICOM_SERVER_PATH}`,
-            // wadoRoot: DICOM_BASE_URL ? `${DICOM_BASE_URL}${DICOM_SERVER_PATH}` : `${window.location.origin}${DICOM_SERVER_PATH}`,
+            qidoRoot: qidoRoot,
+            wadoRoot: wadoRoot,
             qidoSupportsIncludeField: true,
             imageRendering: 'wadors',
             thumbnailRendering: 'wadors',
