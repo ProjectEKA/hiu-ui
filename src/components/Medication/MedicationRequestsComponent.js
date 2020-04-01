@@ -173,7 +173,7 @@ const DosageTiming = props => {
       if (repeat.offset) {
         whenStr = whenStr + repeat.offset + " minutes ";
       }
-      whenStr = whenStr + eventTiming[repeat.when];
+      whenStr = whenStr + repeat.when.map( (value) => eventTiming[value] ).join(", ");
       timingInfo.push(whenStr);
     }
   }
