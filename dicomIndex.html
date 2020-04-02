@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>NCG</title>
+  </head>
 
-<head>
-  <title>NCG</title>
-</head>
+  <body>
+    <div id="root"></div>
+    <script
+      src="https://unpkg.com/@ohif/viewer@3.7.4/dist/index.umd.js"
+      crossorigin
+    ></script>
+    <script>
+      var containerId = "root";
+      var componentRenderedOrUpdatedCallback = function() {
+        console.log("OHIF Viewer rendered/updated");
+      };
+      var searchParams = new URLSearchParams(window.location.search);
+      var dicomCtx = searchParams.get("dicomCtx");
+      var contextPath = atob(dicomCtx);
+      var index = window.location.pathname.lastIndexOf("/");
+      var studyInstanceUid = window.location.pathname.slice(index + 1);
 
-<body>
-  <div id="app"></div>
-  <script type="text/javascript" src="/bundle.js"></script>
-  </link>
-  <script src="https://unpkg.com/@ohif/viewer@3.7.4/dist/index.umd.js" crossorigin></script>
-  <script>
-    var containerId = "root";
-    var componentRenderedOrUpdatedCallback = function () {
-      console.log('OHIF Viewer rendered/updated');
-    }
-    var searchParams = new URLSearchParams(window.location.search);
-    var dicomCtx = searchParams.get('dicomCtx');
-    var contextPath = atob(dicomCtx);
-    var index = window.location.pathname.lastIndexOf('/');
-    var studyInstanceUid = window.location.pathname.slice(index + 1);
+      const qidoRoot = window.location.origin + contextPath;
+      const wadoRoot = window.location.origin + contextPath;
 
-    const qidoRoot = window.location.origin + contextPath + studyInstanceUid;
-    const wadoRoot = window.location.origin + contextPath + studyInstanceUid;
-    
-    window.config = {
-      showStudyList: false,
-      servers: {
-        dicomWeb: [
-          {
-            name: 'Orthanc',
-            wadoUriRoot: 'wado',
-            qidoRoot: qidoRoot,
-            wadoRoot: wadoRoot,
-            qidoSupportsIncludeField: true,
-            imageRendering: 'wadors',
-            thumbnailRendering: 'wadors',
-          },
-        ],
-      }
-    };
-    window.OHIFViewer.installViewer(
-      window.config, containerId, componentRenderedOrUpdatedCallback);
-  </script>
-</body>
-
+      window.config = {
+        showStudyList: false,
+        servers: {
+          dicomWeb: [
+            {
+              name: "Orthanc",
+              wadoUriRoot: "wado",
+              qidoRoot: qidoRoot,
+              wadoRoot: wadoRoot,
+              qidoSupportsIncludeField: true,
+              imageRendering: "wadors",
+              thumbnailRendering: "wadors"
+            }
+          ]
+        }
+      };
+      window.OHIFViewer.installViewer(
+        window.config,
+        containerId,
+        componentRenderedOrUpdatedCallback
+      );
+    </script>
+  </body>
 </html>

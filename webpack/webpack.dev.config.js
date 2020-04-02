@@ -15,19 +15,11 @@ if (!process.env.BACKEND_API_PATH) {
 if (!process.env.DICOM_SERVER_PATH) {
   throw "DICOM_SERVER_PATH not found";
 }
-
-var parentDir = path.join(__dirname, "../");
-
-if (dotenv.error) {
-  throw dotenv.error;
-}
-
-if (!process.env.BACKEND_BASE_URL) {
-  throw "BACKEND_BASE_URL not found";
-}
 if (!process.env.BASE_NAME) {
   throw "BASE_NAME not found";
 }
+
+var parentDir = path.join(__dirname, "../");
 
 module.exports = {
   mode: "development",
@@ -36,6 +28,7 @@ module.exports = {
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
       BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
+      BASE_NAME: JSON.stringify(process.env.BASE_NAME),
       BACKEND_API_PATH: JSON.stringify(process.env.BACKEND_API_PATH),
       DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
       DICOM_BASE_URL: JSON.stringify(process.env.DICOM_BASE_URL)
