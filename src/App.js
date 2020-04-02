@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       //Read basename from the config
-      <Router basename="/hiu">
+      <Router basename={BASE_NAME}>
         <ContainerStyles>
           <Container className="container">
             <Header />

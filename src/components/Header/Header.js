@@ -4,7 +4,7 @@ import HeaderStyles from "./Header.style";
 const Header = () => {
   return (
     <HeaderStyles>
-      <a href="/" className="logo">
+      <a href={BASE_NAME} className="logo">
         logo
       </a>
     </HeaderStyles>
