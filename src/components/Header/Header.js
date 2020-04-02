@@ -1,14 +1,12 @@
 import React from "react";
 import HeaderStyles from "./Header.style";
-import NavigationBar from "../NavigationBar/NavigationBar";
 
 const Header = () => {
   return (
     <HeaderStyles>
-      <a href="/" className="logo">
+      <a href={BASE_NAME} className="logo">
         logo
       </a>
-      <NavigationBar />
     </HeaderStyles>
   );
 };

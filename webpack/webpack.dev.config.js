@@ -1,8 +1,19 @@
 var webpack = require("webpack");
 var path = require("path");
 var commonWebpackConfig = require("./webpack.common");
-
+const dotenv = require("dotenv").config();
 var parentDir = path.join(__dirname, "../");
+
+if (dotenv.error) {
+  throw dotenv.error;
+}
+
+if (!process.env.BACKEND_BASE_URL) {
+  throw "BACKEND_BASE_URL not found";
+}
+if (!process.env.BASE_NAME) {
+  throw "BASE_NAME not found";
+}
 
 module.exports = {
   mode: "development",
@@ -10,7 +21,8 @@ module.exports = {
   plugins: [
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
-      BACKEND_BASE_URL: JSON.stringify("http://localhost:3000/api")
+      BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
+      BASE_NAME: JSON.stringify(process.env.BASE_NAME)
     })
   ],
   devServer: {

@@ -8,7 +8,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Router>
+      //Read basename from the config
+      <Router basename={BASE_NAME}>
         <ContainerStyles>
           <Container className="container">
             <Header />
