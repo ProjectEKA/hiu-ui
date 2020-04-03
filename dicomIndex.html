@@ -18,15 +18,12 @@
       var searchParams = new URLSearchParams(window.location.search);
       var dicomCtx = searchParams.get("dicomCtx");
       var contextPath = atob(dicomCtx);
-      var index = window.location.pathname.lastIndexOf("/");
-      var studyInstanceUid = window.location.pathname.slice(index + 1);
 
       const qidoRoot = window.location.origin + contextPath;
       const wadoRoot = window.location.origin + contextPath;
 
       window.config = {
         showStudyList: false,
-        routerBasename: "/dicom-server/studyInstanceUID",
         servers: {
           dicomWeb: [
             {
