@@ -6,7 +6,11 @@ var parentDir = path.join(__dirname, "../");
 module.exports = {
   context: path.join(parentDir, ""),
   plugins: [
-    new CopyWebpackPlugin([{ from: "static" }, { from: "index.html" }])
+    new CopyWebpackPlugin([
+      { from: "static" },
+      { from: "index.html" },
+      { from: "dicomIndex.html" }
+    ])
   ],
   entry: [path.join(parentDir, "index.js")],
   module: {

@@ -29,7 +29,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
             return (
               <li>
                 <a
-                  href={`${BACKEND_BASE_URL}/health-information/fetch/${consentReqId}${link.url}`}
+                  href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
                   target="_blank"
                 >
                   {link.title ? link.title : "Link"}
@@ -80,6 +80,20 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
     );
   }
 
+  function generateImageUrl(url) {
+    const urlArray = url.split("/");
+    const StudyInstanceUID = urlArray.slice(-1).pop();
+    const dicomCtx = btoa(DICOM_SERVER_PATH);
+
+    const dicomUrl =
+      window.location.origin +
+      "/viewer/" +
+      StudyInstanceUID +
+      "?dicomCtx=" +
+      dicomCtx;
+    return dicomUrl;
+  }
+
   const Media = ({ entry }) => {
     const MediaList = getMediaList(getNestedObject(entry, "media"), "Media");
     return MediaList && MediaList.length != 0 ? (
@@ -89,7 +103,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
           {MediaList.map(link => {
             return (
               <li>
-                <a href={`${BACKEND_BASE_URL}${link.url}`} target="_blank">
+                <a href={generateImageUrl(link.url)} target="_blank">
                   {link.display}
                 </a>
               </li>

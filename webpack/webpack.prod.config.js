@@ -11,6 +11,12 @@ if (!process.env.BACKEND_BASE_URL) {
 if (!process.env.BASE_NAME) {
   throw "BASE_NAME not found";
 }
+if (!process.env.BACKEND_API_PATH) {
+  throw "BACKEND_API_PATH not found";
+}
+if (!process.env.DICOM_SERVER_PATH) {
+  throw "DICOM_SERVER_PATH not found";
+}
 
 module.exports = {
   mode: "production",
@@ -19,7 +25,9 @@ module.exports = {
     ...commonWebpackConfig.plugins,
     new webpack.DefinePlugin({
       BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
-      BASE_NAME: JSON.stringify(process.env.BASE_NAME)
+      BASE_NAME: JSON.stringify(process.env.BASE_NAME),
+      BACKEND_API_PATH: JSON.stringify(process.env.BACKEND_API_PATH),
+      DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH)
     })
   ]
 };

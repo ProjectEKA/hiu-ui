@@ -6,7 +6,7 @@ export default (
   url,
   data,
   headers = defaultHeaders,
-  baseURL = BACKEND_BASE_URL
+  baseURL = BACKEND_BASE_URL + BACKEND_API_PATH
 ) => {
   return axios({
     headers,
