@@ -146,14 +146,18 @@ const getConceptDisplay = function(codeableConcept) {
   return null;
 };
 
+const leftPadZero = function(n){
+  return n > 9 ? "" + n: "0" + n;
+}
+
 const formatDateString = function(aDate, includeTime) {
   if (aDate) { 
     var dateString = aDate.toString();
     if (dateString.length > 0) {
       var dt = new Date(dateString);
-      var dtStr = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+      var dtStr = leftPadZero(dt.getDate()) + "/" + leftPadZero(dt.getMonth() + 1) + "/" + dt.getFullYear();
       if (includeTime) {
-        dtStr = dtStr + " " + dt.getHours() + ":" + dt.getMinutes();
+        dtStr = dtStr + " " + leftPadZero(dt.getHours()) + ":" + leftPadZero(dt.getMinutes());
       }
       return dtStr;
     } else {

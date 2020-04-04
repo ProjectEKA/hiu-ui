@@ -5,6 +5,7 @@ import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { compareDates } from "../common/DateUtil";
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -38,6 +39,8 @@ const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
     return patient.firstName + " " + patient.lastName;
   }
 
+  
+
   return (
     <div style={{ maxWidth: "100%" }}>
       <MaterialTable
@@ -52,8 +55,8 @@ const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
           { title: headerRow.name, field: "name" },
           { title: headerRow.jataayuId, field: "id" },
           { title: headerRow.requestStatus, field: "status" },
-          { title: headerRow.consentGrantedDate, field: "grantedOn" },
-          { title: headerRow.consentExpiryDate, field: "expiredOn" },
+          { title: headerRow.consentGrantedDate, field: "grantedOn", customSort: (a, b) => compareDates(a.grantedOn,b.grantedOn) },
+          { title: headerRow.consentExpiryDate, field: "expiredOn", customSort: (a, b) => compareDates(a.expiredOn,b.expiredOn) },
           { title: "", field: "navLink", width: 50 }
         ]}
         data={consentsList.map(consent => ({
@@ -63,10 +66,10 @@ const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
             ? "Consent granted"
             : "Request sent",
           grantedOn: isGrantedConsent(consent.status)
-            ? formatDateString(consent.approvedDate)
+            ? formatDateString(consent.approvedDate, true)
             : "-",
           expiredOn: isGrantedConsent(consent.status)
-            ? formatDateString(consent.expiredDate)
+            ? formatDateString(consent.expiredDate, true)
             : "-",
           navLink: isGrantedConsent(consent.status) ? (
             <Link to={`/health-info/${consent.id}`}>
