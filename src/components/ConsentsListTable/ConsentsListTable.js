@@ -5,7 +5,7 @@ import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { compareDates } from "../common/DateUtil";
+import { compareDateStrings } from "../common/DateUtil";
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -55,8 +55,8 @@ const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
           { title: headerRow.name, field: "name" },
           { title: headerRow.jataayuId, field: "id" },
           { title: headerRow.requestStatus, field: "status" },
-          { title: headerRow.consentGrantedDate, field: "grantedOn", customSort: (a, b) => compareDates(a.grantedOn,b.grantedOn) },
-          { title: headerRow.consentExpiryDate, field: "expiredOn", customSort: (a, b) => compareDates(a.expiredOn,b.expiredOn) },
+          { title: headerRow.consentGrantedDate, field: "grantedOn", customSort: (a, b) => compareDateStrings(a.grantedOn,b.grantedOn) },
+          { title: headerRow.consentExpiryDate, field: "expiredOn", customSort: (a, b) => compareDateStrings(a.expiredOn,b.expiredOn) },
           { title: "", field: "navLink", width: 50 }
         ]}
         data={consentsList.map(consent => ({
