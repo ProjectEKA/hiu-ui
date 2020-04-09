@@ -1,5 +1,6 @@
 import apiWrapper from "../apiWrapper";
 import { defaultHeaders } from "../../constants";
+import getCookie from "./cookies/get_cookie";
 
 const createConsentApi = ({
   patientId,
@@ -7,37 +8,38 @@ const createConsentApi = ({
   selectedStartDate,
   selectedEndDate,
   selectedExpiryDate,
-  selectedRequestTypes
+  selectedRequestTypes,
 }) => {
   const selectedRequests = Object.keys(selectedRequestTypes).reduce(
     (preValue, currValue) =>
       selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue,
     []
   );
+  const authToken = getCookie("auth-token");
   return apiWrapper(
     "post",
     `/consent-requests`,
     {
       consent: {
         patient: {
-          id: patientId
+          id: patientId,
         },
         purpose: {
-          code: selectedPurposeValue
+          code: selectedPurposeValue,
         },
         hiTypes: selectedRequests,
         permission: {
           dateRange: {
             from: selectedStartDate.toISOString(),
-            to: selectedEndDate.toISOString()
+            to: selectedEndDate.toISOString(),
           },
-          dataExpiryAt: selectedExpiryDate.toISOString()
-        }
-      }
+          dataExpiryAt: selectedExpiryDate.toISOString(),
+        },
+      },
     },
     {
       ...defaultHeaders,
-      Authorization: "RHIuIExha3NobWk="
+      Authorization: authToken,
     }
   );
 };

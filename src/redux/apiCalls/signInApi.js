@@ -1,17 +1,19 @@
 import apiWrapper from "../apiWrapper";
 import { defaultHeaders } from "../../constants";
+import getCookie from "./cookies/get_cookie";
 
-const signInApi = ({ username, password }) => {
+const signInApi = ({ userName, password }) => {
+  const authToken = getCookie("auth-token");
   return apiWrapper(
     "post",
     `/sessions`,
     {
-      username: username,
-      password: password
+      username: userName,
+      password: password,
     },
     {
       ...defaultHeaders,
-      Authorization: "RHIuIExha3NobWk="
+      Authorization: authToken,
     }
   );
 };

@@ -1,30 +1,36 @@
-import {
-  ACTION_TYPES,
-  onSignInFailure,
-  onSignInSuccess
-} from "../actions/onSignInActions";
+import { ACTION_TYPES } from "../actions/onSignInActions";
 import { call, put } from "redux-saga/effects";
 import signInApi from "../apiCalls/signInApi";
+import setCookie from "../apiCalls/cookies/set_cookie";
 
-function* onSignInSaga(action) {
-  yield 1;
-  console.log("sign In here");
-  yield put(onSignInSuccess("fas"));
-  yield put(onSignInFailure("asdf"));
+function* onSignIn(action) {
+  try {
+    const User = yield call(signInApi, action.payload);
+    if (User) {
+      yield put({
+        type: ACTION_TYPES.SIGNIN_SUCCEEDED,
+        payload: User
+      });
+    }
+  } catch (e) {
+    yield put({
+      type: ACTION_TYPES.SIGNIN_FAILED,
+      payload: e
+    });
+  }
 }
 
-function* onSignInSuccessSaga() {
-  yield 1;
+function* onSignInSuccess(action) {
   console.log("success message");
+  setCookie("auth-token", action.payload.data.accessToken);
 }
 
-function* onSignInFailureSaga(action) {
-  yield 1;
+function* onSignInFailure(action) {
   console.log("failure message", action);
 }
 
 export default {
-  [ACTION_TYPES.SIGNIN_REQUESTED]: onSignInSaga,
-  [ACTION_TYPES.SIGNIN_SUCCEEDED]: onSignInSuccessSaga,
-  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailureSaga
+  [ACTION_TYPES.SIGNIN_REQUESTED]: onSignIn,
+  [ACTION_TYPES.SIGNIN_SUCCEEDED]: onSignInSuccess,
+  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure
 };

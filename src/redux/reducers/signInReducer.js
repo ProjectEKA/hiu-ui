@@ -7,21 +7,24 @@ export default (state = {}, action) => {
         ...state,
         loading: true,
         error: false,
-        success: false
+        success: false,
+        isLoggedIn: false
       };
     case ACTION_TYPES.SIGNIN_SUCCEEDED:
       return {
         ...state,
         loading: false,
         error: false,
-        success: true
+        success: true,
+        isLoggedIn: true
       };
     case ACTION_TYPES.SIGNIN_FAILED:
       return {
         ...state,
         loading: false,
         error: true,
-        success: false
+        success: false,
+        isLoggedIn: false
       };
     default:
       return state;

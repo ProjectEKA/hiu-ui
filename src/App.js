@@ -1,9 +1,10 @@
 import React from "react";
 import ContainerStyles from "./App.style";
 import Header from "./components/Header/Header";
-import ContentContainer from "./components/Container/Container";
+import ContentContainer from "./components/Container/ContainerWrapper";
 import Container from "@material-ui/core/Container";
 import { BrowserRouter as Router } from "react-router-dom";
+import store from "../src/redux/store";
 
 function App() {
   return (
