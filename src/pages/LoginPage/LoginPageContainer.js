@@ -4,12 +4,13 @@ import LoginPage from "./LoginPage";
 import { onSignIn } from "../../redux/actions/onSignInActions";
 import getNestedObject from "../../utils/getNestedObject";
 
-const mapStateToProps = state => ({
-  // signInStatus: state.logIn
+const mapStateToProps = (state) => ({
+  isLoggedIn: getNestedObject(state, "signIn.isLoggedIn"),
+  error: getNestedObject(state, "signIn.error"),
 });
 
 const mapDispatchToProps = {
-  onSignIn
+  onSignIn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

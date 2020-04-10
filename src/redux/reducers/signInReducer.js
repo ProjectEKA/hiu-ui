@@ -8,7 +8,7 @@ export default (state = {}, action) => {
         loading: true,
         error: false,
         success: false,
-        isLoggedIn: false
+        isLoggedIn: false,
       };
     case ACTION_TYPES.SIGNIN_SUCCEEDED:
       return {
@@ -16,7 +16,7 @@ export default (state = {}, action) => {
         loading: false,
         error: false,
         success: true,
-        isLoggedIn: true
+        isLoggedIn: true,
       };
     case ACTION_TYPES.SIGNIN_FAILED:
       return {
@@ -24,7 +24,7 @@ export default (state = {}, action) => {
         loading: false,
         error: true,
         success: false,
-        isLoggedIn: false
+        isLoggedIn: false,
       };
     default:
       return state;
