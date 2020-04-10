@@ -32,9 +32,12 @@ const RequestAccess = ({
     Condition: false
   });
 
+  const [emptyPatientIDError, setEmptyPatientIDError] = React.useState(false);
   const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
     getNextDay()
   );
+
+  const isButtonEnabled = Object.values(selectedRequestTypes).some(x => x);
 
   const handlePITypeChange = name => event => {
     setSelectedRequestTypes({
@@ -71,6 +74,9 @@ const RequestAccess = ({
         )}
         {success && (
           <span className="success">Consent created successfully.</span>
+        )}
+        {emptyPatientIDError && (
+          <span className="error">Please enter a patient identifier</span>
         )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
@@ -149,10 +155,15 @@ const RequestAccess = ({
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Button
+            disabled={!isButtonEnabled}
             className="create-consent-button"
             variant="contained"
             color="primary"
             onClick={() => {
+              if (!patientId) {
+                setEmptyPatientIDError(true);
+                return;
+              }
               onCreateConsent({
                 patientId,
                 selectedPurposeValue,
