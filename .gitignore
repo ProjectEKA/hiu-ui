@@ -9,3 +9,4 @@ dist/*
 bundles/
 build/
 .next/
+coverage/
