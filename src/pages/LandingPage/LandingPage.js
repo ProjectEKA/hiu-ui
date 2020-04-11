@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LandingPage = ({ success, onCreateConsentResetState }) => {
+const LandingPage = ({ success, onCreateConsentResetState, onSearchResetState }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -38,6 +38,7 @@ const LandingPage = ({ success, onCreateConsentResetState }) => {
   if (success && open) {
     setOpen(false);
     onCreateConsentResetState();
+    onSearchResetState();
   }
 
   const handleOpen = () => {
