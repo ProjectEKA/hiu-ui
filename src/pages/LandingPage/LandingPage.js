@@ -40,11 +40,11 @@ const LandingPage = ({
 }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-  if (success && open) {
-    setOpen(false);
+  if (success && modalOpen) {
+    setModalOpen(false);
     onCreateConsentResetState();
     onSearchResetState();
     loadConsents();
@@ -56,11 +56,11 @@ const LandingPage = ({
   };
 
   const handleOpen = () => {
-    setOpen(true);
+    setModalOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setModalOpen(false);
   };
 
   return (
@@ -81,7 +81,7 @@ const LandingPage = ({
       >
         New Consent Request
       </Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={modalOpen} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
           <RequestAccess />
         </div>

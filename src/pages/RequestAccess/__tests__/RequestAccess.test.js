@@ -118,6 +118,4 @@ describe("Request Access", () => {
     const wrapper = shallow(<RequestAccess loading={true} />);
     expect(wrapper.find("#loader").exists()).toBe(true);
   });
-
-  
 });
