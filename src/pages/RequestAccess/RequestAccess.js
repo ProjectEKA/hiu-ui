@@ -31,7 +31,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
 
   const isButtonEnabled = Object.values(selectedRequestTypes).some(x => x);
 
-  const handlePITypeChange = name => event => {
+  const handleHITypeChange = name => event => {
     setSelectedRequestTypes({
       ...selectedRequestTypes,
       [name]: event.target.checked
@@ -126,7 +126,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
           <Grid item xs={10}>
             <RequestType
               requestTypes={requestTypes}
-              handleChange={handlePITypeChange}
+              handleChange={handleHITypeChange}
             />
           </Grid>
         </Grid>

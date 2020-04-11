@@ -89,9 +89,9 @@ describe("Request Access", () => {
 
   it("Request Consent: Button, should be enabled when at least one HI type is selected", () => {
     const wrapper = shallow(<RequestAccess />);
-    const handlePITypeChange = wrapper.find(RequestType).props().handleChange;
+    const handleHITypeChange = wrapper.find(RequestType).props().handleChange;
     const event = { target: { checked: true } };
-    handlePITypeChange("PatientHistory")(event);
+    handleHITypeChange("PatientHistory")(event);
 
     expect(wrapper.find(Button).props().disabled).toBe(false);
   });
