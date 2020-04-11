@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, CircularProgress } from "@material-ui/core";
 import RequestAccessStyles from "./RequestAccess.style";
 import SearchPatient from "./../../components/SearchPatient";
@@ -12,19 +12,13 @@ import getNextDay from "./../../utils/getNextDay";
 import purposeTypes from "./../../constants/puposeTypes";
 import requestTypes from "./../../constants/requestTypes";
 
-const RequestAccess = ({
-  onCreateConsent,
-  patientId,
-  loading,
-  success,
-  error
-}) => {
-  const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
+const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
+  const [selectedPurposeValue, setSelectedPurposeValue] = useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
-  const [selectedRequestTypes, setSelectedRequestTypes] = React.useState({
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState({
     PatientHistory: false,
     Medications: false,
     DiagnosisLab: false,
@@ -32,10 +26,8 @@ const RequestAccess = ({
     Condition: false
   });
 
-  const [emptyPatientIDError, setEmptyPatientIDError] = React.useState(false);
-  const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
-    getNextDay()
-  );
+  const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
+  const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
 
   const isButtonEnabled = Object.values(selectedRequestTypes).some(x => x);
 
@@ -71,9 +63,6 @@ const RequestAccess = ({
         <span className="label">All the fields are mandatory.</span>
         {error && (
           <span className="error">Error occured while creating consent.</span>
-        )}
-        {success && (
-          <span className="success">Consent created successfully.</span>
         )}
         {emptyPatientIDError && (
           <span className="error">Please enter a patient identifier</span>

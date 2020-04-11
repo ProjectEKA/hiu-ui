@@ -30,10 +30,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LandingPage = () => {
+const LandingPage = ({ success, onCreateConsentResetState }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = useState(false);
+
+  if (success && open) {
+    setOpen(false);
+    onCreateConsentResetState();
+  }
 
   const handleOpen = () => {
     setOpen(true);

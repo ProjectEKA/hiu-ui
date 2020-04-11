@@ -1,5 +1,5 @@
 import RequestAccess from "./pages/RequestAccess/RequestAccessContainer";
-import LandingPage from "./pages/LandingPage/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPageContainer";
 import ConsentLog from "./components/ConsentsListTable/LoadConsentsContainer";
 import PatientHealthInformation from "./pages/PatientHealthInfo/PatientHealthInformationContainer";
 const routes = [

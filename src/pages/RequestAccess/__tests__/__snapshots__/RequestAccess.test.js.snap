@@ -203,6 +203,7 @@ exports[`Request Access Should render properly 1`] = `
       <WithStyles(ForwardRef(Button))
         className="create-consent-button"
         color="primary"
+        disabled={true}
         onClick={[Function]}
         variant="contained"
       >

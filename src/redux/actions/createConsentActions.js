@@ -1,7 +1,8 @@
 export const ACTION_TYPES = {
   CREATE_CONSENT_REQUESTED: "CREATE_CONSENT_REQUESTED",
   CREATE_CONSENT_SUCCEEDED: "CREATE_CONSENT_SUCCEEDED",
-  CREATE_CONSENT_FAILED: "CREATE_CONSENT_FAILED"
+  CREATE_CONSENT_FAILED: "CREATE_CONSENT_FAILED",
+  CREATE_CONSENT_RESET_STATE: "CREATE_CONSENT_RESET_STATE"
 };
 export const onCreateConsent = payload => ({
   type: ACTION_TYPES.CREATE_CONSENT_REQUESTED,
@@ -14,4 +15,8 @@ export const onCreateConsentSuccess = payload => ({
 export const onCreateConsentFailure = () => ({
   type: ACTION_TYPES.CREATE_CONSENT_FAILED,
   payload
+});
+
+export const onCreateConsentResetState = () => ({
+  type: ACTION_TYPES.CREATE_CONSENT_RESET_STATE
 });
