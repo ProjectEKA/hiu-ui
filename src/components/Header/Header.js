@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +37,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const [isLoggedOut, setIsLoggedOut] = React.useState(false);
 
   const logout = () => {
     localStorage.removeItem("auth-token");
+    setIsLoggedOut(true);
   };
 
   return (
-    <Paper className={classes.header}>
+    <Box className={classes.header} boxShadow={3}>
+      {isLoggedOut && <Redirect to="/login" />}
       <a href={BASE_NAME} className={classes.logo}>
         logo
       </a>
@@ -55,7 +58,7 @@ const Header = () => {
       >
         Logout
       </Button>
-    </Paper>
+    </Box>
   );
 };
 

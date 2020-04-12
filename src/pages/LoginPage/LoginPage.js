@@ -100,10 +100,10 @@ export default function SignIn({ onSignIn, error, success }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             disabled={userName === "" || password === ""}
             type="submit"
@@ -118,7 +118,7 @@ export default function SignIn({ onSignIn, error, success }) {
           >
             Sign In
           </Button>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
@@ -129,7 +129,7 @@ export default function SignIn({ onSignIn, error, success }) {
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </form>
       </div>
       <Box mt={8}>
