@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
+import Snackbar from "@material-ui/core/Snackbar";
+
 import RequestAccess from "./../RequestAccess/RequestAccessContainer";
 import LoadConsentsContainer from "../../components/ConsentsListTable/LoadConsentsContainer";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,21 +32,46 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const LandingPage = () => {
+const LandingPage = ({
+  success,
+  onCreateConsentResetState,
+  onSearchResetState,
+  loadConsents
+}) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+
+  if (success && modalOpen) {
+    setModalOpen(false);
+    onCreateConsentResetState();
+    onSearchResetState();
+    loadConsents();
+    setSnackBarOpen(true);
+  }
+
+  const handleSnackBarClose = () => {
+    setSnackBarOpen(false);
+  };
 
   const handleOpen = () => {
-    setOpen(true);
+    setModalOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setModalOpen(false);
   };
 
   return (
     <div>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={snackBarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackBarClose}
+        message="Consent requested successfully!"
+      />
       <Button
         className={classes.button}
         type="button"
@@ -54,7 +81,7 @@ const LandingPage = () => {
       >
         New Consent Request
       </Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={modalOpen} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
           <RequestAccess />
         </div>

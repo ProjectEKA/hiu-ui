@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, CircularProgress } from "@material-ui/core";
 import RequestAccessStyles from "./RequestAccess.style";
 import SearchPatient from "./../../components/SearchPatient";
@@ -12,19 +12,13 @@ import getNextDay from "./../../utils/getNextDay";
 import purposeTypes from "./../../constants/puposeTypes";
 import requestTypes from "./../../constants/requestTypes";
 
-const RequestAccess = ({
-  onCreateConsent,
-  patientId,
-  loading,
-  success,
-  error
-}) => {
-  const [selectedPurposeValue, setSelectedPurposeValue] = React.useState(
+const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
+  const [selectedPurposeValue, setSelectedPurposeValue] = useState(
     purposeTypes[0].value
   );
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
-  const [selectedRequestTypes, setSelectedRequestTypes] = React.useState({
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
+  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState({
     PatientHistory: false,
     Medications: false,
     DiagnosisLab: false,
@@ -32,11 +26,12 @@ const RequestAccess = ({
     Condition: false
   });
 
-  const [selectedExpiryDate, setSelectedExpiryDate] = React.useState(
-    getNextDay()
-  );
+  const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
+  const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
 
-  const handlePITypeChange = name => event => {
+  const isButtonEnabled = Object.values(selectedRequestTypes).some(x => x);
+
+  const handleHITypeChange = name => event => {
     setSelectedRequestTypes({
       ...selectedRequestTypes,
       [name]: event.target.checked
@@ -69,8 +64,8 @@ const RequestAccess = ({
         {error && (
           <span className="error">Error occured while creating consent.</span>
         )}
-        {success && (
-          <span className="success">Consent created successfully.</span>
+        {emptyPatientIDError && (
+          <span className="error">Please enter a patient identifier</span>
         )}
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={2}>
@@ -131,7 +126,7 @@ const RequestAccess = ({
           <Grid item xs={10}>
             <RequestType
               requestTypes={requestTypes}
-              handleChange={handlePITypeChange}
+              handleChange={handleHITypeChange}
             />
           </Grid>
         </Grid>
@@ -149,10 +144,15 @@ const RequestAccess = ({
         </Grid>
         <Grid container spacing={3} alignItems="center">
           <Button
+            disabled={!isButtonEnabled}
             className="create-consent-button"
             variant="contained"
             color="primary"
             onClick={() => {
+              if (!patientId) {
+                setEmptyPatientIDError(true);
+                return;
+              }
               onCreateConsent({
                 patientId,
                 selectedPurposeValue,

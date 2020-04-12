@@ -44,14 +44,6 @@ const RequestAccessStyles = styled.div`
     font-weight: 300;
     font-family: "Roboto", sans-serif;
   }
-  .success {
-    display: block;
-    padding: 20px 0 0px;
-    color: #009688;
-    font-size: 16px;
-    font-weight: 300;
-    font-family: "Roboto", sans-serif;
-  }
   .loader-container {
     position: fixed;
     z-index: 99;

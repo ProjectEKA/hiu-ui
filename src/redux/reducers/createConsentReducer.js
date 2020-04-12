@@ -23,6 +23,13 @@ export default (state = {}, action) => {
         error: true,
         success: false
       };
+    case ACTION_TYPES.CREATE_CONSENT_RESET_STATE:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        success: false
+      };
     default:
       return state;
   }

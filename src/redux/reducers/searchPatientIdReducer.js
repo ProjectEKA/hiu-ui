@@ -44,6 +44,14 @@ export default (state = searchPatientInitialState, action) => {
         error: false,
         serverError: true
       };
+    case ACTION_TYPES.PATIENT_FETCH_RESET_STATE:
+      return {
+        ...searchPatientInitialState,
+        loading: false,
+        success: false,
+        error: false,
+        serverError: false
+      };
     default:
       return state;
   }

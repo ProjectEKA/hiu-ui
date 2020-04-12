@@ -5,6 +5,5 @@ exports[`Header should render properly  1`] = `
   <a href=\\"/\\" className=\\"logo\\">
     logo
   </a>
-  <NavigationBar />
 </styled.div>"
 `;
