@@ -3,20 +3,20 @@ import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import getNestedObject from "../../utils/getNestedObject";
 
-const privateRoute = ({ isLoggedIn, component: Component, ...rest }) => {
-  console.log("isLoggedin", isLoggedIn);
+const privateRoute = ({ success, component: Component, ...rest }) => {
+  const isAuth = localStorage.getItem("auth-token");
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
+        success || isAuth ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: getNestedObject(state, "signIn.isLoggedIn"),
+  success: getNestedObject(state, "signIn.success"),
 });
 
 export default connect(mapStateToProps)(privateRoute);

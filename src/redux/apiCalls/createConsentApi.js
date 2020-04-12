@@ -1,6 +1,5 @@
 import apiWrapper from "../apiWrapper";
 import { defaultHeaders } from "../../constants";
-import getCookie from "./cookies/get_cookie";
 
 const createConsentApi = ({
   patientId,
@@ -15,7 +14,7 @@ const createConsentApi = ({
       selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue,
     []
   );
-  const authToken = getCookie("auth-token");
+  const authToken = localStorage.getItem("auth-token");
   return apiWrapper(
     "post",
     `/consent-requests`,

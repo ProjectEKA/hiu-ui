@@ -1,7 +1,6 @@
 import { ACTION_TYPES } from "../actions/onSignInActions";
 import { call, put } from "redux-saga/effects";
 import signInApi from "../apiCalls/signInApi";
-import setCookie from "../apiCalls/cookies/set_cookie";
 
 function* onSignIn(action) {
   try {
@@ -9,20 +8,20 @@ function* onSignIn(action) {
     if (User) {
       yield put({
         type: ACTION_TYPES.SIGNIN_SUCCEEDED,
-        payload: User
+        payload: User,
       });
     }
   } catch (e) {
     yield put({
       type: ACTION_TYPES.SIGNIN_FAILED,
-      payload: e
+      payload: e,
     });
   }
 }
 
 function* onSignInSuccess(action) {
   console.log("success message");
-  setCookie("auth-token", action.payload.data.accessToken);
+  localStorage.setItem("auth-token", action.payload.data.accessToken);
 }
 
 function* onSignInFailure(action) {
@@ -32,5 +31,5 @@ function* onSignInFailure(action) {
 export default {
   [ACTION_TYPES.SIGNIN_REQUESTED]: onSignIn,
   [ACTION_TYPES.SIGNIN_SUCCEEDED]: onSignInSuccess,
-  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure
+  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure,
 };

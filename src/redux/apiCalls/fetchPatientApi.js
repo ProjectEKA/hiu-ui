@@ -1,10 +1,9 @@
 import apiWrapper from "../apiWrapper";
 import { defaultHeaders } from "../../constants";
-import getCookie from "./cookies/get_cookie";
 
-const fetchPatientApi = patientId => {
+const fetchPatientApi = (patientId) => {
   const patientIdWithExtension = patientId.concat("@ncg");
-  const authToken = getCookie("auth-token");
+  const authToken = localStorage.getItem("auth-token");
 
   return apiWrapper(
     "get",
@@ -12,7 +11,7 @@ const fetchPatientApi = patientId => {
     {},
     {
       ...defaultHeaders,
-      Authorization: authToken
+      Authorization: authToken,
     }
   );
 };

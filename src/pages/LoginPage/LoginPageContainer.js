@@ -5,7 +5,7 @@ import { onSignIn } from "../../redux/actions/onSignInActions";
 import getNestedObject from "../../utils/getNestedObject";
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: getNestedObject(state, "signIn.isLoggedIn"),
+  success: getNestedObject(state, "signIn.success"),
   error: getNestedObject(state, "signIn.error"),
 });
 

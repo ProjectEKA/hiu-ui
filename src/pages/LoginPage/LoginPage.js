@@ -51,14 +51,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ onSignIn, isLoggedIn, error }) {
+export default function SignIn({ onSignIn, error, success }) {
   const classes = useStyles();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const isAuth = localStorage.getItem("auth-token");
 
   return (
     <Container component="main" maxWidth="xs">
-      {isLoggedIn && <Redirect to="/" />}
+      {(success || isAuth) && <Redirect to="/" />}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
