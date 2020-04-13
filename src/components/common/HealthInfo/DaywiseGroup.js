@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter } from "./FhirResourcesUtils";
 import { BundleContext } from "./BundleContext";
 import { CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor } from "./FhirResourceProcessors";
@@ -197,6 +198,8 @@ function dayGrouper(data) {
     daywiseGroup[ebd.date] = ebd.hipData;
   });
   data.entryByDays = daywiseGroup;
+  const entriesCountByStatus = _.countBy(data.data.entries, "status");
+  data.entriesCountByStatus = entriesCountByStatus;
   return data;
 }
 

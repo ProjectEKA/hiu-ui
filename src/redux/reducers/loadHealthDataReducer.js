@@ -13,6 +13,7 @@ export default (state = {}, action) => {
       return {
         ...state,
         healthData: action.payload.entryByDays,
+        entriesCount: action.payload.entriesCountByStatus,
         loading: false,
         error: false,
         success: true
