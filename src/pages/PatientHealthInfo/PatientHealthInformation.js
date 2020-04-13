@@ -5,6 +5,7 @@ import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfo
 import { useParams } from "react-router-dom";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
+import Header from "../../components/Header/Header";
 
 const PatientHealthInformation = ({
   loadHealthData,
@@ -29,6 +30,7 @@ const PatientHealthInformation = ({
   }
   return (
     <div>
+      <Header />
       <Breadcrumb />
       <PatientDetails {...patientData} />
       <HealthInfoNav
