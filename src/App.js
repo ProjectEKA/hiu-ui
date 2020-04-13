@@ -2,7 +2,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from "../src/pages/LoginPage/LoginPageContainer";
-import LandingPage from "../src/pages/LandingPage/LandingPage";
+import LandingPage from "../src/pages/LandingPage/LandingPageContainer";
 import PatientHealthInformation from "../src/pages/PatientHealthInfo/PatientHealthInformationContainer";
 import PrivateRoute from "../src/components/PrivateRoute/PrivateRoute";
 import { makeStyles } from "@material-ui/core/styles";
