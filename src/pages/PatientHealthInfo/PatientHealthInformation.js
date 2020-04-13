@@ -4,11 +4,8 @@ import HealthInfoNav from "../../components/HealthInfoNav/HealthInfoNav";
 import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfoContainer";
 import { useParams } from "react-router-dom";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
-<<<<<<< HEAD
 import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
-=======
 import Header from "../../components/Header/Header";
->>>>>>> <EKA-172> Add conditions on pages to render based on isLoggedIn state
 
 const PatientHealthInformation = ({
   loadHealthData,
