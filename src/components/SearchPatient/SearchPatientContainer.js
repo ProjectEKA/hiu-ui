@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import SearchPatient from "./SearchPatient";
-import { onSearch } from "../../redux/actions/searchPatientIdActions";
+import { onSearch, onSearchResetState } from "../../redux/actions/searchPatientIdActions";
 import getNestedObject from "../../utils/getNestedObject";
 
 const mapStateToProps = state => ({
@@ -14,7 +14,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSearch
+  onSearch,
+  onSearchResetState
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPatient);

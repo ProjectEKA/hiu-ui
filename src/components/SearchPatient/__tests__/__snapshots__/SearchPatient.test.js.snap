@@ -6,18 +6,23 @@ exports[`SearchPatient should render properly 1`] = `
     className="search-bar"
   >
     <WithStyles(ForwardRef(TextField))
+      InputProps={
+        Object {
+          "endAdornment": <ForwardRef(WithStyles)
+            position="end"
+          >
+            @ncg
+          </ForwardRef(WithStyles)>,
+        }
+      }
       disabled={false}
       error={false}
       helperText=""
       id="search-field"
       onChange={[Function]}
       onKeyPress={[Function]}
+      type="search"
       value=""
-    />
-    <WithStyles(ForwardRef(TextField))
-      className="fiduciary-text-field"
-      disabled={true}
-      placeholder="@ncg"
     />
     <WithStyles(ForwardRef(IconButton))
       aria-label="search"
