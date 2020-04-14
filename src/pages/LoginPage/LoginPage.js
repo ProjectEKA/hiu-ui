@@ -20,6 +20,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -64,12 +65,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ onSignIn, error, success, history }) {
+export default function SignIn({ onSignIn, error }) {
   const classes = useStyles();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const isAuth = localStorage.getItem("auth-token");
   const [showPassword, setShowPassword] = useState(false);
+  let history = useHistory();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -77,7 +78,6 @@ export default function SignIn({ onSignIn, error, success, history }) {
 
   return (
     <Container component="main" maxWidth="xs">
-      {isAuth && <Redirect to="/" />}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -160,6 +160,7 @@ export default function SignIn({ onSignIn, error, success, history }) {
             onClick={(e) => {
               e.preventDefault();
               onSignIn({ userName, password });
+              history.push("/");
             }}
           >
             Sign In
