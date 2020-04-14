@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import tests.webapptests.pages.NCGHomepage;
 import tests.webapptests.wrappers.ProjectWrappers;
 
-public class RequestForm extends ProjectWrappers {
+public class LoginTest extends ProjectWrappers {
 
 	@BeforeClass
 	public void beforeClass() {
@@ -21,22 +21,13 @@ public class RequestForm extends ProjectWrappers {
 	}
 
 	@Test
-	public void sendRequest() throws InterruptedException {
+	public void loginPage() throws InterruptedException {
 		
 		new NCGHomepage(driver, test)
 		.enterUsername()
 		.enterPassword()
-		.clickOnSignin()
-		.clickOnNewRequest()
-		.clickOnPatientName()
-		.enterPatientName()
-		.clickOnSearch()
-		.clickOnPurpose()
-		.selectPurpose()
-		.clickOnHealthF()
-		.selectOptions()
-		.clickOnExpiry()	
-		.submitRequest();
+		.clickOnSignin();
+	
 		
 		
 		

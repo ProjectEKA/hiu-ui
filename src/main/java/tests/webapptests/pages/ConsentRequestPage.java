@@ -21,6 +21,14 @@ public class ConsentRequestPage extends GenricWrappers{
 
 	}
 	
+	
+	public ConsentRequestPage clickOnNewRequest() throws InterruptedException {
+		
+		clickByXpath(obj.getProperty("HomePage.clickOnNewRequest"));
+		return this;
+		
+	}
+	
 	public ConsentRequestPage clickOnPatientName() {
 		
 		clickById(obj.getProperty("ConsentRequestPage.clickOnPatientName"));

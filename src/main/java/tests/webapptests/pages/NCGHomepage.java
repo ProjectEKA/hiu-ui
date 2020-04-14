@@ -13,14 +13,27 @@ public class NCGHomepage extends GenricWrappers{
 		this.test = test;
 
 	}
+
 	
-	public ConsentRequestPage clickOnNewRequest() throws InterruptedException {
+	public NCGHomepage enterUsername() {
 		
-		clickByXpath(obj.getProperty("HomePage.clickOnNewRequest"));
-		return new ConsentRequestPage(driver, test);
-		
+		enterById(obj.getProperty("NCGHomepage.enterUsername"), obj.getProperty("NCGHomepage.name"));
+		return this;
 	}
 	
 	
+	public NCGHomepage enterPassword() {
+		enterById(obj.getProperty("NCGHomepage.enterPassword"), obj.getProperty("NCGHomepage.password"));
+		return this;
+		
+	}
+	
+	public ConsentRequestPage clickOnSignin() {
+		
+		clickByXpath(obj.getProperty("NCGHomepage.clickOnSignin"));
+		
+		return new ConsentRequestPage(driver, test);
+		
+	}
 
 }

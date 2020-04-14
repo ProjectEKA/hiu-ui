@@ -37,13 +37,13 @@ public class ProjectWrappers extends GenricWrappers {
 	public void beforeMethod() {
 
 		startTest(testCaseName, description);
-		invokeApp(browser, "https://ncg-dev.projecteka.in/hiu");
+		invokeApp(browser, "https://ncg-dev.projecteka.in/hiu/");
 	}
 
 	@AfterMethod
 	public void afterMethod() {
 
-		driver.close();
+		//driver.close();
 	}
 
 	@AfterClass
