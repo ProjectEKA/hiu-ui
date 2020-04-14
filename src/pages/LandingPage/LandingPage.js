@@ -67,9 +67,9 @@ const LandingPage = ({
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={snackBarOpen}
-        autoHideDuration={3000}
+        autoHideDuration={4000}
         onClose={handleSnackBarClose}
         message="Consent requested successfully!"
       />

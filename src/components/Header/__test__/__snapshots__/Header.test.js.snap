@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should render properly  1`] = `
-"<styled.div>
-  <a href=\\"/\\" className=\\"logo\\">
+"<Styled(MuiBox) className=\\"makeStyles-header-1\\" boxShadow={3}>
+  <a href=\\"/\\" className=\\"makeStyles-logo-2\\">
     logo
   </a>
-</styled.div>"
+  <WithStyles(ForwardRef(Button)) variant=\\"contained\\" color=\\"primary\\" className=\\"makeStyles-logout-3\\" onClick={[Function: logout]}>
+    Logout
+  </WithStyles(ForwardRef(Button))>
+</Styled(MuiBox)>"
 `;
