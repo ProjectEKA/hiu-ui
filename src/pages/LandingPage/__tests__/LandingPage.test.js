@@ -15,7 +15,7 @@ describe("Lading Page", () => {
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  it("Request Access Modal, should be closed by default", () => {
+  it("Request Access: Modal, should be closed by default", () => {
     expect(wrapper.find(Modal).props().open).toBe(false);
   });
 
@@ -54,16 +54,18 @@ describe("Lading Page", () => {
       );
     });
 
-    it("should reset previously created consent creation state", () => {
-      expect(onCreateConsentResetState).toHaveBeenCalled();
-    });
-
-    it("should reset the previously searched patient state", () => {
-      expect(onSearchResetState).toHaveBeenCalled();
-    });
-
     it("should reload the consent list", () => {
       expect(loadConsents).toHaveBeenCalled();
+    });
+
+    it("should reset previously created consent creation state on close", () => {
+      wrapper.find(Modal).props().onClose();
+      expect(onCreateConsentResetState).toHaveBeenCalled();
+    });
+  
+    it("should reset the previously searched patient state on close", () => {
+      wrapper.find(Modal).props().onClose();
+      expect(onSearchResetState).toHaveBeenCalled();
     });
   });
 });

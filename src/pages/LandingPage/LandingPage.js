@@ -44,10 +44,14 @@ const LandingPage = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-  if (success && modalOpen) {
+  const handleClose = () => {
     setModalOpen(false);
     onCreateConsentResetState();
     onSearchResetState();
+  };
+  
+  if (success && modalOpen) {
+    handleClose();
     loadConsents();
     setSnackBarOpen(true);
   }
@@ -58,10 +62,6 @@ const LandingPage = ({
 
   const handleOpen = () => {
     setModalOpen(true);
-  };
-
-  const handleClose = () => {
-    setModalOpen(false);
   };
 
   return (
