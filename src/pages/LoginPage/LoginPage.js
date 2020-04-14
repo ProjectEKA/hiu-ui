@@ -3,16 +3,23 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Checkbox from "@material-ui/core/Checkbox";
+// import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 function Copyright() {
   return (
@@ -42,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+  textField: {
+    margin: 0,
+  },
+  formControl: {
+    margin: theme.spacing(1, 0),
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -51,15 +64,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ onSignIn, error, success }) {
+export default function SignIn({ onSignIn, error, success, history }) {
   const classes = useStyles();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const isAuth = localStorage.getItem("auth-token");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <Container component="main" maxWidth="xs">
-      {(success || isAuth) && <Redirect to="/" />}
+      {isAuth && <Redirect to="/" />}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -72,34 +90,62 @@ export default function SignIn({ onSignIn, error, success }) {
           <span className={classes.error}>Invalid username or password.</span>
         )}
         <form className={classes.form}>
-          <TextField
-            error={error}
-            variant="outlined"
-            margin="normal"
-            required
+          <FormControl
             fullWidth
-            id="userName"
-            label="User Name"
-            name="userName"
-            autoComplete="userName"
-            autoFocus
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <TextField
-            error={error}
+            className={classes.formControl}
             variant="outlined"
-            margin="normal"
-            required
+          >
+            <TextField
+              className={classes.textField}
+              error={error}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="userName"
+              label="User Name"
+              name="userName"
+              autoComplete="userName"
+              autoFocus
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </FormControl>
+          <FormControl
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            className={classes.formControl}
+            variant="outlined"
+          >
+            <InputLabel required htmlFor="password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              error={error}
+              variant="outlined"
+              required
+              name="password"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
