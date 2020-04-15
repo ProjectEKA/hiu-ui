@@ -8,6 +8,57 @@ import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfo
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 import AlertBox from "../../components/AlertBox/AlertBox";
 
+const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, healthInfo) => {
+  return (
+    <>
+      <PatientDetails {...patientData} />
+      <HealthInfoNav
+        dates={dates}
+        selectedDate={selectedDate}
+        setSelectedDate={onChange}
+      />
+      <HealthInfoContainer
+        consentReqId={reqID}
+        healthInfo={healthInfo}
+        selectedDate={selectedDate}
+      />
+    </>
+  );
+};
+
+const renderErrorMessage = () => {
+  return (
+    <AlertBox
+      type="error"
+      title="Error"
+      message="Sorry! Couldn't fetch data."
+    />
+  );
+};
+
+const renderNoInfoMessage = patientData => {
+  return (
+    <>
+      <PatientDetails {...patientData} />
+      <AlertBox
+        type="info"
+        title="No Information"
+        message="Health information is unavailable for requested patient!"
+      />
+    </>
+  );
+};
+
+const renderLoadingMessage = () => {
+  return (
+    <AlertBox
+      type="info"
+      title="Loading..."
+      message="Fetching data. Please wait!"
+    />
+  );
+};
+
 const PatientHealthInformation = ({
   loadHealthData,
   error,
@@ -38,49 +89,14 @@ const PatientHealthInformation = ({
   };
   const handleSnackbarClose = () => setSnackbarOpen(false);
 
-  let content = (
-    <AlertBox
-      type="info"
-      title="Loading..."
-      message="Fetching data. Please wait!"
-    />
-  );
+  let content = renderLoadingMessage();
 
   if (isHealthInfoAvailable) {
-    content = (
-      <>
-        <PatientDetails {...patientData} />
-        <HealthInfoNav
-          dates={dateArray}
-          selectedDate={selectedDate}
-          setSelectedDate={onChange}
-        />
-        <HealthInfoContainer
-          consentReqId={match.params.requestId}
-          healthInfo={healthInfo}
-          selectedDate={selectedDate}
-        />
-      </>
-    );
+    content = renderHealthInfo(patientData, dateArray, selectedDate, onChange, match.params.id, healthInfo);
   } else if (error) {
-    content = (
-      <AlertBox
-        type="error"
-        title="Error"
-        message="Sorry! Couldn't fetch data."
-      />
-    );
+    content = renderErrorMessage();
   } else if (success && !isHealthInfoAvailable) {
-    content = (
-      <>
-        <PatientDetails {...patientData} />
-        <AlertBox
-          type="info"
-          title="No Information"
-          message="Health information is unavailable for requested patient!"
-        />
-      </>
-    );
+    content = renderNoInfoMessage(patientData);
   }
 
   return (
