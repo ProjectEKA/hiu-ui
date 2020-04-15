@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import LoginPage from "../src/pages/LoginPage/LoginPageContainer";
 import LandingPage from "../src/pages/LandingPage/LandingPageContainer";
 import PatientHealthInformation from "../src/pages/PatientHealthInfo/PatientHealthInformationContainer";
@@ -18,14 +18,14 @@ function App() {
   return (
     <div className="App">
       <Container className={classes.container}>
-        <Router basename={BASE_NAME}>
-          <Route render={() => <LoginPage />} path="/login" />
+        <HashRouter>
+          <Route component={LoginPage} path="/login" />
           <PrivateRoute component={LandingPage} path="/" exact />
           <PrivateRoute
             component={PatientHealthInformation}
             path="/health-info/:requestId"
           />
-        </Router>
+        </HashRouter>
       </Container>
     </div>
   );
