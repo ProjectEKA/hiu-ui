@@ -2,6 +2,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import { HashRouter, Route } from "react-router-dom";
 import LoginPage from "../src/pages/LoginPage/LoginPageContainer";
+import ResetPassword from "../src/pages/ResetPassword/ResetPasswordContainer";
 import LandingPage from "../src/pages/LandingPage/LandingPageContainer";
 import PatientHealthInformation from "../src/pages/PatientHealthInfo/PatientHealthInformationContainer";
 import PrivateRoute from "../src/components/PrivateRoute/PrivateRoute";
