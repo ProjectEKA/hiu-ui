@@ -32,7 +32,7 @@ const createConsentApi = ({
             from: selectedStartDate.toISOString(),
             to: selectedEndDate.toISOString(),
           },
-          dataExpiryAt: selectedExpiryDate.toISOString(),
+          dataEraseAt: selectedExpiryDate.toISOString(),
         },
       },
     },
