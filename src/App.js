@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Container className={classes.container}>
-        <HashRouter>
+        <HashRouter basename={BASE_NAME}>
           <Route component={LoginPage} path="/login" />
           <PrivateRoute component={LandingPage} path="/" exact />
           <PrivateRoute
