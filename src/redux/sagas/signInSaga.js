@@ -25,7 +25,7 @@ function* onSignIn(action) {
 function* onSignInSuccess(action) {
   console.log("success message");
   localStorage.setItem("auth-token", action.payload.data.accessToken);
-  history.push("/");
+  history.push(BASE_NAME);
 }
 
 function* onSignInFailure(action) {
