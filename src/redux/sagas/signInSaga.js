@@ -1,9 +1,6 @@
 import { ACTION_TYPES } from "../actions/onSignInActions";
 import { call, put } from "redux-saga/effects";
 import signInApi from "../apiCalls/signInApi";
-import * as createHistory from "history";
-
-const history = createHistory.createBrowserHistory({ forceRefresh: true });
 
 function* onSignIn(action) {
   try {
@@ -25,7 +22,6 @@ function* onSignIn(action) {
 function* onSignInSuccess(action) {
   console.log("success message");
   localStorage.setItem("auth-token", action.payload.data.accessToken);
-  history.push("/");
 }
 
 function* onSignInFailure(action) {
