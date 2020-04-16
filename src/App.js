@@ -1,22 +1,32 @@
 import React from "react";
-import ContainerStyles from "./App.style";
-import Header from "./components/Header/Header";
-import ContentContainer from "./components/Container/Container";
 import Container from "@material-ui/core/Container";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
+import LoginPage from "../src/pages/LoginPage/LoginPageContainer";
+import LandingPage from "../src/pages/LandingPage/LandingPageContainer";
+import PatientHealthInformation from "../src/pages/PatientHealthInfo/PatientHealthInformationContainer";
+import PrivateRoute from "../src/components/PrivateRoute/PrivateRoute";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: 90,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
-      //Read basename from the config
-      <Router basename={BASE_NAME}>
-        <ContainerStyles>
-          <Container className="container">
-            <Header />
-            <ContentContainer />
-          </Container>
-        </ContainerStyles>
-      </Router>
+      <Container className={classes.container}>
+        <HashRouter basename={BASE_NAME}>
+          <Route component={LoginPage} path="/login" />
+          <PrivateRoute component={LandingPage} path="/" exact />
+          <PrivateRoute
+            component={PatientHealthInformation}
+            path="/health-info/:requestId"
+          />
+        </HashRouter>
+      </Container>
     </div>
   );
 }

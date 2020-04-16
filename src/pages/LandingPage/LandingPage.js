@@ -5,6 +5,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 
 import RequestAccess from "./../RequestAccess/RequestAccessContainer";
 import LoadConsentsContainer from "../../components/ConsentsListTable/LoadConsentsContainer";
+import Header from "../../components/Header/Header";
 import { makeStyles } from "@material-ui/core/styles";
 
 function getModalStyle() {
@@ -14,29 +15,29 @@ function getModalStyle() {
   return {
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
+    transform: `translate(-${top}%, -${left}%)`,
   };
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     width: 1024,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
   },
   button: {
     marginTop: 30,
-    marginBottom: 30
-  }
+    marginBottom: 30,
+  },
 }));
 
 const LandingPage = ({
   success,
   onCreateConsentResetState,
   onSearchResetState,
-  loadConsents
+  loadConsents,
 }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
@@ -72,6 +73,7 @@ const LandingPage = ({
         onClose={handleSnackBarClose}
         message="Consent requested successfully!"
       />
+      <Header />
       <Button
         className={classes.button}
         type="button"

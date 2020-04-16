@@ -7,6 +7,7 @@ const PatientDetailsStyles = styled.div`
     display: flex;
     height: 32px;
     padding: 0 10px;
+    margin-top: 5px;
     align-items: center;
   }
 `;

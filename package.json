@@ -24,6 +24,7 @@
     "copy-webpack-plugin": "^5.1.1",
     "date-fns": "^2.9.0",
     "lodash": "^4.17.15",
+    "history": "^4.10.1",
     "material-table": "^1.57.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

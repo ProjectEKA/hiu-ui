@@ -7,12 +7,12 @@ function* fetchPatient(action) {
     const patient = yield call(fetchPatientApi, action.payload);
     yield put({
       type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
-      payload: patient
+      payload: patient,
     });
   } catch (e) {
     yield put({
       type: ACTION_TYPES.PATIENT_FETCH_FAILED,
-      payload: e
+      payload: e,
     });
   }
 }
@@ -25,13 +25,13 @@ function* fetchPatientFailure(action) {
   if (action.payload.response.status === 400) {
     yield put({
       type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
-      payload: action.payload
+      payload: action.payload,
     });
   }
   if (action.payload.response.status === 500) {
     yield put({
       type: ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR,
-      payload: action.payload
+      payload: action.payload,
     });
   }
 }
@@ -39,5 +39,5 @@ function* fetchPatientFailure(action) {
 export default {
   [ACTION_TYPES.PATIENT_FETCH_REQUESTED]: fetchPatient,
   [ACTION_TYPES.PATIENT_FETCH_SUCCEEDED]: fetchPatientSuccess,
-  [ACTION_TYPES.PATIENT_FETCH_FAILED]: fetchPatientFailure
+  [ACTION_TYPES.PATIENT_FETCH_FAILED]: fetchPatientFailure,
 };
