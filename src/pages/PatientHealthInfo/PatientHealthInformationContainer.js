@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 import { connect } from "react-redux";
 import PatientHealthInformation from "./PatientHealthInformation";
 import { loadHealthData } from "../../redux/actions/loadHealthDataActions";
@@ -24,6 +25,7 @@ const mapStateToProps = state => ({
   defaultSelectedDate: extractSelectedDate(
     getNestedObject(state, "healthInfo.healthData")
   ),
+  erroredEntiresCount: _.get(state, "healthInfo.entriesCount.ERRORED", 0),
   success: state.healthInfo.success,
   loading: state.healthInfo.loading,
   error: state.healthInfo.error,
