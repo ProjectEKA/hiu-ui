@@ -17,13 +17,13 @@ const RequestType = ({ requestTypes, handleChange }) => {
                   <Checkbox
                     className="check-box"
                     checked={RequestType.checked}
-                    onChange={handleChange(type)}
-                    value={type}
+                    onChange={handleChange(type.value)}
+                    value={type.value}
                     color="primary"
                   />
                 }
-                label={type}
-                key={type}
+                label={type.label}
+                key={type.value}
               />
             );
           })}

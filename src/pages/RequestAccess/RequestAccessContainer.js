@@ -7,7 +7,9 @@ import getNestedObject from "../../utils/getNestedObject";
 const mapStateToProps = state => ({
   patientId: getNestedObject(state, "patientDetail.patientData.patient.id"),
   loading: state.createConsent.loading,
-  error: state.createConsent.error
+  error: state.createConsent.error,
+  purposesOfUse: state.configValueSets.purposesOfUse,
+  hiTypes: state.configValueSets.hiTypes
 });
 
 const mapDispatchToProps = {

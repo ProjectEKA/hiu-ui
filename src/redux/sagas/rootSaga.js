@@ -5,6 +5,7 @@ import loadConsentsSaga from "./loadConsentsSaga";
 import loadHealthDataSaga from "./loadHealthDataSaga";
 import downloadPathologySaga from "./downloadPathologySaga";
 import signInSaga from "./signInSaga";
+import { appConfigActionObs } from "./loadAppConfigSaga"
 
 function* rootSaga() {
   const sagas = [];
@@ -24,7 +25,10 @@ function* rootSaga() {
     sagas.push(takeEvery(action, signInSaga[action]));
   }
   for (const action in downloadPathologySaga) {
-    sagas.push(takeEvery(action, downloadPathologySaga));
+    sagas.push(takeEvery(action, downloadPathologySaga[action]));
+  }
+  for (const action in appConfigActionObs) {
+    sagas.push(takeEvery(action, appConfigActionObs[action]));
   }
   yield all(sagas);
 }

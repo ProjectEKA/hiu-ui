@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -38,7 +38,11 @@ const LandingPage = ({
   onCreateConsentResetState,
   onSearchResetState,
   loadConsents,
+  loadConfigValueSets
 }) => {
+  useEffect(() => {
+    loadConfigValueSets();
+  }, []);
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [modalOpen, setModalOpen] = useState(false);
