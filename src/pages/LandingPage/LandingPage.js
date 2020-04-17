@@ -44,10 +44,14 @@ const LandingPage = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-  if (success && modalOpen) {
+  const handleClose = () => {
     setModalOpen(false);
     onCreateConsentResetState();
     onSearchResetState();
+  };
+  
+  if (success && modalOpen) {
+    handleClose();
     loadConsents();
     setSnackBarOpen(true);
   }
@@ -60,16 +64,12 @@ const LandingPage = ({
     setModalOpen(true);
   };
 
-  const handleClose = () => {
-    setModalOpen(false);
-  };
-
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={snackBarOpen}
-        autoHideDuration={3000}
+        autoHideDuration={4000}
         onClose={handleSnackBarClose}
         message="Consent requested successfully!"
       />

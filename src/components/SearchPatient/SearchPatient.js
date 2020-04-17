@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SearchPatientStyles from "./SearchPatient.style";
 import { IconButton, TextField, CircularProgress } from "@material-ui/core";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 
 const SearchPatient = ({
   onSearch,
+  onSearchResetState,
   patientId,
   patientName,
   success,
@@ -28,13 +30,15 @@ const SearchPatient = ({
   }, [loading]);
 
   const generateErrorText = () => {
-    if (error) {
+    if (error || serverError) {
       return "Id not found.";
-    } else if (serverError) {
-      return "Id not found.";
-    } else {
-      return "";
     }
+    return "";
+  };
+
+  const onChangeSearch = e => {
+    setTextInput(e.target.value);
+    onSearchResetState();
   };
 
   return (
@@ -42,21 +46,20 @@ const SearchPatient = ({
       <div className="search-bar">
         <TextField
           id="search-field"
+          type="search"
           disabled={loading}
           error={error}
           helperText={generateErrorText()}
           value={textInput}
-          onChange={e => setTextInput(e.target.value)}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">@ncg</InputAdornment>
+          }}
+          onChange={onChangeSearch}
           onKeyPress={e => {
             if (event.key === "Enter") {
               onSearch(textInput);
             }
           }}
-        />
-        <TextField
-          className="fiduciary-text-field"
-          disabled
-          placeholder="@ncg"
         />
         <IconButton
           disabled={textInput.length == 0 || loading}
