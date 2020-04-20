@@ -5,8 +5,7 @@ import { onResetPassword } from "../../redux/actions/onResetPasswordActions";
 import getNestedObject from "../../utils/getNestedObject";
 
 const mapStateToProps = (state) => ({
-  // success: getNestedObject(state, "signIn.success"),
-  // error: getNestedObject(state, "signIn.error"),
+  error: getNestedObject(state, "resetPassword.error"),
 });
 
 const mapDispatchToProps = {

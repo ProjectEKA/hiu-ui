@@ -3,21 +3,14 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Checkbox from "@material-ui/core/Checkbox";
-// import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
-import Link from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Redirect } from "react-router-dom";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -26,7 +19,6 @@ import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router-dom";
-import { CenterFocusStrong } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+  },
+  pageHeader: {
+    margin: theme.spacing(0, 0, 3),
   },
   listItem: {
     padding: theme.spacing(0, 1),
@@ -61,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ onResetPassword, error }) {
+export default function ResetPassword({ onResetPassword, error }) {
   const classes = useStyles();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -78,36 +73,32 @@ export default function SignIn({ onResetPassword, error }) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar align="center" className={classes.avatar}>
+        <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography align="center" component="h1" variant="h5">
+        <Typography className={classes.pageHeader} component="h1" variant="h5">
           Reset Password
         </Typography>
-        <Typography align="left" component="h6" variant="h6">
+        <Typography component="h6" variant="h6">
           Password Rules:
         </Typography>
         <List>
           <ListItem className={classes.listItem}>
-            <IconButton edge="end" aria-label="arrow right">
-              <ArrowRightIcon />
-            </IconButton>
+            <ArrowRightIcon color="primary" />
             <ListItemText secondary="Password length should be 8-30" />
           </ListItem>
           <ListItem className={classes.listItem}>
-            <IconButton edge="end" aria-label="arrow right">
-              <ArrowRightIcon />
-            </IconButton>
+            <ArrowRightIcon color="primary" />
             <ListItemText secondary="Should have at least 1 uppercase, lowercase, digit, special character" />
           </ListItem>
           <ListItem className={classes.listItem}>
-            <IconButton edge="end" aria-label="arrow right">
-              <ArrowRightIcon />
-            </IconButton>
+            <ArrowRightIcon color="primary" />
             <ListItemText secondary="Cannot have three or more consecutive numbers" />
           </ListItem>
         </List>
-        {error && <span className={classes.error}>Enter valid password.</span>}
+        {error && (
+          <span className={classes.error}>Enter valid password. {error}</span>
+        )}
         {newPassword !== "" &&
           confirmPassword !== "" &&
           newPassword !== confirmPassword && (
