@@ -9,22 +9,17 @@ import InputLabel from "@material-ui/core/InputLabel";
 import RequestType from "./../../components/RequestType/RequestType";
 import SimpleMenu from "./../../components/SimpleMenu/SimpleMenu";
 import getNextDay from "./../../utils/getNextDay";
-import purposeTypes from "./../../constants/puposeTypes";
-import requestTypes from "./../../constants/requestTypes";
 
-const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
-  const [selectedPurposeValue, setSelectedPurposeValue] = useState(
-    purposeTypes[0].value
-  );
+const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfUse, hiTypes }) => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const [selectedRequestTypes, setSelectedRequestTypes] = useState({
-    PatientHistory: false,
-    Medications: false,
-    DiagnosisLab: false,
-    RadiologyLab: false,
-    Condition: false
-  });
+  const usagePurposes = purposesOfUse.map(p => ({ label: p.display, value: p.code }));
+  const [selectedPurposeValue, setSelectedPurposeValue] = useState(
+    usagePurposes.length > 0 ? usagePurposes[0].value : ""
+  );
+  const requestHiTypes = hiTypes.map(p => ({ label: p.display, value: p.code })); 
+  var hiTypesInitialStates  = Object.assign(...requestHiTypes.map(hiType => { return {[hiType.value]: false} } )) 
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState(hiTypesInitialStates)
 
   const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
   const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
@@ -85,7 +80,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
           </Grid>
           <Grid item xs={2}>
             <SimpleMenu
-              menuItems={purposeTypes}
+              menuItems={usagePurposes}
               handleChange={handlePurposeSelection}
               selectedValue={selectedPurposeValue}
             />
@@ -125,7 +120,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error }) => {
           </Grid>
           <Grid item xs={10}>
             <RequestType
-              requestTypes={requestTypes}
+              requestTypes={requestHiTypes}
               handleChange={handleHITypeChange}
             />
           </Grid>
