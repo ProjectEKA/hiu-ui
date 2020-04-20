@@ -23,6 +23,11 @@ function App() {
         <HashRouter basename={BASE_NAME}>
           <Route history={history} component={LoginPage} path="/login" />
           <PrivateRoute
+            component={ResetPassword}
+            history={history}
+            path="/reset-password"
+          />
+          <PrivateRoute
             component={LandingPage}
             history={history}
             path="/"

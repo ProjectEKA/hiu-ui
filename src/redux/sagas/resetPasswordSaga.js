@@ -1,38 +1,36 @@
 import { ACTION_TYPES } from "../actions/onResetPasswordActions";
 import { call, put } from "redux-saga/effects";
 import resetPasswordApi from "../apiCalls/resetPasswordApi";
-import * as createHistory from "history";
+import history from "../../history";
 
-const history = createHistory.createBrowserHistory({ forceRefresh: true });
-
-function* onSignIn(action) {
+function* onResetPassword(action) {
   try {
     const User = yield call(resetPasswordApi, action.payload);
     if (User) {
       yield put({
-        type: ACTION_TYPES.SIGNIN_SUCCEEDED,
+        type: ACTION_TYPES.RESET_PASSWORD_SUCCEEDED,
         payload: User,
       });
     }
   } catch (e) {
     yield put({
-      type: ACTION_TYPES.SIGNIN_FAILED,
+      type: ACTION_TYPES.RESET_PASSWORD_FAILED,
       payload: e,
     });
   }
 }
 
-function* onSignInSuccess(action) {
+function* onResetPasswordSuccess(action) {
   console.log("success message");
-  history.push(BASE_NAME);
+  history.push("/login");
 }
 
-function* onSignInFailure(action) {
+function* onResetPasswordFailure(action) {
   console.log("failure message", action);
 }
 
 export default {
-  [ACTION_TYPES.SIGNIN_REQUESTED]: onSignIn,
-  [ACTION_TYPES.SIGNIN_SUCCEEDED]: onSignInSuccess,
-  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure,
+  [ACTION_TYPES.RESET_PASSWORD_REQUESTED]: onResetPassword,
+  [ACTION_TYPES.RESET_PASSWORD_SUCCEEDED]: onResetPasswordSuccess,
+  [ACTION_TYPES.RESET_PASSWORD_FAILED]: onResetPasswordFailure,
 };

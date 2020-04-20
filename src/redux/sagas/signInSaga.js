@@ -21,12 +21,13 @@ function* onSignIn(action) {
 }
 
 function* onSignInSuccess(action) {
+  const pwdVerified = action.payload.data.isVerified;
   yield call(
     [localStorage, "setItem"],
     "auth-token",
     action.payload.data.accessToken
   );
-  history.push("/");
+  pwdVerified ? history.push(BASE_NAME) : history.push("/reset-password");
 }
 
 function* onSignInFailure(action) {

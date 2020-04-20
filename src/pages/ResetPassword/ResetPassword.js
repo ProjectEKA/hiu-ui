@@ -6,6 +6,11 @@ import TextField from "@material-ui/core/TextField";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import Checkbox from "@material-ui/core/Checkbox";
 // import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -21,6 +26,7 @@ import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router-dom";
+import { CenterFocusStrong } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+  },
+  listItem: {
+    padding: theme.spacing(0, 1),
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -54,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn({ onResetPassword, error }) {
   const classes = useStyles();
+  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -68,14 +78,60 @@ export default function SignIn({ onResetPassword, error }) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        <Avatar align="center" className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography align="center" component="h1" variant="h5">
           Reset Password
         </Typography>
+        <Typography align="left" component="h6" variant="h6">
+          Password Rules:
+        </Typography>
+        <List>
+          <ListItem className={classes.listItem}>
+            <IconButton edge="end" aria-label="arrow right">
+              <ArrowRightIcon />
+            </IconButton>
+            <ListItemText secondary="Password length should be 8-30" />
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <IconButton edge="end" aria-label="arrow right">
+              <ArrowRightIcon />
+            </IconButton>
+            <ListItemText secondary="Should have at least 1 uppercase, lowercase, digit, special character" />
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <IconButton edge="end" aria-label="arrow right">
+              <ArrowRightIcon />
+            </IconButton>
+            <ListItemText secondary="Cannot have three or more consecutive numbers" />
+          </ListItem>
+        </List>
         {error && <span className={classes.error}>Enter valid password.</span>}
+        {newPassword !== "" &&
+          confirmPassword !== "" &&
+          newPassword !== confirmPassword && (
+            <span className={classes.error}>
+              New password and confirm password are different
+            </span>
+          )}
         <form className={classes.form}>
+          <FormControl
+            fullWidth
+            className={classes.formControl}
+            variant="outlined"
+          >
+            <TextField
+              required
+              type="text"
+              id="old-password"
+              label="Old Password"
+              variant="outlined"
+              value={oldPassword}
+              autoComplete="old-password"
+              onChange={(e) => setOldPassword(e.target.value)}
+            />
+          </FormControl>
           <FormControl
             fullWidth
             className={classes.formControl}
@@ -159,7 +215,7 @@ export default function SignIn({ onResetPassword, error }) {
             className={classes.reset}
             onClick={(e) => {
               e.preventDefault();
-              // onResetPassword({ newPassword, confirmPassword });
+              onResetPassword({ oldPassword, confirmPassword });
               history.push("/");
             }}
           >
