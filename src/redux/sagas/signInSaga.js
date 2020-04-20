@@ -2,6 +2,7 @@ import { ACTION_TYPES } from "../actions/onSignInActions";
 import { call, put } from "redux-saga/effects";
 import signInApi from "../apiCalls/signInApi";
 import history from "../../history";
+import jwt_decode from "jwt-decode";
 
 function* onSignIn(action) {
   try {
@@ -21,7 +22,8 @@ function* onSignIn(action) {
 }
 
 function* onSignInSuccess(action) {
-  const pwdVerified = action.payload.data.isVerified;
+  const decoded_token = jwt_decode(action.payload.data.accessToken);
+  const pwdVerified = decoded_token.isVerified;
   yield call(
     [localStorage, "setItem"],
     "auth-token",
