@@ -207,7 +207,6 @@ export default function ResetPassword({ onResetPassword, error }) {
             onClick={(e) => {
               e.preventDefault();
               onResetPassword({ oldPassword, confirmPassword });
-              history.push("/");
             }}
           >
             Reset

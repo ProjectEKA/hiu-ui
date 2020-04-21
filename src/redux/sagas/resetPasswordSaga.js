@@ -22,6 +22,7 @@ function* onResetPassword(action) {
 
 function* onResetPasswordSuccess(action) {
   console.log("success message");
+  localStorage.removeItem("auth-token");
   history.push("/login");
 }
 
