@@ -3,19 +3,19 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testcase.GojekCab">
+      <class name="tests.webapptests.testcase.RequestFormTest">
         <methods>
-          <include name="beforeClass"/>
+          <include name="beforeSuit"/>
+          <include name="afterClass"/>
           <include name="afterSuit"/>
           <include name="beforeTest"/>
-          <include name="afterMethod"/>
           <include name="afterTest"/>
-          <include name="afterClass"/>
-          <include name="launch" invocation-numbers="0"/>
           <include name="beforeMethod"/>
-          <include name="beforeSuit"/>
+          <include name="sendRequest"/>
+          <include name="beforeClass"/>
+          <include name="afterMethod"/>
         </methods>
-      </class> <!-- testcase.GojekCab -->
+      </class> <!-- tests.webapptests.testcase.RequestFormTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

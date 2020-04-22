@@ -20,11 +20,13 @@ import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.ScreenshotException;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -90,7 +92,7 @@ public class GenricWrappers extends Reports implements wrappers {
 
 		try {
 			if (browser.equalsIgnoreCase("chrome")) {
-				System.setProperty("webdriver.chrome.driver", "/Applications/chromedriver");
+				System.setProperty("webdriver.chrome.driver", "./driver/chromedriver");
 				driver = new ChromeDriver();
 			} else if (browser.equalsIgnoreCase("firefox")) {
 				System.setProperty("webdriver.gecko.driver", "./driver/geckodriver.exe");
@@ -264,55 +266,61 @@ public class GenricWrappers extends Reports implements wrappers {
 	/* ############################ Common wait Methods ############################## */
 
 	public static void waitObjectAppearByHomeId(String idValue) {
-		try {
+
 			wait = new WebDriverWait(driver, 800);
 			wait.until(ExpectedConditions.elementToBeClickable(By.id(idValue)));
 
-		} catch (Exception ex) {
-			System.err.println("unable to click element");
-		}
+		
 	}
 
 	public static void waitObjectAppearById(String idValue) {
-		try {
+		
 			wait = new WebDriverWait(driver, 180);
 			wait.until(ExpectedConditions.elementToBeClickable(By.id(idValue)));
 
-		} catch (Exception ex) {
-			System.err.println("unable to click element");
-		}
+		
 	}
 
 	public static void waitObjectAppearByIdAvailable(String idValue) {
-		try {
-			wait = new WebDriverWait(driver, 180);
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(idValue)));
+		
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(idValue)));
 
-		} catch (Exception ex) {
-			System.err.println("uinvisibilityOfElementLocated error");
-		}
+		
 	}
 
 	public static void waitObjectAppearByXpath(String xpathValue) {
-		try {
+
 			wait = new WebDriverWait(driver, 180);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathValue)));
 
-		} catch (Exception e) {
-			System.err.println("unable to click element");
-		}
+		
 	}
 		
 		public static void waitObjectAppearByXpathVisible(String xpathValue) {
-			try {
+		
 				wait = new WebDriverWait(driver, 180);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpathValue)));
 				
 
-			} catch (Exception ex) {
-				System.err.println("element is not visible");
-			}
-	}
+			
+	
+	
+}
+		
+		/* ############################ check visibility method ############################## */
+		
+		//To check element is visible in the page or not
+		
+		public void checkVisibility(WebElement element) {
+			wait = new WebDriverWait(driver, 15, 50);
+			 wait.until(ExpectedConditions.visibilityOf(element));
+		}
+		
+		
+		
+		
+		
 }
 
 

@@ -2,13 +2,10 @@ package tests.webapptests.wrappers;
 
 import java.io.IOException;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -31,6 +28,7 @@ public class ProjectWrappers extends GenricWrappers {
 	@BeforeTest
 	public void beforeTest() {
 		loadObject();
+
 	}
 
 	@BeforeMethod
@@ -43,7 +41,7 @@ public class ProjectWrappers extends GenricWrappers {
 	@AfterMethod
 	public void afterMethod() {
 
-		//driver.close();
+	//	driver.close();
 	}
 
 	@AfterClass
@@ -63,7 +61,7 @@ public class ProjectWrappers extends GenricWrappers {
 	}
 
 	@DataProvider(name = "fetchData")
-	public String[][] fetchData() throws IOException {
+	public Object[][] fetchData() throws IOException {
 		return DataProviderFromExcel.getData(excelSheetName);
 
 	}

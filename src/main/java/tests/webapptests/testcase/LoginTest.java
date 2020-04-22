@@ -14,23 +14,14 @@ public class LoginTest extends ProjectWrappers {
 		author = "ThoughtWorks";
 		category = "SANITY-TESTING";
 		testCaseName = "NCG-Consent request form";
-		description = "To ensure that the code changes introduced are working as expected ."
-				+ "This testing is a checkpoint to determine if testing for the build can proceed or not and also to make sure functionality breakdown";
-		
-		browser="chrome";
+		description = "To ensure functionality breakdown";
+		browser = "chrome";
 	}
 
 	@Test
-	public void loginPage() throws InterruptedException {
-		
-		new NCGHomepage(driver, test)
-		.enterUsername()
-		.enterPassword()
-		.clickOnSignin();
-	
-		
-		
-		
+	public void loginUser() throws InterruptedException {
+
+		new NCGHomepage(driver, test).enterUsername().enterPassword().clickOnSignin();
 
 	}
 
