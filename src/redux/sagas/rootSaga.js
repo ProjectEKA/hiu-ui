@@ -7,6 +7,7 @@ import downloadPathologySaga from './downloadPathologySaga';
 import signInSaga from './signInSaga';
 import { appConfigActionObs } from './loadAppConfigSaga';
 import resetPasswordSaga from './resetPasswordSaga';
+import loadCmConfigSaga from './loadCmConfigSaga';
 
 function* rootSaga() {
   const sagas = [];
@@ -33,6 +34,9 @@ function* rootSaga() {
   );
   Object.keys(appConfigActionObs).forEach((action) =>
     sagas.push(takeEvery(action, appConfigActionObs[action]))
+  );
+  Object.keys(appConfigActionObs).forEach((action) =>
+    sagas.push(takeEvery(action, loadCmConfigSaga[action]))
   );
   yield all(sagas);
 }

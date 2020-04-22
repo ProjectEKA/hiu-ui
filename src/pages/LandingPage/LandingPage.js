@@ -39,9 +39,11 @@ const LandingPage = ({
   onSearchResetState,
   loadConsents,
   loadConfigValueSets,
+  loadCMConfigurations,
 }) => {
   useEffect(() => {
     loadConfigValueSets();
+    loadCMConfigurations();
   }, []);
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);

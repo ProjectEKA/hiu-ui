@@ -38,6 +38,18 @@ const RequestAccess = ({
   const [selectedRequestTypes, setSelectedRequestTypes] = useState(
     hiTypesInitialStates
   );
+  const requestHiTypes = hiTypes.map((p) => ({
+    label: p.display,
+    value: p.code,
+  }));
+  var hiTypesInitialStates = Object.assign(
+    ...requestHiTypes.map((hiType) => {
+      return { [hiType.value]: false };
+    })
+  );
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState(
+    hiTypesInitialStates
+  );
 
   const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
   const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
@@ -51,12 +63,12 @@ const RequestAccess = ({
     });
   };
   const handleStarteDateChange = (date) => {
-    const startDate = date;
+    var startDate = date;
     setSelectedStartDate(startDate);
   };
   const handleEndDateChange = (date) => {
-    const startDate = selectedStartDate;
-    const endDate = date;
+    var startDate = selectedStartDate;
+    var endDate = date;
     if (startDate.getTime() < endDate.getTime()) {
       setSelectedEndDate(endDate);
     }

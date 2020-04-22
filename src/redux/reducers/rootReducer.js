@@ -7,6 +7,7 @@ import pathology from './downloadPathologyReducer';
 import resetPassword from './resetPasswordReducer';
 import signIn from './signInReducer';
 import { configValueSets } from './appInitReducer';
+import cmConfig from './appConfigReducer';
 
 export default combineReducers({
   patientDetail,
@@ -16,5 +17,6 @@ export default combineReducers({
   resetPassword,
   signIn,
   pathology,
+  cmConfig,
   configValueSets,
 });
