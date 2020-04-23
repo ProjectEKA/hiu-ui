@@ -7,7 +7,7 @@ import HealthInfoNav from "../../components/HealthInfoNav";
 import HealthInformation from "../../components/HealthInformation";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 import AlertBox from "../../components/AlertBox";
-import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
+import Breadcrumb from "../../components/Breadcrumb";
 import Header from "../../components/Header/Header";
 
 const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, healthInfo) => {
