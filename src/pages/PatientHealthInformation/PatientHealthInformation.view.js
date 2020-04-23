@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
-import PatientDetails from "../../components/PatientDetails/PatientDetails";
+import PatientDetails from "../../components/PatientDetails";
 import HealthInfoNav from "../../components/HealthInfoNav/HealthInfoNav";
 import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfoContainer";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
