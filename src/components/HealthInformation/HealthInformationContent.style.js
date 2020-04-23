@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HipHealthInfoContainerStyles = styled.div`
+const HealthInformationContentStyles = styled.div`
   .hip-health-info-container {
     font-family: "Roboto", sans-serif;
   }
@@ -12,4 +12,4 @@ const HipHealthInfoContainerStyles = styled.div`
   }
 `;
 
-export default HipHealthInfoContainerStyles;
+export default HealthInformationContentStyles;

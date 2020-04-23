@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
-export default function AlertBox({ type, title, message }) {
+const AlertBox = ({ type, title, message }) => {
   return (
     <Alert severity={type}>
       <AlertTitle>
@@ -10,4 +10,6 @@ export default function AlertBox({ type, title, message }) {
       {message}
     </Alert>
   );
-}
+};
+
+export default AlertBox;

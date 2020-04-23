@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
-import PatientDetails from "../../components/PatientDetails/PatientDetails";
-import HealthInfoNav from "../../components/HealthInfoNav/HealthInfoNav";
-import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfoContainer";
+import PatientDetails from "../../components/PatientDetails";
+import HealthInfoNav from "../../components/HealthInfoNav";
+import HealthInformation from "../../components/HealthInformation";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
-import AlertBox from "../../components/AlertBox/AlertBox";
-import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
-import Header from "../../components/Header/Header";
+import AlertBox from "../../components/AlertBox";
+import Breadcrumb from "../../components/Breadcrumb";
+import Header from "../../components/Header";
 
 const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, healthInfo) => {
   return (
@@ -19,7 +19,7 @@ const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, hea
         selectedDate={selectedDate}
         setSelectedDate={onChange}
       />
-      <HealthInfoContainer
+      <HealthInformation
         consentReqId={reqID}
         healthInfo={healthInfo}
         selectedDate={selectedDate}

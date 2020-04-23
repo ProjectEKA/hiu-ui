@@ -6,6 +6,7 @@ import store from "./src/redux/store";
 import "@material-ui/core";
 import "@material-ui/icons";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { StylesProvider } from '@material-ui/styles';
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { teal } from "@material-ui/core/colors";
 // main app
@@ -29,11 +30,13 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <App />
-      </MuiPickersUtilsProvider>
-    </MuiThemeProvider>
+    <StylesProvider injectFirst>
+      <MuiThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <App />
+        </MuiPickersUtilsProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   </Provider>,
   document.getElementById("app")
 );

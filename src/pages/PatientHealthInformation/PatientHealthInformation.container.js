@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
-import PatientHealthInformation from "./PatientHealthInformation";
+import PatientHealthInformation from "./PatientHealthInformation.view";
 import { loadHealthData } from "../../redux/actions/loadHealthDataActions";
 import getNestedObject from "../../utils/getNestedObject";
 

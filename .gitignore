@@ -10,3 +10,5 @@ bundles/
 build/
 .next/
 coverage/
+
+.idea/

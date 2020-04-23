@@ -5,7 +5,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 
 import RequestAccess from "./../RequestAccess/RequestAccessContainer";
 import LoadConsentsContainer from "../../components/ConsentsListTable/LoadConsentsContainer";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import { makeStyles } from "@material-ui/core/styles";
 
 function getModalStyle() {
@@ -53,7 +53,7 @@ const LandingPage = ({
     onCreateConsentResetState();
     onSearchResetState();
   };
-  
+
   if (success && modalOpen) {
     handleClose();
     loadConsents();

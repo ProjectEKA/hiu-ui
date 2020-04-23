@@ -2,13 +2,13 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
-import HipHealthInfoContainerStyles from "./HipHealthInfoContainer.style";
+import HealthInformationContentStyles from "./HealthInformationContent.style";
 import CCRDocument from "../../components/Composition/CCRDocument";
 import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
 import { identifyParentOfType } from "../../components/common/HealthInfo/FhirResourcesUtils";
 import ConditionsComponent from "../Condition/ConditionsComponent";
 
-const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
+const HealthInformationContent = ({ consentReqId, hipName, data }) => {
   const compositionData = data
     ? data.filter(entry => entry.resourceType.toLowerCase() == "composition")
     : [];
@@ -69,7 +69,7 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
     : [];
 
   return (
-    <HipHealthInfoContainerStyles>
+    <HealthInformationContentStyles>
       <div className="hip-health-info-container">
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
@@ -86,8 +86,8 @@ const HipHealthInfoContainer = ({ consentReqId, hipName, data }) => {
         <ConditionsComponent conditionList={conditionList} />
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
       </div>
-    </HipHealthInfoContainerStyles>
+    </HealthInformationContentStyles>
   );
 };
 
-export default HipHealthInfoContainer;
+export default HealthInformationContent;
