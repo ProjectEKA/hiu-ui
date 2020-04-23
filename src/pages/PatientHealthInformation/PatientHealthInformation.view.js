@@ -3,7 +3,7 @@ import _ from "lodash";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import PatientDetails from "../../components/PatientDetails";
-import HealthInfoNav from "../../components/HealthInfoNav/HealthInfoNav";
+import HealthInfoNav from "../../components/HealthInfoNav";
 import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfoContainer";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 import AlertBox from "../../components/AlertBox/AlertBox";
