@@ -1,18 +1,18 @@
-import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
+import apiWrapper from '../apiWrapper';
+import { defaultHeaders } from '../../constants';
 
 const fetchPatientApi = (patientId) => {
-  const patientIdWithExtension = patientId.concat("@ncg");
-  const authToken = localStorage.getItem("auth-token");
+  const patientIdWithExtension = patientId.concat('@ncg');
+  const authToken = localStorage.getItem('auth-token');
 
   return apiWrapper(
-    "get",
+    'get',
     `/patients/${patientIdWithExtension}`,
     {},
     {
       ...defaultHeaders,
       Authorization: authToken,
-    }
+    },
   );
 };
 

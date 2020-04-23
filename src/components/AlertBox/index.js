@@ -1,3 +1,3 @@
-import AlertBox from "./AlertBox.view"
+import AlertBox from './AlertBox.view';
 
 export default AlertBox;

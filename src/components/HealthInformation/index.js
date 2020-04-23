@@ -1,3 +1,3 @@
-import HealthInformation from "./HealthInformation.view"
+import HealthInformation from './HealthInformation.view';
 
 export default HealthInformation;

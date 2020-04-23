@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ArrowRightIcon from "@material-ui/icons/ArrowRight";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   textField: {
@@ -52,18 +52,18 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     paddingTop: 20,
-    color: "#f44336",
+    color: '#f44336',
   },
 }));
 
 export default function ResetPassword({ onResetPassword, error, errorMessgae }) {
   const classes = useStyles();
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  let history = useHistory();
+  const history = useHistory();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -99,13 +99,13 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
         {error && (
           <span className={classes.error}>{errorMessgae}</span>
         )}
-        {newPassword !== "" &&
-          confirmPassword !== "" &&
-          newPassword !== confirmPassword && (
+        {newPassword !== ''
+          && confirmPassword !== ''
+          && newPassword !== confirmPassword && (
             <span className={classes.error}>
               New password and confirm password are different
             </span>
-          )}
+        )}
         <form className={classes.form}>
           <FormControl
             fullWidth
@@ -136,12 +136,12 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
               required
               name="newPassword"
               label="New Password"
-              type={showNewPassword ? "text" : "password"}
+              type={showNewPassword ? 'text' : 'password'}
               id="new-password"
               autoComplete="current-password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              endAdornment={
+              endAdornment={(
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
@@ -154,7 +154,7 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
                     {showNewPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              }
+              )}
             />
           </FormControl>
           <FormControl
@@ -170,12 +170,12 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
               required
               name="confirmPassword"
               label="confirmPassword"
-              type={showConfirmPassword ? "text" : "password"}
+              type={showConfirmPassword ? 'text' : 'password'}
               id="confirm-password"
               autoComplete="current-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              endAdornment={
+              endAdornment={(
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
@@ -188,14 +188,14 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
                     {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              }
+              )}
             />
           </FormControl>
           <Button
             disabled={
-              newPassword === "" ||
-              confirmPassword === "" ||
-              newPassword !== confirmPassword
+              newPassword === ''
+              || confirmPassword === ''
+              || newPassword !== confirmPassword
             }
             type="submit"
             fullWidth

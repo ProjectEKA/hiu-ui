@@ -1,34 +1,34 @@
 export const ACTION_TYPES = {
-  PATIENT_FETCH_REQUESTED: "PATIENT_FETCH_REQUESTED",
-  PATIENT_FETCH_SUCCEEDED: "PATIENT_FETCH_SUCCEEDED",
-  PATIENT_FETCH_FAILED: "PATIENT_FETCH_FAILED",
-  PATIENT_FETCH_ID_NOT_FOUND: "PATIENT_FETCH_ID_NOT_FOUND",
-  PATIENT_FETCH_SERVER_ERROR: "PATIENT_FETCH_SERVER_ERROR",
-  PATIENT_FETCH_RESET_STATE: "PATIENT_FETCH_RESET_STATE"
+  PATIENT_FETCH_REQUESTED: 'PATIENT_FETCH_REQUESTED',
+  PATIENT_FETCH_SUCCEEDED: 'PATIENT_FETCH_SUCCEEDED',
+  PATIENT_FETCH_FAILED: 'PATIENT_FETCH_FAILED',
+  PATIENT_FETCH_ID_NOT_FOUND: 'PATIENT_FETCH_ID_NOT_FOUND',
+  PATIENT_FETCH_SERVER_ERROR: 'PATIENT_FETCH_SERVER_ERROR',
+  PATIENT_FETCH_RESET_STATE: 'PATIENT_FETCH_RESET_STATE',
 };
-export const onSearch = payload => ({
+export const onSearch = (payload) => ({
   type: ACTION_TYPES.PATIENT_FETCH_REQUESTED,
-  payload
+  payload,
 });
-export const onSearchSuccess = payload => ({
+export const onSearchSuccess = (payload) => ({
   type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
-  payload
+  payload,
 });
 export const onSearchFailure = () => ({
   type: ACTION_TYPES.PATIENT_FETCH_FAILED,
-  payload: {}
+  payload: {},
 });
 
 export const onSearchIdNotFound = () => ({
   type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
-  payload
+  payload,
 });
 
 export const onSearchServerFailure = () => ({
   type: ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR,
-  payload
+  payload,
 });
 
 export const onSearchResetState = () => ({
-  type: ACTION_TYPES.PATIENT_FETCH_RESET_STATE
+  type: ACTION_TYPES.PATIENT_FETCH_RESET_STATE,
 });

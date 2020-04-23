@@ -1,20 +1,20 @@
 export const ACTION_TYPES = {
-  DOWNLOAD_PATHOLOGY_REQUESTED: "DOWNLOAD_PATHOLOGY_REQUESTED",
-  DOWNLOAD_PATHOLOGY_SUCCESS: "DOWNLOAD_PATHOLOGY_SUCCESS",
-  DOWNLOAD_PATHOLOGY_FAILURE: "DOWNLOAD_PATHOLOGY_FAILURE"
+  DOWNLOAD_PATHOLOGY_REQUESTED: 'DOWNLOAD_PATHOLOGY_REQUESTED',
+  DOWNLOAD_PATHOLOGY_SUCCESS: 'DOWNLOAD_PATHOLOGY_SUCCESS',
+  DOWNLOAD_PATHOLOGY_FAILURE: 'DOWNLOAD_PATHOLOGY_FAILURE',
 };
 
-export const downloadPathology = payload => ({
+export const downloadPathology = (payload) => ({
   type: ACTION_TYPES.DOWNLOAD_PATHOLOGY_REQUESTED,
-  payload
+  payload,
 });
 
-export const downloadPathologySuccess = payload => ({
+export const downloadPathologySuccess = (payload) => ({
   type: ACTION_TYPES.DOWNLOAD_PATHOLOGY_SUCCESS,
-  payload
+  payload,
 });
 
-export const downloadPathologyFailure = payload => ({
+export const downloadPathologyFailure = (payload) => ({
   type: ACTION_TYPES.DOWNLOAD_PATHOLOGY_FAILURE,
-  payload
+  payload,
 });

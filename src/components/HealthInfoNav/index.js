@@ -1,3 +1,3 @@
-import HealthInfoNav from "./HealthInfoNav.view"
+import HealthInfoNav from './HealthInfoNav.view';
 
 export default HealthInfoNav;

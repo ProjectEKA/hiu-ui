@@ -1,21 +1,21 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { Button } from "@material-ui/core";
-import RequestAccess from "../RequestAccess";
-import DatePicker from "../../../../src/components/DateTimePicker/DatePicker";
-import DateTimePicker from "../../../../src/components/DateTimePicker/DateTimePicker";
-import SimpleMenu from "../../../../src/components/SimpleMenu/SimpleMenu";
-import RequestType from "../../../../src/components/RequestType/RequestType";
-import getNextDay from "./../../../utils/getNextDay";
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Button } from '@material-ui/core';
+import RequestAccess from '../RequestAccess';
+import DatePicker from '../../../components/DateTimePicker/DatePicker';
+import DateTimePicker from '../../../components/DateTimePicker/DateTimePicker';
+import SimpleMenu from '../../../components/SimpleMenu/SimpleMenu';
+import RequestType from '../../../components/RequestType/RequestType';
+import getNextDay from '../../../utils/getNextDay';
 
-jest.mock("./../../../utils/getNextDay");
+jest.mock('./../../../utils/getNextDay');
 
-describe("Request Access", () => {
+describe('Request Access', () => {
   let realDate;
 
   beforeEach(() => {
-    const currentDate = new Date("2019-05-14T11:01:58.135Z");
-    getNextDay.mockImplementation(() => new Date("2019-05-15T11:01:58.135Z"));
+    const currentDate = new Date('2019-05-14T11:01:58.135Z');
+    getNextDay.mockImplementation(() => new Date('2019-05-15T11:01:58.135Z'));
     realDate = Date;
     global.Date = class extends Date {
       constructor(date) {
@@ -32,90 +32,90 @@ describe("Request Access", () => {
     global.Date = realDate;
   });
 
-  it("Should render properly", () => {
+  it('Should render properly', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(DatePicker).length).toEqual(2);
     expect(wrapper.find(DateTimePicker).length).toEqual(1);
   });
 
-  it("Purpose of request, should have referral services selected by default", () => {
+  it('Purpose of request, should have referral services selected by default', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(wrapper.find(SimpleMenu).props().selectedValue).toEqual(
-      "ReferralService"
+      'ReferralService',
     );
   });
 
-  it("From: date component, should have current date when no date is selected ", () => {
+  it('From: date component, should have current date when no date is selected ', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(
-      wrapper.find(DatePicker).at(0).props().selectedDate.toISOString()
-    ).toEqual("2019-05-14T11:01:58.135Z");
+      wrapper.find(DatePicker).at(0).props().selectedDate.toISOString(),
+    ).toEqual('2019-05-14T11:01:58.135Z');
   });
 
-  it("To: date component, should have current date when no date is selected ", () => {
+  it('To: date component, should have current date when no date is selected ', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(
-      wrapper.find(DatePicker).at(1).props().selectedDate.toISOString()
-    ).toEqual("2019-05-14T11:01:58.135Z");
+      wrapper.find(DatePicker).at(1).props().selectedDate.toISOString(),
+    ).toEqual('2019-05-14T11:01:58.135Z');
   });
 
-  it("Expiry: date component, should have next day as current date when no date is selected ", () => {
+  it('Expiry: date component, should have next day as current date when no date is selected ', () => {
     const wrapper = shallow(<RequestAccess />);
     const ActualExpiryDate = wrapper
       .find(DateTimePicker)
       .props()
       .selectedDate.toISOString();
-    const expectedExpiryDate = "2019-05-15T11:01:58.135Z";
+    const expectedExpiryDate = '2019-05-15T11:01:58.135Z';
     expect(ActualExpiryDate).toEqual(expectedExpiryDate);
   });
 
-  it("Error message, should be shown when error occurs while creating consent", () => {
-    const wrapper = shallow(<RequestAccess error={true} />);
-    const errorMessage = "Error occured while creating consent.";
+  it('Error message, should be shown when error occurs while creating consent', () => {
+    const wrapper = shallow(<RequestAccess error />);
+    const errorMessage = 'Error occured while creating consent.';
     expect(wrapper.contains(errorMessage)).toBe(true);
   });
 
-  it("Error message, should not be shown when no error occurs while creating consent", () => {
+  it('Error message, should not be shown when no error occurs while creating consent', () => {
     const wrapper = shallow(<RequestAccess />);
-    const errorMessage = "Error occured while creating consent.";
+    const errorMessage = 'Error occured while creating consent.';
     expect(wrapper.contains(errorMessage)).toBe(false);
   });
 
-  it("Request Consent: Button, should be disabled if none of the HI types are selected", () => {
+  it('Request Consent: Button, should be disabled if none of the HI types are selected', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(wrapper.find(Button).props().disabled).toBe(true);
   });
 
-  it("Request Consent: Button, should be enabled when at least one HI type is selected", () => {
+  it('Request Consent: Button, should be enabled when at least one HI type is selected', () => {
     const wrapper = shallow(<RequestAccess />);
     const handleHITypeChange = wrapper.find(RequestType).props().handleChange;
     const event = { target: { checked: true } };
-    handleHITypeChange("PatientHistory")(event);
+    handleHITypeChange('PatientHistory')(event);
 
     expect(wrapper.find(Button).props().disabled).toBe(false);
   });
 
-  it("Request Consent: Button, should show error if patientID is empty on click", () => {
+  it('Request Consent: Button, should show error if patientID is empty on click', () => {
     const wrapper = shallow(<RequestAccess />);
     wrapper.find(Button).props().onClick();
 
-    const errorMessage = "Please enter a patient identifier";
+    const errorMessage = 'Please enter a patient identifier';
     expect(wrapper.contains(errorMessage)).toBe(true);
   });
 
-  it("Request Consent: Button, call onCreateConsent on clicking if there are no errors", () => {
+  it('Request Consent: Button, call onCreateConsent on clicking if there are no errors', () => {
     const onCreateConsent = jest.fn();
     const wrapper = shallow(
-      <RequestAccess patientId="sample@ncg" onCreateConsent={onCreateConsent} />
+      <RequestAccess patientId="sample@ncg" onCreateConsent={onCreateConsent} />,
     );
     wrapper.find(Button).props().onClick();
 
     expect(onCreateConsent).toHaveBeenCalled();
   });
 
-  it("Loading: Circular Progress, should appear when request is in loading state", () => {
-    const wrapper = shallow(<RequestAccess loading={true} />);
-    expect(wrapper.find("#loader").exists()).toBe(true);
+  it('Loading: Circular Progress, should appear when request is in loading state', () => {
+    const wrapper = shallow(<RequestAccess loading />);
+    expect(wrapper.find('#loader').exists()).toBe(true);
   });
 });

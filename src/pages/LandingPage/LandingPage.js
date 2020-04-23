@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import Modal from "@material-ui/core/Modal";
-import Snackbar from "@material-ui/core/Snackbar";
+import React, { useState, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+import Snackbar from '@material-ui/core/Snackbar';
 
-import RequestAccess from "./../RequestAccess/RequestAccessContainer";
-import LoadConsentsContainer from "../../components/ConsentsListTable/LoadConsentsContainer";
-import Header from "../../components/Header";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
+import RequestAccess from '../RequestAccess/RequestAccessContainer';
+import LoadConsentsContainer from '../../components/ConsentsListTable/LoadConsentsContainer';
+import Header from '../../components/Header';
 
 function getModalStyle() {
   const top = 50;
@@ -21,7 +21,7 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: "absolute",
+    position: 'absolute',
     width: 1024,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
@@ -38,7 +38,7 @@ const LandingPage = ({
   onCreateConsentResetState,
   onSearchResetState,
   loadConsents,
-  loadConfigValueSets
+  loadConfigValueSets,
 }) => {
   useEffect(() => {
     loadConfigValueSets();
@@ -71,7 +71,7 @@ const LandingPage = ({
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={snackBarOpen}
         autoHideDuration={4000}
         onClose={handleSnackBarClose}

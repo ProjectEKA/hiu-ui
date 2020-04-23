@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/downloadPathologyActions";
+import { ACTION_TYPES } from '../actions/downloadPathologyActions';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -7,7 +7,7 @@ export default (state = {}, action) => {
         ...state,
         loading: true,
         error: false,
-        success: false
+        success: false,
       };
     case ACTION_TYPES.DOWNLOAD_PATHOLOGY_SUCCESS:
       return {
@@ -15,14 +15,14 @@ export default (state = {}, action) => {
         pathology: action.payload.data,
         loading: false,
         error: false,
-        success: true
+        success: true,
       };
     case ACTION_TYPES.DOWNLOAD_PATHOLOGY_FAILURE:
       return {
         ...state,
         loading: false,
         error: true,
-        success: false
+        success: false,
       };
     default:
       return state;

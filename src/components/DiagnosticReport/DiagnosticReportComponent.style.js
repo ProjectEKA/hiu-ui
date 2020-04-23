@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const DiagnosticReportComponentStyles = styled.div`
   .diagnostic-report-table-container {

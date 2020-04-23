@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import valueForObs from "./ObsValueHandlers";
-import TableStyles from "./../../components/common/Styles/Table.style";
-import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
+import React, { useEffect, useState } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import valueForObs from './ObsValueHandlers';
+import TableStyles from '../common/Styles/Table.style';
+import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 
-const Components = ({ components }) => {
-  return components
-    ? components.map((component, i) => (
-        <li style={{ backgroundColor: "primary" }} key={i}>
-          <span>{component.code.text} : </span>
-          <span>{component.valueString}</span>
-        </li>
-      ))
-    : null;
-};
+const Components = ({ components }) => (components
+  ? components.map((component, i) => (
+    <li style={{ backgroundColor: 'primary' }} key={i}>
+      <span>
+        {component.code.text}
+        {' '}
+        :
+        {' '}
+      </span>
+      <span>{component.valueString}</span>
+    </li>
+  ))
+  : null);
 
 const ObservationTable = ({ data }) => {
   function extractInterpretation(entry) {
-    return entry.interpretation ? entry.interpretation[0].text : "";
+    return entry.interpretation ? entry.interpretation[0].text : '';
   }
 
   return data && data.length !== 0 ? (
@@ -47,15 +50,15 @@ const ObservationTable = ({ data }) => {
             {data.map((entry, i) => (
               <TableRow
                 key={i}
-                className={entry.id ? "children-row" : "parent-row"}
+                className={entry.id ? 'children-row' : 'parent-row'}
               >
                 {entry.id ? (
-                  <TableCell className="table-cell"></TableCell>
+                  <TableCell className="table-cell" />
                 ) : (
                   <TableCell className="table-cell">
                     {entry.effectiveDateTime
                       ? formatDateString(entry.effectiveDateTime)
-                      : ""}
+                      : ''}
                   </TableCell>
                 )}
                 <TableCell className="table-cell">{entry.code.text}</TableCell>
@@ -76,7 +79,7 @@ const ObservationTable = ({ data }) => {
       </TableContainer>
     </TableStyles>
   ) : (
-    <div></div>
+    <div />
   );
 };
 

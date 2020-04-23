@@ -1,9 +1,9 @@
-import React from "react";
-import _ from "lodash";
-import { connect } from "react-redux";
-import PatientHealthInformation from "./PatientHealthInformation.view";
-import { loadHealthData } from "../../redux/actions/loadHealthDataActions";
-import getNestedObject from "../../utils/getNestedObject";
+import React from 'react';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import PatientHealthInformation from './PatientHealthInformation.view';
+import { loadHealthData } from '../../redux/actions/loadHealthDataActions';
+import getNestedObject from '../../utils/getNestedObject';
 
 function extractDatesArray(data) {
   if (data) {
@@ -19,24 +19,24 @@ function extractSelectedDate(data) {
   return undefined;
 }
 
-const mapStateToProps = state => ({
-  healthInfo: getNestedObject(state, "healthInfo.healthData"),
-  dateArray: extractDatesArray(getNestedObject(state, "healthInfo.healthData")),
+const mapStateToProps = (state) => ({
+  healthInfo: getNestedObject(state, 'healthInfo.healthData'),
+  dateArray: extractDatesArray(getNestedObject(state, 'healthInfo.healthData')),
   defaultSelectedDate: extractSelectedDate(
-    getNestedObject(state, "healthInfo.healthData")
+    getNestedObject(state, 'healthInfo.healthData'),
   ),
-  erroredEntiresCount: _.get(state, "healthInfo.entriesCount.ERRORED", 0),
+  erroredEntiresCount: _.get(state, 'healthInfo.entriesCount.ERRORED', 0),
   success: state.healthInfo.success,
   loading: state.healthInfo.loading,
   error: state.healthInfo.error,
-  patientData: getNestedObject(state, "healthInfo.patientData")
+  patientData: getNestedObject(state, 'healthInfo.patientData'),
 });
 
 const mapDispatchToProps = {
-  loadHealthData
+  loadHealthData,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PatientHealthInformation);

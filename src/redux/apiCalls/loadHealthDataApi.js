@@ -1,16 +1,16 @@
-import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
+import apiWrapper from '../apiWrapper';
+import { defaultHeaders } from '../../constants';
 
 const loadHealthDataApi = (consentRequestId, groupFunction) => {
-  const authToken = localStorage.getItem("auth-token");
+  const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
-    "get",
+    'get',
     `/health-information/fetch/${consentRequestId}`,
     {},
     {
       ...defaultHeaders,
       Authorization: authToken,
-    }
+    },
   );
 };
 

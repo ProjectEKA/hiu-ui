@@ -1,18 +1,18 @@
-import React from "react";
-import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
-import DiagnosticReportComponentStyles from "./DiagnosticReportComponent.style";
-import Typography from "@material-ui/core/Typography";
-import { useParams } from "react-router-dom";
-import getNestedObject from "../../utils/getNestedObject";
-import ObservationTable from "../../components/ObservationTable/ObservationTable";
-import { formatDateString } from "../common/HealthInfo/FhirResourcesUtils";
+import React from 'react';
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { useParams } from 'react-router-dom';
+import DiagnosticReportComponentStyles from './DiagnosticReportComponent.style';
+import getNestedObject from '../../utils/getNestedObject';
+import ObservationTable from '../ObservationTable/ObservationTable';
+import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 
 const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const performerArray = [];
   function extractPerformer(entry) {
     if (entry.performer) {
-      entry.performer.map(prmr => {
+      entry.performer.map((prmr) => {
         performerArray.push(prmr.display);
       });
       return performerArray;
@@ -20,45 +20,41 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
     return undefined;
   }
 
-  const PresentedForm = ({ entry }) => {
-    return entry.presentedForm ? (
-      <div>
-        <span>Diagnostic report links and attachments : </span>
-        <ul>
-          {entry.presentedForm.map(link => {
-            return (
-              <li>
-                <a
-                  href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
-                  target="_blank"
-                >
-                  {link.title ? link.title : "Link"}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    ) : (
-      <div></div>
-    );
-  };
+  const PresentedForm = ({ entry }) => (entry.presentedForm ? (
+    <div>
+      <span>Diagnostic report links and attachments : </span>
+      <ul>
+        {entry.presentedForm.map((link) => (
+          <li>
+            <a
+              href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
+              target="_blank"
+            >
+              {link.title ? link.title : 'Link'}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <div />
+  ));
 
   function getResultsList(results, resourceType) {
     const referenceList = [];
     results
-      ? results.map(result => {
-          const resource = result.targetResource;
-          referenceList.push(resource);
-        })
+      ? results.map((result) => {
+        const resource = result.targetResource;
+        referenceList.push(resource);
+      })
       : undefined;
-    return referenceList.filter(ref => (ref.resourceType = resourceType));
+    return referenceList.filter((ref) => (ref.resourceType = resourceType));
   }
 
   const Observations = ({ entry }) => {
     const ObsList = getResultsList(
-      getNestedObject(entry, "result"),
-      "Observations"
+      getNestedObject(entry, 'result'),
+      'Observations',
     );
     return <ObservationTable data={ObsList} />;
   };
@@ -66,98 +62,95 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   function getMediaList(results, resourceType) {
     const referenceList = [];
     results
-      ? results.map(result => {
-          const mediaLinkObject = {
-            display: result.link.display ? result.link.display : "Media Link",
-            url: result.link.targetResource.content.url,
-            targetResource: result.link.targetResource
-          };
-          referenceList.push(mediaLinkObject);
-        })
+      ? results.map((result) => {
+        const mediaLinkObject = {
+          display: result.link.display ? result.link.display : 'Media Link',
+          url: result.link.targetResource.content.url,
+          targetResource: result.link.targetResource,
+        };
+        referenceList.push(mediaLinkObject);
+      })
       : undefined;
     return referenceList.filter(
-      ref => (ref.targetResource.resourceType = resourceType)
+      (ref) => (ref.targetResource.resourceType = resourceType),
     );
   }
 
   function generateImageUrl(url) {
-    const urlArray = url.split("/");
+    const urlArray = url.split('/');
     const StudyInstanceUID = urlArray.slice(-1).pop();
     const dicomCtx = btoa(DICOM_SERVER_PATH);
 
-    const dicomUrl =
-      window.location.origin +
-      "/viewer/" +
-      StudyInstanceUID +
-      "?dicomCtx=" +
-      dicomCtx;
+    const dicomUrl = `${window.location.origin
+    }/viewer/${
+      StudyInstanceUID
+    }?dicomCtx=${
+      dicomCtx}`;
     return dicomUrl;
   }
 
   const Media = ({ entry }) => {
-    const MediaList = getMediaList(getNestedObject(entry, "media"), "Media");
+    const MediaList = getMediaList(getNestedObject(entry, 'media'), 'Media');
     return MediaList && MediaList.length != 0 ? (
       <div>
         <span>Associated media : </span>
         <ul>
-          {MediaList.map(link => {
-            return (
-              <li>
-                <a href={generateImageUrl(link.url)} target="_blank">
-                  {link.display}
-                </a>
-              </li>
-            );
-          })}
+          {MediaList.map((link) => (
+            <li>
+              <a href={generateImageUrl(link.url)} target="_blank">
+                {link.display}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     ) : (
-      <div></div>
+      <div />
     );
   };
 
   return data && data.length !== 0 ? (
-    data.map(entry => {
-      return (
-        <DiagnosticReportComponentStyles>
-          <TableContainer
-            className="diagnostic-report-table-container"
-            component={Paper}
+    data.map((entry) => (
+      <DiagnosticReportComponentStyles>
+        <TableContainer
+          className="diagnostic-report-table-container"
+          component={Paper}
+        >
+          <Typography
+            className="diagnostic-report-header"
+            variant="h6"
+            component="h6"
           >
-            <Typography
-              className="diagnostic-report-header"
-              variant="h6"
-              component="h6"
-            >
-              Diagnostic report : {entry.code ? entry.code.text : ""}
-            </Typography>
-            <div className="diagnostic-report">
-              <ul className="report-details-list">
-                <li>
-                  <span>Date: </span>
-                  {entry.effectiveDateTime
-                    ? formatDateString(entry.effectiveDateTime)
-                    : "-"}
-                </li>
-                <li>
-                  <span>Status: </span>
-                  {entry.status}
-                </li>
-                <li>
-                  <span>Performer: </span>
-                  {extractPerformer(entry)}
-                </li>
-              </ul>
-              <Observations entry={entry} />
-              <PresentedForm entry={entry} />
-              <Media entry={entry} />
-            </div>
-          </TableContainer>
-        </DiagnosticReportComponentStyles>
-      );
-    })
+            Diagnostic report :
+            {' '}
+            {entry.code ? entry.code.text : ''}
+          </Typography>
+          <div className="diagnostic-report">
+            <ul className="report-details-list">
+              <li>
+                <span>Date: </span>
+                {entry.effectiveDateTime
+                  ? formatDateString(entry.effectiveDateTime)
+                  : '-'}
+              </li>
+              <li>
+                <span>Status: </span>
+                {entry.status}
+              </li>
+              <li>
+                <span>Performer: </span>
+                {extractPerformer(entry)}
+              </li>
+            </ul>
+            <Observations entry={entry} />
+            <PresentedForm entry={entry} />
+            <Media entry={entry} />
+          </div>
+        </TableContainer>
+      </DiagnosticReportComponentStyles>
+    ))
   ) : (
-    <div></div>
+    <div />
   );
 };
 

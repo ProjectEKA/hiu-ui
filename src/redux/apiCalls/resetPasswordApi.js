@@ -1,19 +1,19 @@
-import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
+import apiWrapper from '../apiWrapper';
+import { defaultHeaders } from '../../constants';
 
 const resetPasswordApi = ({ oldPassword, confirmPassword }) => {
-  const authToken = localStorage.getItem("auth-token");
+  const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
-    "put",
-    `/users/password`,
+    'put',
+    '/users/password',
     {
-      oldPassword: oldPassword,
+      oldPassword,
       newPassword: confirmPassword,
     },
     {
       ...defaultHeaders,
       Authorization: authToken,
-    }
+    },
   );
 };
 

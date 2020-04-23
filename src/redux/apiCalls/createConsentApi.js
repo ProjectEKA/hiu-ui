@@ -1,5 +1,5 @@
-import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
+import apiWrapper from '../apiWrapper';
+import { defaultHeaders } from '../../constants';
 
 const createConsentApi = ({
   patientId,
@@ -10,14 +10,13 @@ const createConsentApi = ({
   selectedRequestTypes,
 }) => {
   const selectedRequests = Object.keys(selectedRequestTypes).reduce(
-    (preValue, currValue) =>
-      selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue,
-    []
+    (preValue, currValue) => (selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue),
+    [],
   );
-  const authToken = localStorage.getItem("auth-token");
+  const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
-    "post",
-    `/consent-requests`,
+    'post',
+    '/consent-requests',
     {
       consent: {
         patient: {
@@ -39,7 +38,7 @@ const createConsentApi = ({
     {
       ...defaultHeaders,
       Authorization: authToken,
-    }
+    },
   );
 };
 

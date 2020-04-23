@@ -1,53 +1,55 @@
-import React, { useState } from "react";
-import { Button, CircularProgress } from "@material-ui/core";
-import RequestAccessStyles from "./RequestAccess.style";
-import SearchPatient from "./../../components/SearchPatient";
-import DateTimePicker from "./../../components/DateTimePicker/DateTimePicker";
-import DatePicker from "./../../components/DateTimePicker/DatePicker";
-import Grid from "@material-ui/core/Grid";
-import InputLabel from "@material-ui/core/InputLabel";
-import RequestType from "./../../components/RequestType/RequestType";
-import SimpleMenu from "./../../components/SimpleMenu/SimpleMenu";
-import getNextDay from "./../../utils/getNextDay";
+import React, { useState } from 'react';
+import { Button, CircularProgress } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import RequestAccessStyles from './RequestAccess.style';
+import SearchPatient from '../../components/SearchPatient';
+import DateTimePicker from '../../components/DateTimePicker/DateTimePicker';
+import DatePicker from '../../components/DateTimePicker/DatePicker';
+import RequestType from '../../components/RequestType/RequestType';
+import SimpleMenu from '../../components/SimpleMenu/SimpleMenu';
+import getNextDay from '../../utils/getNextDay';
 
-const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfUse, hiTypes }) => {
+const RequestAccess = ({
+  onCreateConsent, patientId, loading, error, purposesOfUse, hiTypes,
+}) => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const usagePurposes = purposesOfUse.map(p => ({ label: p.display, value: p.code }));
+  const usagePurposes = purposesOfUse.map((p) => ({ label: p.display, value: p.code }));
   const [selectedPurposeValue, setSelectedPurposeValue] = useState(
-    usagePurposes.length > 0 ? usagePurposes[0].value : ""
+    usagePurposes.length > 0 ? usagePurposes[0].value : '',
   );
-  const requestHiTypes = hiTypes.map(p => ({ label: p.display, value: p.code })); 
-  var hiTypesInitialStates  = Object.assign(...requestHiTypes.map(hiType => { return {[hiType.value]: false} } )) 
-  const [selectedRequestTypes, setSelectedRequestTypes] = useState(hiTypesInitialStates)
+  const requestHiTypes = hiTypes.map((p) => ({ label: p.display, value: p.code }));
+  const hiTypesInitialStates = Object.assign(...requestHiTypes.map((hiType) => ({ [hiType.value]: false })));
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState(hiTypesInitialStates);
 
   const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
   const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
 
-  const isButtonEnabled = Object.values(selectedRequestTypes).some(x => x);
+  const isButtonEnabled = Object.values(selectedRequestTypes).some((x) => x);
 
-  const handleHITypeChange = name => event => {
+  const handleHITypeChange = (name) => (event) => {
     setSelectedRequestTypes({
       ...selectedRequestTypes,
-      [name]: event.target.checked
+      [name]: event.target.checked,
     });
   };
-  const handleStarteDateChange = date => {
-    var startDate = date;
+  const handleStarteDateChange = (date) => {
+    const startDate = date;
     setSelectedStartDate(startDate);
   };
-  const handleEndDateChange = date => {
-    var startDate = selectedStartDate;
-    var endDate = date;
+  const handleEndDateChange = (date) => {
+    const startDate = selectedStartDate;
+    const endDate = date;
     if (startDate.getTime() < endDate.getTime()) {
       setSelectedEndDate(endDate);
     }
   };
-  const handleExpiryDateChange = date => {
+  const handleExpiryDateChange = (date) => {
     setSelectedExpiryDate(date);
   };
 
-  const handlePurposeSelection = event => {
+  const handlePurposeSelection = (event) => {
     setSelectedPurposeValue(event.target.value);
   };
 
@@ -95,7 +97,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfU
           <Grid item xs={2}>
             <DatePicker
               minDate="01/01/1900"
-              disableFuture={true}
+              disableFuture
               handleDateChange={handleStarteDateChange}
               selectedDate={selectedStartDate}
             />
@@ -107,7 +109,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfU
           </Grid>
           <Grid item xs={2}>
             <DatePicker
-              disableFuture={true}
+              disableFuture
               minDate={selectedStartDate}
               handleDateChange={handleEndDateChange}
               selectedDate={selectedEndDate}
@@ -154,7 +156,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfU
                 selectedStartDate,
                 selectedEndDate,
                 selectedExpiryDate,
-                selectedRequestTypes
+                selectedRequestTypes,
               });
             }}
           >
@@ -179,7 +181,7 @@ const RequestAccess = ({ onCreateConsent, patientId, loading, error, purposesOfU
 
 SearchPatient.defaultProps = {
   success: false,
-  error: false
+  error: false,
 };
 
 export default RequestAccess;

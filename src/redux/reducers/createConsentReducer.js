@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/createConsentActions";
+import { ACTION_TYPES } from '../actions/createConsentActions';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -7,28 +7,28 @@ export default (state = {}, action) => {
         ...state,
         loading: true,
         error: false,
-        success: false
+        success: false,
       };
     case ACTION_TYPES.CREATE_CONSENT_SUCCEEDED:
       return {
         ...state,
         loading: false,
         error: false,
-        success: true
+        success: true,
       };
     case ACTION_TYPES.CREATE_CONSENT_FAILED:
       return {
         ...state,
         loading: false,
         error: true,
-        success: false
+        success: false,
       };
     case ACTION_TYPES.CREATE_CONSENT_RESET_STATE:
       return {
         ...state,
         loading: false,
         error: false,
-        success: false
+        success: false,
       };
     default:
       return state;

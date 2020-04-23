@@ -1,139 +1,131 @@
 const processingOrder = [
-    "bundle",
-    "composition",
-    "encounter",
-    "diagnosticreport",
-    "imagingstudy",
-    "media",
-    "condition",
-    "servicerequest",
-    "procedure",
-    "observation",
-    "medicationrequest",
-    "patient",
-    "person",
-    "organization",
-    "practitioner",
-    "endpoint",
-    "location"
+  'bundle',
+  'composition',
+  'encounter',
+  'diagnosticreport',
+  'imagingstudy',
+  'media',
+  'condition',
+  'servicerequest',
+  'procedure',
+  'observation',
+  'medicationrequest',
+  'patient',
+  'person',
+  'organization',
+  'practitioner',
+  'endpoint',
+  'location',
 ];
 
 const baseEntities = [
-    "patient",
-    "person",
-    "organization",
-    "practitioner",
-    "endpoint",
-    "location"
+  'patient',
+  'person',
+  'organization',
+  'practitioner',
+  'endpoint',
+  'location',
 ];
 
-const rootResources = ["composition", "encounter", "diagnosticreport", "imagingstudy", "procedure", "observation"];
+const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation'];
 
-const getFormattedDateString = function(dateString) {
-    if (!dateString) {
-      return undefined;
-    }
-    var dt = new Date(dateString);
-    return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+const getFormattedDateString = function (dateString) {
+  if (!dateString) {
+    return undefined;
+  }
+  const dt = new Date(dateString);
+  return `${dt.getDate()}/${dt.getMonth() + 1}/${dt.getFullYear()}`;
 };
 
-const identifyFirstParent = function(resource) {
+const identifyFirstParent = function (resource) {
   if (resource.parentResources) {
     resource.parentResources.sort((r1, r2) => {
-      var i1 = rootResources.indexOf(r1.resourceType.toLowerCase());
-      var i2 = rootResources.indexOf(r2.resourceType.toLowerCase());
+      const i1 = rootResources.indexOf(r1.resourceType.toLowerCase());
+      const i2 = rootResources.indexOf(r2.resourceType.toLowerCase());
       return i1 < i2 ? -1 : (i1 > i2 ? 1 : 0);
     });
-    var firstParent = resource.parentResources[0];
+    const firstParent = resource.parentResources[0];
     return firstParent;
-  } else {
-    return undefined;
   }
+  return undefined;
 };
 
-const identifyParentOfType = function(resource, parentType) {
+const identifyParentOfType = function (resource, parentType) {
   if (resource.parentResources) {
-    return resource.parentResources.find(pr => {
-      return pr.resourceType.toLowerCase() === parentType.toLowerCase();
-    });
-  } else {
-    return undefined;
+    return resource.parentResources.find((pr) => pr.resourceType.toLowerCase() === parentType.toLowerCase());
   }
+  return undefined;
 };
 
 const resourceDateFormatter = {
-    composition: function(res) {
-      return getFormattedDateString(res.date);
-    },
-    encounter: function(res) {
-      if (res.hasOwnProperty("period")) {
-        return getFormattedDateString(res.period.start);
-      }
-      return null;
-    },
-    diagnosticreport: function(res) {
-      if (res.hasOwnProperty("issued")) {
-        return getFormattedDateString(res.issued);
-      } else if (res.hasOwnProperty("effectiveDateTime")) {
-        return getFormattedDateString(res.effectiveDateTime);
-      } else {
-        return getFormattedDateString(res.effectivePeriod.start);
-      }
-    },
-    media: function(res) {
-      if (res.hasOwnProperty("createdDateTime")) {
-        return getFormattedDateString(res.createdDateTime);
-      } else {
-        return res.createdPeriod
-          ? getFormattedDateString(res.createdPeriod.start)
-          : undefined;
-      }
-    },
-    condition: function(res) {
-      return getFormattedDateString(res.recordedDate);
-    },
-    servicerequest: function(res) {
-      return getFormattedDateString(res.authoredOn);
-    },
-    procedure: function(res) {
-      //TODO can be period, string etc.
-      return getFormattedDateString(res.performedDateTime);
-    },
-    observation: function(res) {
-      if (res.hasOwnProperty("effectiveDateTime")) {
-        return getFormattedDateString(res.effectiveDateTime);
-      } else if (res.hasOwnProperty("effectivePeriod")) {
-        return getFormattedDateString(res.effectivePeriod.start);
-      }
-      return null;
-    },
-    medicationrequest: function(res) {
-      return getFormattedDateString(res.authoredOn);
-    },
-    imagingstudy: function(res) {
-      if (res.parentResources) {
-        var firstParent = identifyFirstParent(res);
-        if (firstParent.hasOwnProperty("issued")) {
-          return getFormattedDateString(firstParent.issued);
-        } else if (firstParent.hasOwnProperty("effectiveDateTime")) {
-          return getFormattedDateString(firstParent.effectiveDateTime);
-        } else {
-          return getFormattedDateString(firstParent.effectivePeriod.start);
-        }
-      } else {
-        return getFormattedDateString(res.started);
-      }
+  composition(res) {
+    return getFormattedDateString(res.date);
+  },
+  encounter(res) {
+    if (res.hasOwnProperty('period')) {
+      return getFormattedDateString(res.period.start);
     }
+    return null;
+  },
+  diagnosticreport(res) {
+    if (res.hasOwnProperty('issued')) {
+      return getFormattedDateString(res.issued);
+    } if (res.hasOwnProperty('effectiveDateTime')) {
+      return getFormattedDateString(res.effectiveDateTime);
+    }
+    return getFormattedDateString(res.effectivePeriod.start);
+  },
+  media(res) {
+    if (res.hasOwnProperty('createdDateTime')) {
+      return getFormattedDateString(res.createdDateTime);
+    }
+    return res.createdPeriod
+      ? getFormattedDateString(res.createdPeriod.start)
+      : undefined;
+  },
+  condition(res) {
+    return getFormattedDateString(res.recordedDate);
+  },
+  servicerequest(res) {
+    return getFormattedDateString(res.authoredOn);
+  },
+  procedure(res) {
+    // TODO can be period, string etc.
+    return getFormattedDateString(res.performedDateTime);
+  },
+  observation(res) {
+    if (res.hasOwnProperty('effectiveDateTime')) {
+      return getFormattedDateString(res.effectiveDateTime);
+    } if (res.hasOwnProperty('effectivePeriod')) {
+      return getFormattedDateString(res.effectivePeriod.start);
+    }
+    return null;
+  },
+  medicationrequest(res) {
+    return getFormattedDateString(res.authoredOn);
+  },
+  imagingstudy(res) {
+    if (res.parentResources) {
+      const firstParent = identifyFirstParent(res);
+      if (firstParent.hasOwnProperty('issued')) {
+        return getFormattedDateString(firstParent.issued);
+      } if (firstParent.hasOwnProperty('effectiveDateTime')) {
+        return getFormattedDateString(firstParent.effectiveDateTime);
+      }
+      return getFormattedDateString(firstParent.effectivePeriod.start);
+    }
+    return getFormattedDateString(res.started);
+  },
 };
 
-const getConceptDisplay = function(codeableConcept) {
+const getConceptDisplay = function (codeableConcept) {
   if (codeableConcept) {
     if (codeableConcept.text) {
       return codeableConcept.text;
     }
     if (codeableConcept.coding) {
-      for (var index = 0; index < codeableConcept.coding.length; index++) { 
-        var coding = codeableConcept.coding[index];
+      for (let index = 0; index < codeableConcept.coding.length; index++) {
+        const coding = codeableConcept.coding[index];
         if (coding.display) {
           return coding.display;
         }
@@ -142,25 +134,26 @@ const getConceptDisplay = function(codeableConcept) {
         }
       }
     }
-  } 
+  }
   return null;
 };
 
-const formatDateString = function(aDate, includeTime) {
-  if (aDate) { 
-    var dateString = aDate.toString();
+const formatDateString = function (aDate, includeTime) {
+  if (aDate) {
+    const dateString = aDate.toString();
     if (dateString.length > 0) {
-      var dt = new Date(dateString);
-      var dtStr = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+      const dt = new Date(dateString);
+      let dtStr = `${dt.getDate()}/${dt.getMonth() + 1}/${dt.getFullYear()}`;
       if (includeTime) {
-        dtStr = dtStr + " " + dt.getHours() + ":" + dt.getMinutes();
+        dtStr = `${dtStr} ${dt.getHours()}:${dt.getMinutes()}`;
       }
       return dtStr;
-    } else {
-      return "";
     }
+    return '';
   }
-  return "";
+  return '';
 };
 
-export { identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString };
+export {
+  identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString,
+};
