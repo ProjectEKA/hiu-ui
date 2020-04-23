@@ -1,13 +1,12 @@
 import React from "react";
-import HipHealthInfoContainer from "./HipHealthInfoContainer";
+import HealthInformationContent from "./HealthInformationContent.view";
 
-const HealthInfoContainer = ({ consentReqId, healthInfo, selectedDate }) => {
+const HealthInformation = ({ consentReqId, healthInfo, selectedDate }) => {
   const healthInfoForSelectedDate = healthInfo ? healthInfo[selectedDate] : "";
-
   return healthInfoForSelectedDate ? (
     healthInfoForSelectedDate.map(hip => {
       return (
-        <HipHealthInfoContainer
+        <HealthInformationContent
           consentReqId={consentReqId}
           hipName={hip.hipName}
           data={hip.data}
@@ -19,4 +18,4 @@ const HealthInfoContainer = ({ consentReqId, healthInfo, selectedDate }) => {
   );
 };
 
-export default HealthInfoContainer;
+export default HealthInformation;

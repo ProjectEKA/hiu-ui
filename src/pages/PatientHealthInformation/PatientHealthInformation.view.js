@@ -4,7 +4,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import PatientDetails from "../../components/PatientDetails";
 import HealthInfoNav from "../../components/HealthInfoNav";
-import HealthInfoContainer from "../../components/HealthInfoContainer/HealthInfoContainer";
+import HealthInformation from "../../components/HealthInformation";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
 import AlertBox from "../../components/AlertBox/AlertBox";
 import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
@@ -19,7 +19,7 @@ const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, hea
         selectedDate={selectedDate}
         setSelectedDate={onChange}
       />
-      <HealthInfoContainer
+      <HealthInformation
         consentReqId={reqID}
         healthInfo={healthInfo}
         selectedDate={selectedDate}
