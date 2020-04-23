@@ -10,26 +10,24 @@ function* onSignIn(action) {
     if (User) {
       yield put({
         type: ACTION_TYPES.SIGNIN_SUCCEEDED,
-        payload: User,
+        payload: User
       });
     }
   } catch (e) {
     yield put({
       type: ACTION_TYPES.SIGNIN_FAILED,
-      payload: e,
+      payload: e
     });
   }
 }
 
 function* onSignInSuccess(action) {
-  const decoded_token = jwt_decode(action.payload.data.accessToken);
-  const pwdVerified = decoded_token.isVerified;
   yield call(
     [localStorage, "setItem"],
     "auth-token",
     action.payload.data.accessToken
   );
-  pwdVerified ? history.push(BASE_NAME) : history.push("/reset-password");
+  history.push(BASE_NAME);
 }
 
 function* onSignInFailure(action) {
@@ -39,5 +37,5 @@ function* onSignInFailure(action) {
 export default {
   [ACTION_TYPES.SIGNIN_REQUESTED]: onSignIn,
   [ACTION_TYPES.SIGNIN_SUCCEEDED]: onSignInSuccess,
-  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure,
+  [ACTION_TYPES.SIGNIN_FAILED]: onSignInFailure
 };

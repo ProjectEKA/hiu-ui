@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ResetPassword({ onResetPassword, error }) {
+export default function ResetPassword({ onResetPassword, error, errorMessgae }) {
   const classes = useStyles();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -97,7 +97,7 @@ export default function ResetPassword({ onResetPassword, error }) {
           </ListItem>
         </List>
         {error && (
-          <span className={classes.error}>Enter valid password. {error}</span>
+          <span className={classes.error}>{errorMessgae}</span>
         )}
         {newPassword !== "" &&
           confirmPassword !== "" &&
@@ -132,7 +132,6 @@ export default function ResetPassword({ onResetPassword, error }) {
               New Password
             </InputLabel>
             <OutlinedInput
-              error={error}
               variant="outlined"
               required
               name="newPassword"
@@ -167,7 +166,6 @@ export default function ResetPassword({ onResetPassword, error }) {
               Confirm Password
             </InputLabel>
             <OutlinedInput
-              error={error}
               variant="outlined"
               required
               name="confirmPassword"

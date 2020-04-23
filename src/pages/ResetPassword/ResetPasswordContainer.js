@@ -1,15 +1,16 @@
 import React from "react";
+import _ from "lodash";
 import { connect } from "react-redux";
 import ResetPassword from "./ResetPassword";
 import { onResetPassword } from "../../redux/actions/onResetPasswordActions";
-import getNestedObject from "../../utils/getNestedObject";
 
-const mapStateToProps = (state) => ({
-  error: getNestedObject(state, "resetPassword.error"),
+const mapStateToProps = state => ({
+  error: _.get(state, "resetPassword.error"),
+  errorMessgae: _.get(state, "resetPassword.errorMessage")
 });
 
 const mapDispatchToProps = {
-  onResetPassword,
+  onResetPassword
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
