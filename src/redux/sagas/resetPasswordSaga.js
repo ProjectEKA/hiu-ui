@@ -1,5 +1,6 @@
 import { ACTION_TYPES } from "../actions/onResetPasswordActions";
 import { call, put } from "redux-saga/effects";
+import _ from 'lodash';
 import resetPasswordApi from "../apiCalls/resetPasswordApi";
 import history from "../../history";
 
@@ -15,7 +16,7 @@ function* onResetPassword(action) {
   } catch (e) {
     yield put({
       type: ACTION_TYPES.RESET_PASSWORD_FAILED,
-      payload: e,
+      payload: _.get(e, "response.data")
     });
   }
 }
