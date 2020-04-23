@@ -6,7 +6,7 @@ import PatientDetails from "../../components/PatientDetails";
 import HealthInfoNav from "../../components/HealthInfoNav";
 import HealthInformation from "../../components/HealthInformation";
 import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
-import AlertBox from "../../components/AlertBox/AlertBox";
+import AlertBox from "../../components/AlertBox";
 import Breadcrumb from "../../components/breadcrumbs/breadcrumbs";
 import Header from "../../components/Header/Header";
 
