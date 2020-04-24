@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import SearchPatientStyles from "./SearchPatient.style";
-import { IconButton, TextField, CircularProgress } from "@material-ui/core";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
+import React, { useState, useEffect } from 'react';
+import { IconButton, TextField, CircularProgress } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import SearchPatientStyles from './SearchPatient.style';
 
 const SearchPatient = ({
   onSearch,
@@ -12,17 +12,17 @@ const SearchPatient = ({
   success,
   loading,
   error,
-  serverError
+  serverError,
 }) => {
   const [localPatientId, setPatientId] = useState(patientId);
-  const [textInput, setTextInput] = useState("");
+  const [textInput, setTextInput] = useState('');
   useEffect(() => {
     if (loading) {
-      const loadingText = "Looking for ".concat(textInput);
+      const loadingText = 'Looking for '.concat(textInput);
       setTextInput(loadingText);
       setPatientId(textInput);
     } else {
-      const successText = localPatientId.concat(": ", patientName);
+      const successText = localPatientId.concat(': ', patientName);
       {
         success ? setTextInput(successText) : setTextInput(localPatientId);
       }
@@ -31,12 +31,12 @@ const SearchPatient = ({
 
   const generateErrorText = () => {
     if (error || serverError) {
-      return "Id not found.";
+      return 'Id not found.';
     }
-    return "";
+    return '';
   };
 
-  const onChangeSearch = e => {
+  const onChangeSearch = (e) => {
     setTextInput(e.target.value);
     onSearchResetState();
   };
@@ -52,11 +52,11 @@ const SearchPatient = ({
           helperText={generateErrorText()}
           value={textInput}
           InputProps={{
-            endAdornment: <InputAdornment position="end">@ncg</InputAdornment>
+            endAdornment: <InputAdornment position="end">@ncg</InputAdornment>,
           }}
           onChange={onChangeSearch}
-          onKeyPress={e => {
-            if (event.key === "Enter") {
+          onKeyPress={(e) => {
+            if (event.key === 'Enter') {
               onSearch(textInput);
             }
           }}
@@ -93,10 +93,10 @@ const SearchPatient = ({
 };
 
 SearchPatient.defaultProps = {
-  patientId: "",
+  patientId: '',
   loading: false,
   error: false,
-  serverError: false
+  serverError: false,
 };
 
 export default SearchPatient;

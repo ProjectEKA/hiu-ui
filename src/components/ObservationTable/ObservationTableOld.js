@@ -1,41 +1,39 @@
-import React, { useEffect, useState } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import ObservationTableStyles from "./ObservationTable.style";
+import React, { useEffect, useState } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
+import { ArrowDropDown, ArrowRight } from '@material-ui/icons';
+import ObservationTableStyles from './ObservationTable.style';
 import {
   generateObservableEntity,
   generateObservableEntityValue,
   generateObservableEntityStatusInterpretation,
-  generateRowsForMembers
-} from "./ObservationTableHelperFunctions";
-import IconButton from "@material-ui/core/IconButton";
-import { ArrowDropDown, ArrowRight } from "@material-ui/icons";
+  generateRowsForMembers,
+} from './ObservationTableHelperFunctions';
 
-const ObservationMembers = ({ members, close }) => {
-  return members
-    ? members.map((member, i) => (
-        <TableRow
-          className={close ? "close" : ""}
-          style={{ backgroundColor: "primary" }}
-          key={i}
-        >
-          <TableCell></TableCell>
-          <TableCell></TableCell>
-          <TableCell>{generateObservableEntity(member)}</TableCell>
-          <TableCell>{generateObservableEntityValue(member)}</TableCell>
-          <TableCell>
-            {generateObservableEntityStatusInterpretation(member)}
-          </TableCell>
-        </TableRow>
-      ))
-    : null;
-};
+const ObservationMembers = ({ members, close }) => (members
+  ? members.map((member, i) => (
+    <TableRow
+      className={close ? 'close' : ''}
+      style={{ backgroundColor: 'primary' }}
+      key={i}
+    >
+      <TableCell />
+      <TableCell />
+      <TableCell>{generateObservableEntity(member)}</TableCell>
+      <TableCell>{generateObservableEntityValue(member)}</TableCell>
+      <TableCell>
+        {generateObservableEntityStatusInterpretation(member)}
+      </TableCell>
+    </TableRow>
+  ))
+  : null);
 
 const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
   const [close, setClose] = useState(0);
@@ -48,7 +46,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
       const ObservationData = healthInfo.entries[0].data;
       if (ObservationData) {
         const Observations = ObservationData.entry.filter(
-          item => item.resource.resourceType === "Observation"
+          (item) => item.resource.resourceType === 'Observation',
         );
         return Observations;
       }
@@ -65,7 +63,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
         <Table className="observation-table" aria-label="simple table">
           <TableHead>
             <TableRow className="table-head">
-              <TableCell></TableCell>
+              <TableCell />
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Observation</TableCell>
               <TableCell align="left">Value</TableCell>
@@ -108,7 +106,7 @@ const ObservationTable = ({ loadHealthData, healthInfo, consentRequestId }) => {
               </TableCell>
               <TableCell align="left">
                 {generateObservableEntityStatusInterpretation(
-                  Observations[0].resource
+                  Observations[0].resource,
                 )}
               </TableCell>
             </TableRow>

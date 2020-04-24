@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { KeyboardTimePicker } from "@material-ui/pickers";
+import React, { useState } from 'react';
+import { KeyboardTimePicker } from '@material-ui/pickers';
 
 const TimePicker = () => {
   const [selectedTime, setSelectedTime] = React.useState();
 
-  const handleTimeChange = time => {
+  const handleTimeChange = (time) => {
     setSelectedTime(time);
   };
 
@@ -16,7 +16,7 @@ const TimePicker = () => {
       value={selectedTime}
       onChange={handleTimeChange}
       KeyboardButtonProps={{
-        "aria-label": "change time"
+        'aria-label': 'change time',
       }}
     />
   );

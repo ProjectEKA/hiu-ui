@@ -1,22 +1,24 @@
 import _ from 'lodash';
-import { identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter } from "./FhirResourcesUtils";
-import { BundleContext } from "./BundleContext";
-import { CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor } from "./FhirResourceProcessors";
+import {
+  identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter,
+} from './FhirResourcesUtils';
+import { BundleContext } from './BundleContext';
+import {
+  CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor,
+} from './FhirResourceProcessors';
 
 class HealthInfoProcessor {
   filterByHipId(entriesByHips, hipId) {
-    return entriesByHips.filter(e => {
-      return e.hipId === hipId;
-    });
+    return entriesByHips.filter((e) => e.hipId === hipId);
   }
 
   groupByHip(entries) {
-    var entriesByHips = [];
-    var errorEntries = [];
-    entries.forEach(entry => {
-      if (entry.status === "SUCCEEDED") {
-        var entryByHip;
-        var hipEntries = this.filterByHipId(entriesByHips, entry.hipId);
+    const entriesByHips = [];
+    const errorEntries = [];
+    entries.forEach((entry) => {
+      if (entry.status === 'SUCCEEDED') {
+        let entryByHip;
+        const hipEntries = this.filterByHipId(entriesByHips, entry.hipId);
         if (hipEntries && hipEntries.length > 0) {
           entryByHip = hipEntries[0];
         }
@@ -24,47 +26,39 @@ class HealthInfoProcessor {
           entryByHip = {
             hipId: entry.hipId,
             hipName: entry.hipName,
-            bundles: []
+            bundles: [],
           };
           entriesByHips.push(entryByHip);
           if (entry.data) {
             entryByHip.bundles.push(entry.data);
           }
-        } else {
-          if (entry.data) {
-            entryByHip.bundles.push(entry.data); 
-          }
+        } else if (entry.data) {
+          entryByHip.bundles.push(entry.data);
         }
       } else {
         errorEntries.push(entry);
       }
     });
     if (errorEntries.length > 0) {
-      console.log("Error: Some HIP entries had error status", errorEntries);
+      console.log('Error: Some HIP entries had error status', errorEntries);
     }
     return entriesByHips;
   }
 
   getCompositionEntryFromBundle(bundle) {
-    return bundle.entry.find(function(e) {
-      return e.resource.resourceType.toLowerCase() === "composition";
-    });
+    return bundle.entry.find((e) => e.resource.resourceType.toLowerCase() === 'composition');
   }
 
   addResourceEntryForDate(dateStr, hipRef, resource, hipEntriesByDate) {
-    var entryByDate = hipEntriesByDate.find(function(e) {
-      return e.date === dateStr;
-    });
+    const entryByDate = hipEntriesByDate.find((e) => e.date === dateStr);
 
     if (entryByDate) {
-      var hipEntry = entryByDate.hipData.find(function(e) {
-        return e.hipId === hipRef.hipId;
-      });
+      const hipEntry = entryByDate.hipData.find((e) => e.hipId === hipRef.hipId);
       if (!hipEntry) {
         var hipRecord = {
           hipId: hipRef.hipId,
           hipName: hipRef.hipName,
-          data: [resource]
+          data: [resource],
         };
         entryByDate.hipData.push(hipRecord);
       } else {
@@ -74,63 +68,61 @@ class HealthInfoProcessor {
       var hipRecord = {
         hipId: hipRef.hipId,
         hipName: hipRef.hipName,
-        data: [resource]
+        data: [resource],
       };
-      var newEntryByDate = { date: dateStr, hipData: [hipRecord] };
+      const newEntryByDate = { date: dateStr, hipData: [hipRecord] };
       hipEntriesByDate.push(newEntryByDate);
     }
   }
 
   sortBundleEntryForProcessing(bundle) {
     bundle.entry.sort((a, b) => {
-      var a = processingOrder.indexOf(a.resource.resourceType.toLowerCase()),
-        b = processingOrder.indexOf(b.resource.resourceType.toLowerCase());
+      var a = processingOrder.indexOf(a.resource.resourceType.toLowerCase());
+      var b = processingOrder.indexOf(b.resource.resourceType.toLowerCase());
       return a < b ? -1 : a === b ? 0 : 1;
     });
   }
 
   getResourceProcessor(entry) {
-    return fhirProcessors.find(function(p) {
-      return p.supports(entry.resource);
-    });
+    return fhirProcessors.find((p) => p.supports(entry.resource));
   }
 
   groupByDay(entriesByHips) {
-    var hipEntriesByDate = [];
-    var unresolvedEntries = [];
-    entriesByHips.forEach(entryByHip => {
-      entryByHip.bundles.forEach(bundle => {
-        if (bundle.type.toLowerCase() === "document") {
-          var compositionEntry = this.getCompositionEntryFromBundle(bundle);
+    const hipEntriesByDate = [];
+    const unresolvedEntries = [];
+    entriesByHips.forEach((entryByHip) => {
+      entryByHip.bundles.forEach((bundle) => {
+        if (bundle.type.toLowerCase() === 'document') {
+          const compositionEntry = this.getCompositionEntryFromBundle(bundle);
           if (compositionEntry) {
-            var composition = compositionEntry.resource;
-            var compositionDate = resourceDateFormatter["composition"](composition);
+            const composition = compositionEntry.resource;
+            const compositionDate = resourceDateFormatter.composition(composition);
             if (compositionDate) {
               this.sortBundleEntryForProcessing(bundle);
-              bundle.entry.forEach(e => {
-                var resourceProcessor = this.getResourceProcessor(e);
+              bundle.entry.forEach((e) => {
+                const resourceProcessor = this.getResourceProcessor(e);
                 if (resourceProcessor) {
                   resourceProcessor.process(e.resource, new BundleContext(bundle));
                 }
-                //add all the bundle entries against the composition date.
+                // add all the bundle entries against the composition date.
                 this.addResourceEntryForDate(compositionDate, entryByHip, e.resource, hipEntriesByDate);
               });
             } else {
-              console.log("Error: Composition does not have date. Entire Bundle is added to unresolved entries");
+              console.log('Error: Composition does not have date. Entire Bundle is added to unresolved entries');
               unresolvedEntries.push(bundle);
             }
           } else {
-            console.log("Error: Bundle is a document but does not have composition resource. Invalid data structure.");
+            console.log('Error: Bundle is a document but does not have composition resource. Invalid data structure.');
           }
         } else {
           this.sortBundleEntryForProcessing(bundle);
-          bundle.entry.forEach(e => {
-            var resourceProcessor = this.getResourceProcessor(e);
+          bundle.entry.forEach((e) => {
+            const resourceProcessor = this.getResourceProcessor(e);
             if (resourceProcessor) {
               resourceProcessor.process(e.resource, new BundleContext(bundle));
             }
-            var dateFormatter;
-            var firstParent;
+            let dateFormatter;
+            let firstParent;
             if (e.resource.parentResources) {
               firstParent = identifyFirstParent(e.resource);
               dateFormatter = resourceDateFormatter[firstParent.resourceType.toLowerCase()];
@@ -138,7 +130,7 @@ class HealthInfoProcessor {
               dateFormatter = resourceDateFormatter[e.resource.resourceType.toLowerCase()];
             }
             if (dateFormatter) {
-              var resourceDate = e.resource.parentResources
+              const resourceDate = e.resource.parentResources
                 ? dateFormatter(firstParent)
                 : dateFormatter(e.resource);
               if (resourceDate) {
@@ -146,7 +138,7 @@ class HealthInfoProcessor {
                   resourceDate,
                   entryByHip,
                   e.resource,
-                  hipEntriesByDate
+                  hipEntriesByDate,
                 );
               } else {
                 unresolvedEntries.push(e.resource);
@@ -159,7 +151,7 @@ class HealthInfoProcessor {
       });
     });
     if (unresolvedEntries.length > 0) {
-      console.log("Error: There are unresolved entries", unresolvedEntries);
+      console.log('Error: There are unresolved entries', unresolvedEntries);
     }
     return hipEntriesByDate;
   }
@@ -169,36 +161,36 @@ const fhirProcessors = [
   new CompositionProcessor(),
   new DiagnosticReportProcessor(),
   new ImagingStudyProcessor(),
-  new MedicationRequestProcessor()
+  new MedicationRequestProcessor(),
 ];
 
 function getDateFromString(dateString) {
-  //NOTE: format is DD/MM/YYYY
-  var dateParts = dateString.split("/");
+  // NOTE: format is DD/MM/YYYY
+  const dateParts = dateString.split('/');
   return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
 }
 
 function dayGrouper(data) {
-  var processor = new HealthInfoProcessor();
+  const processor = new HealthInfoProcessor();
   if (!data.data.entries) {
     data.entryByDays = {};
     return data;
   }
-  var entriesByHips = processor.groupByHip(data.data.entries);
-  console.log("Grouping entries by Hips: ", entriesByHips);
-  var entriesByDays = processor.groupByDay(entriesByHips);
-  console.log("Grouped entries by Date=>Hips: ", entriesByDays);
-  var daywiseGroup = {};
+  const entriesByHips = processor.groupByHip(data.data.entries);
+  console.log('Grouping entries by Hips: ', entriesByHips);
+  const entriesByDays = processor.groupByDay(entriesByHips);
+  console.log('Grouped entries by Date=>Hips: ', entriesByDays);
+  const daywiseGroup = {};
   entriesByDays.sort((a, b) => {
-    var dateA = getDateFromString(a.date);
-    var dateB = getDateFromString(b.date);
+    const dateA = getDateFromString(a.date);
+    const dateB = getDateFromString(b.date);
     return dateA.getTime() == dateB.getTime() ? 0 : (dateA.getTime() > dateB.getTime() ? -1 : 1);
   });
-  entriesByDays.forEach(ebd => {
+  entriesByDays.forEach((ebd) => {
     daywiseGroup[ebd.date] = ebd.hipData;
   });
   data.entryByDays = daywiseGroup;
-  const entriesCountByStatus = _.countBy(data.data.entries, "status");
+  const entriesCountByStatus = _.countBy(data.data.entries, 'status');
   data.entriesCountByStatus = entriesCountByStatus;
   return data;
 }

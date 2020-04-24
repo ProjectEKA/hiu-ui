@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ConditionTableStyles = styled.div`
   .condition-table-container {

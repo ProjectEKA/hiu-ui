@@ -1,5 +1,5 @@
 const searchPatientInitialState = {
-  patientData: {}
+  patientData: {},
 };
 
 export default searchPatientInitialState;

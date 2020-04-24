@@ -1,3 +1,3 @@
-import SearchPatientContainer from "./SearchPatientContainer";
+import SearchPatientContainer from './SearchPatientContainer';
 
 export default SearchPatientContainer;

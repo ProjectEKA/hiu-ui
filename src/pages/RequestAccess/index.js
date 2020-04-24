@@ -1,3 +1,3 @@
-import RequestAccessContainer from "./RequestAccessContainer";
+import RequestAccessContainer from './RequestAccessContainer';
 
 export default RequestAccessContainer;

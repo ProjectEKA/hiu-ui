@@ -1,40 +1,40 @@
 import {
   onSearch,
   onSearchSuccess,
-  onSearchFailure
-} from "./../searchPatientIdActions";
-import { ACTION_TYPES } from "./../searchPatientIdActions";
+  onSearchFailure,
+, ACTION_TYPES } from "./../searchPatientIdActions";
 
-describe("Search Patient Id Action", () => {
-  it("change state on search requested", () => {
+
+describe('Search Patient Id Action', () => {
+  it('change state on search requested', () => {
     const expectedAction = {
       type: ACTION_TYPES.PATIENT_FETCH_REQUESTED,
-      payload: { id: "1" }
+      payload: { id: '1' },
     };
     const patient = {
-      id: "1"
+      id: '1'
     };
     expect(onSearch(patient)).toMatchObject(expectedAction);
   });
 
-  it("change state on search request success", () => {
+  it('change state on search request success', () => {
     const expectedAction = {
       type: ACTION_TYPES.PATIENT_FETCH_SUCCEEDED,
-      payload: { id: "1" }
+      payload: { id: '1' },
     };
     const patient = {
-      id: "1"
+      id: '1'
     };
     expect(onSearchSuccess(patient)).toMatchObject(expectedAction);
   });
 
-  it("change state on search request failure", () => {
+  it('change state on search request failure', () => {
     const expectedAction = {
       type: ACTION_TYPES.PATIENT_FETCH_FAILED,
-      payload: {}
+      payload: {},
     };
     const patient = {
-      id: "1"
+      id: '1'
     };
     expect(onSearchFailure(patient)).toMatchObject(expectedAction);
   });

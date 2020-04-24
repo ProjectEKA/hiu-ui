@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
+import React from 'react';
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 
-export const LogoutButton = styled(({...rest}) => <Button {...rest} variant="contained" color="primary" />)`
+export const LogoutButton = styled(({ ...rest }) => <Button {...rest} variant="contained" color="primary" />)`
     margin-right: 1em;
 `;
 
@@ -18,7 +18,7 @@ export const Logo = styled.a`
 `;
 
 
-export const Header = styled(({...rest}) => <Box {...rest} boxShadow={3} />)`
+export const Header = styled(({ ...rest }) => <Box {...rest} boxShadow={3} />)`
     display: flex;
     flex-direction: row;
     align-items: center;

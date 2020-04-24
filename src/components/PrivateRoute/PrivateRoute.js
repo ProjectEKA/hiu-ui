@@ -1,15 +1,15 @@
-import React from "react";
-import _ from "lodash";
-import jwtDecode from "jwt-decode";
-import { Route, Redirect, withRouter } from "react-router-dom";
+import React from 'react';
+import _ from 'lodash';
+import jwtDecode from 'jwt-decode';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 
-const RESET_PASSWORD_PATH = "/reset-password";
+const RESET_PASSWORD_PATH = '/reset-password';
 
 const privateRoute = ({ component: Component, history, ...rest }) => {
-  const accessToken = localStorage.getItem("auth-token");
+  const accessToken = localStorage.getItem('auth-token');
   const isAuth = !_.isEmpty(accessToken);
 
-  const render = props => {
+  const render = (props) => {
     if (!isAuth) {
       return <Redirect to="/login" />;
     }

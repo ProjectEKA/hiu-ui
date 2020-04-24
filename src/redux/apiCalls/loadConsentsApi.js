@@ -1,17 +1,17 @@
-import apiWrapper from "../apiWrapper";
-import { defaultHeaders } from "../../constants";
+import apiWrapper from '../apiWrapper';
+import { defaultHeaders } from '../../constants';
 
 const loadConsentsApi = () => {
-  const authToken = localStorage.getItem("auth-token");
+  const authToken = localStorage.getItem('auth-token');
 
   return apiWrapper(
-    "get",
-    `/consent-requests/`,
+    'get',
+    '/consent-requests/',
     {},
     {
       ...defaultHeaders,
       Authorization: authToken,
-    }
+    },
   );
 };
 

@@ -1,4 +1,4 @@
-import * as createHistory from "history";
+import * as createHistory from 'history';
 
 const history = createHistory.createHashHistory();
 

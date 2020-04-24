@@ -1,26 +1,26 @@
-import React from "react";
-import { mount } from "enzyme";
-import RequestType from "../RequestType";
+import React from 'react';
+import { mount } from 'enzyme';
+import RequestType from '../RequestType';
 
-describe("RequestType", () => {
+describe('RequestType', () => {
   const requestTypes = [
-    "PatientHistory",
-    "Medications",
-    "DiagnosisLab",
-    "RadiologyLab",
-    "Observations"
+    'PatientHistory',
+    'Medications',
+    'DiagnosisLab',
+    'RadiologyLab',
+    'Observations',
   ];
-  it("should render properly", () => {
+  it('should render properly', () => {
     const noop = jest.fn();
     const wrapper = mount(
-      <RequestType requestTypes={requestTypes} handleChange={noop} />
+      <RequestType requestTypes={requestTypes} handleChange={noop} />,
     );
 
     expect(wrapper).toMatchSnapshot();
     wrapper
-      .find(".check-box")
+      .find('.check-box')
       .at(0)
-      .simulate("click");
+      .simulate('click');
     expect(noop).toHaveBeenCalled();
   });
 });

@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/onSignInActions";
+import { ACTION_TYPES } from '../actions/onSignInActions';
 
 export default (state = {}, action) => {
   switch (action.type) {

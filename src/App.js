@@ -1,13 +1,13 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import { HashRouter, Route } from "react-router-dom";
-import LoginPage from "../src/pages/LoginPage/LoginPageContainer";
-import ResetPassword from "../src/pages/ResetPassword/ResetPasswordContainer";
-import LandingPage from "../src/pages/LandingPage/LandingPageContainer";
-import PatientHealthInformation from "./pages/PatientHealthInformation";
-import PrivateRoute from "../src/components/PrivateRoute/PrivateRoute";
-import { makeStyles } from "@material-ui/core/styles";
-import history from "./history";
+import React from 'react';
+import Container from '@material-ui/core/Container';
+import { HashRouter, Route } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import LoginPage from './pages/LoginPage/LoginPageContainer';
+import ResetPassword from './pages/ResetPassword/ResetPasswordContainer';
+import LandingPage from './pages/LandingPage/LandingPageContainer';
+import PatientHealthInformation from './pages/PatientHealthInformation';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import history from './history';
 
 const useStyles = makeStyles((theme) => ({
   container: {

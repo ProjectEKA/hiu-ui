@@ -1,4 +1,4 @@
-import contentTypes from "./contentTypes";
-import defaultHeaders from "./defaultHeaders";
+import contentTypes from './contentTypes';
+import defaultHeaders from './defaultHeaders';
 
 export { contentTypes, defaultHeaders };

@@ -1,12 +1,12 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import { Header as StyledHeader, Logo, LogoutButton } from "./Header.style"
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { Header as StyledHeader, Logo, LogoutButton } from './Header.style';
 
 const Header = () => {
   const [isLoggedOut, setIsLoggedOut] = React.useState(false);
 
   const logout = () => {
-    localStorage.removeItem("auth-token");
+    localStorage.removeItem('auth-token');
     setIsLoggedOut(true);
   };
 

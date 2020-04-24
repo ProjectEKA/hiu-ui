@@ -1,6 +1,6 @@
-import { ACTION_TYPES } from "../actions/searchPatientIdActions";
-import { call, put } from "redux-saga/effects";
-import fetchPatientApi from "../apiCalls/fetchPatientApi";
+import { call, put } from 'redux-saga/effects';
+import { ACTION_TYPES } from '../actions/searchPatientIdActions';
+import fetchPatientApi from '../apiCalls/fetchPatientApi';
 
 function* fetchPatient(action) {
   try {
@@ -18,7 +18,7 @@ function* fetchPatient(action) {
 }
 
 function* fetchPatientSuccess(action) {
-  console.log("success message", action.payload);
+  console.log('success message', action.payload);
 }
 
 function* fetchPatientFailure(action) {

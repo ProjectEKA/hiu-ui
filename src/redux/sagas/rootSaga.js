@@ -1,12 +1,12 @@
-import { takeEvery, all } from "redux-saga/effects";
-import searchPatientSaga from "./searchPatientSaga";
-import createConsentSaga from "./createConsentSaga";
-import loadConsentsSaga from "./loadConsentsSaga";
-import loadHealthDataSaga from "./loadHealthDataSaga";
-import downloadPathologySaga from "./downloadPathologySaga";
-import signInSaga from "./signInSaga";
-import { appConfigActionObs } from "./loadAppConfigSaga";
-import resetPasswordSaga from "./resetPasswordSaga";
+import { takeEvery, all } from 'redux-saga/effects';
+import searchPatientSaga from './searchPatientSaga';
+import createConsentSaga from './createConsentSaga';
+import loadConsentsSaga from './loadConsentsSaga';
+import loadHealthDataSaga from './loadHealthDataSaga';
+import downloadPathologySaga from './downloadPathologySaga';
+import signInSaga from './signInSaga';
+import { appConfigActionObs } from './loadAppConfigSaga';
+import resetPasswordSaga from './resetPasswordSaga';
 
 function* rootSaga() {
   const sagas = [];

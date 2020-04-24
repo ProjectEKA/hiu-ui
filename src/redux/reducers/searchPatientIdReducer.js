@@ -1,5 +1,5 @@
-import { ACTION_TYPES } from "../actions/searchPatientIdActions";
-import searchPatientInitialState from "./searchPatientInitialState";
+import { ACTION_TYPES } from '../actions/searchPatientIdActions';
+import searchPatientInitialState from './searchPatientInitialState';
 
 export default (state = searchPatientInitialState, action) => {
   switch (action.type) {
@@ -9,7 +9,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: true,
         success: false,
         error: false,
-        serverError: false
+        serverError: false,
       };
     case ACTION_TYPES.PATIENT_FETCH_SUCCEEDED:
       return {
@@ -18,7 +18,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: false,
         success: true,
         error: false,
-        serverError: false
+        serverError: false,
       };
     case ACTION_TYPES.PATIENT_FETCH_FAILED:
       return {
@@ -26,7 +26,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: false,
         success: false,
         error: false,
-        serverError: false
+        serverError: false,
       };
     case ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND:
       return {
@@ -34,7 +34,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: false,
         success: false,
         error: true,
-        serverError: false
+        serverError: false,
       };
     case ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR:
       return {
@@ -42,7 +42,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: false,
         success: false,
         error: false,
-        serverError: true
+        serverError: true,
       };
     case ACTION_TYPES.PATIENT_FETCH_RESET_STATE:
       return {
@@ -50,7 +50,7 @@ export default (state = searchPatientInitialState, action) => {
         loading: false,
         success: false,
         error: false,
-        serverError: false
+        serverError: false,
       };
     default:
       return state;

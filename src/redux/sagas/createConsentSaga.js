@@ -1,6 +1,6 @@
-import { ACTION_TYPES } from "../actions/createConsentActions";
-import { call, put } from "redux-saga/effects";
-import createConsentApi from "../apiCalls/createConsentApi";
+import { call, put } from 'redux-saga/effects';
+import { ACTION_TYPES } from '../actions/createConsentActions';
+import createConsentApi from '../apiCalls/createConsentApi';
 
 function* createConsent(action) {
   try {
@@ -8,27 +8,27 @@ function* createConsent(action) {
     if (patient) {
       yield put({
         type: ACTION_TYPES.CREATE_CONSENT_SUCCEEDED,
-        payload: patient
+        payload: patient,
       });
     }
   } catch (e) {
     yield put({
       type: ACTION_TYPES.CREATE_CONSENT_FAILED,
-      payload: e
+      payload: e,
     });
   }
 }
 
 function* createConsentSuccess() {
-  console.log("success message");
+  console.log('success message');
 }
 
 function* createConsentFailure(action) {
-  console.log("failure message", action);
+  console.log('failure message', action);
 }
 
 export default {
   [ACTION_TYPES.CREATE_CONSENT_REQUESTED]: createConsent,
   [ACTION_TYPES.CREATE_CONSENT_SUCCEEDED]: createConsentSuccess,
-  [ACTION_TYPES.CREATE_CONSENT_FAILED]: createConsentFailure
+  [ACTION_TYPES.CREATE_CONSENT_FAILED]: createConsentFailure,
 };

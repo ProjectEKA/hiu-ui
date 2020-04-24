@@ -1,65 +1,57 @@
-import React, { useEffect, useState } from "react";
-import _ from "lodash";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
-import PatientDetails from "../../components/PatientDetails";
-import HealthInfoNav from "../../components/HealthInfoNav";
-import HealthInformation from "../../components/HealthInformation";
-import dayGrouper from "../../components/common/HealthInfo/DaywiseGroup";
-import AlertBox from "../../components/AlertBox";
-import Breadcrumb from "../../components/Breadcrumb";
-import Header from "../../components/Header";
+import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+import PatientDetails from '../../components/PatientDetails';
+import HealthInfoNav from '../../components/HealthInfoNav';
+import HealthInformation from '../../components/HealthInformation';
+import dayGrouper from '../../components/common/HealthInfo/DaywiseGroup';
+import AlertBox from '../../components/AlertBox';
+import Breadcrumb from '../../components/Breadcrumb';
+import Header from '../../components/Header';
 
-const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, healthInfo) => {
-  return (
-    <>
-      <PatientDetails {...patientData} />
-      <HealthInfoNav
-        dates={dates}
-        selectedDate={selectedDate}
-        setSelectedDate={onChange}
-      />
-      <HealthInformation
-        consentReqId={reqID}
-        healthInfo={healthInfo}
-        selectedDate={selectedDate}
-      />
-    </>
-  );
-};
-
-const renderErrorMessage = () => {
-  return (
-    <AlertBox
-      type="error"
-      title="Error"
-      message="Sorry! Couldn't fetch data."
+const renderHealthInfo = (patientData, dates, selectedDate, onChange, reqID, healthInfo) => (
+  <>
+    <PatientDetails {...patientData} />
+    <HealthInfoNav
+      dates={dates}
+      selectedDate={selectedDate}
+      setSelectedDate={onChange}
     />
-  );
-};
+    <HealthInformation
+      consentReqId={reqID}
+      healthInfo={healthInfo}
+      selectedDate={selectedDate}
+    />
+  </>
+);
 
-const renderNoInfoMessage = patientData => {
-  return (
-    <>
-      <PatientDetails {...patientData} />
-      <AlertBox
-        type="info"
-        title="No Information"
-        message="Health information is unavailable for requested patient!"
-      />
-    </>
-  );
-};
+const renderErrorMessage = () => (
+  <AlertBox
+    type="error"
+    title="Error"
+    message="Sorry! Couldn't fetch data."
+  />
+);
 
-const renderLoadingMessage = () => {
-  return (
+const renderNoInfoMessage = (patientData) => (
+  <>
+    <PatientDetails {...patientData} />
     <AlertBox
       type="info"
-      title="Loading..."
-      message="Fetching data. Please wait!"
+      title="No Information"
+      message="Health information is unavailable for requested patient!"
     />
-  );
-};
+  </>
+);
+
+const renderLoadingMessage = () => (
+  <AlertBox
+    type="info"
+    title="Loading..."
+    message="Fetching data. Please wait!"
+  />
+);
 
 const PatientHealthInformation = ({
   loadHealthData,
@@ -70,7 +62,7 @@ const PatientHealthInformation = ({
   healthInfo,
   patientData,
   erroredEntiresCount,
-  match
+  match,
 }) => {
   const isHealthInfoAvailable = !_.isEmpty(healthInfo);
   const areEntriesWithError = erroredEntiresCount > 0;
@@ -86,7 +78,7 @@ const PatientHealthInformation = ({
     setSnackbarOpen(areEntriesWithError);
   }, [defaultSelectedDate, areEntriesWithError]);
 
-  const onChange = newSelectedDate => {
+  const onChange = (newSelectedDate) => {
     setSelectedDate(newSelectedDate);
   };
   const handleSnackbarClose = () => setSnackbarOpen(false);
@@ -104,7 +96,7 @@ const PatientHealthInformation = ({
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={snackbarOpen}
         autoHideDuration={4000}
         onClose={handleSnackbarClose}
@@ -115,7 +107,11 @@ const PatientHealthInformation = ({
           elevation={6}
           variant="filled"
         >
-          Error in the data recieved from {erroredEntiresCount} Health
+          Error in the data recieved from
+          {' '}
+          {erroredEntiresCount}
+          {' '}
+          Health
           Information Providers!
         </Alert>
       </Snackbar>

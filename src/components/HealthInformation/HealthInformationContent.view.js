@@ -1,23 +1,23 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
-import ObservationTable from "../../components/ObservationTable/ObservationTable";
-import HealthInformationContentStyles from "./HealthInformationContent.style";
-import CCRDocument from "../../components/Composition/CCRDocument";
-import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
-import { identifyParentOfType } from "../../components/common/HealthInfo/FhirResourcesUtils";
-import ConditionsComponent from "../Condition/ConditionsComponent";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import DiagnosticReportComponent from '../DiagnosticReport/DiagnosticReportComponent';
+import ObservationTable from '../ObservationTable/ObservationTable';
+import HealthInformationContentStyles from './HealthInformationContent.style';
+import CCRDocument from '../Composition/CCRDocument';
+import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
+import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
+import ConditionsComponent from '../Condition/ConditionsComponent';
 
 const HealthInformationContent = ({ consentReqId, hipName, data }) => {
   const compositionData = data
-    ? data.filter(entry => entry.resourceType.toLowerCase() == "composition")
+    ? data.filter((entry) => entry.resourceType.toLowerCase() == 'composition')
     : [];
 
   if (data) {
-    data.forEach(e => {
+    data.forEach((e) => {
       if (e.parentResources) {
-        var parentComposition = e.parentResources.find(
-          pr => compositionData.indexOf(pr) >= 0
+        const parentComposition = e.parentResources.find(
+          (pr) => compositionData.indexOf(pr) >= 0,
         );
         if (parentComposition) {
           compositionData.push(e);
@@ -28,44 +28,44 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
 
   const ObservationsWithNoParentResource = [];
   data
-    ? data.map(entry => {
-        if (entry.resourceType === "Observation" && !entry.parentResources) {
-          ObservationsWithNoParentResource.push(entry);
-        }
-      })
+    ? data.map((entry) => {
+      if (entry.resourceType === 'Observation' && !entry.parentResources) {
+        ObservationsWithNoParentResource.push(entry);
+      }
+    })
     : undefined;
 
   const DiagnosticReport = [];
   data
-    ? data.map(entry => {
-        if (entry.resourceType === "DiagnosticReport") {
-          DiagnosticReport.push(entry);
-        }
-      })
+    ? data.map((entry) => {
+      if (entry.resourceType === 'DiagnosticReport') {
+        DiagnosticReport.push(entry);
+      }
+    })
     : undefined;
 
   const medicationRequests = data
-    ? data.filter(entry => {
-        if (entry.resourceType != "MedicationRequest") {
-          return false;
-        }
-        if (entry.parentResources) {
-          return !identifyParentOfType(entry, "Composition");
-        }
-        return true;
-      })
+    ? data.filter((entry) => {
+      if (entry.resourceType != 'MedicationRequest') {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, 'Composition');
+      }
+      return true;
+    })
     : [];
 
   const conditionList = data
-    ? data.filter(entry => {
-        if (entry.resourceType != "Condition") {
-          return false;
-        }
-        if (entry.parentResources) {
-          return !identifyParentOfType(entry, "Composition");
-        }
-        return true;
-      })
+    ? data.filter((entry) => {
+      if (entry.resourceType != 'Condition') {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, 'Composition');
+      }
+      return true;
+    })
     : [];
 
   return (

@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 
-import DiagnosticReportComponent from "../../components/DiagnosticReport/DiagnosticReportComponent";
-import ObservationTable from "../../components/ObservationTable/ObservationTable";
-import MedicationRequestsComponent from "../../components/Medication/MedicationRequestsComponent";
-import {identifyParentOfType} from "../../components/common/HealthInfo/FhirResourcesUtils";
+import DiagnosticReportComponent from '../DiagnosticReport/DiagnosticReportComponent';
+import ObservationTable from '../ObservationTable/ObservationTable';
+import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
+import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
 
 const CCRDocument = ({ consentReqId, compositionData }) => {
-  const independentObservations =  compositionData ? 
-    compositionData.filter(entry => {
-      if (entry.resourceType != "Observation") {
+  const independentObservations = compositionData
+    ? compositionData.filter((entry) => {
+      if (entry.resourceType != 'Observation') {
         return false;
       }
       if (entry.parentResources) {
-        var parent = identifyParentOfType(entry, "Composition");
+        const parent = identifyParentOfType(entry, 'Composition');
         return parent != undefined;
       }
       return false;
     }) : [];
-  
-  const independentMedicationRequests =  compositionData ? 
-    compositionData.filter(entry => {
-      if (entry.resourceType != "MedicationRequest") {
+
+  const independentMedicationRequests = compositionData
+    ? compositionData.filter((entry) => {
+      if (entry.resourceType != 'MedicationRequest') {
         return false;
       }
       if (entry.parentResources) {
-        var parent = identifyParentOfType(entry, "Composition");
+        const parent = identifyParentOfType(entry, 'Composition');
         return parent != undefined;
       }
       return false;
@@ -38,7 +38,7 @@ const CCRDocument = ({ consentReqId, compositionData }) => {
       {/* <DiagnosticReportComponent consentReqId={consentReqId} data={data} /> */}
     </div>
   ) : (
-    <div></div>
+    <div />
   );
 };
 

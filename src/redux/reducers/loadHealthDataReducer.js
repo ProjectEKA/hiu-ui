@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/loadHealthDataActions";
+import { ACTION_TYPES } from '../actions/loadHealthDataActions';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -7,7 +7,7 @@ export default (state = {}, action) => {
         ...state,
         loading: true,
         error: false,
-        success: false
+        success: false,
       };
     case ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS:
       return {
@@ -16,19 +16,19 @@ export default (state = {}, action) => {
         entriesCount: action.payload.entriesCountByStatus,
         loading: false,
         error: false,
-        success: true
+        success: true,
       };
     case ACTION_TYPES.FETCH_HEALTH_DATA_FAILURE:
       return {
         ...state,
         loading: false,
         error: true,
-        success: false
+        success: false,
       };
     case ACTION_TYPES.FETCH_PATIENT_DATA:
       return {
         ...state,
-        patientData: action.payload
+        patientData: action.payload,
       };
     default:
       return state;

@@ -1,7 +1,7 @@
-import React from "react";
-import { IconButton } from "@material-ui/core";
-import { ChevronLeft, ChevronRight } from "@material-ui/icons";
-import HealthInfoNavStyles from "./HealthInfoNav.style";
+import React from 'react';
+import { IconButton } from '@material-ui/core';
+import { ChevronLeft, ChevronRight } from '@material-ui/icons';
+import HealthInfoNavStyles from './HealthInfoNav.style';
 
 const HealthInfoNav = ({ dates, selectedDate, setSelectedDate }) => {
   function selectNextDate(dates, selectedDate) {

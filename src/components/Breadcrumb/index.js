@@ -1,3 +1,3 @@
-import Breadcrumb from "./Breadcrumb.view"
+import Breadcrumb from './Breadcrumb.view';
 
 export default Breadcrumb;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const HealthInformationContentStyles = styled.div`
   .hip-health-info-container {
