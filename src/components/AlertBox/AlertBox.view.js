@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 const AlertBox = ({ type, title, message }) => (
@@ -9,5 +10,15 @@ const AlertBox = ({ type, title, message }) => (
     {message}
   </Alert>
 );
+
+AlertBox.propTypes = {
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.string,
+};
+
+AlertBox.defaultProps = {
+  message: '',
+};
 
 export default AlertBox;
