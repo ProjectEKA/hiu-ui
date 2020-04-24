@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,235 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
-import {
-  getConceptDisplay,
-  formatDateString,
-} from '../common/HealthInfo/FhirResourcesUtils';
+import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 import TableStyles from '../common/Styles/Table.style';
+import MedicationPriority from './MedicationPriority';
+import MedicationNote from './MedicationNote';
+import MedicationDose from './MedicationDose';
 
-const unitsOfTime = {
-  s: 'second',
-  min: 'minute',
-  h: 'hour',
-  d: 'day',
-  wk: 'week',
-  mo: 'month',
-  a: 'year',
-};
 
-const eventTiming = {
-  HS: 'before the hour of sleep',
-  WAKE: 'after waking',
-  C: 'at a meal',
-  CM: 'at breakfast',
-  CD: 'at lunch',
-  CV: 'at dinner',
-  AC: 'before a meal',
-  ACM: 'before breakfast',
-  ACD: 'before lunch',
-  ACV: 'before dinner',
-  PC: 'after a meal',
-  PCM: 'after breakfast',
-  PCD: 'after lunch',
-  PCV: 'after dinner',
-};
-
-const MedicationPriority = (props) => {
-  const { mr } = props;
-  if (mr.priority) {
-    return (
-      <li>
-        <span>
-          Priority:
-          {mr.priority}
-        </span>
-      </li>
-    );
-  }
-  return null;
-};
-
-const MedicationNote = (props) => {
-  const { mr } = props;
-  if (mr.note && mr.note.length > 0) {
-    return (
-      <li>
-        Note:&nbsp;
-        <span>
-          {mr.note.map((n) => n.text).reduce((acc, value) => `${acc}, ${value}`)}
-        </span>
-      </li>
-    );
-  }
-  return null;
-};
-
-const DosingInstructionAsNeeded = (props) => {
-  const { dosage } = props;
-  if (dosage.asNeededBoolean) {
-    return (
-      <li>
-        <span>Take as needed</span>
-      </li>
-    );
-  }
-  return null;
-};
-
-const DosingInstructionForPatient = (props) => {
-  const { dosage } = props;
-  if (dosage.patientInstruction) {
-    return (
-      <li>
-        <span>
-          Instruction to Patient:
-          {dosage.patientInstruction}
-        </span>
-      </li>
-    );
-  }
-  return null;
-};
-
-const DosageTiming = (props) => {
-  const { dosage } = props;
-  if (dosage.timing && dosage.timing.event) {
-    const eventDates = dosage.timing.event.reduce(
-      (accumulator, currentValue, currentIndex, []) => `${accumulator}, ${formatDateString(currentValue.toString())}`,
-    );
-    return (
-      <div>
-        On:
-        {eventDates}
-      </div>
-    );
-  }
-  const timingInfo = [];
-  if (dosage.timing && dosage.timing.code) {
-    timingInfo.push(`Timing: ${dosage.timing.code.text}`);
-  }
-  if (dosage.timing && dosage.timing.repeat) {
-    const { repeat } = dosage.timing;
-    if (repeat.code) {
-      if (repeat.code.text) {
-        timingInfo.push(repeat.code);
-      }
-    }
-    if (repeat.count) {
-      timingInfo.push(`Repeat count: ${repeat.count}`);
-    }
-    if (repeat.boundsDuration) {
-      timingInfo.push(
-        `Duration: ${
-          repeat.boundsDuration.value
-        } ${
-          repeat.boundsDuration.unit}`,
-      );
-    }
-    if (repeat.boundsRange) {
-      timingInfo.push(
-        `Range low: ${
-          repeat.boundsRange.low
-        }, Range high: ${
-          repeat.boundsRange.high}`,
-      );
-    }
-    if (repeat.boundsPeriod) {
-      if (repeat.boundsPeriod.start) {
-        timingInfo.push(
-          `Period Start: ${formatDateString(repeat.boundsPeriod.start)}`,
-        );
-      }
-      if (repeat.boundsPeriod.start) {
-        timingInfo.push(
-          `Period End: ${formatDateString(repeat.boundsPeriod.end)}`,
-        );
-      }
-    }
-    if (repeat.period) {
-      let periodFreqStr = '';
-      if (repeat.frequency) {
-        periodFreqStr = `${repeat.frequency} times `;
-      }
-      periodFreqStr = `${periodFreqStr
-      }in ${
-        repeat.period
-      } ${
-        unitsOfTime[repeat.periodUnit]}`;
-      if (repeat.periodMax) {
-        periodFreqStr = `${periodFreqStr}, max period - ${repeat.periodMax}`;
-      }
-      timingInfo.push(periodFreqStr);
-    }
-
-    if (repeat.duration) {
-      let durationInfo = 'Duration: ';
-      durationInfo = `${durationInfo + repeat.duration} ${unitsOfTime[repeat.durationUnit]}`;
-      if (repeat.durationMax) {
-        durationInfo = `${durationInfo}, max duration - ${repeat.durationMax}`;
-      }
-      timingInfo.push(durationInfo);
-    }
-    if (repeat.when) {
-      let whenStr = 'when: ';
-      if (repeat.offset) {
-        whenStr = `${whenStr + repeat.offset} minutes `;
-      }
-      whenStr += repeat.when.map((value) => eventTiming[value]).join(', ');
-      timingInfo.push(whenStr);
-    }
-  }
-  if (timingInfo.length > 0) {
-    const lineInfo = timingInfo.map((info, index) => (
-      <li key={index}>{info}</li>
-    ));
-    return (
-      <ul>
-        {' '}
-        {lineInfo}
-        {' '}
-      </ul>
-    );
-  }
-  return null;
-};
-
-const DosingInstruction = (props) => {
-  const { dosage } = props;
-  return dosage ? (
-    <div>
-      <span>{dosage.text}</span>
-      <br />
-      <DosageTiming dosage={dosage} />
-      <ul className="instruction-list-item">
-        <DosingInstructionForPatient dosage={dosage} />
-        <DosingInstructionAsNeeded dosage={dosage} />
-      </ul>
-    </div>
-  ) : null;
-};
-
-DosingInstruction.propTypes = {
-  dosage: PropTypes.any.isRequired,
-};
-
-const MedicationDose = (props) => {
-  const { dosageInstructions } = props;
-  if (dosageInstructions && dosageInstructions.length > 0) {
-    const instrs = dosageInstructions.map((instruction, index) => (
-      <DosingInstruction key={index} dosage={instruction} />
-    ));
-    return <div>{instrs}</div>;
-  }
-  return null;
-};
-
-MedicationDose.propTypes = {
-  dosageInstructions: PropTypes.any.isRequired,
-};
-
-const findMedicationName = function (medication) {
+const findMedicationName = (medication) => {
   if (medication) {
     const codeableConcept = medication.code;
     if (codeableConcept.coding) {
@@ -247,6 +27,7 @@ const findMedicationName = function (medication) {
   return 'Unspecified';
 };
 
+// eslint-disable-next-line max-len
 const MedicationRequestsComponent = ({ medicationRequests }) => (medicationRequests && medicationRequests.length > 0 ? (
   <TableStyles>
     <TableContainer className="table-container" component={Paper}>
@@ -265,8 +46,8 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
           </TableRow>
         </TableHead>
         <TableBody>
-          {medicationRequests.map((mr, i) => (
-            <TableRow key={i}>
+          {medicationRequests.map((mr) => (
+            <TableRow key={mr.authoredOn}>
               <TableCell className="table-cell">
                 {mr.authoredOn ? formatDateString(mr.authoredOn) : ''}
               </TableCell>
@@ -292,5 +73,31 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
 ) : (
   <div />
 ));
+
+const medicationRequestShape = {
+  status: PropTypes.string,
+  authoredOn: PropTypes.string,
+  dosageInstruction: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string,
+  })),
+  medicationReference: PropTypes.shape({
+    targetResource: PropTypes.shape({
+      code: PropTypes.shape({
+        coding: PropTypes.arrayOf(PropTypes.shape({
+          code: PropTypes.string,
+          display: PropTypes.string,
+        })),
+      }),
+    }),
+  }),
+};
+
+MedicationRequestsComponent.propTypes = {
+  medicationRequests: PropTypes.arrayOf(PropTypes.shape(medicationRequestShape)),
+};
+
+MedicationRequestsComponent.defaultProps = {
+  medicationRequests: [],
+};
 
 export default MedicationRequestsComponent;
