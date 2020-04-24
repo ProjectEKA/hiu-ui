@@ -17,10 +17,6 @@ function* fetchPatient(action) {
   }
 }
 
-function* fetchPatientSuccess(action) {
-  console.log('success message', action.payload);
-}
-
 function* fetchPatientFailure(action) {
   if (action.payload.response.status === 400) {
     yield put({
@@ -38,6 +34,5 @@ function* fetchPatientFailure(action) {
 
 export default {
   [ACTION_TYPES.PATIENT_FETCH_REQUESTED]: fetchPatient,
-  [ACTION_TYPES.PATIENT_FETCH_SUCCEEDED]: fetchPatientSuccess,
   [ACTION_TYPES.PATIENT_FETCH_FAILED]: fetchPatientFailure,
 };

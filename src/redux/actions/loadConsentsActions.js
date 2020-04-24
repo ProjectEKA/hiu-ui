@@ -13,12 +13,12 @@ export const loadConsentsSuccess = (payload) => ({
   payload,
 });
 
-export const loadConsentsFailure = () => ({
+export const loadConsentsFailure = (payload) => ({
   type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_FAILED,
-  payload: {},
+  payload,
 });
 
-export const loadConsentsServerFailure = () => ({
+export const loadConsentsServerFailure = (payload) => ({
   type: GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SERVER_ERROR,
   payload,
 });

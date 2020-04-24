@@ -19,10 +19,6 @@ function* loadConsents() {
   }
 }
 
-function* loadConsentsSuccess(action) {
-  console.log('success message', action.payload);
-}
-
 function* loadConsentsFailure(action) {
   if (action.payload.response.status === 500) {
     yield put({
@@ -34,6 +30,5 @@ function* loadConsentsFailure(action) {
 
 export default {
   [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_REQUESTED]: loadConsents,
-  [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED]: loadConsentsSuccess,
   [GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_FAILED]: loadConsentsFailure,
 };

@@ -21,18 +21,13 @@ function* onResetPassword(action) {
   }
 }
 
-function* onResetPasswordSuccess(action) {
-  console.log('success message');
+/* eslint-disable require-yield */
+function* onResetPasswordSuccess() {
   localStorage.removeItem('auth-token');
   history.push('/login');
-}
-
-function* onResetPasswordFailure(action) {
-  console.log('failure message', action);
 }
 
 export default {
   [ACTION_TYPES.RESET_PASSWORD_REQUESTED]: onResetPassword,
   [ACTION_TYPES.RESET_PASSWORD_SUCCEEDED]: onResetPasswordSuccess,
-  [ACTION_TYPES.RESET_PASSWORD_FAILED]: onResetPasswordFailure,
 };

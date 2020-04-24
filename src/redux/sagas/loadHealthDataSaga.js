@@ -1,6 +1,4 @@
-import {
-  call, put, select, putResolve, take,
-} from 'redux-saga/effects';
+import { call, put, select, take } from 'redux-saga/effects';
 import {
   ACTION_TYPES,
   savePatientData,
@@ -10,26 +8,28 @@ import getNestedObject from '../../utils/getNestedObject';
 import {
   loadConsents,
   GET_CONSENTS_ACTION_TYPES,
-  loadConsentsSuccess,
 } from '../actions/loadConsentsActions';
 
 const getPatientDataFromConsentState = (id, consentData) => {
-  console.log(consentData, id);
   return consentData.find((currentConsent) => currentConsent.id === id).patient;
 };
 
 function* loadHealthData(action) {
   try {
     const HealthData = yield call(loadHealthDataApi, action.payload.id);
-    let consentState = yield select((state) => getNestedObject(state, 'loadConsents.consentsList'));
+    let consentState = yield select((state) =>
+      getNestedObject(state, 'loadConsents.consentsList')
+    );
     if (!consentState) {
       yield put(loadConsents());
       yield take(GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED);
-      consentState = yield select((state) => getNestedObject(state, 'loadConsents.consentsList'));
+      consentState = yield select((state) =>
+        getNestedObject(state, 'loadConsents.consentsList')
+      );
     }
     const patientData = getPatientDataFromConsentState(
       getNestedObject(action, 'payload.id'),
-      consentState,
+      consentState
     );
     yield put(savePatientData(patientData));
     if (HealthData) {
@@ -48,16 +48,6 @@ function* loadHealthData(action) {
   }
 }
 
-function* loadHealthDataSuccess(action) {
-  console.log('success message', action.payload);
-}
-
-function* loadHealthDataFailure(action) {
-  console.log('failure message', action.payload);
-}
-
 export default {
   [ACTION_TYPES.FETCH_HEALTH_DATA_REQUESTED]: loadHealthData,
-  [ACTION_TYPES.FETCH_HEALTH_DATA_SUCCESS]: loadHealthDataSuccess,
-  [ACTION_TYPES.FETCH_HEALTH_DATA_FAILURE]: loadHealthDataFailure,
 };

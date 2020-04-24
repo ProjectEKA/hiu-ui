@@ -10,8 +10,9 @@ const createConsentApi = ({
   selectedRequestTypes,
 }) => {
   const selectedRequests = Object.keys(selectedRequestTypes).reduce(
-    (preValue, currValue) => (selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue),
-    [],
+    (preValue, currValue) =>
+      selectedRequestTypes[currValue] ? [...preValue, currValue] : preValue,
+    []
   );
   const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
@@ -38,7 +39,7 @@ const createConsentApi = ({
     {
       ...defaultHeaders,
       Authorization: authToken,
-    },
+    }
   );
 };
 

@@ -19,16 +19,6 @@ function* createConsent(action) {
   }
 }
 
-function* createConsentSuccess() {
-  console.log('success message');
-}
-
-function* createConsentFailure(action) {
-  console.log('failure message', action);
-}
-
 export default {
   [ACTION_TYPES.CREATE_CONSENT_REQUESTED]: createConsent,
-  [ACTION_TYPES.CREATE_CONSENT_SUCCEEDED]: createConsentSuccess,
-  [ACTION_TYPES.CREATE_CONSENT_FAILED]: createConsentFailure,
 };
