@@ -1,6 +1,10 @@
 import { GET_CONSENTS_ACTION_TYPES } from '../actions/loadConsentsActions';
 
-export default (state = {}, action) => {
+const initialState = {
+  consentsList: [],
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_REQUESTED:
       return {

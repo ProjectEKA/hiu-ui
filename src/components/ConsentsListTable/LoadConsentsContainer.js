@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import ConsentsListTable from './ConsentsListTable';
 import { loadConsents } from '../../redux/actions/loadConsentsActions';

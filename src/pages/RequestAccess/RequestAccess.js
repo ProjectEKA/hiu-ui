@@ -96,7 +96,6 @@ const RequestAccess = ({
           </Grid>
           <Grid item xs={2}>
             <DatePicker
-              minDate="01/01/1900"
               disableFuture
               handleDateChange={handleStarteDateChange}
               selectedDate={selectedStartDate}
@@ -135,7 +134,7 @@ const RequestAccess = ({
             <DateTimePicker
               handleDateChange={handleExpiryDateChange}
               selectedDate={selectedExpiryDate}
-              disablePast="true"
+              disablePast
             />
           </Grid>
         </Grid>

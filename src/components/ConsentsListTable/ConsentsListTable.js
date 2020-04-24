@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import * as PropTypes from 'prop-types';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import MaterialTable from 'material-table';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
+const ConsentsListTable = ({ loadConsents, consentsList }) => {
   const classes = useStyles();
   useEffect(() => {
     loadConsents();
@@ -86,7 +87,19 @@ const ConsentsListTable = ({ loadConsents, consentsList, theme }) => {
   );
 };
 
-ConsentsListTable.defaultProps = {
-  consentsList: [],
+const consentShape = PropTypes.shape({
+  id: PropTypes.string,
+  patient: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
+  status: PropTypes.string,
+});
+
+ConsentsListTable.propTypes = {
+  loadConsents: PropTypes.func.isRequired,
+  consentsList: PropTypes.arrayOf(consentShape).isRequired,
 };
+
 export default ConsentsListTable;
