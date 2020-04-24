@@ -1,15 +1,16 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { IconButton } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import HealthInfoNavStyles from './HealthInfoNav.style';
 
 const HealthInfoNav = ({ dates, selectedDate, setSelectedDate }) => {
-  function selectNextDate(dates, selectedDate) {
+  function selectNextDate() {
     const nextIndex = dates.indexOf(selectedDate) + 1;
     setSelectedDate(dates[nextIndex]);
   }
 
-  function selectPreviousDate(dates, selectedDate) {
+  function selectPreviousDate() {
     const previousIndex = dates.indexOf(selectedDate) - 1;
     setSelectedDate(dates[previousIndex]);
   }
@@ -52,6 +53,17 @@ const HealthInfoNav = ({ dates, selectedDate, setSelectedDate }) => {
       </div>
     </HealthInfoNavStyles>
   );
+};
+
+HealthInfoNav.propTypes = {
+  dates: PropTypes.arrayOf(PropTypes.string),
+  selectedDate: PropTypes.string,
+  setSelectedDate: PropTypes.func.isRequired,
+};
+
+HealthInfoNav.defaultProps = {
+  dates: [],
+  selectedDate: '',
 };
 
 export default HealthInfoNav;

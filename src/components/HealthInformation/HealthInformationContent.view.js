@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import DiagnosticReportComponent from '../DiagnosticReport/DiagnosticReportComponent';
 import ObservationTable from '../ObservationTable/ObservationTable';
@@ -10,7 +11,7 @@ import ConditionsComponent from '../Condition/ConditionsComponent';
 
 const HealthInformationContent = ({ consentReqId, hipName, data }) => {
   const compositionData = data
-    ? data.filter((entry) => entry.resourceType.toLowerCase() == 'composition')
+    ? data.filter((entry) => entry.resourceType.toLowerCase() === 'composition')
     : [];
 
   if (data) {
@@ -27,26 +28,23 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
   }
 
   const ObservationsWithNoParentResource = [];
-  data
-    ? data.map((entry) => {
+  const DiagnosticReport = [];
+
+  if (data) {
+    data.forEach((entry) => {
       if (entry.resourceType === 'Observation' && !entry.parentResources) {
         ObservationsWithNoParentResource.push(entry);
       }
-    })
-    : undefined;
 
-  const DiagnosticReport = [];
-  data
-    ? data.map((entry) => {
       if (entry.resourceType === 'DiagnosticReport') {
         DiagnosticReport.push(entry);
       }
-    })
-    : undefined;
+    });
+  }
 
   const medicationRequests = data
     ? data.filter((entry) => {
-      if (entry.resourceType != 'MedicationRequest') {
+      if (entry.resourceType !== 'MedicationRequest') {
         return false;
       }
       if (entry.parentResources) {
@@ -58,7 +56,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
 
   const conditionList = data
     ? data.filter((entry) => {
-      if (entry.resourceType != 'Condition') {
+      if (entry.resourceType !== 'Condition') {
         return false;
       }
       if (entry.parentResources) {
@@ -88,6 +86,23 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
       </div>
     </HealthInformationContentStyles>
   );
+};
+
+const resourceShape = PropTypes.shape({
+  resourceType: PropTypes.string,
+  parentResources: PropTypes.arrayOf(PropTypes.shape({ resourceType: PropTypes.string })),
+});
+
+HealthInformationContent.propTypes = {
+  consentReqId: PropTypes.string,
+  hipName: PropTypes.string,
+  data: PropTypes.arrayOf(resourceShape),
+};
+
+HealthInformationContent.defaultProps = {
+  consentReqId: '',
+  hipName: '',
+  data: [],
 };
 
 export default HealthInformationContent;

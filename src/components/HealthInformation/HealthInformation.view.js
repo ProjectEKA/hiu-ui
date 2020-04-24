@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import HealthInformationContent from './HealthInformationContent.view';
 
 const HealthInformation = ({ consentReqId, healthInfo, selectedDate }) => {
@@ -6,6 +7,7 @@ const HealthInformation = ({ consentReqId, healthInfo, selectedDate }) => {
   return healthInfoForSelectedDate ? (
     healthInfoForSelectedDate.map((hip) => (
       <HealthInformationContent
+        key={hip.hipName}
         consentReqId={consentReqId}
         hipName={hip.hipName}
         data={hip.data}
@@ -14,6 +16,18 @@ const HealthInformation = ({ consentReqId, healthInfo, selectedDate }) => {
   ) : (
     <div />
   );
+};
+
+HealthInformation.propTypes = {
+  healthInfo: PropTypes.shape({}),
+  consentReqId: PropTypes.string,
+  selectedDate: PropTypes.string,
+};
+
+HealthInformation.defaultProps = {
+  healthInfo: null,
+  consentReqId: '',
+  selectedDate: '',
 };
 
 export default HealthInformation;
