@@ -40,6 +40,6 @@ describe('Simple Menu', () => {
 
     wrapper.find('#select-menu').simulate('click');
 
-    expect(noop).toHaveBeenCalled;
+    expect(noop).toHaveBeenCalled();
   });
 });

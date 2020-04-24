@@ -2,7 +2,7 @@ import {
   onSearch,
   onSearchSuccess,
   onSearchFailure,
-, ACTION_TYPES } from "./../searchPatientIdActions";
+  ACTION_TYPES } from "./../searchPatientIdActions";
 
 
 describe('Search Patient Id Action', () => {
