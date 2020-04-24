@@ -121,8 +121,8 @@ const ConditionsComponent = ({ conditionList }) => (conditionList && conditionLi
             <TableRow key={i}>
               <TableCell className="table-cell">
                 {condition.recordedDate
-                    ? formatDateString(condition.recordedDate)
-                    : ''}
+                  ? formatDateString(condition.recordedDate)
+                  : ''}
               </TableCell>
               <TableCell className="table-cell">
                 {getConceptDisplay(condition.code)}
@@ -130,23 +130,23 @@ const ConditionsComponent = ({ conditionList }) => (conditionList && conditionLi
               </TableCell>
               <TableCell className="table-cell">
                 {`Severity: ${
-                    getConceptDisplay(condition.severity) || 'Unspecified'}`}
+                  getConceptDisplay(condition.severity) || 'Unspecified'}`}
                 <br />
                 {`Clinical Status: ${
-                    getConceptDisplay(condition.clinicalStatus)
+                  getConceptDisplay(condition.clinicalStatus)
                       || 'Unspecified'}`}
                 <br />
                 {`Verification Status: ${
-                    getConceptDisplay(condition.verificationStatus)
+                  getConceptDisplay(condition.verificationStatus)
                       || 'Unspecified'}`}
               </TableCell>
               <TableCell className="table-cell">
                 <ul className="condition-list-item">
-                    <li>
-                      <ConditionOnset condition={condition} />
-                    </li>
-                    <ConditionNote condition={condition} />
-                  </ul>
+                  <li>
+                    <ConditionOnset condition={condition} />
+                  </li>
+                  <ConditionNote condition={condition} />
+                </ul>
               </TableCell>
             </TableRow>
           ))}

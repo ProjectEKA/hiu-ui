@@ -279,9 +279,9 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
               </TableCell>
               <TableCell className="table-cell">
                 <ul className="mediation-list-item">
-                    {<MedicationPriority mr={mr} />}
-                    {<MedicationNote mr={mr} />}
-                  </ul>
+                  {<MedicationPriority mr={mr} />}
+                  {<MedicationNote mr={mr} />}
+                </ul>
               </TableCell>
             </TableRow>
           ))}
