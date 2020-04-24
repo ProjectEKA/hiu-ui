@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import SearchPatient from './SearchPatient';
 import { onSearch, onSearchResetState } from '../../redux/actions/searchPatientIdActions';

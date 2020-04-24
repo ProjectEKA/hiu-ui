@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as PropTypes from 'prop-types';
 import { IconButton, TextField, CircularProgress } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,16 +17,15 @@ const SearchPatient = ({
 }) => {
   const [localPatientId, setPatientId] = useState(patientId);
   const [textInput, setTextInput] = useState('');
+
   useEffect(() => {
     if (loading) {
       const loadingText = 'Looking for '.concat(textInput);
       setTextInput(loadingText);
       setPatientId(textInput);
     } else {
-      const successText = localPatientId.concat(': ', patientName);
-      {
-        success ? setTextInput(successText) : setTextInput(localPatientId);
-      }
+      const inputText = success ? localPatientId.concat(': ', patientName) : localPatientId;
+      setTextInput(inputText);
     }
   }, [loading]);
 
@@ -55,14 +55,14 @@ const SearchPatient = ({
             endAdornment: <InputAdornment position="end">@ncg</InputAdornment>,
           }}
           onChange={onChangeSearch}
-          onKeyPress={(e) => {
+          onKeyPress={(event) => {
             if (event.key === 'Enter') {
               onSearch(textInput);
             }
           }}
         />
         <IconButton
-          disabled={textInput.length == 0 || loading}
+          disabled={textInput.length === 0 || loading}
           type="button"
           className="icon-button"
           aria-label="search"
@@ -92,11 +92,26 @@ const SearchPatient = ({
   );
 };
 
+SearchPatient.propTypes = {
+  patientId: PropTypes.string,
+  patientName: PropTypes.string,
+  success: PropTypes.bool,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  serverError: PropTypes.bool,
+  onSearch: PropTypes.func,
+  onSearchResetState: PropTypes.func,
+};
+
 SearchPatient.defaultProps = {
   patientId: '',
+  patientName: '',
+  success: false,
   loading: false,
   error: false,
   serverError: false,
+  onSearch: () => null,
+  onSearchResetState: () => null,
 };
 
 export default SearchPatient;
