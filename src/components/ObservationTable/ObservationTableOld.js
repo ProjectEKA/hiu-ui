@@ -1,3 +1,5 @@
+// Disabled eslint as this component is unused.
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
