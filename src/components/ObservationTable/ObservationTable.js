@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,8 +12,8 @@ import TableStyles from '../common/Styles/Table.style';
 import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 
 const Components = ({ components }) => (components
-  ? components.map((component, i) => (
-    <li style={{ backgroundColor: 'primary' }} key={i}>
+  ? components.map((component) => (
+    <li style={{ backgroundColor: 'primary' }} key={component.valueString}>
       <span>
         {component.code.text}
         {' '}
@@ -47,9 +48,9 @@ const ObservationTable = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((entry, i) => (
+            {data.map((entry) => (
               <TableRow
-                key={i}
+                key={`${entry.status}-${entry.id}`}
                 className={entry.id ? 'children-row' : 'parent-row'}
               >
                 {entry.id ? (
@@ -81,6 +82,14 @@ const ObservationTable = ({ data }) => {
   ) : (
     <div />
   );
+};
+
+ObservationTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+ObservationTable.defaultProps = {
+  data: [],
 };
 
 export default ObservationTable;

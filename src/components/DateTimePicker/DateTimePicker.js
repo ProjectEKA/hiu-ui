@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
 
 const DateTimePicker = ({
@@ -27,9 +28,20 @@ const DateTimePicker = ({
   />
 );
 
+DateTimePicker.propTypes = {
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
+  disableFuture: PropTypes.bool,
+  disablePast: PropTypes.bool,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  handleDateChange: PropTypes.func.isRequired,
+};
+
 DateTimePicker.defaultProps = {
+  minDate: new Date(1900, 1, 1),
+  maxDate: new Date(2100, 1, 1),
   disableFuture: false,
-  minDate: {},
+  disablePast: false,
 };
 
 export default DateTimePicker;

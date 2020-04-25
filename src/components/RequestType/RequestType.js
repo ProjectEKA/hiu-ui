@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -28,5 +29,18 @@ const RequestType = ({ requestTypes, handleChange }) => (
     </FormControl>
   </RequestTypeStyles>
 );
+
+RequestType.propTypes = {
+  requestTypes: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+  })),
+  handleChange: PropTypes.func,
+};
+
+RequestType.defaultProps = {
+  requestTypes: [],
+  handleChange: () => null,
+};
 
 export default RequestType;

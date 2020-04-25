@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import * as PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import SimpleMenuStyles from './SimpleMenu.style';
@@ -24,5 +25,20 @@ const SimpleMenu = ({ menuItems, selectedValue, handleChange }) => (
     </Select>
   </SimpleMenuStyles>
 );
+
+SimpleMenu.propTypes = {
+  menuItems: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+  })),
+  selectedValue: PropTypes.string,
+  handleChange: PropTypes.func,
+};
+
+SimpleMenu.defaultProps = {
+  menuItems: [],
+  selectedValue: '',
+  handleChange: () => null,
+};
 
 export default SimpleMenu;

@@ -7,7 +7,7 @@ const obsProperties = [
   },
   {
     key: 'valueCodableConcept',
-    getValue(o) {
+    getValue() {
       return 'Yet to handle';
     },
   },
@@ -76,7 +76,7 @@ const obsProperties = [
 function valueForObs(obs) {
   for (let i = 0; i < obsProperties.length; i++) {
     const prop = obsProperties[i];
-    if (obs.hasOwnProperty(prop.key)) {
+    if (Object.prototype.hasOwnProperty.call(obs, prop.key)) {
       return prop.getValue(obs);
     }
   }

@@ -1,31 +1,30 @@
 import React from 'react';
-
-import DiagnosticReportComponent from '../DiagnosticReport/DiagnosticReportComponent';
+import * as PropTypes from 'prop-types';
 import ObservationTable from '../ObservationTable/ObservationTable';
 import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
 import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
 
-const CCRDocument = ({ consentReqId, compositionData }) => {
+const CCRDocument = ({ compositionData }) => {
   const independentObservations = compositionData
     ? compositionData.filter((entry) => {
-      if (entry.resourceType != 'Observation') {
+      if (entry.resourceType !== 'Observation') {
         return false;
       }
       if (entry.parentResources) {
         const parent = identifyParentOfType(entry, 'Composition');
-        return parent != undefined;
+        return parent !== undefined;
       }
       return false;
     }) : [];
 
   const independentMedicationRequests = compositionData
     ? compositionData.filter((entry) => {
-      if (entry.resourceType != 'MedicationRequest') {
+      if (entry.resourceType !== 'MedicationRequest') {
         return false;
       }
       if (entry.parentResources) {
         const parent = identifyParentOfType(entry, 'Composition');
-        return parent != undefined;
+        return parent !== undefined;
       }
       return false;
     }) : [];
@@ -35,11 +34,21 @@ const CCRDocument = ({ consentReqId, compositionData }) => {
       Document type: TODO
       <ObservationTable data={independentObservations} />
       <MedicationRequestsComponent medicationRequests={independentMedicationRequests} />
-      {/* <DiagnosticReportComponent consentReqId={consentReqId} data={data} /> */}
     </div>
   ) : (
     <div />
   );
+};
+
+const compositionDataShape = PropTypes.shape({
+  resourceType: PropTypes.string,
+  parentResources: PropTypes.arrayOf(PropTypes.shape({
+    resourceType: PropTypes.string,
+  })),
+});
+
+CCRDocument.propTypes = {
+  compositionData: PropTypes.arrayOf(compositionDataShape).isRequired,
 };
 
 export default CCRDocument;

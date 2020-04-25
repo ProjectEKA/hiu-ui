@@ -1,8 +1,8 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { useParams } from 'react-router-dom';
 import DiagnosticReportComponentStyles from './DiagnosticReportComponent.style';
 import getNestedObject from '../../utils/getNestedObject';
 import ObservationTable from '../ObservationTable/ObservationTable';
@@ -10,25 +10,25 @@ import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 
 const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const performerArray = [];
+
   function extractPerformer(entry) {
     if (entry.performer) {
-      entry.performer.map((prmr) => {
-        performerArray.push(prmr.display);
-      });
+      entry.performer.forEach((performer) => performerArray.push(performer.display));
       return performerArray;
     }
     return undefined;
   }
 
-  const PresentedForm = ({ entry }) => (entry.presentedForm ? (
+  const renderPresentedForm = (entry) => (entry.presentedForm ? (
     <div>
       <span>Diagnostic report links and attachments : </span>
       <ul>
         {entry.presentedForm.map((link) => (
-          <li>
+          <li key={link.url}>
             <a
               href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {link.title ? link.title : 'Link'}
             </a>
@@ -42,38 +42,33 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
 
   function getResultsList(results, resourceType) {
     const referenceList = [];
-    results
-      ? results.map((result) => {
-        const resource = result.targetResource;
-        referenceList.push(resource);
-      })
-      : undefined;
-    return referenceList.filter((ref) => (ref.resourceType = resourceType));
+    if (results) results.forEach((result) => referenceList.push(result.targetResource));
+    return referenceList.filter((ref) => (ref.resourceType === resourceType));
   }
 
-  const Observations = ({ entry }) => {
+  const renderObservations = (entry) => {
     const ObsList = getResultsList(
       getNestedObject(entry, 'result'),
       'Observations',
     );
+
     return <ObservationTable data={ObsList} />;
   };
 
   function getMediaList(results, resourceType) {
     const referenceList = [];
-    results
-      ? results.map((result) => {
+    if (results) {
+      results.forEach((result) => {
         const mediaLinkObject = {
           display: result.link.display ? result.link.display : 'Media Link',
           url: result.link.targetResource.content.url,
           targetResource: result.link.targetResource,
         };
         referenceList.push(mediaLinkObject);
-      })
-      : undefined;
-    return referenceList.filter(
-      (ref) => (ref.targetResource.resourceType = resourceType),
-    );
+      });
+    }
+
+    return referenceList.filter((ref) => ref.targetResource.resourceType === resourceType);
   }
 
   function generateImageUrl(url) {
@@ -89,15 +84,19 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
     return dicomUrl;
   }
 
-  const Media = ({ entry }) => {
+  const renderMedia = (entry) => {
     const MediaList = getMediaList(getNestedObject(entry, 'media'), 'Media');
-    return MediaList && MediaList.length != 0 ? (
+    return MediaList && MediaList.length !== 0 ? (
       <div>
         <span>Associated media : </span>
         <ul>
           {MediaList.map((link) => (
-            <li>
-              <a href={generateImageUrl(link.url)} target="_blank">
+            <li key={link.url}>
+              <a
+                href={generateImageUrl(link.url)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {link.display}
               </a>
             </li>
@@ -111,7 +110,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
 
   return data && data.length !== 0 ? (
     data.map((entry) => (
-      <DiagnosticReportComponentStyles>
+      <DiagnosticReportComponentStyles key={entry.effectiveDateTime}>
         <TableContainer
           className="diagnostic-report-table-container"
           component={Paper}
@@ -142,9 +141,9 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
                 {extractPerformer(entry)}
               </li>
             </ul>
-            <Observations entry={entry} />
-            <PresentedForm entry={entry} />
-            <Media entry={entry} />
+            {renderObservations(entry)}
+            {renderPresentedForm(entry)}
+            {renderMedia(entry)}
           </div>
         </TableContainer>
       </DiagnosticReportComponentStyles>
@@ -152,6 +151,25 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   ) : (
     <div />
   );
+};
+
+DiagnosticReportComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    code: PropTypes.shape({ text: PropTypes.string }),
+    status: PropTypes.string,
+    effectiveDateTime: PropTypes.string,
+    performer: PropTypes.arrayOf(PropTypes.shape({ display: PropTypes.string })),
+    presentedForm: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string,
+      title: PropTypes.string,
+    })),
+  })),
+  consentReqId: PropTypes.string,
+};
+
+DiagnosticReportComponent.defaultProps = {
+  data: [],
+  consentReqId: null,
 };
 
 export default DiagnosticReportComponent;

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import PatientDetailsStyles from './PatientDetails.style';
 
 const PatientDetails = ({ firstName }) => (
@@ -11,5 +12,13 @@ const PatientDetails = ({ firstName }) => (
     </div>
   </PatientDetailsStyles>
 );
+
+PatientDetails.propTypes = {
+  firstName: PropTypes.string,
+};
+
+PatientDetails.defaultProps = {
+  firstName: '',
+};
 
 export default PatientDetails;

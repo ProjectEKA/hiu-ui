@@ -1,4 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,98 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {
-  getConceptDisplay,
-  formatDateString,
-} from '../common/HealthInfo/FhirResourcesUtils';
+import { formatDateString, getConceptDisplay } from '../common/HealthInfo/FhirResourcesUtils';
 import TableStyles from '../common/Styles/Table.style';
-
-const ConditionNote = ({ condition }) => {
-  if (condition.note && condition.note.length > 0) {
-    return (
-      <li>
-        Note:&nbsp;
-        <span>
-          {' '}
-          {condition.note
-            .map((n) => n.text)
-            .reduce((acc, value) => `${acc}, ${value}`)}
-          {' '}
-        </span>
-      </li>
-    );
-  }
-  return null;
-};
-
-const ConditionCategory = ({ condition }) => {
-  if (condition.category) {
-    const categories = [];
-    condition.category.forEach((c) => {
-      const category = getConceptDisplay(c);
-      if (category) {
-        categories.push(category);
-      }
-    });
-    if (categories.length > 0) {
-      return (
-        <span>
-          {' '}
-          {`( ${
-            categories.reduce((acc, value) => `${acc}, ${value}`)
-          } )`}
-          {' '}
-        </span>
-      );
-    }
-  }
-  return null;
-};
-
-const ConditionOnset = ({ condition }) => {
-  if (condition.onsetDateTime) {
-    return (
-      <span>{`Onset time: ${formatDateString(condition.onsetDateTime)}`}</span>
-    );
-  }
-  if (condition.onsetAge) {
-    return (
-      <span>
-        {`Onset age: ${
-          condition.onsetAge.value
-        } ${
-          condition.onsetAge.unit}`}
-      </span>
-    );
-  }
-
-  if (condition.onsetPeriod) {
-    return (
-      <span>
-        {`Period start: ${
-          formatDateString(condition.onsetPeriod.start)
-        }, end: ${
-          formatDateString(condition.onsetPeriod.end)}`}
-      </span>
-    );
-  }
-
-  if (condition.onsetRange) {
-    return (
-      <span>
-        {`Range low: ${
-          condition.onsetRange.low
-        }, high: ${
-          condition.onsetRange.high}`}
-      </span>
-    );
-  }
-
-  if (condition.onsetString) {
-    return <span>{`Onset ${condition.onsetString}`}</span>;
-  }
-  return null;
-};
+import ConditionNote from './ConditionNote';
+import ConditionCategory from './ConditionCategory';
+import ConditionOnset from './ConditionOnset';
 
 const ConditionsComponent = ({ conditionList }) => (conditionList && conditionList.length > 0 ? (
   <TableStyles>
@@ -121,8 +36,8 @@ const ConditionsComponent = ({ conditionList }) => (conditionList && conditionLi
             <TableRow key={i}>
               <TableCell className="table-cell">
                 {condition.recordedDate
-                    ? formatDateString(condition.recordedDate)
-                    : ''}
+                  ? formatDateString(condition.recordedDate)
+                  : ''}
               </TableCell>
               <TableCell className="table-cell">
                 {getConceptDisplay(condition.code)}
@@ -130,23 +45,23 @@ const ConditionsComponent = ({ conditionList }) => (conditionList && conditionLi
               </TableCell>
               <TableCell className="table-cell">
                 {`Severity: ${
-                    getConceptDisplay(condition.severity) || 'Unspecified'}`}
+                  getConceptDisplay(condition.severity) || 'Unspecified'}`}
                 <br />
                 {`Clinical Status: ${
-                    getConceptDisplay(condition.clinicalStatus)
+                  getConceptDisplay(condition.clinicalStatus)
                       || 'Unspecified'}`}
                 <br />
                 {`Verification Status: ${
-                    getConceptDisplay(condition.verificationStatus)
+                  getConceptDisplay(condition.verificationStatus)
                       || 'Unspecified'}`}
               </TableCell>
               <TableCell className="table-cell">
                 <ul className="condition-list-item">
-                    <li>
-                      <ConditionOnset condition={condition} />
-                    </li>
-                    <ConditionNote condition={condition} />
-                  </ul>
+                  <li>
+                    <ConditionOnset condition={condition} />
+                  </li>
+                  <ConditionNote condition={condition} />
+                </ul>
               </TableCell>
             </TableRow>
           ))}
@@ -157,5 +72,27 @@ const ConditionsComponent = ({ conditionList }) => (conditionList && conditionLi
 ) : (
   <div />
 ));
+
+
+const conceptShape = {
+  test: PropTypes.string,
+  coding: PropTypes.object,
+};
+
+const conditionShape = {
+  recordedDate: PropTypes.instanceOf(Date),
+  code: PropTypes.shape(conceptShape),
+  severity: PropTypes.shape(conceptShape),
+  clinicalStatus: PropTypes.shape(conceptShape),
+  verificationStatus: PropTypes.shape(conceptShape),
+};
+
+ConditionsComponent.propTypes = {
+  conditionList: PropTypes.arrayOf(PropTypes.shape(conditionShape)),
+};
+
+ConditionsComponent.defaultProps = {
+  conditionList: [],
+};
 
 export default ConditionsComponent;
