@@ -1,12 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header should render properly  1`] = `
-"<Styled(MuiBox) className=\\"makeStyles-header-1\\" boxShadow={3}>
-  <a href=\\"/\\" className=\\"makeStyles-logo-2\\">
+exports[`<Header /> HTML Structure should render properly 1`] = `
+"<Styled(Component)>
+  <styled.a href=\\"/\\">
     logo
-  </a>
-  <WithStyles(ForwardRef(Button)) variant=\\"contained\\" color=\\"primary\\" className=\\"makeStyles-logout-3\\" onClick={[Function: logout]}>
+  </styled.a>
+  <Styled(Component) onClick={[Function: logout]}>
     Logout
-  </WithStyles(ForwardRef(Button))>
-</Styled(MuiBox)>"
+  </Styled(Component)>
+</Styled(Component)>"
+`;
+
+exports[`Header should render properly 1`] = `
+"<Styled(Component)>
+  <styled.a href=\\"/\\">
+    logo
+  </styled.a>
+  <Styled(Component) onClick={[Function: logout]}>
+    Logout
+  </Styled(Component)>
+</Styled(Component)>"
 `;
