@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HealthInformationContent should render properly 1`] = `
+<styled.div>
+  <div
+    className="hip-health-info-container"
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="header"
+      component="h2"
+      gutterBottom={true}
+      variant="h5"
+    >
+      Max Health Care
+    </WithStyles(ForwardRef(Typography))>
+    <CCRDocument
+      compositionData={
+        Array [
+          Object {
+            "authoredOn": "2020-01-22",
+            "dosageInstruction": Array [
+              Object {
+                "sequence": 1,
+                "text": "22/01/2020 to 07/02/2020",
+                "timing": Object {
+                  "code": Object {
+                    "text": "15 days",
+                  },
+                },
+              },
+            ],
+            "intent": "order",
+            "medicationReference": Object {
+              "display": "IV antibiotics",
+              "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+            },
+            "resourceType": "Composition",
+            "status": "active",
+            "subject": Object {
+              "display": "Shriya",
+            },
+          },
+        ]
+      }
+      consentReqId="123"
+    />
+    <ObservationTable
+      data={
+        Array [
+          Object {
+            "authoredOn": "2020-01-22",
+            "dosageInstruction": Array [
+              Object {
+                "sequence": 1,
+                "text": "22/01/2020 to 07/02/2020",
+                "timing": Object {
+                  "code": Object {
+                    "text": "15 days",
+                  },
+                },
+              },
+            ],
+            "intent": "order",
+            "medicationReference": Object {
+              "display": "IV antibiotics",
+              "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+            },
+            "resourceType": "Observation",
+            "status": "active",
+            "subject": Object {
+              "display": "Shriya",
+            },
+          },
+        ]
+      }
+    />
+    <DiagnosticReportComponent
+      consentReqId="123"
+      data={
+        Array [
+          Object {
+            "authoredOn": "2020-01-22",
+            "dosageInstruction": Array [
+              Object {
+                "sequence": 1,
+                "text": "22/01/2020 to 07/02/2020",
+                "timing": Object {
+                  "code": Object {
+                    "text": "15 days",
+                  },
+                },
+              },
+            ],
+            "intent": "order",
+            "medicationReference": Object {
+              "display": "IV antibiotics",
+              "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+            },
+            "resourceType": "DiagnosticReport",
+            "status": "active",
+            "subject": Object {
+              "display": "Shriya",
+            },
+          },
+        ]
+      }
+    />
+    <ConditionsComponent
+      conditionList={Array []}
+    />
+    <MedicationRequestsComponent
+      medicationRequests={
+        Array [
+          Object {
+            "authoredOn": "2020-01-22",
+            "dosageInstruction": Array [
+              Object {
+                "sequence": 1,
+                "text": "22/01/2020 to 07/02/2020",
+                "timing": Object {
+                  "code": Object {
+                    "text": "15 days",
+                  },
+                },
+              },
+            ],
+            "intent": "order",
+            "medicationReference": Object {
+              "display": "IV antibiotics",
+              "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+            },
+            "resourceType": "MedicationRequest",
+            "status": "active",
+            "subject": Object {
+              "display": "Shriya",
+            },
+          },
+        ]
+      }
+    />
+  </div>
+</styled.div>
+`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> HTML Structure should render properly 1`] = `
+exports[`Header HTML Structure should render properly 1`] = `
 "<Fragment>
   <WithStyles(ForwardRef(AppBar)) color=\\"textPrimary\\">
     <WithStyles(ForwardRef(Toolbar))>

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HealthInformation should render properly 1`] = `
+<HealthInformationContent
+  consentReqId="123"
+  data={
+    Array [
+      Object {
+        "authoredOn": "2020-01-22",
+        "dosageInstruction": Array [
+          Object {
+            "sequence": 1,
+            "text": "22/01/2020 to 07/02/2020",
+            "timing": Object {
+              "code": Object {
+                "text": "15 days",
+              },
+            },
+          },
+        ],
+        "intent": "order",
+        "medicationReference": Object {
+          "display": "IV antibiotics",
+          "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+        },
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "subject": Object {
+          "display": "Shriya",
+        },
+      },
+    ]
+  }
+  hipName="Max Health Care"
+  key="Max Health Care"
+/>
+`;
