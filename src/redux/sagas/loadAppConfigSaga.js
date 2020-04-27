@@ -7,11 +7,6 @@ import {
 import loadPurposeAndHiTypeValueSets from '../apiCalls/loadPurposeAndHiTypeConfigs';
 import { ACTION_TYPES } from '../actions/onSignInActions';
 
-/* eslint-disable require-yield */
-export function* watchSignIn() {
-  takeEvery(ACTION_TYPES.SIGNIN_SUCCEEDED, loadValueSets);
-}
-
 export function* loadValueSets() {
   try {
     const valueSets = yield call(loadPurposeAndHiTypeValueSets);
@@ -21,6 +16,11 @@ export function* loadValueSets() {
   } catch (e) {
     yield put(fetchValueSetsFailed(e));
   }
+}
+
+/* eslint-disable require-yield */
+export function* watchSignIn() {
+  takeEvery(ACTION_TYPES.SIGNIN_SUCCEEDED, loadValueSets);
 }
 
 export const appConfigActionObs = {

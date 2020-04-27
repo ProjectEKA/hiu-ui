@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import LoginPage from './LoginPage';
 import { onSignIn } from '../../redux/actions/onSignInActions';

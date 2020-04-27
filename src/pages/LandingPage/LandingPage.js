@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Snackbar from '@material-ui/core/Snackbar';
-
+import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import RequestAccess from '../RequestAccess/RequestAccessContainer';
 import LoadConsentsContainer from '../../components/ConsentsListTable/LoadConsentsContainer';
@@ -95,6 +95,18 @@ const LandingPage = ({
       <LoadConsentsContainer />
     </div>
   );
+};
+
+LandingPage.propTypes = {
+  success: PropTypes.bool,
+  onCreateConsentResetState: PropTypes.func.isRequired,
+  onSearchResetState: PropTypes.func.isRequired,
+  loadConsents: PropTypes.func.isRequired,
+  loadConfigValueSets: PropTypes.func.isRequired,
+};
+
+LandingPage.defaultProps = {
+  success: false,
 };
 
 export default LandingPage;
