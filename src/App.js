@@ -1,6 +1,7 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import { HashRouter, Route } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginPage from './pages/LoginPage/LoginPageContainer';
 import ResetPassword from './pages/ResetPassword/ResetPasswordContainer';
@@ -9,7 +10,7 @@ import PatientHealthInformation from './pages/PatientHealthInformation';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import history from './history';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     marginTop: 90,
   },
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <div className="App">
+    <>
+      <CssBaseline />
       <Container className={classes.container}>
         <HashRouter basename={BASE_NAME}>
           <Route history={history} component={LoginPage} path="/login" />
@@ -40,7 +42,7 @@ function App() {
           />
         </HashRouter>
       </Container>
-    </div>
+    </>
   );
 }
 

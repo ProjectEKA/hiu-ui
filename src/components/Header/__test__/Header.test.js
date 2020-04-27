@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Redirect } from 'react-router-dom';
+import Button from "@material-ui/core/Button";
 import Header from '..';
-import { LogoutButton } from '../Header.style';
 
 describe('<Header />', () => {
   let wrapper;
@@ -22,7 +22,7 @@ describe('<Header />', () => {
     });
 
     it('should render Redirect component when isLoggedOut is true', () => {
-      wrapper.find(LogoutButton).simulate('click');
+      wrapper.find(Button).simulate('click');
       expect(wrapper.find(Redirect)).toHaveLength(1);
     });
   });
@@ -30,7 +30,7 @@ describe('<Header />', () => {
   describe('Events', () => {
     describe('logout()', () => {
       it('should call removeItem() with auth-token', () => {
-        wrapper.find(LogoutButton).simulate('click');
+        wrapper.find(Button).simulate('click');
         expect(localStorage.removeItem).toHaveBeenCalledWith('auth-token');
       });
 
@@ -39,7 +39,7 @@ describe('<Header />', () => {
         jest.spyOn(React, 'useState').mockImplementation((init) => [init, setState]);
         wrapper = shallow(<Header />);
 
-        wrapper.find(LogoutButton).simulate('click');
+        wrapper.find(Button).simulate('click');
 
         expect(setState).toHaveBeenCalledWith(true);
       });
