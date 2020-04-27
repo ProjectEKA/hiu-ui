@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlertBox should render properly 1`] = `
+<WithStyles(ForwardRef(Alert))
+  severity="info"
+>
+  <WithStyles(ForwardRef(AlertTitle))>
+    <strong>
+      Information
+    </strong>
+  </WithStyles(ForwardRef(AlertTitle))>
+  Health information is available!
+</WithStyles(ForwardRef(Alert))>
+`;

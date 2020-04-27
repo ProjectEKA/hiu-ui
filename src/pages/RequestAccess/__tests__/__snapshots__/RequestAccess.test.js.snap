@@ -60,20 +60,12 @@ exports[`Request Access Should render properly 1`] = `
           menuItems={
             Array [
               Object {
-                "label": "Referral services",
+                "label": "Referral Service",
                 "value": "ReferralService",
               },
               Object {
-                "label": "Episode of Care",
-                "value": "EpisodeOfCare",
-              },
-              Object {
-                "label": "Encounter",
-                "value": "Encounter",
-              },
-              Object {
-                "label": "Remote Consulting",
-                "value": "RemoteConsulting",
+                "label": "Break the Glass",
+                "value": "BTG",
               },
             ]
           }
@@ -103,7 +95,7 @@ exports[`Request Access Should render properly 1`] = `
         <DatePicker
           disableFuture={true}
           handleDateChange={[Function]}
-          minDate="01/01/1900"
+          minDate={1900-01-31T18:38:50.000Z}
           selectedDate={2019-05-14T11:01:58.135Z}
         />
       </WithStyles(ForwardRef(Grid))>
@@ -158,10 +150,10 @@ exports[`Request Access Should render properly 1`] = `
           handleChange={[Function]}
           requestTypes={
             Array [
-              "Condition",
-              "Observation",
-              "DiagnosticReport",
-              "MedicationRequest",
+              Object {
+                "label": "Condition",
+                "value": "Condition",
+              },
             ]
           }
         />
@@ -188,9 +180,10 @@ exports[`Request Access Should render properly 1`] = `
       >
         <DateTimePicker
           disableFuture={false}
-          disablePast="true"
+          disablePast={true}
           handleDateChange={[Function]}
-          minDate={Object {}}
+          maxDate={2100-01-31T18:30:00.000Z}
+          minDate={1900-01-31T18:38:50.000Z}
           selectedDate={2019-05-15T11:01:58.135Z}
         />
       </WithStyles(ForwardRef(Grid))>

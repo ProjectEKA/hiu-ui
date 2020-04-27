@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header HTML Structure should render properly 1`] = `
+"<Styled(Component)>
+  <styled.a href=\\"/\\">
+    logo
+  </styled.a>
+  <Styled(Component) onClick={[Function: logout]}>
+    Logout
+  </Styled(Component)>
+</Styled(Component)>"
+`;

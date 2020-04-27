@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConsentsListTable should render properly 1`] = `
+<div
+  style={
+    Object {
+      "maxWidth": "100%",
+    }
+  }
+>
+  <WithStyles(Component)
+    className="makeStyles-table-1"
+    columns={
+      Array [
+        Object {
+          "field": "name",
+          "title": "Name",
+        },
+        Object {
+          "field": "id",
+          "title": "Jataayu ID",
+        },
+        Object {
+          "field": "status",
+          "title": "Request Status",
+        },
+        Object {
+          "field": "grantedOn",
+          "title": "Consent granted on",
+        },
+        Object {
+          "field": "expiredOn",
+          "title": "Consent expiry on",
+        },
+        Object {
+          "field": "navLink",
+          "title": "",
+          "width": 50,
+        },
+      ]
+    }
+    data={
+      Array [
+        Object {
+          "expiredOn": "20/2/2020",
+          "grantedOn": "19/2/2020",
+          "id": undefined,
+          "name": "John Smith",
+          "navLink": <ForwardRef
+            to="/health-info/undefined"
+          >
+            <UNDEFINED
+              color="primary"
+            />
+          </ForwardRef>,
+          "status": "Consent granted",
+        },
+      ]
+    }
+    options={
+      Object {
+        "headerStyle": Object {
+          "backgroundColor": "#009688",
+          "color": "#FFF",
+        },
+      }
+    }
+    title={
+      <ForwardRef(WithStyles)
+        className="makeStyles-title-2"
+        variant="h5"
+      >
+        Consent List
+      </ForwardRef(WithStyles)>
+    }
+  />
+</div>
+`;

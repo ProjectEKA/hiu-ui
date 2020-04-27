@@ -6,16 +6,16 @@ exports[`RequestType should render properly 1`] = `
     [MockFunction] {
       "calls": Array [
         Array [
-          "PatientHistory",
+          "Patient History",
         ],
         Array [
           "Medications",
         ],
         Array [
-          "DiagnosisLab",
+          "Diagnosis Lab",
         ],
         Array [
-          "RadiologyLab",
+          "Radiology Lab",
         ],
         Array [
           "Observations",
@@ -47,11 +47,26 @@ exports[`RequestType should render properly 1`] = `
   }
   requestTypes={
     Array [
-      "PatientHistory",
-      "Medications",
-      "DiagnosisLab",
-      "RadiologyLab",
-      "Observations",
+      Object {
+        "label": "PatientHistory",
+        "value": "Patient History",
+      },
+      Object {
+        "label": "Medications",
+        "value": "Medications",
+      },
+      Object {
+        "label": "DiagnosisLab",
+        "value": "Diagnosis Lab",
+      },
+      Object {
+        "label": "RadiologyLab",
+        "value": "Radiology Lab",
+      },
+      Object {
+        "label": "Observations",
+        "value": "Observations",
+      },
     ]
   }
 >
@@ -124,10 +139,10 @@ exports[`RequestType should render properly 1`] = `
                         <ForwardRef(WithStyles)
                           className="check-box"
                           color="primary"
-                          value="PatientHistory"
+                          value="Patient History"
                         />
                       }
-                      key="PatientHistory"
+                      key="Patient History"
                       label="PatientHistory"
                     >
                       <ForwardRef(FormControlLabel)
@@ -145,7 +160,7 @@ exports[`RequestType should render properly 1`] = `
                           <ForwardRef(WithStyles)
                             className="check-box"
                             color="primary"
-                            value="PatientHistory"
+                            value="Patient History"
                           />
                         }
                         label="PatientHistory"
@@ -157,7 +172,7 @@ exports[`RequestType should render properly 1`] = `
                             className="check-box"
                             color="primary"
                             disabled={false}
-                            value="PatientHistory"
+                            value="Patient History"
                           >
                             <ForwardRef(Checkbox)
                               className="check-box"
@@ -173,7 +188,7 @@ exports[`RequestType should render properly 1`] = `
                               }
                               color="primary"
                               disabled={false}
-                              value="PatientHistory"
+                              value="Patient History"
                             >
                               <WithStyles(ForwardRef(SwitchBase))
                                 checkedIcon={
@@ -202,7 +217,7 @@ exports[`RequestType should render properly 1`] = `
                                   }
                                 }
                                 type="checkbox"
-                                value="PatientHistory"
+                                value="Patient History"
                               >
                                 <ForwardRef(SwitchBase)
                                   checkedIcon={
@@ -232,7 +247,7 @@ exports[`RequestType should render properly 1`] = `
                                     }
                                   }
                                   type="checkbox"
-                                  value="PatientHistory"
+                                  value="Patient History"
                                 >
                                   <WithStyles(ForwardRef(IconButton))
                                     className="PrivateSwitchBase-root-19 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
@@ -317,7 +332,7 @@ exports[`RequestType should render properly 1`] = `
                                                 disabled={false}
                                                 onChange={[Function]}
                                                 type="checkbox"
-                                                value="PatientHistory"
+                                                value="Patient History"
                                               />
                                               <ForwardRef
                                                 fontSize="default"
@@ -774,10 +789,10 @@ exports[`RequestType should render properly 1`] = `
                         <ForwardRef(WithStyles)
                           className="check-box"
                           color="primary"
-                          value="DiagnosisLab"
+                          value="Diagnosis Lab"
                         />
                       }
-                      key="DiagnosisLab"
+                      key="Diagnosis Lab"
                       label="DiagnosisLab"
                     >
                       <ForwardRef(FormControlLabel)
@@ -795,7 +810,7 @@ exports[`RequestType should render properly 1`] = `
                           <ForwardRef(WithStyles)
                             className="check-box"
                             color="primary"
-                            value="DiagnosisLab"
+                            value="Diagnosis Lab"
                           />
                         }
                         label="DiagnosisLab"
@@ -807,7 +822,7 @@ exports[`RequestType should render properly 1`] = `
                             className="check-box"
                             color="primary"
                             disabled={false}
-                            value="DiagnosisLab"
+                            value="Diagnosis Lab"
                           >
                             <ForwardRef(Checkbox)
                               className="check-box"
@@ -823,7 +838,7 @@ exports[`RequestType should render properly 1`] = `
                               }
                               color="primary"
                               disabled={false}
-                              value="DiagnosisLab"
+                              value="Diagnosis Lab"
                             >
                               <WithStyles(ForwardRef(SwitchBase))
                                 checkedIcon={
@@ -852,7 +867,7 @@ exports[`RequestType should render properly 1`] = `
                                   }
                                 }
                                 type="checkbox"
-                                value="DiagnosisLab"
+                                value="Diagnosis Lab"
                               >
                                 <ForwardRef(SwitchBase)
                                   checkedIcon={
@@ -882,7 +897,7 @@ exports[`RequestType should render properly 1`] = `
                                     }
                                   }
                                   type="checkbox"
-                                  value="DiagnosisLab"
+                                  value="Diagnosis Lab"
                                 >
                                   <WithStyles(ForwardRef(IconButton))
                                     className="PrivateSwitchBase-root-19 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
@@ -967,7 +982,7 @@ exports[`RequestType should render properly 1`] = `
                                                 disabled={false}
                                                 onChange={[Function]}
                                                 type="checkbox"
-                                                value="DiagnosisLab"
+                                                value="Diagnosis Lab"
                                               />
                                               <ForwardRef
                                                 fontSize="default"
@@ -1099,10 +1114,10 @@ exports[`RequestType should render properly 1`] = `
                         <ForwardRef(WithStyles)
                           className="check-box"
                           color="primary"
-                          value="RadiologyLab"
+                          value="Radiology Lab"
                         />
                       }
-                      key="RadiologyLab"
+                      key="Radiology Lab"
                       label="RadiologyLab"
                     >
                       <ForwardRef(FormControlLabel)
@@ -1120,7 +1135,7 @@ exports[`RequestType should render properly 1`] = `
                           <ForwardRef(WithStyles)
                             className="check-box"
                             color="primary"
-                            value="RadiologyLab"
+                            value="Radiology Lab"
                           />
                         }
                         label="RadiologyLab"
@@ -1132,7 +1147,7 @@ exports[`RequestType should render properly 1`] = `
                             className="check-box"
                             color="primary"
                             disabled={false}
-                            value="RadiologyLab"
+                            value="Radiology Lab"
                           >
                             <ForwardRef(Checkbox)
                               className="check-box"
@@ -1148,7 +1163,7 @@ exports[`RequestType should render properly 1`] = `
                               }
                               color="primary"
                               disabled={false}
-                              value="RadiologyLab"
+                              value="Radiology Lab"
                             >
                               <WithStyles(ForwardRef(SwitchBase))
                                 checkedIcon={
@@ -1177,7 +1192,7 @@ exports[`RequestType should render properly 1`] = `
                                   }
                                 }
                                 type="checkbox"
-                                value="RadiologyLab"
+                                value="Radiology Lab"
                               >
                                 <ForwardRef(SwitchBase)
                                   checkedIcon={
@@ -1207,7 +1222,7 @@ exports[`RequestType should render properly 1`] = `
                                     }
                                   }
                                   type="checkbox"
-                                  value="RadiologyLab"
+                                  value="Radiology Lab"
                                 >
                                   <WithStyles(ForwardRef(IconButton))
                                     className="PrivateSwitchBase-root-19 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
@@ -1292,7 +1307,7 @@ exports[`RequestType should render properly 1`] = `
                                                 disabled={false}
                                                 onChange={[Function]}
                                                 type="checkbox"
-                                                value="RadiologyLab"
+                                                value="Radiology Lab"
                                               />
                                               <ForwardRef
                                                 fontSize="default"

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CCRDocument should render properly 1`] = `
+<div>
+  Document type: TODO
+  <ObservationTable
+    data={Array []}
+  />
+  <MedicationRequestsComponent
+    medicationRequests={Array []}
+  />
+</div>
+`;

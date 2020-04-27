@@ -62,6 +62,27 @@
     "webpack-cli": "^3.3.11"
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0
+      }
+    },
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html",
+      "text"
+    ],
+    "collectCoverageFrom": [
+      "src/components/**/*.js",
+      "src/pages/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "node_modules/",
+      "src/components/*.style.js",
+      "src/pages/*.style.js"
+    ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
