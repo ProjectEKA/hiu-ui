@@ -1,4 +1,3 @@
-import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import ResetPassword from './ResetPassword';
@@ -6,7 +5,7 @@ import { onResetPassword } from '../../redux/actions/onResetPasswordActions';
 
 const mapStateToProps = (state) => ({
   error: _.get(state, 'resetPassword.error'),
-  errorMessgae: _.get(state, 'resetPassword.errorMessage'),
+  errorMessage: _.get(state, 'resetPassword.errorMessage'),
 });
 
 const mapDispatchToProps = {

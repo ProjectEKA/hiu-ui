@@ -12,7 +12,7 @@ export const onCreateConsentSuccess = (payload) => ({
   type: ACTION_TYPES.CREATE_CONSENT_SUCCEEDED,
   payload,
 });
-export const onCreateConsentFailure = () => ({
+export const onCreateConsentFailure = (payload) => ({
   type: ACTION_TYPES.CREATE_CONSENT_FAILED,
   payload,
 });

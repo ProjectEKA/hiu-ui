@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Button from '@material-ui/core/Button';
-import { Modal, Snackbar, jssPreset } from '@material-ui/core';
+import { Modal, Snackbar } from '@material-ui/core';
 import LandingPage from '../LandingPage';
 
 describe('Lading Page', () => {
@@ -29,29 +29,31 @@ describe('Lading Page', () => {
   });
 
   describe('After successful creation of consent', () => {
-    let onCreateConsentResetState; let onSearchResetState; let loadConsents; let
-      wrapper;
+    let onCreateConsentResetState;
+    let onSearchResetState;
+    let loadConsents;
+    let landingPageWrapper;
 
     beforeAll(() => {
       onCreateConsentResetState = jest.fn();
       onSearchResetState = jest.fn();
       loadConsents = jest.fn();
-      wrapper = shallow(
+      landingPageWrapper = shallow(
         <LandingPage
           success
           onCreateConsentResetState={onCreateConsentResetState}
           onSearchResetState={onSearchResetState}
           loadConsents={loadConsents}
-        />,
+        />
       );
-      wrapper.find(Button).props().onClick(); // Open Modal
+      landingPageWrapper.find(Button).props().onClick(); // Open Modal
     });
 
     it('Success Message: Snackbar, should popup after successfully requesting a consent', () => {
       const successMessageSnackbar = wrapper.find(Snackbar);
       expect(successMessageSnackbar.props().open).toBe(true);
       expect(successMessageSnackbar.props().message).toBe(
-        'Consent requested successfully!',
+        'Consent requested successfully!'
       );
     });
 

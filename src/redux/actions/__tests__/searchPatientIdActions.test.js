@@ -5,7 +5,6 @@ import {
   ACTION_TYPES,
 } from '../searchPatientIdActions';
 
-
 describe('Search Patient Id Action', () => {
   it('change state on search requested', () => {
     const expectedAction = {

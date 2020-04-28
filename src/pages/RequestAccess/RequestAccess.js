@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as PropTypes from 'prop-types';
 import { Button, CircularProgress } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,17 +12,32 @@ import SimpleMenu from '../../components/SimpleMenu/SimpleMenu';
 import getNextDay from '../../utils/getNextDay';
 
 const RequestAccess = ({
-  onCreateConsent, patientId, loading, error, purposesOfUse, hiTypes,
+  onCreateConsent,
+  patientId,
+  loading,
+  error,
+  purposesOfUse,
+  hiTypes,
 }) => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const usagePurposes = purposesOfUse.map((p) => ({ label: p.display, value: p.code }));
+  const usagePurposes = purposesOfUse.map((p) => ({
+    label: p.display,
+    value: p.code,
+  }));
   const [selectedPurposeValue, setSelectedPurposeValue] = useState(
-    usagePurposes.length > 0 ? usagePurposes[0].value : '',
+    usagePurposes.length > 0 ? usagePurposes[0].value : ''
   );
-  const requestHiTypes = hiTypes.map((p) => ({ label: p.display, value: p.code }));
-  const hiTypesInitialStates = Object.assign(...requestHiTypes.map((hiType) => ({ [hiType.value]: false })));
-  const [selectedRequestTypes, setSelectedRequestTypes] = useState(hiTypesInitialStates);
+  const requestHiTypes = hiTypes.map((p) => ({
+    label: p.display,
+    value: p.code,
+  }));
+  const hiTypesInitialStates = Object.assign(
+    ...requestHiTypes.map((hiType) => ({ [hiType.value]: false }))
+  );
+  const [selectedRequestTypes, setSelectedRequestTypes] = useState(
+    hiTypesInitialStates
+  );
 
   const [emptyPatientIDError, setEmptyPatientIDError] = useState(false);
   const [selectedExpiryDate, setSelectedExpiryDate] = useState(getNextDay());
@@ -178,9 +194,31 @@ const RequestAccess = ({
   );
 };
 
-SearchPatient.defaultProps = {
-  success: false,
+RequestAccess.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  onCreateConsent: PropTypes.func.isRequired,
+  patientId: PropTypes.string,
+  purposesOfUse: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.string.isRequired,
+      display: PropTypes.string.isRequired,
+    })
+  ),
+  hiTypes: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.string.isRequired,
+      display: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+RequestAccess.defaultProps = {
+  loading: false,
   error: false,
+  patientId: '',
+  purposesOfUse: [],
+  hiTypes: [],
 };
 
 export default RequestAccess;
