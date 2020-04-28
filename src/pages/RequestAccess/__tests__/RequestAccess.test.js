@@ -42,21 +42,21 @@ describe('Request Access', () => {
   it('Purpose of request, should have referral services selected by default', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(wrapper.find(SimpleMenu).props().selectedValue).toEqual(
-      'ReferralService',
+      'ReferralService'
     );
   });
 
   it('From: date component, should have current date when no date is selected ', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(
-      wrapper.find(DatePicker).at(0).props().selectedDate.toISOString(),
+      wrapper.find(DatePicker).at(0).props().selectedDate.toISOString()
     ).toEqual('2019-05-14T11:01:58.135Z');
   });
 
   it('To: date component, should have current date when no date is selected ', () => {
     const wrapper = shallow(<RequestAccess />);
     expect(
-      wrapper.find(DatePicker).at(1).props().selectedDate.toISOString(),
+      wrapper.find(DatePicker).at(1).props().selectedDate.toISOString()
     ).toEqual('2019-05-14T11:01:58.135Z');
   });
 
@@ -107,7 +107,7 @@ describe('Request Access', () => {
   it('Request Consent: Button, call onCreateConsent on clicking if there are no errors', () => {
     const onCreateConsent = jest.fn();
     const wrapper = shallow(
-      <RequestAccess patientId="sample@ncg" onCreateConsent={onCreateConsent} />,
+      <RequestAccess patientId="sample@ncg" onCreateConsent={onCreateConsent} />
     );
     wrapper.find(Button).props().onClick();
 

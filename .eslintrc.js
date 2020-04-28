@@ -4,10 +4,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: [
-    'airbnb',
-    'plugin:react/recommended',
-  ],
+  extends: ['airbnb', 'plugin:react/recommended', 'prettier'],
   globals: {
     BASE_NAME: 'readonly',
     BACKEND_BASE_URL: 'readonly',
@@ -23,13 +20,14 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
-    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
-    'react/jsx-props-no-spreading': "off",
-    'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/setupTests.js', '**/*.test.js']}],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/setupTests.js', '**/*.test.js'] },
+    ],
   },
 };

@@ -2,8 +2,8 @@ import {
   onSearch,
   onSearchSuccess,
   onSearchFailure,
-  ACTION_TYPES } from "./../searchPatientIdActions";
-
+  ACTION_TYPES,
+} from '../searchPatientIdActions';
 
 describe('Search Patient Id Action', () => {
   it('change state on search requested', () => {
@@ -12,7 +12,7 @@ describe('Search Patient Id Action', () => {
       payload: { id: '1' },
     };
     const patient = {
-      id: '1'
+      id: '1',
     };
     expect(onSearch(patient)).toMatchObject(expectedAction);
   });
@@ -23,7 +23,7 @@ describe('Search Patient Id Action', () => {
       payload: { id: '1' },
     };
     const patient = {
-      id: '1'
+      id: '1',
     };
     expect(onSearchSuccess(patient)).toMatchObject(expectedAction);
   });
@@ -34,7 +34,7 @@ describe('Search Patient Id Action', () => {
       payload: {},
     };
     const patient = {
-      id: '1'
+      id: '1',
     };
     expect(onSearchFailure(patient)).toMatchObject(expectedAction);
   });

@@ -10,30 +10,30 @@ import resetPasswordSaga from './resetPasswordSaga';
 
 function* rootSaga() {
   const sagas = [];
-  for (const action in searchPatientSaga) {
-    sagas.push(takeEvery(action, searchPatientSaga[action]));
-  }
-  for (const action in createConsentSaga) {
-    sagas.push(takeEvery(action, createConsentSaga[action]));
-  }
-  for (const action in loadConsentsSaga) {
-    sagas.push(takeEvery(action, loadConsentsSaga[action]));
-  }
-  for (const action in loadHealthDataSaga) {
-    sagas.push(takeEvery(action, loadHealthDataSaga[action]));
-  }
-  for (const action in signInSaga) {
-    sagas.push(takeEvery(action, signInSaga[action]));
-  }
-  for (const action in resetPasswordSaga) {
-    sagas.push(takeEvery(action, resetPasswordSaga[action]));
-  }
-  for (const action in downloadPathologySaga) {
-    sagas.push(takeEvery(action, downloadPathologySaga[action]));
-  }
-  for (const action in appConfigActionObs) {
-    sagas.push(takeEvery(action, appConfigActionObs[action]));
-  }
+  Object.keys(searchPatientSaga).forEach((action) =>
+    sagas.push(takeEvery(action, searchPatientSaga[action]))
+  );
+  Object.keys(createConsentSaga).forEach((action) =>
+    sagas.push(takeEvery(action, createConsentSaga[action]))
+  );
+  Object.keys(loadConsentsSaga).forEach((action) =>
+    sagas.push(takeEvery(action, loadConsentsSaga[action]))
+  );
+  Object.keys(loadHealthDataSaga).forEach((action) =>
+    sagas.push(takeEvery(action, loadHealthDataSaga[action]))
+  );
+  Object.keys(signInSaga).forEach((action) =>
+    sagas.push(takeEvery(action, signInSaga[action]))
+  );
+  Object.keys(resetPasswordSaga).forEach((action) =>
+    sagas.push(takeEvery(action, resetPasswordSaga[action]))
+  );
+  Object.keys(downloadPathologySaga).forEach((action) =>
+    sagas.push(takeEvery(action, downloadPathologySaga[action]))
+  );
+  Object.keys(appConfigActionObs).forEach((action) =>
+    sagas.push(takeEvery(action, appConfigActionObs[action]))
+  );
   yield all(sagas);
 }
 

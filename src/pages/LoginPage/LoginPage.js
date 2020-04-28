@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,7 +29,6 @@ function Copyright() {
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>
-      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -186,3 +186,12 @@ export default function SignIn({ onSignIn, error }) {
     </Container>
   );
 }
+
+SignIn.propTypes = {
+  error: PropTypes.bool,
+  onSignIn: PropTypes.func.isRequired,
+};
+
+SignIn.defaultProps = {
+  error: false,
+};

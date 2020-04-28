@@ -18,13 +18,13 @@ export default (state = {}, action) => {
         success: true,
       };
     case ACTION_TYPES.RESET_PASSWORD_FAILED:
-      const errorMessages = _.get(action, 'payload.error.message', 'Something failed').split('\n');
-
       return {
         ...state,
         loading: false,
         error: true,
-        errorMessage: _.first(errorMessages),
+        errorMessage: _.first(
+          _.get(action, 'payload.error.message', 'Something failed').split('\n')
+        ),
         success: false,
       };
     default:

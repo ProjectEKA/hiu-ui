@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +19,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -56,14 +56,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ResetPassword({ onResetPassword, error, errorMessgae }) {
+export default function ResetPassword({
+  onResetPassword,
+  error,
+  errorMessage,
+}) {
   const classes = useStyles();
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const history = useHistory();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -96,16 +99,14 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
             <ListItemText secondary="Cannot have three or more consecutive numbers" />
           </ListItem>
         </List>
-        {error && (
-          <span className={classes.error}>{errorMessgae}</span>
-        )}
-        {newPassword !== ''
-          && confirmPassword !== ''
-          && newPassword !== confirmPassword && (
+        {error && <span className={classes.error}>{errorMessage}</span>}
+        {newPassword !== '' &&
+          confirmPassword !== '' &&
+          newPassword !== confirmPassword && (
             <span className={classes.error}>
               New password and confirm password are different
             </span>
-        )}
+          )}
         <form className={classes.form}>
           <FormControl
             fullWidth
@@ -193,9 +194,9 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
           </FormControl>
           <Button
             disabled={
-              newPassword === ''
-              || confirmPassword === ''
-              || newPassword !== confirmPassword
+              newPassword === '' ||
+              confirmPassword === '' ||
+              newPassword !== confirmPassword
             }
             type="submit"
             fullWidth
@@ -214,3 +215,14 @@ export default function ResetPassword({ onResetPassword, error, errorMessgae }) 
     </Container>
   );
 }
+
+ResetPassword.propTypes = {
+  error: PropTypes.bool,
+  errorMessage: PropTypes.string,
+  onResetPassword: PropTypes.func.isRequired,
+};
+
+ResetPassword.defaultProps = {
+  error: false,
+  errorMessage: '',
+};

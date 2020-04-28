@@ -1,4 +1,3 @@
-import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import PatientHealthInformation from './PatientHealthInformation.view';
@@ -9,6 +8,7 @@ function extractDatesArray(data) {
   if (data) {
     return Object.keys(data);
   }
+  return undefined;
 }
 
 function extractSelectedDate(data) {
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
   healthInfo: getNestedObject(state, 'healthInfo.healthData'),
   dateArray: extractDatesArray(getNestedObject(state, 'healthInfo.healthData')),
   defaultSelectedDate: extractSelectedDate(
-    getNestedObject(state, 'healthInfo.healthData'),
+    getNestedObject(state, 'healthInfo.healthData')
   ),
   erroredEntiresCount: _.get(state, 'healthInfo.entriesCount.ERRORED', 0),
   success: state.healthInfo.success,
@@ -38,5 +38,5 @@ const mapDispatchToProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(PatientHealthInformation);

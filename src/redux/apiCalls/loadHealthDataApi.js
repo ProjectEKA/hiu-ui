@@ -1,7 +1,7 @@
 import apiWrapper from '../apiWrapper';
 import { defaultHeaders } from '../../constants';
 
-const loadHealthDataApi = (consentRequestId, groupFunction) => {
+const loadHealthDataApi = (consentRequestId) => {
   const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
     'get',
@@ -10,7 +10,7 @@ const loadHealthDataApi = (consentRequestId, groupFunction) => {
     {
       ...defaultHeaders,
       Authorization: authToken,
-    },
+    }
   );
 };
 

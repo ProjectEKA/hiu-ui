@@ -19,12 +19,12 @@ export const onSearchFailure = () => ({
   payload: {},
 });
 
-export const onSearchIdNotFound = () => ({
+export const onSearchIdNotFound = (payload) => ({
   type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
   payload,
 });
 
-export const onSearchServerFailure = () => ({
+export const onSearchServerFailure = (payload) => ({
   type: ACTION_TYPES.PATIENT_FETCH_SERVER_ERROR,
   payload,
 });
