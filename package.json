@@ -76,12 +76,8 @@
     ],
     "collectCoverageFrom": [
       "src/components/**/*.js",
-      "src/pages/**/*.js"
-    ],
-    "testPathIgnorePatterns": [
-      "node_modules/",
-      "src/components/*.style.js",
-      "src/pages/*.style.js"
+      "src/pages/**/*.js",
+      "!src/**/*.style.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

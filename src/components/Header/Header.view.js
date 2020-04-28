@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 const Header = () => {
   const [isLoggedOut, setIsLoggedOut] = React.useState(false);
@@ -16,10 +16,10 @@ const Header = () => {
 
   return (
     <>
-      {isLoggedOut && <Redirect to="/login"/>}
+      {isLoggedOut && <Redirect to="/login" />}
       <AppBar color="textPrimary">
         <Toolbar>
-          <Typography variant="h6" style={{flexGrow: 1}}>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
             <Link href={BASE_NAME}>
               LOGO
             </Link>

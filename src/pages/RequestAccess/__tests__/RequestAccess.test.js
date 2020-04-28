@@ -1,6 +1,6 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import {Button} from '@material-ui/core';
+import { shallow } from 'enzyme';
+import { Button } from '@material-ui/core';
 import RequestAccess from '../RequestAccess';
 import DatePicker from '../../../components/DateTimePicker/DatePicker';
 import DateTimePicker from '../../../components/DateTimePicker/DateTimePicker';
@@ -13,19 +13,19 @@ jest.mock('./../../../utils/getNextDay');
 describe('Request Access', () => {
   const mockPurposeOfUse = [
     {
-      code: "ReferralService",
-      display: "Referral Service"
+      code: 'ReferralService',
+      display: 'Referral Service',
     },
     {
-      code: "BTG",
-      display: "Break the Glass"
-    }
+      code: 'BTG',
+      display: 'Break the Glass',
+    },
   ];
   const mockHiTypes = [
     {
-      code: "Condition",
-      display: "Condition"
-    }
+      code: 'Condition',
+      display: 'Condition',
+    },
   ];
 
   const currentDate = new Date('2019-05-14T11:01:58.135Z');
@@ -40,13 +40,13 @@ describe('Request Access', () => {
   };
 
   const wrapper = shallow(
-      <RequestAccess
-          purposesOfUse={mockPurposeOfUse}
-          hiTypes={mockHiTypes}
-          patientId="sample@ncg"
-          loading={false}
-          error={false}
-      />
+    <RequestAccess
+      purposesOfUse={mockPurposeOfUse}
+      hiTypes={mockHiTypes}
+      patientId="sample@ncg"
+      loading={false}
+      error={false}
+    />,
   );
 
   it('Should render properly', () => {
@@ -74,56 +74,56 @@ describe('Request Access', () => {
   });
 
 
-  it("Expiry: date component, should have next day as current date when no date is selected ", () => {
+  it('Expiry: date component, should have next day as current date when no date is selected ', () => {
     const ActualExpiryDate = wrapper
-        .find(DateTimePicker)
-        .props()
-        .selectedDate.toISOString();
-    const expectedExpiryDate = "2019-05-15T11:01:58.135Z";
+      .find(DateTimePicker)
+      .props()
+      .selectedDate.toISOString();
+    const expectedExpiryDate = '2019-05-15T11:01:58.135Z';
     expect(ActualExpiryDate).toEqual(expectedExpiryDate);
   });
 
-  it("Error message, should not be shown when no error occurs while creating consent", () => {
-    const errorMessage = "Error occured while creating consent.";
+  it('Error message, should not be shown when no error occurs while creating consent', () => {
+    const errorMessage = 'Error occured while creating consent.';
     expect(wrapper.contains(errorMessage)).toBe(false);
   });
 
-  it("Error message, should be shown when error occurs while creating consent", () => {
-    wrapper.setProps({error:true});
-    const errorMessage = "Error occured while creating consent.";
+  it('Error message, should be shown when error occurs while creating consent', () => {
+    wrapper.setProps({ error: true });
+    const errorMessage = 'Error occured while creating consent.';
     expect(wrapper.contains(errorMessage)).toBe(true);
   });
 
-  it("Request Consent: Button, should be disabled if none of the HI types are selected", () => {
+  it('Request Consent: Button, should be disabled if none of the HI types are selected', () => {
     expect(wrapper.find(Button).props().disabled).toBe(true);
   });
 
-  it("Request Consent: Button, should be enabled when at least one HI type is selected", () => {
+  it('Request Consent: Button, should be enabled when at least one HI type is selected', () => {
     const handleHITypeChange = wrapper.find(RequestType).props().handleChange;
     const event = { target: { checked: true } };
-    handleHITypeChange("PatientHistory")(event);
+    handleHITypeChange('PatientHistory')(event);
 
     expect(wrapper.find(Button).props().disabled).toBe(false);
   });
 
-  it("Request Consent: Button, call onCreateConsent on clicking if there are no errors", () => {
+  it('Request Consent: Button, call onCreateConsent on clicking if there are no errors', () => {
     const onCreateConsent = jest.fn();
-    wrapper.setProps({onCreateConsent: onCreateConsent});
+    wrapper.setProps({ onCreateConsent });
 
     wrapper.find(Button).props().onClick();
     expect(onCreateConsent).toHaveBeenCalled();
   });
 
-  it("Request Consent: Button, should show error if patientID is empty on click", () => {
-    wrapper.setProps({patientId:''});
+  it('Request Consent: Button, should show error if patientID is empty on click', () => {
+    wrapper.setProps({ patientId: '' });
     wrapper.find(Button).props().onClick();
 
-    const errorMessage = "Please enter a patient identifier";
+    const errorMessage = 'Please enter a patient identifier';
     expect(wrapper.contains(errorMessage)).toBe(true);
   });
 
-  it("Loading: Circular Progress, should appear when request is in loading state", () => {
-    wrapper.setProps({loading:true});
-    expect(wrapper.find("#loader").exists()).toBe(true);
+  it('Loading: Circular Progress, should appear when request is in loading state', () => {
+    wrapper.setProps({ loading: true });
+    expect(wrapper.find('#loader').exists()).toBe(true);
   });
 });

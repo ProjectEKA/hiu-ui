@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HealthInfo should render properly 1`] = `
+<styled.div>
+  <div
+    className="health-info-nav"
+  >
+    <span
+      className="date-navigator-heading"
+    >
+      View by recorded date
+    </span>
+    <div
+      className="date-navigator"
+    >
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="search"
+        className="icon-button"
+        disabled={true}
+        onClick={[Function]}
+        size="small"
+        theme="primary"
+        type="button"
+      >
+        <ChevronLeftIcon
+          theme="primary"
+          variant="outlined"
+        />
+      </WithStyles(ForwardRef(IconButton))>
+      <div
+        className="date-text"
+      >
+        22/1/2020
+      </div>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="search"
+        className="icon-button"
+        disabled={false}
+        onClick={[Function]}
+        size="small"
+        theme="primary"
+        type="button"
+      >
+        <ChevronRightIcon
+          theme="primary"
+          variant="outlined"
+        />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </div>
+</styled.div>
+`;

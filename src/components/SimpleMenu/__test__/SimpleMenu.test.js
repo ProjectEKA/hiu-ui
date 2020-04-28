@@ -1,7 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import SimpleMenu from '../SimpleMenu';
-import MenuItem from "@material-ui/core/MenuItem";
 
 describe('Simple Menu', () => {
   const MenuItems = [
@@ -24,11 +23,11 @@ describe('Simple Menu', () => {
   ];
   const noop = jest.fn();
   const wrapper = shallow(
-      <SimpleMenu
-          menuItems={MenuItems}
-          selectedValue="GeneralConsulting"
-          handleChange={noop}
-      />,
+    <SimpleMenu
+      menuItems={MenuItems}
+      selectedValue="GeneralConsulting"
+      handleChange={noop}
+    />,
   );
 
   it('should render properly ', () => {

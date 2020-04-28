@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header HTML Structure should render properly 1`] = `
-"<Styled(Component)>
-  <styled.a href=\\"/\\">
-    logo
-  </styled.a>
-  <Styled(Component) onClick={[Function: logout]}>
-    Logout
-  </Styled(Component)>
-</Styled(Component)>"
+"<Fragment>
+  <WithStyles(ForwardRef(AppBar)) color=\\"textPrimary\\">
+    <WithStyles(ForwardRef(Toolbar))>
+      <WithStyles(ForwardRef(Typography)) variant=\\"h6\\" style={{...}}>
+        <WithStyles(ForwardRef(Link)) href=\\"/\\">
+          LOGO
+        </WithStyles(ForwardRef(Link))>
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Button)) color=\\"primary\\" variant=\\"contained\\" onClick={[Function: logout]}>
+        Logout
+      </WithStyles(ForwardRef(Button))>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+</Fragment>"
 `;

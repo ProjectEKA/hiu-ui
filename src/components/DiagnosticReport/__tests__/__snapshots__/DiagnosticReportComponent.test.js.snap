@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ConditionsComponent should render properly 1`] = `
-<styled.div>
+exports[`DiagnosticReportComponent should render properly 1`] = `
+<styled.div
+  key="2019-11-03T00:00:00+00:00"
+>
   <WithStyles(ForwardRef(TableContainer))
-    className="table-container"
+    className="diagnostic-report-table-container"
     component={
       Object {
         "$$typeof": Symbol(react.forward_ref),
@@ -321,259 +323,63 @@ exports[`ConditionsComponent should render properly 1`] = `
       }
     }
   >
-    <WithStyles(ForwardRef(Table))
-      aria-label="simple table"
-      className="table"
+    <WithStyles(ForwardRef(Typography))
+      className="diagnostic-report-header"
+      component="h6"
+      variant="h6"
     >
-      <WithStyles(ForwardRef(TableHead))>
-        <WithStyles(ForwardRef(TableRow))
-          className="table-head"
-        >
-          <WithStyles(ForwardRef(TableCell))
-            className="header"
-            colSpan={4}
+      Diagnostic report :
+       
+      Surgical Pathology Report
+    </WithStyles(ForwardRef(Typography))>
+    <div
+      className="diagnostic-report"
+    >
+      <ul
+        className="report-details-list"
+      >
+        <li>
+          <span>
+            Date: 
+          </span>
+          3/11/2019
+        </li>
+        <li>
+          <span>
+            Status: 
+          </span>
+          final
+        </li>
+        <li>
+          <span>
+            Performer: 
+          </span>
+          text
+        </li>
+      </ul>
+      <ObservationTable
+        data={Array []}
+      />
+      <div>
+        <span>
+          Diagnostic report links and attachments : 
+        </span>
+        <ul>
+          <li
+            key="/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
           >
-            Condition:
-          </WithStyles(ForwardRef(TableCell))>
-        </WithStyles(ForwardRef(TableRow))>
-        <WithStyles(ForwardRef(TableRow))
-          className="table-head"
-        >
-          <WithStyles(ForwardRef(TableCell))
-            align="left"
-          >
-            Recorded Date
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            align="left"
-          >
-            Condition
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            align="left"
-          >
-            Status
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            align="left"
-          >
-            Additional Notes
-          </WithStyles(ForwardRef(TableCell))>
-        </WithStyles(ForwardRef(TableRow))>
-      </WithStyles(ForwardRef(TableHead))>
-      <WithStyles(ForwardRef(TableBody))>
-        <WithStyles(ForwardRef(TableRow))
-          key="0"
-        >
-          <WithStyles(ForwardRef(TableCell))
-            className="table-cell"
-          >
-            19/2/2020
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            className="table-cell"
-          >
-            day1
-            <ConditionCategory
-              condition={
-                Object {
-                  "category": Array [
-                    Object {
-                      "coding": Object {
-                        "code": "abc",
-                        "display": "abc text",
-                      },
-                      "text": "category",
-                    },
-                  ],
-                  "clinicalStatus": Object {
-                    "coding": Array [
-                      Object {
-                        "code": "active",
-                        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                      },
-                    ],
-                    "text": "clinical status",
-                  },
-                  "code": Object {
-                    "text": "day1",
-                  },
-                  "note": Array [
-                    Object {
-                      "text": "condition note",
-                    },
-                  ],
-                  "onsetAge": Object {
-                    "unit": "",
-                    "value": "",
-                  },
-                  "onsetDateTime": "",
-                  "onsetPeriod": Object {
-                    "end": "",
-                    "start": "",
-                  },
-                  "onsetRange": Object {
-                    "high": "",
-                    "low": "",
-                  },
-                  "onsetString": "",
-                  "recordedDate": "2020-02-19T00:30:08.000+0000",
-                  "severity": Object {
-                    "text": "severity",
-                  },
-                  "verificationStatus": Object {
-                    "coding": Array [
-                      Object {
-                        "code": "confirmed",
-                        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-                      },
-                    ],
-                    "text": "approved",
-                  },
-                }
-              }
-            />
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            className="table-cell"
-          >
-            Severity: severity
-            <br />
-            Clinical Status: clinical status
-            <br />
-            Verification Status: approved
-          </WithStyles(ForwardRef(TableCell))>
-          <WithStyles(ForwardRef(TableCell))
-            className="table-cell"
-          >
-            <ul
-              className="condition-list-item"
+            <a
+              href="http://localhost:3000/hiu-apihealth-information/fetch/123/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <li>
-                <ConditionOnset
-                  condition={
-                    Object {
-                      "category": Array [
-                        Object {
-                          "coding": Object {
-                            "code": "abc",
-                            "display": "abc text",
-                          },
-                          "text": "category",
-                        },
-                      ],
-                      "clinicalStatus": Object {
-                        "coding": Array [
-                          Object {
-                            "code": "active",
-                            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                          },
-                        ],
-                        "text": "clinical status",
-                      },
-                      "code": Object {
-                        "text": "day1",
-                      },
-                      "note": Array [
-                        Object {
-                          "text": "condition note",
-                        },
-                      ],
-                      "onsetAge": Object {
-                        "unit": "",
-                        "value": "",
-                      },
-                      "onsetDateTime": "",
-                      "onsetPeriod": Object {
-                        "end": "",
-                        "start": "",
-                      },
-                      "onsetRange": Object {
-                        "high": "",
-                        "low": "",
-                      },
-                      "onsetString": "",
-                      "recordedDate": "2020-02-19T00:30:08.000+0000",
-                      "severity": Object {
-                        "text": "severity",
-                      },
-                      "verificationStatus": Object {
-                        "coding": Array [
-                          Object {
-                            "code": "confirmed",
-                            "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-                          },
-                        ],
-                        "text": "approved",
-                      },
-                    }
-                  }
-                />
-              </li>
-              <ConditionNote
-                condition={
-                  Object {
-                    "category": Array [
-                      Object {
-                        "coding": Object {
-                          "code": "abc",
-                          "display": "abc text",
-                        },
-                        "text": "category",
-                      },
-                    ],
-                    "clinicalStatus": Object {
-                      "coding": Array [
-                        Object {
-                          "code": "active",
-                          "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
-                        },
-                      ],
-                      "text": "clinical status",
-                    },
-                    "code": Object {
-                      "text": "day1",
-                    },
-                    "note": Array [
-                      Object {
-                        "text": "condition note",
-                      },
-                    ],
-                    "onsetAge": Object {
-                      "unit": "",
-                      "value": "",
-                    },
-                    "onsetDateTime": "",
-                    "onsetPeriod": Object {
-                      "end": "",
-                      "start": "",
-                    },
-                    "onsetRange": Object {
-                      "high": "",
-                      "low": "",
-                    },
-                    "onsetString": "",
-                    "recordedDate": "2020-02-19T00:30:08.000+0000",
-                    "severity": Object {
-                      "text": "severity",
-                    },
-                    "verificationStatus": Object {
-                      "coding": Array [
-                        Object {
-                          "code": "confirmed",
-                          "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-                        },
-                      ],
-                      "text": "approved",
-                    },
-                  }
-                }
-              />
-            </ul>
-          </WithStyles(ForwardRef(TableCell))>
-        </WithStyles(ForwardRef(TableRow))>
-      </WithStyles(ForwardRef(TableBody))>
-    </WithStyles(ForwardRef(Table))>
+              BILATERAL DIGITAL MAMMOGRAPHY and 3D TOMOSYNTHESIS
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div />
+    </div>
   </WithStyles(ForwardRef(TableContainer))>
 </styled.div>
 `;
