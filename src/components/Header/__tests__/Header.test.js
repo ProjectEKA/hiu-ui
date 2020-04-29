@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Redirect } from 'react-router-dom';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 import Header from '..';
 
-describe('<Header />', () => {
+describe('Header', () => {
   let wrapper;
 
   beforeEach(() => {

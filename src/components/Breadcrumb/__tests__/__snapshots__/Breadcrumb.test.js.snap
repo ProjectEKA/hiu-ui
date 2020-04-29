@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb should render properly 1`] = `
+<WithStyles(ForwardRef(Breadcrumbs))
+  aria-label="breadcrumb"
+  className="makeStyles-container-1"
+>
+  <WithStyles(ForwardRef(Link))
+    color="inherit"
+    href="/"
+  >
+    Consent List
+  </WithStyles(ForwardRef(Link))>
+  <WithStyles(ForwardRef(Typography))
+    color="textPrimary"
+  >
+    Health Data
+  </WithStyles(ForwardRef(Typography))>
+</WithStyles(ForwardRef(Breadcrumbs))>
+`;

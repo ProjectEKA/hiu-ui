@@ -21,25 +21,21 @@ describe('Simple Menu', () => {
       value: 'Encounter',
     },
   ];
+  const noop = jest.fn();
+  const wrapper = shallow(
+    <SimpleMenu
+      menuItems={MenuItems}
+      selectedValue="GeneralConsulting"
+      handleChange={noop}
+    />,
+  );
+
   it('should render properly ', () => {
-    const wrapper = shallow(
-      <SimpleMenu menuItems={MenuItems} selectedValue="GeneralConsulting" />,
-    );
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  it('should render properly', () => {
-    const noop = jest.fn();
-    const wrapper = shallow(
-      <SimpleMenu
-        menuItems={MenuItems}
-        selectedValue="GeneralConsulting"
-        handleChange={noop}
-      />,
-    );
-
-    wrapper.find('#select-menu').simulate('click');
-
+  it('should call function on click of menuItem', () => {
+    wrapper.find('#menu-item').at(0).simulate('click');
     expect(noop).toHaveBeenCalled();
   });
 });

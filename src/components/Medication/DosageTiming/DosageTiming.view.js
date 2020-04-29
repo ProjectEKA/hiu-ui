@@ -26,7 +26,7 @@ const DosageTiming = (props) => {
     const { repeat } = dosage.timing;
     if (repeat.code) {
       if (repeat.code.text) {
-        timingInfo.push(repeat.code);
+        timingInfo.push(repeat.code.text);
       }
     }
     if (repeat.count) {
@@ -54,7 +54,7 @@ const DosageTiming = (props) => {
           `Period Start: ${formatDateString(repeat.boundsPeriod.start)}`,
         );
       }
-      if (repeat.boundsPeriod.start) {
+      if (repeat.boundsPeriod.end) {
         timingInfo.push(
           `Period End: ${formatDateString(repeat.boundsPeriod.end)}`,
         );

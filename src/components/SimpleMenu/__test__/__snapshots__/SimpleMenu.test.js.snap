@@ -2,17 +2,17 @@
 
 exports[`Simple Menu should render properly  1`] = `
 "<styled.div>
-  <WithStyles(ForwardRef(Select)) id=\\"select-menu\\" className=\\"select-menu\\" value=\\"GeneralConsulting\\" onChange={[undefined]}>
-    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"GeneralConsulting\\" onClick={[undefined]}>
+  <WithStyles(ForwardRef(Select)) id=\\"select-menu\\" className=\\"select-menu\\" value=\\"GeneralConsulting\\" onChange={[Function: mockConstructor]}>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"GeneralConsulting\\" onClick={[Function: mockConstructor]}>
       General Consulting
     </WithStyles(ForwardRef(MenuItem))>
-    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"ReferralServices\\" onClick={[undefined]}>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"ReferralServices\\" onClick={[Function: mockConstructor]}>
       Referral services
     </WithStyles(ForwardRef(MenuItem))>
-    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"EpisodeOfCare\\" onClick={[undefined]}>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"EpisodeOfCare\\" onClick={[Function: mockConstructor]}>
       Episode of Care
     </WithStyles(ForwardRef(MenuItem))>
-    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"Encounter\\" onClick={[undefined]}>
+    <WithStyles(ForwardRef(MenuItem)) id=\\"menu-item\\" value=\\"Encounter\\" onClick={[Function: mockConstructor]}>
       Encounter
     </WithStyles(ForwardRef(MenuItem))>
   </WithStyles(ForwardRef(Select))>

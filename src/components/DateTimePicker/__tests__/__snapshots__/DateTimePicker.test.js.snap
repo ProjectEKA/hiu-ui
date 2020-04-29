@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateTimePicker should render properly 1`] = `
+<PickerWithState
+  KeyboardButtonProps={
+    Object {
+      "aria-label": "change date",
+    }
+  }
+  allowKeyboardControl={true}
+  ampm={true}
+  autoOk="true"
+  disableFuture={false}
+  disablePast={false}
+  format="dd/MM/yyyy HH:mm"
+  id="date-picker-dialog"
+  invalidDateMessage="Invalid Date Format"
+  margin="normal"
+  maxDate={2019-12-31T11:01:58.135Z}
+  maxDateMessage="Date should not be after maximal date"
+  minDate={2019-01-01T11:01:58.135Z}
+  minDateMessage="Date should not be before minimal date"
+  onChange={[MockFunction]}
+  openTo="date"
+  orientation="portrait"
+  showTabs={true}
+  value={2020-04-22T03:17:48.603Z}
+  variant="inline"
+  views={
+    Array [
+      "year",
+      "date",
+      "hours",
+      "minutes",
+    ]
+  }
+  wider={true}
+/>
+`;

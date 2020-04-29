@@ -28,8 +28,11 @@ const ConditionCategory = ({ condition }) => {
 
 const conditionShape = PropTypes.shape({
   category: PropTypes.arrayOf(PropTypes.shape({
-    push: PropTypes.func,
-    forEach: PropTypes.func,
+    text: PropTypes.string,
+    coding: PropTypes.shape({
+      code: PropTypes.string,
+      display: PropTypes.string,
+    }),
   })),
 });
 

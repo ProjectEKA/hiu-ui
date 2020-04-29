@@ -4,11 +4,26 @@ import RequestType from '../RequestType';
 
 describe('RequestType', () => {
   const requestTypes = [
-    'PatientHistory',
-    'Medications',
-    'DiagnosisLab',
-    'RadiologyLab',
-    'Observations',
+    {
+      label: 'PatientHistory',
+      value: 'Patient History',
+    },
+    {
+      label: 'Medications',
+      value: 'Medications',
+    },
+    {
+      label: 'DiagnosisLab',
+      value: 'Diagnosis Lab',
+    },
+    {
+      label: 'RadiologyLab',
+      value: 'Radiology Lab',
+    },
+    {
+      label: 'Observations',
+      value: 'Observations',
+    },
   ];
   it('should render properly', () => {
     const noop = jest.fn();

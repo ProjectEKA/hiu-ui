@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DosingInstructionsForPatient should render properly 1`] = `
+<li>
+  <span>
+    Instruction to Patient:
+    Information text ...
+  </span>
+</li>
+`;

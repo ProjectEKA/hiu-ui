@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DosingInstructionAsNeeded should render properly 1`] = `
+<li>
+  <span>
+    Take as needed
+  </span>
+</li>
+`;
