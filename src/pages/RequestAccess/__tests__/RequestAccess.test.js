@@ -38,9 +38,11 @@ describe('Request Access', () => {
       return currentDate;
     }
   };
+  const onCreateConsent = jest.fn();
 
   const wrapper = shallow(
     <RequestAccess
+      onCreateConsent={onCreateConsent}
       purposesOfUse={mockPurposeOfUse}
       hiTypes={mockHiTypes}
       patientId="sample@ncg"
@@ -107,9 +109,6 @@ describe('Request Access', () => {
   });
 
   it('Request Consent: Button, call onCreateConsent on clicking if there are no errors', () => {
-    const onCreateConsent = jest.fn();
-    wrapper.setProps({ onCreateConsent });
-
     wrapper.find(Button).props().onClick();
     expect(onCreateConsent).toHaveBeenCalled();
   });

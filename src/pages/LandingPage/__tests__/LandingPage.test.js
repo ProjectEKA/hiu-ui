@@ -4,14 +4,14 @@ import Button from '@material-ui/core/Button';
 import { Modal, Snackbar } from '@material-ui/core';
 import LandingPage from '../LandingPage';
 
-describe('Lading Page', () => {
+describe('Landing Page', () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<LandingPage />);
   });
 
-  it('should render properley', () => {
+  it('should render properly', () => {
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
@@ -32,29 +32,37 @@ describe('Lading Page', () => {
     let onCreateConsentResetState;
     let onSearchResetState;
     let loadConsents;
+    let loadConfigValueSets;
     let landingPageWrapper;
 
     beforeAll(() => {
       onCreateConsentResetState = jest.fn();
       onSearchResetState = jest.fn();
       loadConsents = jest.fn();
+      loadConfigValueSets = jest.fn();
       landingPageWrapper = shallow(
         <LandingPage
           success
           onCreateConsentResetState={onCreateConsentResetState}
           onSearchResetState={onSearchResetState}
           loadConsents={loadConsents}
+          loadConfigValueSets={loadConfigValueSets}
         />
       );
       landingPageWrapper.find(Button).props().onClick(); // Open Modal
     });
 
     it('Success Message: Snackbar, should popup after successfully requesting a consent', () => {
-      const successMessageSnackbar = wrapper.find(Snackbar);
+      const successMessageSnackbar = landingPageWrapper.find(Snackbar);
       expect(successMessageSnackbar.props().open).toBe(true);
       expect(successMessageSnackbar.props().message).toBe(
         'Consent requested successfully!'
       );
+    });
+
+    it('Success Message: Snackbar, should close popup on click of close icon', () => {
+      landingPageWrapper.find(Snackbar).props().onClose();
+      expect(landingPageWrapper.find(Snackbar).props().open).toBe(false);
     });
 
     it('should reload the consent list', () => {
@@ -62,12 +70,12 @@ describe('Lading Page', () => {
     });
 
     it('should reset previously created consent creation state on close', () => {
-      wrapper.find(Modal).props().onClose();
+      landingPageWrapper.find(Modal).props().onClose();
       expect(onCreateConsentResetState).toHaveBeenCalled();
     });
 
     it('should reset the previously searched patient state on close', () => {
-      wrapper.find(Modal).props().onClose();
+      landingPageWrapper.find(Modal).props().onClose();
       expect(onSearchResetState).toHaveBeenCalled();
     });
   });
