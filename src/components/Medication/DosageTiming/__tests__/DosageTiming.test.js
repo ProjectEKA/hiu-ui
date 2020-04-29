@@ -7,7 +7,7 @@ describe('DosageTiming', () => {
     sequence: 1,
     text: '22/01/2020 to 07/02/2020',
     timing: {
-      event: ['22/1/2019'],
+      event: ['1','2019-01-21T12:00:00+01:00','2019-01-22T12:00:00+01:00'],
     },
   };
   const wrapper = shallow(

@@ -77,7 +77,7 @@ describe('ConditionOnset', () => {
   });
 
   it('should return empty object if condition data is undefined', () => {
-    wrapper = shallow(<ConditionOnset condition={undefined} />);
+    wrapper = shallow(<ConditionOnset />);
     expect(wrapper.find('span').exists()).toEqual(false);
   });
 });

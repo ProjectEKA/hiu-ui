@@ -11,7 +11,7 @@ import valueForObs from './ObsValueHandlers';
 import TableStyles from '../common/Styles/Table.style';
 import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 
-const Components = ({ components }) => (components
+export const Components = ({ components }) => (components
   ? components.map((component) => (
     <li style={{ backgroundColor: 'primary' }} key={component.valueString}>
       <span>

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicationDose should render properly 1`] = `
+<div>
+  <DosingInstruction
+    dosage={
+      Object {
+        "sequence": 1,
+        "text": "22/01/2020 to 07/02/2020",
+        "timing": Object {
+          "event": Array [
+            "22/1/2019",
+          ],
+        },
+      }
+    }
+    key="22/01/2020 to 07/02/2020"
+  />
+</div>
+`;

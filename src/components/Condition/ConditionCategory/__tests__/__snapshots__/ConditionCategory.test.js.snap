@@ -3,7 +3,7 @@
 exports[`ConditionOnset should render properly 1`] = `
 <span>
    
-  ( category )
+  ( Category 1, Category 2 )
    
 </span>
 `;

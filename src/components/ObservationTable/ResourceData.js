@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const ResourceData = {
   resourceType: 'Bundle',
   id: '12345',

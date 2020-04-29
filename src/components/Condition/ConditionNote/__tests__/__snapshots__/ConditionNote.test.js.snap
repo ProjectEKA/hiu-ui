@@ -5,7 +5,7 @@ exports[`ConditionNote should render properly 1`] = `
   Note: 
   <span>
      
-    condition note
+    condition note 1, condition note 2
      
   </span>
 </li>

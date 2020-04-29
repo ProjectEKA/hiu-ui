@@ -30,6 +30,12 @@ describe('SearchPatient', () => {
     );
   });
 
+  it('should show error message when error occurs', () => {
+    props.error = true;
+    const wrapper = mount(<SearchPatient {...props} />);
+    expect(wrapper.find('#search-field').at(0).props().helperText).toEqual('Id not found.');
+  });
+
   it('should set input box value back to patient id after loading is done', () => {
     const wrapper = mount(<SearchPatient {...props} />);
     expect(wrapper.find('#search-field').at(0).props().disabled).toBe(true);

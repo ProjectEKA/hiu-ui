@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 const obsProperties = [
   {
     key: 'valueQuantity',

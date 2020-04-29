@@ -9,7 +9,10 @@ describe('ConditionNote', () => {
     const mockData = {
       note: [
         {
-          text: 'condition note',
+          text: 'condition note 1',
+        },
+        {
+          text: 'condition note 2',
         },
       ],
     };
@@ -20,7 +23,7 @@ describe('ConditionNote', () => {
   });
 
   it('should return empty object if condition data is undefined', () => {
-    wrapper = shallow(<ConditionNote condition={undefined} />);
+    wrapper = shallow(<ConditionNote />);
     expect(wrapper.find('li').exists()).toEqual(false);
   });
 });

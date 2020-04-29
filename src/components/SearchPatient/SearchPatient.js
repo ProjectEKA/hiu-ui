@@ -110,8 +110,8 @@ SearchPatient.defaultProps = {
   loading: false,
   error: false,
   serverError: false,
-  onSearch: () => null,
-  onSearchResetState: () => null,
+  onSearch: {},
+  onSearchResetState:{},
 };
 
 export default SearchPatient;

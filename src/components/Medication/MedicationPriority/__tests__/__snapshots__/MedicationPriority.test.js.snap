@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicationPriority should render properly 1`] = `
+<li>
+  <span>
+    Priority:
+    Medication priority
+  </span>
+</li>
+`;
