@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as PropTypes from 'prop-types';
 import SearchPatientStyles from './SearchPatient.style';
 import {
   IconButton,

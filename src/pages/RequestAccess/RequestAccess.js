@@ -33,16 +33,6 @@ const RequestAccess = ({
     value: p.code,
   }));
   const hiTypesInitialStates = Object.assign(
-    ...requestHiTypes.map((hiType) => ({ [hiType.value]: false }))
-  );
-  const [selectedRequestTypes, setSelectedRequestTypes] = useState(
-    hiTypesInitialStates
-  );
-  const requestHiTypes = hiTypes.map((p) => ({
-    label: p.display,
-    value: p.code,
-  }));
-  var hiTypesInitialStates = Object.assign(
     ...requestHiTypes.map((hiType) => {
       return { [hiType.value]: false };
     })

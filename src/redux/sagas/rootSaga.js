@@ -35,7 +35,7 @@ function* rootSaga() {
   Object.keys(appConfigActionObs).forEach((action) =>
     sagas.push(takeEvery(action, appConfigActionObs[action]))
   );
-  Object.keys(appConfigActionObs).forEach((action) =>
+  Object.keys(loadCmConfigSaga).forEach((action) =>
     sagas.push(takeEvery(action, loadCmConfigSaga[action]))
   );
   yield all(sagas);
