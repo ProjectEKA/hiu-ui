@@ -38,7 +38,7 @@ SimpleMenu.propTypes = {
 SimpleMenu.defaultProps = {
   menuItems: [],
   selectedValue: '',
-  handleChange: () => {},
+  handleChange: {},
 };
 
 export default SimpleMenu;

@@ -1,7 +1,7 @@
 import React from 'react';
 import valueForObs from './ObsValueHandlers';
 
-function getConceptText(codeableConcept) {
+export function getConceptText(codeableConcept) {
   if (codeableConcept && codeableConcept.text) {
     return codeableConcept.text;
   }
@@ -12,7 +12,7 @@ function getConceptText(codeableConcept) {
   return undefined;
 }
 
-function getConceptTextForComponents(components) {
+export function getConceptTextForComponents(components) {
   const componentControls = [];
   if (components) {
     for (let i = 0; i < components.length; i++) {

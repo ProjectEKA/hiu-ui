@@ -30,10 +30,7 @@ exports[`Request Access Should render properly 1`] = `
         item={true}
         xs={5}
       >
-        <Connect(SearchPatient)
-          error={false}
-          success={false}
-        />
+        <Connect(SearchPatient) />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid))

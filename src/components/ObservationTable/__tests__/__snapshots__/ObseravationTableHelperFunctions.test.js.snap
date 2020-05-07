@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ObservationTableHelperFunctions should generate rows for members from observation 1`] = `
+Array [
+  Object {
+    "hasMember": Array [
+      Object {
+        "display": "Respiratory Rate",
+        "reference": "Observation/463eba1b-e80a-4e0a-8ce4-8f803c343763",
+      },
+    ],
+    "id": "463eba1b-e80a-4e0a-8ce4-8f803c343763",
+  },
+]
+`;
+
+exports[`ObservationTableHelperFunctions should return entity status from observation 1`] = `
+<div>
+  <div>
+    status:
+    active
+  </div>
+  
+</div>
+`;
+
+exports[`ObservationTableHelperFunctions should return entity value from observation 1`] = `
+<div>
+  <div />
+  <ul>
+    <li>
+      text
+       
+      :
+      value
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`ObservationTableHelperFunctions should return list with text and value for components 1`] = `
+<ul>
+  <li>
+    text
+     
+    :
+    value
+  </li>
+</ul>
+`;

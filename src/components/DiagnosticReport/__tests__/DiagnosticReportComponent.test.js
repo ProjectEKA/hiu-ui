@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import TableContainer from '@material-ui/core/TableContainer';
 import DiagnosticReportComponent from '../DiagnosticReportComponent';
 
@@ -13,6 +13,15 @@ describe('DiagnosticReportComponent', () => {
       },
       subject: {
         display: 'Shriya',
+      },
+      targetResource: {
+        code: {
+          coding: [
+            {
+              code: 'code',
+            },
+          ],
+        },
       },
       effectiveDateTime: '2019-11-03T00:00:00+00:00',
       issued: '2019-11-05T00:00:00+00:00',
@@ -51,7 +60,7 @@ describe('DiagnosticReportComponent', () => {
 
   it('should show date as - and performer as blank if data is not available', () => {
     mockData[0].effectiveDateTime = null;
-    mockData[0].performer = [];
+    mockData[0].performer = undefined;
     wrapper.setProps({ data: mockData });
     expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Date: -');
     expect(wrapper.find('.report-details-list li').at(2).text()).toEqual('Performer: ');
@@ -61,9 +70,13 @@ describe('DiagnosticReportComponent', () => {
     mockData[0].presentedForm[0].title = null;
     wrapper.setProps({ data: mockData });
     expect(wrapper.find('a').at(0).text()).toEqual('Link');
+
+    mockData[0].presentedForm= undefined;
+    wrapper.setProps({ data: mockData });
+    expect(wrapper.find('a').exists()).toEqual(false);
   });
 
-  it('should show empty object if data is undefined', () => {
+  it('should not render anything if data is undefined', () => {
     wrapper.setProps({ data: undefined });
     expect(wrapper.find(TableContainer).exists()).toEqual(false);
   });

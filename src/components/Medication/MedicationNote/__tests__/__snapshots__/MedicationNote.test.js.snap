@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MedicationNote should render properly 1`] = `
+<li>
+  Note: 
+  <span>
+    medication note 1, medication note 2
+  </span>
+</li>
+`;

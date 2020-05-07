@@ -40,7 +40,7 @@ RequestType.propTypes = {
 
 RequestType.defaultProps = {
   requestTypes: [],
-  handleChange: () => null,
+  handleChange: {},
 };
 
 export default RequestType;
