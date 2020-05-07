@@ -5,6 +5,7 @@ import ObservationTable from '../../ObservationTable/ObservationTable';
 import DiagnosticReportComponent from '../../DiagnosticReport/DiagnosticReportComponent';
 import MedicationRequestsComponent from '../../Medication/MedicationRequestsComponent';
 import HealthInformationContent from '../HealthInformationContent.view';
+import DischargeSummary from "../../DischargeSummary/DischargeSummary.view";
 
 describe('HealthInformationContent', () => {
   const mockData = [
@@ -40,6 +41,9 @@ describe('HealthInformationContent', () => {
       consentReqId="123"
       hipName="Max Health Care"
       data={mockData}
+      title="Discharge Summary"
+      startDate="2018-04-01T15:30:10+01:00"
+      endDate="2018-04-10T15:30:10+01:00"
     />,
   );
 
@@ -65,6 +69,12 @@ describe('HealthInformationContent', () => {
     wrapper.setProps({ data: mockData });
     expect(wrapper.find(DiagnosticReportComponent).props().data).toEqual(mockData);
     expect(wrapper.find(DiagnosticReportComponent).props().consentReqId).toEqual('123');
+  });
+
+  it('should render DischargeSummary component with correct props', () => {
+    expect(wrapper.find(DischargeSummary).props().title).toEqual('Discharge Summary');
+    expect(wrapper.find(DischargeSummary).props().startDate).toEqual('2018-04-01T15:30:10+01:00');
+    expect(wrapper.find(DischargeSummary).props().endDate).toEqual('2018-04-10T15:30:10+01:00');
   });
 
   it('should render with no data', () => {

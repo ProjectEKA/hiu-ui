@@ -49,7 +49,7 @@ class HealthInfoProcessor {
     return bundle.entry.find((e) => e.resource.resourceType.toLowerCase() === 'composition');
   }
 
-  addResourceEntryForDate(dateStr, hipRef, resource, hipEntriesByDate) {
+  addResourceEntryForDate(dateStr, hipRef, resource, hipEntriesByDate, title, startDate, endDate) {
     const entryByDate = hipEntriesByDate.find((e) => e.date === dateStr);
 
     if (entryByDate) {
@@ -58,6 +58,9 @@ class HealthInfoProcessor {
         var hipRecord = {
           hipId: hipRef.hipId,
           hipName: hipRef.hipName,
+          title,
+          startDate,
+          endDate,
           data: [resource],
         };
         entryByDate.hipData.push(hipRecord);
@@ -68,6 +71,9 @@ class HealthInfoProcessor {
       var hipRecord = {
         hipId: hipRef.hipId,
         hipName: hipRef.hipName,
+        title,
+        startDate,
+        endDate,
         data: [resource],
       };
       const newEntryByDate = { date: dateStr, hipData: [hipRecord] };
@@ -96,6 +102,9 @@ class HealthInfoProcessor {
           const compositionEntry = this.getCompositionEntryFromBundle(bundle);
           if (compositionEntry) {
             const composition = compositionEntry.resource;
+            const {title, event} = composition;
+            const startDate = event && event.length && event[0].period.start;
+            const endDate = event && event.length && event[0].period.end;
             const compositionDate = resourceDateFormatter.composition(composition);
             if (compositionDate) {
               this.sortBundleEntryForProcessing(bundle);
@@ -105,7 +114,7 @@ class HealthInfoProcessor {
                   resourceProcessor.process(e.resource, new BundleContext(bundle));
                 }
                 // add all the bundle entries against the composition date.
-                this.addResourceEntryForDate(compositionDate, entryByHip, e.resource, hipEntriesByDate);
+                this.addResourceEntryForDate(compositionDate, entryByHip, e.resource, hipEntriesByDate, title, startDate, endDate);
               });
             } else {
               console.log('Error: Composition does not have date. Entire Bundle is added to unresolved entries');

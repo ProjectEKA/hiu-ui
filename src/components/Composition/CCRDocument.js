@@ -31,7 +31,6 @@ const CCRDocument = ({ compositionData }) => {
 
   return compositionData && compositionData.length > 0 ? (
     <div>
-      Document type: TODO
       <ObservationTable data={independentObservations} />
       <MedicationRequestsComponent medicationRequests={independentMedicationRequests} />
     </div>

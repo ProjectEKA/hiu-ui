@@ -8,8 +8,9 @@ import CCRDocument from '../Composition/CCRDocument';
 import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
 import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
 import ConditionsComponent from '../Condition/ConditionsComponent';
+import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
 
-const HealthInformationContent = ({ consentReqId, hipName, data }) => {
+const HealthInformationContent = ({ consentReqId, hipName, data, title, startDate, endDate }) => {
   const compositionData = data
     ? data.filter((entry) => entry.resourceType.toLowerCase() === 'composition')
     : [];
@@ -72,6 +73,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         <Typography className="header" gutterBottom variant="h5" component="h2">
           {hipName}
         </Typography>
+        <DischargeSummary title={title} startDate={startDate} endDate={endDate} />
         <CCRDocument
           consentReqId={consentReqId}
           compositionData={compositionData}
@@ -97,12 +99,18 @@ HealthInformationContent.propTypes = {
   consentReqId: PropTypes.string,
   hipName: PropTypes.string,
   data: PropTypes.arrayOf(resourceShape),
+  title: PropTypes.string,
+  startDate: PropTypes.string,
+  endDate: PropTypes.string,
 };
 
 HealthInformationContent.defaultProps = {
   consentReqId: '',
   hipName: '',
   data: [],
+  title:'',
+  startDate:'',
+  endDate:'',
 };
 
 export default HealthInformationContent;

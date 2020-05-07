@@ -2,7 +2,6 @@
 
 exports[`CCRDocument should render properly 1`] = `
 <div>
-  Document type: TODO
   <ObservationTable
     data={Array []}
   />
