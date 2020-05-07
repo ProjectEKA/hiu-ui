@@ -31,7 +31,10 @@ exports[`HealthInformation should render properly 1`] = `
       },
     ]
   }
+  endDate=""
   hipName="Max Health Care"
   key="Max Health Care"
+  startDate=""
+  title=""
 />
 `;

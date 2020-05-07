@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DischargeSummary should render properly 1`] = `
+<WithStyles(ForwardRef(Typography))
+  className="makeStyles-container-1"
+  color="inherit"
+  variant="h6"
+>
+  Discharge Summary
+  <span
+    className="makeStyles-description-2"
+  >
+    Admitted from
+     
+    1/4/2018
+     
+    to
+     
+    10/4/2018
+  </span>
+</WithStyles(ForwardRef(Typography))>
+`;

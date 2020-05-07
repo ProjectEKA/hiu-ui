@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const TableStyles = styled.div`
   .table-container {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
   .table {
     min-width: 650px;
