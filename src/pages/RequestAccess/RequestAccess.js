@@ -33,7 +33,9 @@ const RequestAccess = ({
     value: p.code,
   }));
   const hiTypesInitialStates = Object.assign(
-    ...requestHiTypes.map((hiType) => ({ [hiType.value]: false }))
+    ...requestHiTypes.map((hiType) => {
+      return { [hiType.value]: false };
+    })
   );
   const [selectedRequestTypes, setSelectedRequestTypes] = useState(
     hiTypesInitialStates
@@ -51,12 +53,12 @@ const RequestAccess = ({
     });
   };
   const handleStarteDateChange = (date) => {
-    const startDate = date;
+    var startDate = date;
     setSelectedStartDate(startDate);
   };
   const handleEndDateChange = (date) => {
-    const startDate = selectedStartDate;
-    const endDate = date;
+    var startDate = selectedStartDate;
+    var endDate = date;
     if (startDate.getTime() < endDate.getTime()) {
       setSelectedEndDate(endDate);
     }

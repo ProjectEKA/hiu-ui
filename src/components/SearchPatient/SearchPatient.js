@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
-import { IconButton, TextField, CircularProgress } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
 import SearchPatientStyles from './SearchPatient.style';
+import {
+  IconButton,
+  TextField,
+  CircularProgress,
+  MenuItem,
+  Select,
+} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 const SearchPatient = ({
   onSearch,
@@ -14,17 +19,22 @@ const SearchPatient = ({
   loading,
   error,
   serverError,
+  cmConfigList,
 }) => {
   const [localPatientId, setPatientId] = useState(patientId);
   const [textInput, setTextInput] = useState('');
-
+  const [selectedCmSuffixValue, setSelectedCmSuffixValue] = useState(
+    cmConfigList.length > 0 ? cmConfigList[0].userIdSuffix : ''
+  );
   useEffect(() => {
     if (loading) {
       const loadingText = 'Looking for '.concat(textInput);
       setTextInput(loadingText);
       setPatientId(textInput);
     } else {
-      const inputText = success ? localPatientId.concat(': ', patientName) : localPatientId;
+      const inputText = success
+        ? localPatientId.concat(': ', patientName)
+        : localPatientId;
       setTextInput(inputText);
     }
   }, [loading]);
@@ -41,6 +51,10 @@ const SearchPatient = ({
     onSearchResetState();
   };
 
+  const handleCmListSelection = (event) => {
+    setSelectedCmSuffixValue(event.target.value);
+  };
+
   return (
     <SearchPatientStyles>
       <div className="search-bar">
@@ -51,23 +65,27 @@ const SearchPatient = ({
           error={error}
           helperText={generateErrorText()}
           value={textInput}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">@ncg</InputAdornment>,
-          }}
           onChange={onChangeSearch}
-          onKeyPress={(event) => {
+          onKeyPress={(e) => {
             if (event.key === 'Enter') {
-              onSearch(textInput);
+              onSearch(textInput + selectedCmSuffixValue);
             }
           }}
         />
+        <Select value={selectedCmSuffixValue} onChange={handleCmListSelection}>
+          {cmConfigList.map((value) => (
+            <MenuItem key={value.userIdSuffix} value={value.userIdSuffix}>
+              {value.userIdSuffix}
+            </MenuItem>
+          ))}
+        </Select>
         <IconButton
           disabled={textInput.length === 0 || loading}
           type="button"
           className="icon-button"
           aria-label="search"
           theme="primary"
-          onClick={() => onSearch(textInput)}
+          onClick={() => onSearch(textInput + selectedCmSuffixValue)}
         >
           {loading ? (
             <CircularProgress
@@ -111,7 +129,7 @@ SearchPatient.defaultProps = {
   error: false,
   serverError: false,
   onSearch: {},
-  onSearchResetState:{},
+  onSearchResetState: {},
 };
 
 export default SearchPatient;
