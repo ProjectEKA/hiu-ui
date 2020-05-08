@@ -20,7 +20,7 @@ function* loadHealthData(action) {
     let consentState = yield select((state) =>
       getNestedObject(state, 'loadConsents.consentsList')
     );
-    if (!consentState) {
+    if (!consentState.length) {
       yield put(loadConsents());
       yield take(GET_CONSENTS_ACTION_TYPES.CONSENTS_FETCH_SUCCEEDED);
       consentState = yield select((state) =>
