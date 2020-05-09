@@ -11,9 +11,6 @@ const HealthInformation = ({ consentReqId, healthInfo, selectedDate }) => {
         consentReqId={consentReqId}
         hipName={hip.hipName}
         data={hip.data}
-        title={hip.title}
-        startDate={hip.startDate}
-        endDate={hip.endDate}
       />
     ))
   ) : (
