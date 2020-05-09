@@ -4,8 +4,21 @@ import ObservationTable from '../ObservationTable/ObservationTable';
 import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
 import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
 import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
+import getNestedObject from "../../utils/getNestedObject";
 
 const CCRDocument = ({ compositionData }) => {
+  const composition = compositionData.find(node => node.resourceType.toLowerCase() === "composition");
+  const getTitle = () => composition && composition.title;
+  const getStartDate = () => composition && composition.event[0] && getNestedObject(composition.event[0], 'period.start');
+  const getEndDate = () => composition && composition.event[0] && getNestedObject(composition.event[0], 'period.end');
+  const isDischargeSummary = () => {
+    const coding = composition && getNestedObject(composition, 'type.coding');
+    if (coding && coding.length) {
+      return coding[0].system === 'http://loinc.org' && coding[0].code === '28655-9';
+    }
+    return false;
+  };
+
   const independentDataOfType = (resourceType) => {
     return(
       compositionData
@@ -21,8 +34,10 @@ const CCRDocument = ({ compositionData }) => {
         }) : []
     );
   };
+
   return compositionData && compositionData.length > 0 ? (
     <div>
+      {isDischargeSummary() && <DischargeSummary title={getTitle()} startDate={getStartDate()} endDate={getEndDate()} />}
       <ObservationTable data={independentDataOfType('Observation')} />
       <MedicationRequestsComponent medicationRequests={independentDataOfType('MedicationRequest')} />
     </div>
