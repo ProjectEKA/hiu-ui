@@ -2,11 +2,13 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import ObservationTable from '../ObservationTable/ObservationTable';
 import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
-import { identifyParentOfType } from '../common/HealthInfo/FhirResourcesUtils';
+import {identifyParentOfType} from '../common/HealthInfo/FhirResourcesUtils';
 import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
 import getNestedObject from "../../utils/getNestedObject";
+import ConditionsComponent from "../Condition/ConditionsComponent";
+import DiagnosticReportComponent from "../DiagnosticReport/DiagnosticReportComponent";
 
-const CCRDocument = ({ compositionData }) => {
+const CCRDocument = ({ compositionData, consentReqId }) => {
   const composition = compositionData.find(node => node.resourceType.toLowerCase() === "composition");
   const getTitle = () => composition && composition.title;
   const getStartDate = () => composition && composition.event[0] && getNestedObject(composition.event[0], 'period.start');
@@ -36,10 +38,12 @@ const CCRDocument = ({ compositionData }) => {
   };
 
   return compositionData && compositionData.length > 0 ? (
-    <div>
+    <div style={{ marginBottom: 50 }}>
       {isDischargeSummary() && <DischargeSummary title={getTitle()} startDate={getStartDate()} endDate={getEndDate()} />}
       <ObservationTable data={independentDataOfType('Observation')} />
       <MedicationRequestsComponent medicationRequests={independentDataOfType('MedicationRequest')} />
+      <ConditionsComponent conditionList={independentDataOfType('Condition')} />
+      <DiagnosticReportComponent consentReqId={consentReqId} data={independentDataOfType('DiagnosticReport')} />
     </div>
   ) : (
     <div />
@@ -55,6 +59,7 @@ const compositionDataShape = PropTypes.shape({
 
 CCRDocument.propTypes = {
   compositionData: PropTypes.arrayOf(compositionDataShape).isRequired,
+  consentReqId: PropTypes.string.isRequired
 };
 
 export default CCRDocument;

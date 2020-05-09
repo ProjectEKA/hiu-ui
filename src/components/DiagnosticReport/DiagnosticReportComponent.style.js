@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const DiagnosticReportComponentStyles = styled.div`
   .diagnostic-report-table-container {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
   .diagnostic-report {
     padding: 20px 16px;
