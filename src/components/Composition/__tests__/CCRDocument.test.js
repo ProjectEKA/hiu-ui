@@ -7,6 +7,32 @@ import MedicationRequestsComponent from '../../Medication/MedicationRequestsComp
 describe('CCRDocument', () => {
   const mockData = [
     {
+      resourceType: 'Composition',
+      title: 'Discharge Summary',
+      type: {
+        coding: [
+          {
+            system: 'http://loinc.org',
+            code: '28655-9'
+          }
+        ],
+      },
+      author: [
+        {
+          display: 'Dr.Divya'
+        }
+      ],
+      event: [
+        {
+          period: {
+            start: '2019-12-03',
+            end: '2019-12-30'
+          }
+        }
+      ],
+      status: 'final',
+    },
+    {
       resourceType: 'MedicationRequest',
       parentType: 'Composition',
       status: 'active',
@@ -46,5 +72,13 @@ describe('CCRDocument', () => {
   it('should render Medication Requests component', () => {
     expect(wrapper.find(MedicationRequestsComponent).length).toEqual(1);
     expect(wrapper.find(MedicationRequestsComponent).props().medicationRequests).toEqual([]);
+  });
+
+  it('should render DischargeSummary component with correct props', () => {
+    expect(wrapper.find('DischargeSummary').props().title).toEqual('Discharge Summary');
+    expect(wrapper.find('DischargeSummary').props().startDate).toEqual('2019-12-03');
+    expect(wrapper.find('DischargeSummary').props().endDate).toEqual('2019-12-30');
+    expect(wrapper.find('DischargeSummary').props().authors).toEqual(['Dr.Divya']);
+    expect(wrapper.find('DischargeSummary').props().status).toEqual('final');
   });
 });
