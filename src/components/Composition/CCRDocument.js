@@ -13,6 +13,8 @@ const CCRDocument = ({ compositionData, consentReqId }) => {
   const getTitle = () => composition && composition.title;
   const getStartDate = () => composition && composition.event[0] && getNestedObject(composition.event[0], 'period.start');
   const getEndDate = () => composition && composition.event[0] && getNestedObject(composition.event[0], 'period.end');
+  const getStatus = () => composition && composition.status;
+  const getAuthors = () => composition && composition.author && composition.author.map((author) => author.display);
   const isDischargeSummary = () => {
     const coding = composition && getNestedObject(composition, 'type.coding');
     if (coding && coding.length) {
@@ -39,7 +41,14 @@ const CCRDocument = ({ compositionData, consentReqId }) => {
 
   return compositionData && compositionData.length > 0 ? (
     <div style={{ marginBottom: 50 }}>
-      {isDischargeSummary() && <DischargeSummary title={getTitle()} startDate={getStartDate()} endDate={getEndDate()} />}
+      {isDischargeSummary() &&
+      <DischargeSummary
+        title={getTitle()}
+        startDate={getStartDate()}
+        endDate={getEndDate()}
+        authors={getAuthors()}
+        status={getStatus()}
+      />}
       <ObservationTable data={independentDataOfType('Observation')} />
       <MedicationRequestsComponent medicationRequests={independentDataOfType('MedicationRequest')} />
       <ConditionsComponent conditionList={independentDataOfType('Condition')} />

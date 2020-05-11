@@ -4,17 +4,24 @@ const useStyles = makeStyles((theme) => ({
     container: {
         backgroundColor: '#c8c8c8',
         padding: theme.spacing(1,2),
-        textTransform:'uppercase',
-        borderTopLeftRadius:theme.spacing(0.625),
-        fontSize:'0.875rem',
+        borderRadius:theme.spacing(0.625),
         marginBottom: theme.spacing(0.25)
     },
+    title: {
+        letterSpacing: '1px',
+        lineHeight: '1.5rem',
+        textTransform:'uppercase',
+    },
     description: {
-        textTransform:'none',
-        marginLeft:theme.spacing(4),
         fontWeight: '400',
-        fontSize: '0.875rem'
-    }
+        fontSize: '0.875rem',
+    },
+    label: {
+      fontWeight: '500',
+    },
+    period: {
+      lineHeight: '1.5rem',
+    },
 }));
 
 export default useStyles;

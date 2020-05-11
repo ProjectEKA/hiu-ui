@@ -1,12 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CCRDocument should render properly 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "marginBottom": 50,
+    }
+  }
+>
+  <DischargeSummary
+    authors={
+      Array [
+        "Dr.Divya",
+      ]
+    }
+    endDate="2019-12-30"
+    startDate="2019-12-03"
+    status="final"
+    title="Discharge Summary"
+  />
   <ObservationTable
     data={Array []}
   />
   <MedicationRequestsComponent
     medicationRequests={Array []}
+  />
+  <ConditionsComponent
+    conditionList={Array []}
+  />
+  <DiagnosticReportComponent
+    consentReqId="123"
+    data={Array []}
   />
 </div>
 `;

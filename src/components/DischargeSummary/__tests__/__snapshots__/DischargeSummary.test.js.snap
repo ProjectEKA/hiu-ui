@@ -1,22 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DischargeSummary should render properly 1`] = `
-<WithStyles(ForwardRef(Typography))
+<WithStyles(ForwardRef(Grid))
   className="makeStyles-container-1"
-  color="inherit"
-  variant="h6"
+  container={true}
+  justify="space-between"
 >
-  Discharge Summary
-  <span
-    className="makeStyles-description-2"
+  <WithStyles(ForwardRef(Grid))
+    item={true}
   >
-    Admitted from
-     
-    1/4/2018
-     
-    to
-     
-    10/4/2018
-  </span>
-</WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-title-2"
+      color="inherit"
+      variant="h6"
+    >
+      Discharge Summary
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    className="makeStyles-description-3"
+    item={true}
+  >
+    <span
+      className="makeStyles-period-5"
+    >
+      Admitted from 
+      1/4/2018
+       to 
+      10/4/2018
+    </span>
+    <div>
+      <span
+        className="makeStyles-label-4"
+      >
+        Authors: 
+      </span>
+      abc, xyz
+    </div>
+    <div>
+      <span
+        className="makeStyles-label-4"
+      >
+        Status: 
+      </span>
+      FINAL
+    </div>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
 `;
