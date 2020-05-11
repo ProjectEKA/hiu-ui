@@ -56,6 +56,9 @@ const RequestAccessStyles = styled.div`
     display: flex;
     justify-content: center;
   }
+  .request-type-label{
+    margin-top:15px;
+  }
 `;
 
 export default RequestAccessStyles;
