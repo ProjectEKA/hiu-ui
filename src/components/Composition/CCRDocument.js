@@ -7,6 +7,7 @@ import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
 import getNestedObject from "../../utils/getNestedObject";
 import ConditionsComponent from "../Condition/ConditionsComponent";
 import DiagnosticReportComponent from "../DiagnosticReport/DiagnosticReportComponent";
+import Divider from '@material-ui/core/Divider';
 
 const CCRDocument = ({ compositionData, consentReqId }) => {
   const composition = compositionData.find(node => node.resourceType.toLowerCase() === "composition");
@@ -53,6 +54,7 @@ const CCRDocument = ({ compositionData, consentReqId }) => {
       <MedicationRequestsComponent medicationRequests={independentDataOfType('MedicationRequest')} />
       <ConditionsComponent conditionList={independentDataOfType('Condition')} />
       <DiagnosticReportComponent consentReqId={consentReqId} data={independentDataOfType('DiagnosticReport')} />
+      {isDischargeSummary() && <Divider style={{ marginTop: 50 }} />}
     </div>
   ) : (
     <div />

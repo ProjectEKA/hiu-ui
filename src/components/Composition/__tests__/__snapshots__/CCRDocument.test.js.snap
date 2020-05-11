@@ -32,5 +32,12 @@ exports[`CCRDocument should render properly 1`] = `
     consentReqId="123"
     data={Array []}
   />
+  <WithStyles(ForwardRef(Divider))
+    style={
+      Object {
+        "marginTop": 50,
+      }
+    }
+  />
 </div>
 `;
