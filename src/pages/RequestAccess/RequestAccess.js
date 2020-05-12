@@ -131,7 +131,7 @@ const RequestAccess = ({
           <Grid item xs={12} sm={4} md={3} className="request-type-label">
             <InputLabel className="text-field-label"> Request type </InputLabel>
           </Grid>
-          <Grid item xs={12} sm={6} md={5}>
+          <Grid item xs={12} sm={6}>
             <RequestType
               requestTypes={requestHiTypes}
               handleChange={handleHITypeChange}
