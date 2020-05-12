@@ -5,29 +5,28 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import RequestTypeStyles from './RequestType.style';
+import Grid from '@material-ui/core/Grid';
 
 const RequestType = ({ requestTypes, handleChange }) => (
-  <RequestTypeStyles>
-    <FormControl component="fieldset" className="formControl">
-      <FormGroup>
-        {requestTypes.map((type) => (
-          <FormControlLabel
-            control={(
-              <Checkbox
-                className="check-box"
-                checked={RequestType.checked}
-                onChange={handleChange(type.value)}
-                value={type.value}
-                color="primary"
-              />
-                )}
-            label={type.label}
-            key={type.value}
-          />
-        ))}
-      </FormGroup>
-    </FormControl>
-  </RequestTypeStyles>
+  <Grid container>
+    {requestTypes.map((type) => (
+      <Grid item md={6} xs={12}>
+        <FormControlLabel
+          control={(
+            <Checkbox
+              className="check-box"
+              checked={RequestType.checked}
+              onChange={handleChange(type.value)}
+              value={type.value}
+              color="primary"
+            />
+          )}
+          label={type.label}
+          key={type.value}
+        />
+      </Grid>
+    ))}
+  </Grid>
 );
 
 RequestType.propTypes = {
