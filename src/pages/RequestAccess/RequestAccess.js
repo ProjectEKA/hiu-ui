@@ -76,29 +76,23 @@ const RequestAccess = ({
       <h2>Consent request form</h2>
       <form>
         <span className="label">All the fields are mandatory.</span>
-        {error && (
-          <span className="error">Error occured while creating consent.</span>
-        )}
-        {emptyPatientIDError && (
-          <span className="error">Please enter a patient identifier</span>
-        )}
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4} md={3}>
             <InputLabel className="text-field-label">
               Patient Identifier
             </InputLabel>
           </Grid>
-          <Grid item xs={5}>
-            <SearchPatient />
+          <Grid item xs={12} sm={6} md={5}>
+            <SearchPatient/>
           </Grid>
         </Grid>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4} md={3}>
             <InputLabel className="text-field-label">
               Purpose of request
             </InputLabel>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={6} md={5}>
             <SimpleMenu
               menuItems={usagePurposes}
               handleChange={handlePurposeSelection}
@@ -106,13 +100,13 @@ const RequestAccess = ({
             />
           </Grid>
         </Grid>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4} md={3}>
             <InputLabel className="text-field-label">
               Health info from
             </InputLabel>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={6} md={5}>
             <DatePicker
               disableFuture
               handleDateChange={handleStarteDateChange}
@@ -120,11 +114,11 @@ const RequestAccess = ({
             />
           </Grid>
         </Grid>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4} md={3}>
             <InputLabel className="text-field-label">Health info to</InputLabel>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={6} md={5}>
             <DatePicker
               disableFuture
               minDate={selectedStartDate}
@@ -133,22 +127,22 @@ const RequestAccess = ({
             />
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={2} className="request-type-label">
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={4} md={3} className="request-type-label">
             <InputLabel className="text-field-label"> Request type </InputLabel>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={12} sm={6}>
             <RequestType
               requestTypes={requestHiTypes}
               handleChange={handleHITypeChange}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={2}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4} md={3}>
             <InputLabel className="text-field-label">Consent Expiry</InputLabel>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={5}>
             <DateTimePicker
               handleDateChange={handleExpiryDateChange}
               selectedDate={selectedExpiryDate}
@@ -156,7 +150,13 @@ const RequestAccess = ({
             />
           </Grid>
         </Grid>
-        <Grid container spacing={3} alignItems="center">
+        {error && (
+          <span className="error">Error occured while creating consent.</span>
+        )}
+        {emptyPatientIDError && (
+          <span className="error">Please enter a patient identifier</span>
+        )}
+        <Grid container spacing={2} alignItems="center" justify="center">
           <Button
             disabled={!isButtonEnabled}
             className="create-consent-button"

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const RequestAccessStyles = styled.div`
+  position: relative;
+
   h2 {
     color: #000000;
     font-size: 24px;
@@ -20,6 +22,7 @@ const RequestAccessStyles = styled.div`
     font-size: 16px;
     font-weight: 300;
     font-family: "Roboto", sans-serif;
+    margin-bottom: 12px;
   }
   .MuiGrid-container {
     padding: 10px 0;
@@ -45,16 +48,17 @@ const RequestAccessStyles = styled.div`
     font-family: "Roboto", sans-serif;
   }
   .loader-container {
-    position: fixed;
+    position: absolute;
     z-index: 99;
     left: 0;
-    top: 75px;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background: #fff;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    text-align: center;
+  }
+  .loader {
+    margin-top: 40vh;
   }
   .request-type-label{
     margin-top:15px;
