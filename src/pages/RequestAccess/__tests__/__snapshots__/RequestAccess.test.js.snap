@@ -14,11 +14,13 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
@@ -28,7 +30,9 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={5}
+        md={5}
+        sm={6}
+        xs={12}
       >
         <Connect(SearchPatient) />
       </WithStyles(ForwardRef(Grid))>
@@ -36,11 +40,13 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
@@ -50,7 +56,9 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={5}
+        sm={6}
+        xs={12}
       >
         <SimpleMenu
           handleChange={[Function]}
@@ -73,11 +81,13 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
@@ -87,7 +97,9 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={5}
+        sm={6}
+        xs={12}
       >
         <DatePicker
           disableFuture={true}
@@ -100,11 +112,13 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
@@ -114,7 +128,9 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={5}
+        sm={6}
+        xs={12}
       >
         <DatePicker
           disableFuture={true}
@@ -125,23 +141,26 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid))
-      alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
+        className="request-type-label"
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
         >
-           Request type 
+          Health info type
         </WithStyles(ForwardRef(InputLabel))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={10}
+        sm={6}
+        xs={12}
       >
         <RequestType
           handleChange={[Function]}
@@ -159,11 +178,13 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      spacing={2}
     >
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={2}
+        md={3}
+        sm={4}
+        xs={12}
       >
         <WithStyles(ForwardRef(InputLabel))
           className="text-field-label"
@@ -173,7 +194,9 @@ exports[`Request Access Should render properly 1`] = `
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
-        xs={3}
+        md={5}
+        sm={6}
+        xs={12}
       >
         <DateTimePicker
           disableFuture={false}
@@ -188,7 +211,8 @@ exports[`Request Access Should render properly 1`] = `
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
       container={true}
-      spacing={3}
+      justify="center"
+      spacing={2}
     >
       <WithStyles(ForwardRef(Button))
         className="create-consent-button"

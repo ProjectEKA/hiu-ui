@@ -129,7 +129,7 @@ const RequestAccess = ({
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4} md={3} className="request-type-label">
-            <InputLabel className="text-field-label"> Request type </InputLabel>
+            <InputLabel className="text-field-label">Health info type</InputLabel>
           </Grid>
           <Grid item xs={12} sm={6}>
             <RequestType
