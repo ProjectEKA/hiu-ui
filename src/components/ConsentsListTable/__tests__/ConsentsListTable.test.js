@@ -49,4 +49,11 @@ describe('ConsentsListTable', () => {
     expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('18/2/2020');
     expect(wrapper.find(MaterialTable).props().data[0].navLink).toEqual('');
   });
+
+  it('should have refresh actions', () => {
+    expect(wrapper.find(MaterialTable).props().actions[0].icon).toEqual('refresh');
+    expect(wrapper.find(MaterialTable).props().actions[0].isFreeAction).toEqual(true);
+    expect(wrapper.find(MaterialTable).props().actions[0].tooltip).toEqual("Refresh");
+    expect(wrapper.find(MaterialTable).props().actions[0].onClick).toBeDefined();
+  });
 });

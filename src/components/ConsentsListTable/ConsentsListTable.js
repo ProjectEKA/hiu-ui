@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 
 const ConsentsListTable = ({ loadConsents, consentsList }) => {
   const classes = useStyles();
+  const [refreshCounter, setRefreshCounter] = useState(0);
   useEffect(() => {
     loadConsents();
-  }, []);
+  }, [refreshCounter]);
 
   const headerRow = {
     name: 'Name',
@@ -85,6 +86,14 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
             Consent List
           </Typography>
         )}
+        actions={[
+          {
+            icon: 'refresh',
+            tooltip: 'Refresh',
+            isFreeAction: true,
+            onClick: () => setRefreshCounter(refreshCounter + 1)
+          }
+        ]}
       />
     </div>
   );

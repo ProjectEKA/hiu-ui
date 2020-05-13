@@ -9,6 +9,16 @@ exports[`ConsentsListTable should render properly 1`] = `
   }
 >
   <WithStyles(Component)
+    actions={
+      Array [
+        Object {
+          "icon": "refresh",
+          "isFreeAction": true,
+          "onClick": [Function],
+          "tooltip": "Refresh",
+        },
+      ]
+    }
     className="makeStyles-table-1"
     columns={
       Array [
