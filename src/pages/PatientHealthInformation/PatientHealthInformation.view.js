@@ -95,7 +95,7 @@ const PatientHealthInformation = ({
       dateArray,
       selectedDate,
       onChange,
-      match.params.id,
+      match.params.requestId,
       healthInfo
     );
   } else if (error) {
