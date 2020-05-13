@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     width: 'calc(100vw - 100px)',
     maxWidth: 1024,
     height: 'calc(100vh - 100px)',
-    overflow: 'auto',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),

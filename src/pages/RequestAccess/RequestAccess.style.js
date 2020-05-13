@@ -2,6 +2,13 @@ import styled from 'styled-components';
 
 const RequestAccessStyles = styled.div`
   position: relative;
+  height: 100%;
+
+  .form-container {
+    height: calc(100% - 110px);
+    padding-right: 10px;
+    overflow-y: auto;
+  }
 
   h2 {
     color: #000000;

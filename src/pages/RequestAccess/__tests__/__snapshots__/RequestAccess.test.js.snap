@@ -5,225 +5,229 @@ exports[`Request Access Should render properly 1`] = `
   <h2>
     Consent request form
   </h2>
-  <form>
-    <span
-      className="label"
-    >
-      All the fields are mandatory.
-    </span>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
+  <div
+    className="form-container"
+  >
+    <form>
+      <span
+        className="label"
       >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+        All the fields are mandatory.
+      </span>
+      <WithStyles(ForwardRef(Grid))
+        alignItems="center"
+        container={true}
+        spacing={2}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
         >
-          Patient Identifier
-        </WithStyles(ForwardRef(InputLabel))>
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={5}
-        sm={6}
-        xs={12}
-      >
-        <Connect(SearchPatient) />
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
-      >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Patient Identifier
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={5}
+          sm={6}
+          xs={12}
         >
-          Purpose of request
-        </WithStyles(ForwardRef(InputLabel))>
+          <Connect(SearchPatient) />
+        </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={5}
-        sm={6}
-        xs={12}
+        alignItems="center"
+        container={true}
+        spacing={2}
       >
-        <SimpleMenu
-          handleChange={[Function]}
-          menuItems={
-            Array [
-              Object {
-                "label": "Referral Service",
-                "value": "ReferralService",
-              },
-              Object {
-                "label": "Break the Glass",
-                "value": "BTG",
-              },
-            ]
-          }
-          selectedValue="ReferralService"
-        />
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
-      >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
         >
-          Health info from
-        </WithStyles(ForwardRef(InputLabel))>
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={5}
-        sm={6}
-        xs={12}
-      >
-        <DatePicker
-          disableFuture={true}
-          handleDateChange={[Function]}
-          minDate={1900-01-31T18:38:50.000Z}
-          selectedDate={2019-05-14T11:01:58.135Z}
-        />
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
-      >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Purpose of request
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={5}
+          sm={6}
+          xs={12}
         >
-          Health info to
-        </WithStyles(ForwardRef(InputLabel))>
+          <SimpleMenu
+            handleChange={[Function]}
+            menuItems={
+              Array [
+                Object {
+                  "label": "Referral Service",
+                  "value": "ReferralService",
+                },
+                Object {
+                  "label": "Break the Glass",
+                  "value": "BTG",
+                },
+              ]
+            }
+            selectedValue="ReferralService"
+          />
+        </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={5}
-        sm={6}
-        xs={12}
+        alignItems="center"
+        container={true}
+        spacing={2}
       >
-        <DatePicker
-          disableFuture={true}
-          handleDateChange={[Function]}
-          minDate={2019-05-14T11:01:58.135Z}
-          selectedDate={2019-05-14T11:01:58.135Z}
-        />
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        className="request-type-label"
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
-      >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
         >
-          Health info type
-        </WithStyles(ForwardRef(InputLabel))>
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        sm={6}
-        xs={12}
-      >
-        <RequestType
-          handleChange={[Function]}
-          requestTypes={
-            Array [
-              Object {
-                "label": "Condition",
-                "value": "Condition",
-              },
-            ]
-          }
-        />
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={3}
-        sm={4}
-        xs={12}
-      >
-        <WithStyles(ForwardRef(InputLabel))
-          className="text-field-label"
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Health info from
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={5}
+          sm={6}
+          xs={12}
         >
-          Consent Expiry
-        </WithStyles(ForwardRef(InputLabel))>
+          <DatePicker
+            disableFuture={true}
+            handleDateChange={[Function]}
+            minDate={1900-01-31T18:38:50.000Z}
+            selectedDate={2019-05-14T11:01:58.135Z}
+          />
+        </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
-        item={true}
-        md={5}
-        sm={6}
-        xs={12}
+        alignItems="center"
+        container={true}
+        spacing={2}
       >
-        <DateTimePicker
-          disableFuture={false}
-          disablePast={true}
-          handleDateChange={[Function]}
-          maxDate={2100-01-31T18:30:00.000Z}
-          minDate={1900-01-31T18:38:50.000Z}
-          selectedDate={2019-05-15T11:01:58.135Z}
-        />
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Health info to
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={5}
+          sm={6}
+          xs={12}
+        >
+          <DatePicker
+            disableFuture={true}
+            handleDateChange={[Function]}
+            minDate={2019-05-14T11:01:58.135Z}
+            selectedDate={2019-05-14T11:01:58.135Z}
+          />
+        </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      alignItems="center"
-      container={true}
-      justify="center"
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Button))
-        className="create-consent-button"
-        color="primary"
-        disabled={true}
-        onClick={[Function]}
-        variant="contained"
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={2}
       >
-        Request Consent
-      </WithStyles(ForwardRef(Button))>
-    </WithStyles(ForwardRef(Grid))>
-  </form>
+        <WithStyles(ForwardRef(Grid))
+          className="request-type-label"
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Health info type
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          sm={6}
+          xs={12}
+        >
+          <RequestType
+            handleChange={[Function]}
+            requestTypes={
+              Array [
+                Object {
+                  "label": "Condition",
+                  "value": "Condition",
+                },
+              ]
+            }
+          />
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        alignItems="center"
+        container={true}
+        spacing={2}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={3}
+          sm={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(InputLabel))
+            className="text-field-label"
+          >
+            Consent Expiry
+          </WithStyles(ForwardRef(InputLabel))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={5}
+          sm={6}
+          xs={12}
+        >
+          <DateTimePicker
+            disableFuture={false}
+            disablePast={true}
+            handleDateChange={[Function]}
+            maxDate={2100-01-31T18:30:00.000Z}
+            minDate={1900-01-31T18:38:50.000Z}
+            selectedDate={2019-05-15T11:01:58.135Z}
+          />
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        alignItems="center"
+        container={true}
+        justify="center"
+        spacing={2}
+      >
+        <WithStyles(ForwardRef(Button))
+          className="create-consent-button"
+          color="primary"
+          disabled={true}
+          onClick={[Function]}
+          variant="contained"
+        >
+          Request Consent
+        </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(Grid))>
+    </form>
+  </div>
 </styled.div>
 `;
