@@ -369,7 +369,7 @@ exports[`DiagnosticReportComponent should render properly 1`] = `
             key="/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
           >
             <a
-              href="http://localhost:3000/hiu-apihealth-information/fetch/123/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
+              href="http://localhost:3000/hiu-api/health-information/fetch/123/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
               rel="noopener noreferrer"
               target="_blank"
             >

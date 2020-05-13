@@ -26,7 +26,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
         {entry.presentedForm.map((link) => (
           <li key={link.url}>
             <a
-              href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}health-information/fetch/${consentReqId}${link.url}`}
+              href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}/health-information/fetch/${consentReqId}${link.url}`}
               target="_blank"
               rel="noopener noreferrer"
             >
