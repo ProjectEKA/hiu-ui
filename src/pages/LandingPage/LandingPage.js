@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Modal from '@material-ui/core/Modal';
 import Snackbar from '@material-ui/core/Snackbar';
 import * as PropTypes from 'prop-types';
@@ -39,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 30,
     marginBottom: 30,
   },
+  closeButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  }
 }));
 
 const LandingPage = ({
@@ -99,6 +106,11 @@ const LandingPage = ({
       </Button>
       <Modal open={modalOpen} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
+          <IconButton aria-label="close"
+                      onClick={handleClose}
+                      className={classes.closeButton}>
+            <CancelIcon />
+          </IconButton>
           <RequestAccess />
         </div>
       </Modal>

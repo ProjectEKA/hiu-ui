@@ -41,6 +41,9 @@ exports[`Landing Page should render properly 1`] = `
   </WithStyles(ForwardRef(Button))>
   <ForwardRef(Modal) open={false} onClose={[Function: handleClose]}>
     <div style={{...}} className=\\"makeStyles-paper-1\\">
+      <WithStyles(ForwardRef(IconButton)) aria-label=\\"close\\" onClick={[Function: handleClose]} className=\\"makeStyles-closeButton-3\\">
+        <CancelIcon />
+      </WithStyles(ForwardRef(IconButton))>
       <Connect(RequestAccess) />
     </div>
   </ForwardRef(Modal)>
