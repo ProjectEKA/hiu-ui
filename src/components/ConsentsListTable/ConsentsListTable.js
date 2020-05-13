@@ -55,9 +55,9 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
           { title: headerRow.name, field: 'name' },
           { title: headerRow.jataayuId, field: 'id' },
           { title: headerRow.requestStatus, field: 'status' },
+          { title: headerRow.consentCreatedDate, field: 'createdOn' },
           { title: headerRow.consentGrantedDate, field: 'grantedOn' },
           { title: headerRow.consentExpiryDate, field: 'expiredOn' },
-          { title: headerRow.consentCreatedDate, field: 'createdOn' },
           { title: '', field: 'navLink', width: 50 },
         ]}
         data={consentsList.map((consent) => ({

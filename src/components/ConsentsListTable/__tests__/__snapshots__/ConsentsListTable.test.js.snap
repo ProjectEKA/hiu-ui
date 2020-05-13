@@ -35,16 +35,16 @@ exports[`ConsentsListTable should render properly 1`] = `
           "title": "Request Status",
         },
         Object {
+          "field": "createdOn",
+          "title": "Consent created on",
+        },
+        Object {
           "field": "grantedOn",
           "title": "Consent granted on",
         },
         Object {
           "field": "expiredOn",
           "title": "Consent expiry on",
-        },
-        Object {
-          "field": "createdOn",
-          "title": "Consent created on",
         },
         Object {
           "field": "navLink",
