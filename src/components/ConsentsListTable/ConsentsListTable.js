@@ -29,6 +29,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
     requestStatus: 'Request Status',
     consentGrantedDate: 'Consent granted on',
     consentExpiryDate: 'Consent expiry on',
+    consentCreatedDate: 'Consent created on',
   };
 
   function isGrantedConsent(status) {
@@ -55,6 +56,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
           { title: headerRow.requestStatus, field: 'status' },
           { title: headerRow.consentGrantedDate, field: 'grantedOn' },
           { title: headerRow.consentExpiryDate, field: 'expiredOn' },
+          { title: headerRow.consentCreatedDate, field: 'createdOn' },
           { title: '', field: 'navLink', width: 50 },
         ]}
         data={consentsList.map((consent) => ({
@@ -69,6 +71,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
           expiredOn: isGrantedConsent(consent.status)
             ? formatDateString(consent.expiredDate)
             : '-',
+          createdOn: formatDateString(consent.createdDate),
           navLink: isGrantedConsent(consent.status) ? (
             <Link to={`/health-info/${consent.id}`}>
               <ArrowForwardIosIcon color="primary" />
@@ -95,6 +98,9 @@ const consentShape = PropTypes.shape({
     lastName: PropTypes.string,
   }),
   status: PropTypes.string,
+  approvedDate: PropTypes.string,
+  expiredDate: PropTypes.string,
+  createdDate: PropTypes.string,
 });
 
 ConsentsListTable.propTypes = {
