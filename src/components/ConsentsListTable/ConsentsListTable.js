@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 
 const ConsentsListTable = ({ loadConsents, consentsList }) => {
   const classes = useStyles();
+  const [refreshCounter, setRefreshCounter] = useState(0);
   useEffect(() => {
     loadConsents();
-  }, []);
+  }, [refreshCounter]);
 
   const headerRow = {
     name: 'Name',
@@ -29,6 +30,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
     requestStatus: 'Request Status',
     consentGrantedDate: 'Consent granted on',
     consentExpiryDate: 'Consent expiry on',
+    consentCreatedDate: 'Consent created on',
   };
 
   function isGrantedConsent(status) {
@@ -53,6 +55,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
           { title: headerRow.name, field: 'name' },
           { title: headerRow.jataayuId, field: 'id' },
           { title: headerRow.requestStatus, field: 'status' },
+          { title: headerRow.consentCreatedDate, field: 'createdOn' },
           { title: headerRow.consentGrantedDate, field: 'grantedOn' },
           { title: headerRow.consentExpiryDate, field: 'expiredOn' },
           { title: '', field: 'navLink', width: 50 },
@@ -69,6 +72,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
           expiredOn: isGrantedConsent(consent.status)
             ? formatDateString(consent.expiredDate)
             : '-',
+          createdOn: formatDateString(consent.createdDate),
           navLink: isGrantedConsent(consent.status) ? (
             <Link to={`/health-info/${consent.id}`}>
               <ArrowForwardIosIcon color="primary" />
@@ -82,6 +86,14 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
             Consent List
           </Typography>
         )}
+        actions={[
+          {
+            icon: 'refresh',
+            tooltip: 'Refresh',
+            isFreeAction: true,
+            onClick: () => setRefreshCounter(refreshCounter + 1)
+          }
+        ]}
       />
     </div>
   );
@@ -95,6 +107,9 @@ const consentShape = PropTypes.shape({
     lastName: PropTypes.string,
   }),
   status: PropTypes.string,
+  approvedDate: PropTypes.string,
+  expiredDate: PropTypes.string,
+  createdDate: PropTypes.string,
 });
 
 ConsentsListTable.propTypes = {

@@ -9,6 +9,16 @@ exports[`ConsentsListTable should render properly 1`] = `
   }
 >
   <WithStyles(Component)
+    actions={
+      Array [
+        Object {
+          "icon": "refresh",
+          "isFreeAction": true,
+          "onClick": [Function],
+          "tooltip": "Refresh",
+        },
+      ]
+    }
     className="makeStyles-table-1"
     columns={
       Array [
@@ -23,6 +33,10 @@ exports[`ConsentsListTable should render properly 1`] = `
         Object {
           "field": "status",
           "title": "Request Status",
+        },
+        Object {
+          "field": "createdOn",
+          "title": "Consent created on",
         },
         Object {
           "field": "grantedOn",
@@ -42,6 +56,7 @@ exports[`ConsentsListTable should render properly 1`] = `
     data={
       Array [
         Object {
+          "createdOn": "18/2/2020",
           "expiredOn": "20/2/2020",
           "grantedOn": "19/2/2020",
           "id": undefined,

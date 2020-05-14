@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import Button from '@material-ui/core/Button';
 import { Modal, Snackbar } from '@material-ui/core';
 import LandingPage from '../LandingPage';
+import IconButton from '@material-ui/core/IconButton';
 
 describe('Landing Page', () => {
   let wrapper;
@@ -77,6 +78,12 @@ describe('Landing Page', () => {
     it('should reset the previously searched patient state on close', () => {
       landingPageWrapper.find(Modal).props().onClose();
       expect(onSearchResetState).toHaveBeenCalled();
+    });
+
+    it('should reset the modal state on close button click', () => {
+      landingPageWrapper.find(IconButton).simulate('click');
+      expect(onSearchResetState).toHaveBeenCalled();
+      expect(onCreateConsentResetState).toHaveBeenCalled();
     });
   });
 });

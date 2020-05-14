@@ -109,7 +109,6 @@ const PatientHealthInformation = ({
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={snackbarOpen}
-        autoHideDuration={4000}
         onClose={handleSnackbarClose}
       >
         <Alert
@@ -118,8 +117,8 @@ const PatientHealthInformation = ({
           elevation={6}
           variant="filled"
         >
-          Error in the data recieved from
-          {erroredEntiresCount}
+          Error in the data received from
+          {` ${erroredEntiresCount} `}
           Health Information Providers!
         </Alert>
       </Snackbar>
