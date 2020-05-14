@@ -68,7 +68,7 @@ describe('ConditionsComponent', () => {
   });
 
   it('should render correct data in table body', () => {
-    expect(wrapper.find('.table-cell').at(0).text()).toEqual('19/2/2020');
+    expect(wrapper.find('.table-cell').at(0).text()).toEqual('19/02/2020');
     expect(wrapper.find('.table-cell').at(1).text()).toContain('day1');
     expect(wrapper.find('.table-cell').at(2).text()).toContain('Severity: severity');
     expect(wrapper.find('.table-cell').at(2).text()).toContain('Clinical Status: clinical status');

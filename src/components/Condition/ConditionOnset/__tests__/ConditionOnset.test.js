@@ -32,7 +32,7 @@ describe('ConditionOnset', () => {
       onsetDateTime: '2020-02-20T00:30:08.000+0000',
     };
     wrapper = shallow(<ConditionOnset condition={mockData} />);
-    expect(wrapper.find('span').at(0).text()).toEqual('Onset time: 20/2/2020');
+    expect(wrapper.find('span').at(0).text()).toEqual('Onset time: 20/02/2020');
   });
 
   it('should show onsetAge', () => {
@@ -54,7 +54,7 @@ describe('ConditionOnset', () => {
       },
     };
     wrapper = shallow(<ConditionOnset condition={mockData} />);
-    expect(wrapper.find('span').at(0).text()).toEqual('Period start: 1/2/2020, end: 20/2/2020');
+    expect(wrapper.find('span').at(0).text()).toEqual('Period start: 01/02/2020, end: 20/02/2020');
   });
 
   it('should show onsetRange', () => {

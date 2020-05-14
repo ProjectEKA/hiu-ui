@@ -368,7 +368,7 @@ exports[`MedicationRequestsComponent should render properly 1`] = `
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"
           >
-            22/1/2020
+            22/01/2020
           </WithStyles(ForwardRef(TableCell))>
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"

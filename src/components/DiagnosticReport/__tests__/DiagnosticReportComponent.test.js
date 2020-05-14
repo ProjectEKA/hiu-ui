@@ -53,7 +53,7 @@ describe('DiagnosticReportComponent', () => {
   });
 
   it('should show report details list with correct data', () => {
-    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Date: 3/11/2019');
+    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Date: 03/11/2019');
     expect(wrapper.find('.report-details-list li').at(1).text()).toEqual('Status: final');
     expect(wrapper.find('.report-details-list li').at(2).text()).toEqual('Performer: text');
   });

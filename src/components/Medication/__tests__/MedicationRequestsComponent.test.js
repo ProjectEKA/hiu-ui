@@ -51,7 +51,7 @@ describe('MedicationRequestsComponent', () => {
   });
 
   it('should show correct data of medication requests', () => {
-    expect(wrapper.find('.table-cell').at(0).text()).toEqual('22/1/2020');
+    expect(wrapper.find('.table-cell').at(0).text()).toEqual('22/01/2020');
     expect(wrapper.find('.table-cell').at(1).text()).toEqual('display (active)');
 
     mockData[0].medicationReference.targetResource = {

@@ -33,7 +33,7 @@ describe('ObservationTable', () => {
         expect(wrapper.find('.table-cell').at(0).text()).toEqual('');
         mockData[0].effectiveDateTime = "2020-01-03";
         wrapper.setProps({data:mockData});
-        expect(wrapper.find('.table-cell').at(0).text()).toEqual('3/1/2020');
+        expect(wrapper.find('.table-cell').at(0).text()).toEqual('03/01/2020');
     });
 
     it('should render class name according to the condition', () => {

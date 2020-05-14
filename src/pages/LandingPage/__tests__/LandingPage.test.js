@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Button from '@material-ui/core/Button';
 import { Modal, Snackbar } from '@material-ui/core';
-import LandingPage from '../LandingPage';
 import IconButton from '@material-ui/core/IconButton';
+import LandingPage from '../LandingPage';
 
 describe('Landing Page', () => {
   let wrapper;

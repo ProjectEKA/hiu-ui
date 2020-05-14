@@ -93,7 +93,7 @@ describe('DosageTiming', () => {
       },
     };
     wrapper.setProps({ dosage: mockData });
-    expect(wrapper.find('ul li').at(0).text()).toEqual('Period Start: 1/12/2012');
+    expect(wrapper.find('ul li').at(0).text()).toEqual('Period Start: 01/12/2012');
 
     mockData.timing = {
       repeat: {

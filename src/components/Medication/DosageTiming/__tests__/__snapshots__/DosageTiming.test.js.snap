@@ -3,6 +3,6 @@
 exports[`DosageTiming should render properly 1`] = `
 <div>
   On:
-  1, 21/1/2019, 22/1/2019
+  1, 21/01/2019, 22/01/2019
 </div>
 `;

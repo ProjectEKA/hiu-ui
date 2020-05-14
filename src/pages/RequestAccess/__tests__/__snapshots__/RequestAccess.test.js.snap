@@ -162,7 +162,6 @@ exports[`Request Access Should render properly 1`] = `
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
           item={true}
-          md={8}
           sm={8}
           xs={12}
         >

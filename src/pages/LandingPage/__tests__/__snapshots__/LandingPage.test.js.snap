@@ -1,37 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Lading Page should render properley 1`] = `
-"<div>
-  <WithStyles(ForwardRef(Snackbar)) anchorOrigin={{...}} open={false} autoHideDuration={4000} onClose={[Function: handleSnackBarClose]} message=\\"Consent requested successfully!\\" />
-  <Header />
-  <WithStyles(ForwardRef(Button)) className=\\"makeStyles-button-2\\" type=\\"button\\" variant=\\"contained\\" onClick={[Function: handleOpen]} color=\\"primary\\">
-    New Consent Request
-  </WithStyles(ForwardRef(Button))>
-  <ForwardRef(Modal) open={false} onClose={[Function: handleClose]}>
-    <div style={{...}} className=\\"makeStyles-paper-1\\">
-      <Connect(RequestAccess) />
-    </div>
-  </ForwardRef(Modal)>
-  <Connect(ConsentsListTable) />
-</div>"
-`;
-
-exports[`Landing Page should render properley 1`] = `
-"<div>
-  <WithStyles(ForwardRef(Snackbar)) anchorOrigin={{...}} open={false} autoHideDuration={4000} onClose={[Function: handleSnackBarClose]} message=\\"Consent requested successfully!\\" />
-  <Header />
-  <WithStyles(ForwardRef(Button)) className=\\"makeStyles-button-2\\" type=\\"button\\" variant=\\"contained\\" onClick={[Function: handleOpen]} color=\\"primary\\">
-    New Consent Request
-  </WithStyles(ForwardRef(Button))>
-  <ForwardRef(Modal) open={false} onClose={[Function: handleClose]}>
-    <div style={{...}} className=\\"makeStyles-paper-1\\">
-      <Connect(RequestAccess) />
-    </div>
-  </ForwardRef(Modal)>
-  <Connect(ConsentsListTable) />
-</div>"
-`;
-
 exports[`Landing Page should render properly 1`] = `
 "<div>
   <WithStyles(ForwardRef(Snackbar)) anchorOrigin={{...}} open={false} autoHideDuration={4000} onClose={[Function: handleSnackBarClose]} message=\\"Consent requested successfully!\\" />

@@ -138,14 +138,18 @@ const getConceptDisplay = function (codeableConcept) {
   return null;
 };
 
+const leftPadZero = (n) => {
+  return n > 9 ? `${n}` : `0${n}`;
+};
+
 const formatDateString = function (aDate, includeTime) {
   if (aDate) {
     const dateString = aDate.toString();
     if (dateString.length > 0) {
       const dt = new Date(dateString);
-      let dtStr = `${dt.getDate()}/${dt.getMonth() + 1}/${dt.getFullYear()}`;
+      let dtStr = `${leftPadZero(dt.getDate())}/${leftPadZero(dt.getMonth() + 1)}/${dt.getFullYear()}`;
       if (includeTime) {
-        dtStr = `${dtStr} ${dt.getHours()}:${dt.getMinutes()}`;
+        dtStr = `${dtStr} ${leftPadZero(dt.getHours())}:${leftPadZero(dt.getMinutes())}`;
       }
       return dtStr;
     }
