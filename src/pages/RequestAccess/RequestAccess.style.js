@@ -68,7 +68,7 @@ const RequestAccessStyles = styled.div`
     margin-top: 40vh;
   }
   .request-type-label{
-    margin-top:15px;
+    margin-top:20px;
   }
 `;
 
