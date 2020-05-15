@@ -62,7 +62,11 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
           { title: headerRow.consentExpiryDate, field: 'expiredOn', customSort: (a, b) => compareDates(a.expiredOn,b.expiredOn) },
           { title: '', field: 'navLink', width: 50 },
         ]}
-        data={consentsList.map((consent) => ({
+        data={consentsList.sort((a, b) => {
+          const dateA = new Date(a.createdDate);
+          const dateB = new Date(b.createdDate);
+          return dateB - dateA;
+        }).map((consent) => ({
           name: getPatientFullName(consent.patient),
           id: consent.patient.id,
           status: isGrantedConsent(consent.status)
