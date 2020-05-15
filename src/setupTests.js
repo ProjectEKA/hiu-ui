@@ -15,4 +15,10 @@ Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
 });
 
+Object.defineProperty(window, 'location', {
+  value: {
+    reload: jest.fn(),
+  },
+});
+
 configure({ adapter: new Adapter() });

@@ -7,16 +7,13 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 
 const Header = () => {
-  const [isLoggedOut, setIsLoggedOut] = React.useState(false);
-
   const logout = () => {
     localStorage.removeItem('auth-token');
-    setIsLoggedOut(true);
+    window.location.reload();
   };
 
   return (
     <>
-      {isLoggedOut && <Redirect to="/login" />}
       <AppBar color="textPrimary">
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>

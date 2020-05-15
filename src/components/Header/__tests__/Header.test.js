@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Header from '..';
 
@@ -16,15 +15,6 @@ describe('Header', () => {
     it('should render properly', () => {
       expect(wrapper.debug()).toMatchSnapshot();
     });
-
-    it('should not render Redirect component when isLoggedOut is false', () => {
-      expect(wrapper.find(Redirect)).toHaveLength(0);
-    });
-
-    it('should render Redirect component when isLoggedOut is true', () => {
-      wrapper.find(Button).simulate('click');
-      expect(wrapper.find(Redirect)).toHaveLength(1);
-    });
   });
 
   describe('Events', () => {
@@ -34,14 +24,9 @@ describe('Header', () => {
         expect(localStorage.removeItem).toHaveBeenCalledWith('auth-token');
       });
 
-      it('should call setState with true', () => {
-        const setState = jest.fn();
-        jest.spyOn(React, 'useState').mockImplementation((init) => [init, setState]);
-        wrapper = shallow(<Header />);
-
+      it('should reload the window', () => {
         wrapper.find(Button).simulate('click');
-
-        expect(setState).toHaveBeenCalledWith(true);
+        expect(window.location.reload).toHaveBeenCalled();
       });
     });
   });
