@@ -90,7 +90,6 @@ const SearchPatient = ({
           {loading ? (
             <CircularProgress
               id="loader"
-              className="loader"
               variant="indeterminate"
               disableShrink
               size={24}
