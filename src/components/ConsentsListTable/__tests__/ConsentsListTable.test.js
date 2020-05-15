@@ -56,4 +56,8 @@ describe('ConsentsListTable', () => {
     expect(wrapper.find(MaterialTable).props().actions[0].tooltip).toEqual("Refresh");
     expect(wrapper.find(MaterialTable).props().actions[0].onClick).toBeDefined();
   });
+
+  it('should have default props', () => {
+    expect(ConsentsListTable.defaultProps.loading).toEqual(false);
+  });
 });

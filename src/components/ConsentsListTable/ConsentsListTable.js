@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConsentsListTable = ({ loadConsents, consentsList }) => {
+const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
   const classes = useStyles();
   const [refreshCounter, setRefreshCounter] = useState(0);
   useEffect(() => {
@@ -51,6 +51,7 @@ const ConsentsListTable = ({ loadConsents, consentsList }) => {
             color: '#FFF',
           },
         }}
+        isLoading={loading}
         className={classes.table}
         columns={[
           { title: headerRow.name, field: 'name' },
@@ -116,6 +117,11 @@ const consentShape = PropTypes.shape({
 ConsentsListTable.propTypes = {
   loadConsents: PropTypes.func.isRequired,
   consentsList: PropTypes.arrayOf(consentShape).isRequired,
+  loading: PropTypes.bool,
 };
+
+ConsentsListTable.defaultProps = {
+  loading: false,
+}
 
 export default ConsentsListTable;

@@ -5,6 +5,7 @@ import getNestedObject from '../../utils/getNestedObject';
 
 const mapStateToProps = (state) => ({
   consentsList: getNestedObject(state, 'loadConsents.consentsList'),
+  loading: getNestedObject(state, 'loadConsents.loading'),
 });
 
 const mapDispatchToProps = {

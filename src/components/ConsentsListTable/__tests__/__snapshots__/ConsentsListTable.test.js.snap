@@ -75,6 +75,7 @@ exports[`ConsentsListTable should render properly 1`] = `
         },
       ]
     }
+    isLoading={false}
     options={
       Object {
         "headerStyle": Object {
