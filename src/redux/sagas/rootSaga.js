@@ -3,7 +3,6 @@ import searchPatientSaga from './searchPatientSaga';
 import createConsentSaga from './createConsentSaga';
 import loadConsentsSaga from './loadConsentsSaga';
 import loadHealthDataSaga from './loadHealthDataSaga';
-import downloadPathologySaga from './downloadPathologySaga';
 import signInSaga from './signInSaga';
 import { appConfigActionObs } from './loadAppConfigSaga';
 import resetPasswordSaga from './resetPasswordSaga';
@@ -28,9 +27,6 @@ function* rootSaga() {
   );
   Object.keys(resetPasswordSaga).forEach((action) =>
     sagas.push(takeEvery(action, resetPasswordSaga[action]))
-  );
-  Object.keys(downloadPathologySaga).forEach((action) =>
-    sagas.push(takeEvery(action, downloadPathologySaga[action]))
   );
   Object.keys(appConfigActionObs).forEach((action) =>
     sagas.push(takeEvery(action, appConfigActionObs[action]))

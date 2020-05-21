@@ -3,7 +3,6 @@ import patientDetail from './searchPatientIdReducer';
 import createConsent from './createConsentReducer';
 import loadConsents from './loadConsentsReducer';
 import healthInfo from './loadHealthDataReducer';
-import pathology from './downloadPathologyReducer';
 import resetPassword from './resetPasswordReducer';
 import signIn from './signInReducer';
 import { configValueSets } from './appInitReducer';
@@ -16,7 +15,6 @@ export default combineReducers({
   healthInfo,
   resetPassword,
   signIn,
-  pathology,
   cmConfig,
   configValueSets,
 });
