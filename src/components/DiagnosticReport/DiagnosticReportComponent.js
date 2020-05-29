@@ -42,7 +42,13 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
 
   function getResultsList(results, resourceType) {
     const referenceList = [];
-    if (results) results.forEach((result) => referenceList.push(result.targetResource));
+    if (results) { 
+      results.forEach((result) => {
+        if (result.targetResource)  {
+          referenceList.push(result.targetResource);
+        }
+      });
+    }
     return referenceList.filter((ref) => (ref.resourceType === resourceType));
   }
 
