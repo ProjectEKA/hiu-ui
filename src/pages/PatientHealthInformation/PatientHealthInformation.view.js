@@ -40,7 +40,7 @@ const renderErrorMessage = () => (
 
 const renderNoInfoMessage = (patientData) => (
   <>
-    <PatientDetails patientData={patientData} />
+    <PatientDetails firstName={patientData.firstName} />
     <AlertBox
       type="info"
       title="No Information"
