@@ -20,7 +20,7 @@ const renderHealthInfo = (
   healthInfo
 ) => (
   <>
-    <PatientDetails firstName={patientData.FirstName} />
+    <PatientDetails firstName={patientData.firstName} />
     <HealthInfoNav
       dates={dates}
       selectedDate={selectedDate}
