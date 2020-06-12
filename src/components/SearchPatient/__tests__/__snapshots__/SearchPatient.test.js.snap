@@ -6,15 +6,6 @@ exports[`SearchPatient should render properly 1`] = `
     className="search-bar"
   >
     <WithStyles(ForwardRef(TextField))
-      InputProps={
-        Object {
-          "endAdornment": <ForwardRef(WithStyles)
-            position="end"
-          >
-            @ncg
-          </ForwardRef(WithStyles)>,
-        }
-      }
       disabled={false}
       error={false}
       helperText=""
@@ -24,6 +15,17 @@ exports[`SearchPatient should render properly 1`] = `
       type="search"
       value=""
     />
+    <WithStyles(ForwardRef(Select))
+      onChange={[Function]}
+      value="@ncg"
+    >
+      <WithStyles(ForwardRef(MenuItem))
+        key="@ncg"
+        value="@ncg"
+      >
+        @ncg
+      </WithStyles(ForwardRef(MenuItem))>
+    </WithStyles(ForwardRef(Select))>
     <WithStyles(ForwardRef(IconButton))
       aria-label="search"
       className="icon-button"

@@ -10,6 +10,7 @@ describe('SearchPatient', () => {
     onSearch: mock,
     patientId: '1',
     loading: false,
+    cmConfigList: [{ userIdSuffix: '@ncg' }]
   };
 
   it('should render properly', () => {
@@ -48,7 +49,7 @@ describe('SearchPatient', () => {
     const onSearchResetState = jest.fn();
     const fakeEvent = { target: { value: 'Search Query' } };
     const wrapper = mount(
-      <SearchPatient onSearchResetState={onSearchResetState} />,
+      <SearchPatient {...props} onSearchResetState={onSearchResetState} />,
     );
     wrapper.find(TextField).props().onChange(fakeEvent);
     expect(onSearchResetState).toHaveBeenCalled();

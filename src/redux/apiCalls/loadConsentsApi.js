@@ -6,7 +6,7 @@ const loadConsentsApi = () => {
 
   return apiWrapper(
     'get',
-    '/consent-requests/',
+    '/v1/hiu/consent-requests',
     {},
     {
       ...defaultHeaders,

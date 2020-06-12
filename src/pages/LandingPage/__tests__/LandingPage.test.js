@@ -57,7 +57,7 @@ describe('Landing Page', () => {
       const successMessageSnackbar = landingPageWrapper.find(Snackbar);
       expect(successMessageSnackbar.props().open).toBe(true);
       expect(successMessageSnackbar.props().message).toBe(
-        'Consent requested successfully!'
+        'Consent request initiated!'
       );
     });
 
