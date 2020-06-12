@@ -91,7 +91,7 @@ const LandingPage = ({
         open={snackBarOpen}
         autoHideDuration={4000}
         onClose={handleSnackBarClose}
-        message="Consent requested successfully!"
+        message="Consent request initiated!"
       />
       <Header />
       <Button

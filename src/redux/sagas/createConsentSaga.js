@@ -4,21 +4,18 @@ import createConsentApi from '../apiCalls/createConsentApi';
 
 function* createConsent(action) {
   try {
-    const patient = yield call(createConsentApi, action.payload);
-    if (patient) {
-      yield put({
-        type: ACTION_TYPES.CREATE_CONSENT_SUCCEEDED,
-        payload: patient,
-      });
-    }
+    yield call(createConsentApi, action.payload);
+    yield put({
+      type: ACTION_TYPES.CREATE_CONSENT_SUCCEEDED,
+    });
   } catch (e) {
     yield put({
       type: ACTION_TYPES.CREATE_CONSENT_FAILED,
-      payload: e,
+      payload: e
     });
   }
 }
 
 export default {
-  [ACTION_TYPES.CREATE_CONSENT_REQUESTED]: createConsent,
+  [ACTION_TYPES.CREATE_CONSENT_REQUESTED]: createConsent
 };
