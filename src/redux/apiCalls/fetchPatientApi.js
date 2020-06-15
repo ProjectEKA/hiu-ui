@@ -6,7 +6,7 @@ const fetchPatientApi = (patientId) => {
 
   return apiWrapper(
     'get',
-    `/patients/${patientId}`,
+    `/v1/patients/${patientId}`,
     {},
     {
       ...defaultHeaders,

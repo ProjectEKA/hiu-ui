@@ -8,14 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 import compareDates from '../common/DateUtil';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   table: {
     clear: 'both',
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main
   },
   title: {
-    textTransform: 'uppercase',
-  },
+    textTransform: 'uppercase'
+  }
 }));
 
 const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
@@ -31,11 +31,22 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
     requestStatus: 'Request Status',
     consentGrantedDate: 'Consent granted on',
     consentExpiryDate: 'Consent expiry on',
-    consentCreatedDate: 'Consent created on',
+    consentCreatedDate: 'Consent created on'
   };
 
-  function isGrantedConsent(status) {
-    return status === 'GRANTED';
+  function getStatusText(status) {
+    switch (status.toUpperCase()) {
+      case 'GRANTED':
+        return 'Consent Granted';
+      case 'POSTED':
+        return 'Request Initiated';
+      default:
+        return 'Request sent';
+    }
+  }
+
+  function isGranted(status) {
+    return status.toUpperCase() == 'GRANTED';
   }
 
   function getPatientFullName(patient) {
@@ -48,8 +59,8 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
         options={{
           headerStyle: {
             backgroundColor: '#009688',
-            color: '#FFF',
-          },
+            color: '#FFF'
+          }
         }}
         isLoading={loading}
         className={classes.table}
@@ -57,41 +68,53 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
           { title: headerRow.name, field: 'name' },
           { title: headerRow.jataayuId, field: 'id' },
           { title: headerRow.requestStatus, field: 'status' },
-          { title: headerRow.consentCreatedDate, field: 'createdOn', customSort: (a, b) => compareDates(a.createdOn,b.createdOn) },
-          { title: headerRow.consentGrantedDate, field: 'grantedOn', customSort: (a, b) => compareDates(a.grantedOn,b.grantedOn) },
-          { title: headerRow.consentExpiryDate, field: 'expiredOn', customSort: (a, b) => compareDates(a.expiredOn,b.expiredOn) },
-          { title: '', field: 'navLink', width: 50 },
+          {
+            title: headerRow.consentCreatedDate,
+            field: 'createdOn',
+            customSort: (a, b) => compareDates(a.createdOn, b.createdOn)
+          },
+          {
+            title: headerRow.consentGrantedDate,
+            field: 'grantedOn',
+            customSort: (a, b) => compareDates(a.grantedOn, b.grantedOn)
+          },
+          {
+            title: headerRow.consentExpiryDate,
+            field: 'expiredOn',
+            customSort: (a, b) => compareDates(a.expiredOn, b.expiredOn)
+          },
+          { title: '', field: 'navLink', width: 50 }
         ]}
-        data={consentsList.sort((a, b) => {
-          const dateA = new Date(a.createdDate);
-          const dateB = new Date(b.createdDate);
-          return dateB - dateA;
-        }).map((consent) => ({
-          name: getPatientFullName(consent.patient),
-          id: consent.patient.id,
-          status: isGrantedConsent(consent.status)
-            ? 'Consent granted'
-            : 'Request sent',
-          grantedOn: isGrantedConsent(consent.status)
-            ? formatDateString(consent.approvedDate, true)
-            : '-',
-          expiredOn: isGrantedConsent(consent.status)
-            ? formatDateString(consent.expiredDate, true)
-            : '-',
-          createdOn: formatDateString(consent.createdDate, true),
-          navLink: isGrantedConsent(consent.status) ? (
-            <Link to={`/health-info/${consent.id}`}>
-              <ArrowForwardIosIcon color="primary" />
-            </Link>
-          ) : (
-            ''
-          ),
-        }))}
-        title={(
+        data={consentsList
+          .sort((a, b) => {
+            const dateA = new Date(a.createdDate);
+            const dateB = new Date(b.createdDate);
+            return dateB - dateA;
+          })
+          .map(consent => ({
+            name: getPatientFullName(consent.patient),
+            id: consent.patient.id,
+            status: getStatusText(consent.status),
+            grantedOn: isGranted(consent.status)
+              ? formatDateString(consent.approvedDate, true)
+              : '-',
+            expiredOn: isGranted(consent.status)
+              ? formatDateString(consent.expiredDate, true)
+              : '-',
+            createdOn: formatDateString(consent.createdDate, true),
+            navLink: isGranted(consent.status) ? (
+              <Link to={`/health-info/${consent.consentRequestId}`}>
+                <ArrowForwardIosIcon color="primary" />
+              </Link>
+            ) : (
+              ''
+            )
+          }))}
+        title={
           <Typography className={classes.title} variant="h5">
             Consent List
           </Typography>
-        )}
+        }
         actions={[
           {
             icon: 'refresh',
@@ -110,22 +133,22 @@ const consentShape = PropTypes.shape({
   patient: PropTypes.shape({
     id: PropTypes.string,
     firstName: PropTypes.string,
-    lastName: PropTypes.string,
+    lastName: PropTypes.string
   }),
   status: PropTypes.string,
   approvedDate: PropTypes.string,
   expiredDate: PropTypes.string,
-  createdDate: PropTypes.string,
+  createdDate: PropTypes.string
 });
 
 ConsentsListTable.propTypes = {
   loadConsents: PropTypes.func.isRequired,
   consentsList: PropTypes.arrayOf(consentShape).isRequired,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 ConsentsListTable.defaultProps = {
-  loading: false,
-}
+  loading: false
+};
 
 export default ConsentsListTable;

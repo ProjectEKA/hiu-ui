@@ -18,7 +18,7 @@ function* fetchPatient(action) {
 }
 
 function* fetchPatientFailure(action) {
-  if (action.payload.response.status === 400) {
+  if (action.payload.response.status === 404) {
     yield put({
       type: ACTION_TYPES.PATIENT_FETCH_ID_NOT_FOUND,
       payload: action.payload,

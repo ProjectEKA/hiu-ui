@@ -17,7 +17,7 @@ const createConsentApi = ({
   const authToken = localStorage.getItem('auth-token');
   return apiWrapper(
     'post',
-    '/consent-requests',
+    '/v1/hiu/consent-requests',
     {
       consent: {
         patient: {

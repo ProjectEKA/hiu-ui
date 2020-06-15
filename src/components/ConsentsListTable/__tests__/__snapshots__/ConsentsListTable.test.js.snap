@@ -71,7 +71,7 @@ exports[`ConsentsListTable should render properly 1`] = `
               color="primary"
             />
           </ForwardRef>,
-          "status": "Consent granted",
+          "status": "Consent Granted",
         },
       ]
     }
