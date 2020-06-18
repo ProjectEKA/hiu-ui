@@ -41,6 +41,7 @@ function* loadHealthData(action) {
       });
     }
   } catch (e) {
+    console.error(e + "-------------");
     yield put({
       type: ACTION_TYPES.FETCH_HEALTH_DATA_FAILURE,
       payload: e,
