@@ -11,7 +11,7 @@ import {
 } from '../actions/loadConsentsActions';
 
 const getPatientDataFromConsentState = (id, consentData) => {
-  return consentData.find((currentConsent) => currentConsent.id === id).patient;
+  return consentData.find((currentConsent) => currentConsent.consentRequestId === id).patient;
 };
 
 function* loadHealthData(action) {
@@ -41,7 +41,6 @@ function* loadHealthData(action) {
       });
     }
   } catch (e) {
-    console.error(e + "-------------");
     yield put({
       type: ACTION_TYPES.FETCH_HEALTH_DATA_FAILURE,
       payload: e,
