@@ -43,7 +43,7 @@ describe('ConsentsListTable', () => {
 
     expect(wrapper.find(MaterialTable).length).toEqual(1);
     expect(wrapper.find(MaterialTable).props().data[0].name).toEqual('John Smith');
-    expect(wrapper.find(MaterialTable).props().data[0].status).toEqual('Request sent');
+    expect(wrapper.find(MaterialTable).props().data[0].status).toEqual('Request Denied');
     expect(wrapper.find(MaterialTable).props().data[0].grantedOn).toEqual('-');
     expect(wrapper.find(MaterialTable).props().data[0].expiredOn).toEqual('-');
     expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('18/02/2020 08:47');
