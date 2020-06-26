@@ -21,6 +21,10 @@ const findMedicationName = (medication) => {
       return codeableConcept.coding[0].display
         ? codeableConcept.coding[0].display
         : codeableConcept.coding[0].code;
+    } 
+
+    if(codeableConcept.text){
+      return codeableConcept.text;
     }
     return 'Unspecified';
   }
