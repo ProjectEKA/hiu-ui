@@ -117,6 +117,9 @@ const resourceDateFormatter = {
     }
     return getFormattedDateString(res.started);
   },
+  documentreference(res) {
+    return getFormattedDateString(res.date);
+  },
 };
 
 const getConceptDisplay = function (codeableConcept) {
@@ -137,6 +140,18 @@ const getConceptDisplay = function (codeableConcept) {
     }
   }
   return null;
+};
+
+const getCodingDisplay = function (coding) {
+  if (coding) {
+    if (coding.display) {
+      return coding.display;
+    }
+    if (coding.code) {
+      return coding.code;
+    }
+  }
+  return undefined;
 };
 
 const leftPadZero = (n) => {
@@ -160,5 +175,5 @@ const formatDateString = function (aDate, includeTime) {
 };
 
 export {
-  identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString,
+  identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString, getCodingDisplay, 
 };

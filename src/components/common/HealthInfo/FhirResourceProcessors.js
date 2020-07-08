@@ -163,21 +163,21 @@ export class DocumentReferenceProcessor extends FhirResourceProcessor {
   process(documentReference, bundleContext) {
     if (documentReference.author) {
       let author = this.findContainedResource(documentReference,
-        documentReference.author.reference, 'Practitioner');
+        documentReference.author[0].reference, 'Practitioner');
       if (!author) {
         // try to find within bundle
-        author = bundleContext.findReference('Practitioner', documentReference.author.reference);
+        author = bundleContext.findReference('Practitioner', documentReference.author[0].reference);
       }
       if (author) {
-        documentReference.author.targetResource = author;
+        documentReference.author[0].targetResource = author;
         this.addParentResource(author, documentReference);
       }
     }
 
     if (documentReference.context && documentReference.context.encounter) {
-      const refResource = bundleContext.findReference('Encounter', documentReference.context.encounter.reference);
+      const refResource = bundleContext.findReference('Encounter', documentReference.context.encounter[0].reference);
       if (refResource) {
-        documentReference.context.encounter.targetResource = refResource;
+        documentReference.context.encounter[0].targetResource = refResource;
         this.addParentResource(refResource, documentReference);
       }
     }

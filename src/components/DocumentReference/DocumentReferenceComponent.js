@@ -4,7 +4,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import DocumentReferenceComponentStyles from './DocumentReferenceComponent.style';
-import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
+import { formatDateString, getCodingDisplay } from '../common/HealthInfo/FhirResourcesUtils';
 
 const DocumentReferenceComponent = ({ data, consentReqId }) => {
   const authorArray = [];
@@ -13,6 +13,20 @@ const DocumentReferenceComponent = ({ data, consentReqId }) => {
     if (entry.author) {
       entry.author.forEach((author) => authorArray.push(author.display));
       return authorArray;
+    }
+    return undefined;
+  }
+
+  function extractContext(context) {
+    if (context) {
+      if (context.encounter) {
+        if (context.encounter[0].display) {
+          return context.encounter[0].display;
+        }
+        if (context.encounter[0].targetResource) {
+          return getCodingDisplay(context.encounter[0].targetResource.class);
+        }
+      }
     }
     return undefined;
   }
@@ -50,25 +64,37 @@ const DocumentReferenceComponent = ({ data, consentReqId }) => {
             variant="h6"
             component="h6"
           >
-            Diagnostic report :
+            Clinical Document :
             {' '}
             {entry.type ? entry.type.text : ''}
           </Typography>
           <div className="document-reference">
             <ul className="report-details-list">
               <li>
+                <span>Author: </span>
+                {extractAuthor(entry)}
+              </li>
+              <li>
                 <span>Date: </span>
                 {entry.date
                   ? formatDateString(entry.date)
-                  : '-'}
+                  : ''}
+              </li>
+              <li>
+                <span>Description: </span>
+                {entry.description}
               </li>
               <li>
                 <span>Status: </span>
                 {entry.status}
               </li>
               <li>
-                <span>Author: </span>
-                {extractAuthor(entry)}
+                <span>Document Status: </span>
+                {entry.docStatus}
+              </li>
+              <li>
+                <span>Context: </span>
+                {extractContext(entry.context)}
               </li>
             </ul>
             {renderContent(entry)}
@@ -90,8 +116,9 @@ DocumentReferenceComponent.propTypes = {
     author: PropTypes.arrayOf(PropTypes.shape({ display: PropTypes.string })),
     description: PropTypes.string,
     content: PropTypes.arrayOf(PropTypes.shape({
-      attachment: PropTypes.object
+      attachment: PropTypes.object,
     })),
+    context: PropTypes.shape({ encounter: PropTypes.object }),
   })),
   consentReqId: PropTypes.string,
 };
