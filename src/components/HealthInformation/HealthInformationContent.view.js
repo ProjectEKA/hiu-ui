@@ -8,6 +8,7 @@ import CCRDocument from '../Composition/CCRDocument';
 import MedicationRequestsComponent from '../Medication/MedicationRequestsComponent';
 import {identifyParentOfType} from '../common/HealthInfo/FhirResourcesUtils';
 import ConditionsComponent from '../Condition/ConditionsComponent';
+import DocumentReferenceComponent from '../DocumentReference/DocumentReferenceComponent';
 
 const HealthInformationContent = ({ consentReqId, hipName, data }) => {
   const compositionData = data
@@ -65,6 +66,18 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
       return true;
     })
     : [];
+  
+  const documentList = data
+    ? data.filter((entry) => {
+      if (entry.resourceType !== 'DocumentReference') {
+        return false;
+      }
+      if (entry.parentResources) {
+        return !identifyParentOfType(entry, 'Composition');
+      }
+      return true;
+    })
+    : [];
 
   return (
     <HealthInformationContentStyles>
@@ -83,6 +96,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         />
         <ConditionsComponent conditionList={conditionList} />
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
+        <DocumentReferenceComponent consentReqId={consentReqId} data={documentList} />
       </div>
     </HealthInformationContentStyles>
   );

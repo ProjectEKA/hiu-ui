@@ -3,6 +3,7 @@ const processingOrder = [
   'composition',
   'encounter',
   'diagnosticreport',
+  'documentreference',
   'imagingstudy',
   'media',
   'condition',
@@ -27,7 +28,7 @@ const baseEntities = [
   'location',
 ];
 
-const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation'];
+const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation', "documentreference"];
 
 const getFormattedDateString = function (dateString) {
   if (!dateString) {
