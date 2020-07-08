@@ -28,6 +28,8 @@ const theme = createMuiTheme({
   }
 });
 
+document.querySelector('title').innerHTML=REACT_APP_SITE_TITLE;
+
 ReactDOM.render(
   <Provider store={store}>
     <StylesProvider injectFirst>
