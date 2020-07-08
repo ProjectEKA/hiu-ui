@@ -17,6 +17,9 @@ if (!process.env.BACKEND_API_PATH) {
 if (!process.env.DICOM_SERVER_PATH) {
   throw "DICOM_SERVER_PATH not found";
 }
+if (!process.env.REACT_APP_SITE_TITLE) {
+  throw "REACT_APP_SITE_TITLE not found";
+}
 
 module.exports = {
   mode: "production",
@@ -27,7 +30,8 @@ module.exports = {
       BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
       BASE_NAME: JSON.stringify(process.env.BASE_NAME),
       BACKEND_API_PATH: JSON.stringify(process.env.BACKEND_API_PATH),
-      DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH)
+      DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
+      REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE)
     })
   ]
 };

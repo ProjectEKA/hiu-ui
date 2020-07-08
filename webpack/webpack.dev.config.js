@@ -18,6 +18,9 @@ if (!process.env.DICOM_SERVER_PATH) {
 if (!process.env.BASE_NAME) {
   throw "BASE_NAME not found";
 }
+if (!process.env.REACT_APP_SITE_TITLE) {
+  throw "REACT_APP_SITE_TITLE not found";
+}
 
 var parentDir = path.join(__dirname, "../");
 
@@ -32,6 +35,7 @@ module.exports = {
       BACKEND_API_PATH: JSON.stringify(process.env.BACKEND_API_PATH),
       DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
       DICOM_BASE_URL: JSON.stringify(process.env.DICOM_BASE_URL),
+      REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE),
     }),
   ],
   devServer: {

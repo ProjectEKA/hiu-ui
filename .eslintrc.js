@@ -11,6 +11,7 @@ module.exports = {
     BACKEND_API_PATH: 'readonly',
     DICOM_BASE_URL: 'readonly',
     DICOM_SERVER_PATH: 'readonly',
+    REACT_APP_SITE_TITLE: 'readonly',
   },
   parser: 'babel-eslint',
   parserOptions: {

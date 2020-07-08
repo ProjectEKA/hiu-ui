@@ -46,6 +46,7 @@ BASE_NAME = '/hiu'
 BACKEND_API_PATH= '/'
 DICOM_VIEWER_PAGE= '/viewer/'
 DICOM_SERVER_PATH= '/dicom-web'
+REACT_APP_SITE_TITLE= 'NCG'
 ```
 The above should be self explanatory, essentially it says that the HIU-Service is running on http://localhost:8003
 
