@@ -153,3 +153,33 @@ export class MedicationRequestProcessor extends FhirResourceProcessor {
     }
   }
 }
+
+
+export class DocumentReferenceProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === 'documentreference';
+  }
+
+  process(documentReference, bundleContext) {
+    if (documentReference.author) {
+      let author = this.findContainedResource(documentReference,
+        documentReference.author[0].reference, 'Practitioner');
+      if (!author) {
+        // try to find within bundle
+        author = bundleContext.findReference('Practitioner', documentReference.author[0].reference);
+      }
+      if (author) {
+        documentReference.author[0].targetResource = author;
+        this.addParentResource(author, documentReference);
+      }
+    }
+
+    if (documentReference.context && documentReference.context.encounter) {
+      const refResource = bundleContext.findReference('Encounter', documentReference.context.encounter[0].reference);
+      if (refResource) {
+        documentReference.context.encounter[0].targetResource = refResource;
+        this.addParentResource(refResource, documentReference);
+      }
+    }
+  }
+}

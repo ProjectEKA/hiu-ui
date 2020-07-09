@@ -3,6 +3,7 @@ const processingOrder = [
   'composition',
   'encounter',
   'diagnosticreport',
+  'documentreference',
   'imagingstudy',
   'media',
   'condition',
@@ -27,7 +28,7 @@ const baseEntities = [
   'location',
 ];
 
-const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation'];
+const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation', "documentreference"];
 
 const getFormattedDateString = function (dateString) {
   if (!dateString) {
@@ -116,6 +117,9 @@ const resourceDateFormatter = {
     }
     return getFormattedDateString(res.started);
   },
+  documentreference(res) {
+    return getFormattedDateString(res.date);
+  },
 };
 
 const getConceptDisplay = function (codeableConcept) {
@@ -136,6 +140,11 @@ const getConceptDisplay = function (codeableConcept) {
     }
   }
   return null;
+};
+
+const getCodingDisplay = function (coding) {
+  if (!coding) return undefined;
+  return coding.display || coding.code;
 };
 
 const leftPadZero = (n) => {
@@ -159,5 +168,5 @@ const formatDateString = function (aDate, includeTime) {
 };
 
 export {
-  identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString,
+  identifyParentOfType, identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, getConceptDisplay, formatDateString, getCodingDisplay, 
 };

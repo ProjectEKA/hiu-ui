@@ -68,7 +68,6 @@ describe('HealthInformationContent', () => {
     mockData[0].resourceType = 'DiagnosticReport';
     wrapper.setProps({ data: mockData });
     expect(wrapper.find(DiagnosticReportComponent).props().data).toEqual(mockData);
-    expect(wrapper.find(DiagnosticReportComponent).props().consentReqId).toEqual('123');
   });
 
   it('should render with no data', () => {
