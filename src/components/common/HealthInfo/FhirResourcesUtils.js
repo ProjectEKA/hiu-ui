@@ -143,15 +143,8 @@ const getConceptDisplay = function (codeableConcept) {
 };
 
 const getCodingDisplay = function (coding) {
-  if (coding) {
-    if (coding.display) {
-      return coding.display;
-    }
-    if (coding.code) {
-      return coding.code;
-    }
-  }
-  return undefined;
+  if (!coding) return undefined;
+  return coding.display || coding.code;
 };
 
 const leftPadZero = (n) => {

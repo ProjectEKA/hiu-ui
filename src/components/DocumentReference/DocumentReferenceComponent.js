@@ -7,26 +7,20 @@ import DocumentReferenceComponentStyles from './DocumentReferenceComponent.style
 import { formatDateString, getCodingDisplay } from '../common/HealthInfo/FhirResourcesUtils';
 
 const DocumentReferenceComponent = ({ data, consentReqId }) => {
-  const authorArray = [];
 
   function extractAuthor(entry) {
-    if (entry.author) {
-      entry.author.forEach((author) => authorArray.push(author.display));
-      return authorArray;
-    }
-    return undefined;
+    if (!entry.author) return undefined;
+    return entry.author.map(author => author.display);
   }
 
   function extractContext(context) {
-    if (context) {
-      if (context.encounter) {
-        if (context.encounter[0].display) {
-          return context.encounter[0].display;
-        }
-        if (context.encounter[0].targetResource) {
-          return getCodingDisplay(context.encounter[0].targetResource.class);
-        }
-      }
+    if (!context) return undefined;
+    if (!context.encounter) return undefined;
+    if (context.encounter[0].display) {
+      return context.encounter[0].display;
+    }
+    if (context.encounter[0].targetResource) {
+      return getCodingDisplay(context.encounter[0].targetResource.class);
     }
     return undefined;
   }
