@@ -14,6 +14,7 @@ exports[`DischargeSummary should render properly 1`] = `
       color="inherit"
       variant="h6"
     >
+      Document: 
       Discharge Summary
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(Grid))>

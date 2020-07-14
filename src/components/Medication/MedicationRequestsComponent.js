@@ -14,21 +14,22 @@ import MedicationNote from './MedicationNote';
 import MedicationDose from './MedicationDose';
 
 
-const findMedicationName = (medication) => {
-  if (medication) {
-    const codeableConcept = medication.code;
-    if (codeableConcept.coding) {
-      return codeableConcept.coding[0].display
-        ? codeableConcept.coding[0].display
-        : codeableConcept.coding[0].code;
-    } 
-
-    if(codeableConcept.text){
-      return codeableConcept.text;
-    }
-    return 'Unspecified';
+const findMedicationName = (mr) => {
+  const medicationConcept 
+    = (mr.medicationReference && mr.medicationReference.targetResource) 
+      ? mr.medicationReference.targetResource.code 
+      : mr.medicationCodeableConcept;
+  if (!medicationConcept) return "Unspecified";
+  if (medicationConcept.text) {
+    return medicationConcept.text;
+  }
+  if (medicationConcept.coding) {
+    return medicationConcept.coding[0].display
+      ? medicationConcept.coding[0].display
+      : medicationConcept.coding[0].code;
   }
   return 'Unspecified';
+  
 };
 
 // eslint-disable-next-line max-len
@@ -56,7 +57,7 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
                 {mr.authoredOn ? formatDateString(mr.authoredOn) : ''}
               </TableCell>
               <TableCell className="table-cell">
-                {findMedicationName(mr.medicationReference.targetResource)}
+                {findMedicationName(mr)}
                 {` (${mr.status})`}
               </TableCell>
               <TableCell className="table-cell">

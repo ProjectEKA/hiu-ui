@@ -9,6 +9,7 @@ describe('CCRDocument', () => {
     {
       resourceType: 'Composition',
       title: 'Discharge Summary',
+      date: '2019-12-03',
       type: {
         coding: [
           {
@@ -62,23 +63,5 @@ describe('CCRDocument', () => {
 
   it('should render properly', () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render observation table component with empty data', () => {
-    expect(wrapper.find(ObservationTable).length).toEqual(1);
-    expect(wrapper.find(ObservationTable).props().data).toEqual([]);
-  });
-
-  it('should render Medication Requests component', () => {
-    expect(wrapper.find(MedicationRequestsComponent).length).toEqual(1);
-    expect(wrapper.find(MedicationRequestsComponent).props().medicationRequests).toEqual([]);
-  });
-
-  it('should render DischargeSummary component with correct props', () => {
-    expect(wrapper.find('DischargeSummary').props().title).toEqual('Discharge Summary');
-    expect(wrapper.find('DischargeSummary').props().startDate).toEqual('2019-12-03');
-    expect(wrapper.find('DischargeSummary').props().endDate).toEqual('2019-12-30');
-    expect(wrapper.find('DischargeSummary').props().authors).toEqual(['Dr.Divya']);
-    expect(wrapper.find('DischargeSummary').props().status).toEqual('final');
   });
 });

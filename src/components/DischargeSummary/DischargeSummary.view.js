@@ -6,7 +6,7 @@ import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
-const DischargeSummary = ({ title, startDate, endDate, authors, status }) => {
+const DischargeSummary = ({ title, startDate, endDate, authors, status, date }) => {
   const classes = useStyle();
   const start = formatDateString(startDate);
   const end = formatDateString(endDate);
@@ -15,10 +15,11 @@ const DischargeSummary = ({ title, startDate, endDate, authors, status }) => {
       <Grid container className={classes.container} justify='space-between'>
         <Grid item>
           <Typography variant='h6' color='inherit' className={classes.title}>
-            {title}
+            Document: {title}
           </Typography>
         </Grid>
         <Grid item className={classes.description}>
+          {date && <div><span className={classes.label}>Date: </span>{date}</div>}
           {start && end && (<span className={classes.period}>Admitted from {start} to {end}</span>)}
           {authors.length && <div><span className={classes.label}>Authors: </span>{ authors.join(', ') }</div>}
           {status && <div><span className={classes.label}>Status: </span>{status.toUpperCase()}</div>}
@@ -34,6 +35,7 @@ DischargeSummary.propTypes = {
   endDate: PropTypes.string,
   authors: PropTypes.arrayOf(PropTypes.string),
   status: PropTypes.string,
+  date: PropTypes.string,
 };
 
 DischargeSummary.defaultProps = {
@@ -42,6 +44,7 @@ DischargeSummary.defaultProps = {
   endDate: '',
   authors: [],
   status: '',
+  date: '',
 };
 
 
