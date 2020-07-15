@@ -8,35 +8,97 @@ exports[`CCRDocument should render properly 1`] = `
     }
   }
 >
-  <DischargeSummary
-    authors={
-      Array [
-        "Dr.Divya",
-      ]
-    }
-    endDate="2019-12-30"
-    startDate="2019-12-03"
-    status="final"
-    title="Discharge Summary"
-  />
-  <ObservationTable
-    data={Array []}
-  />
-  <MedicationRequestsComponent
-    medicationRequests={Array []}
-  />
-  <ConditionsComponent
-    conditionList={Array []}
-  />
-  <DiagnosticReportComponent
-    consentReqId="123"
-    data={Array []}
-  />
-  <WithStyles(ForwardRef(Divider))
-    style={
+  <CompositionComponent
+    composition={
       Object {
-        "marginTop": 50,
+        "author": Array [
+          Object {
+            "display": "Dr.Divya",
+          },
+        ],
+        "date": "2019-12-03",
+        "event": Array [
+          Object {
+            "period": Object {
+              "end": "2019-12-30",
+              "start": "2019-12-03",
+            },
+          },
+        ],
+        "resourceType": "Composition",
+        "status": "final",
+        "title": "Discharge Summary",
+        "type": Object {
+          "coding": Array [
+            Object {
+              "code": "28655-9",
+              "system": "http://loinc.org",
+            },
+          ],
+        },
       }
+    }
+    consentReqId="123"
+    resources={
+      Array [
+        Object {
+          "author": Array [
+            Object {
+              "display": "Dr.Divya",
+            },
+          ],
+          "date": "2019-12-03",
+          "event": Array [
+            Object {
+              "period": Object {
+                "end": "2019-12-30",
+                "start": "2019-12-03",
+              },
+            },
+          ],
+          "resourceType": "Composition",
+          "status": "final",
+          "title": "Discharge Summary",
+          "type": Object {
+            "coding": Array [
+              Object {
+                "code": "28655-9",
+                "system": "http://loinc.org",
+              },
+            ],
+          },
+        },
+        Object {
+          "authoredOn": "2020-01-22",
+          "dosageInstruction": Array [],
+          "intent": "order",
+          "medicationReference": Object {
+            "display": "IV antibiotics",
+            "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+          },
+          "parentType": "Composition",
+          "resourceType": "MedicationRequest",
+          "status": "active",
+          "subject": Object {
+            "display": "Shriya",
+          },
+        },
+        Object {
+          "authoredOn": "2020-01-22",
+          "dosageInstruction": Array [],
+          "intent": "order",
+          "medicationReference": Object {
+            "display": "IV antibiotics",
+            "reference": "Medication/c2b8f3fd-6da0-44ed-bc91-8bb05ff614d2",
+          },
+          "parentType": "Composition",
+          "resourceType": "Observation",
+          "status": "active",
+          "subject": Object {
+            "display": "Shriya",
+          },
+        },
+      ]
     }
   />
 </div>

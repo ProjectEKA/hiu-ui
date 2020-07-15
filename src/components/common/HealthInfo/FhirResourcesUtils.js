@@ -142,7 +142,7 @@ const getConceptDisplay = function (codeableConcept) {
   return null;
 };
 
-const getCodingDisplay = function (coding) {
+  const getCodingDisplay = function (coding) {
   if (!coding) return undefined;
   return coding.display || coding.code;
 };

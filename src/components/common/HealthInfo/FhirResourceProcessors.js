@@ -40,10 +40,10 @@ export class ImagingStudyProcessor extends FhirResourceProcessor {
 
   process(imagingStudy, bundleContext) {
     if (imagingStudy.endpoint) {
-      imagingStudy.endpoint.forEach((ep) => {
-        const refResource = bundleContext.findReference('Endpoint', ep.reference);
+      imagingStudy.endpoint.forEach((epRef) => {
+        const refResource = bundleContext.findReference('Endpoint', epRef);
         if (refResource) {
-          ep.targetResource = refResource;
+          epRef.targetResource = refResource;
           this.addParentResource(refResource, imagingStudy);
         }
       });
@@ -59,10 +59,7 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
   process(diagnosticReport, bundleContext) {
     if (diagnosticReport.media) {
       diagnosticReport.media.forEach((m) => {
-        const refResource = bundleContext.findReference(
-          'Media',
-          m.link.reference,
-        );
+        const refResource = bundleContext.findReference('Media', m.link);
         if (refResource) {
           m.link.targetResource = refResource;
           this.addParentResource(refResource, diagnosticReport);
@@ -71,26 +68,20 @@ export class DiagnosticReportProcessor extends FhirResourceProcessor {
     }
 
     if (diagnosticReport.result) {
-      diagnosticReport.result.forEach((obs) => {
-        const refResource = bundleContext.findReference(
-          'Observation',
-          obs.reference,
-        );
+      diagnosticReport.result.forEach((obsRef) => {
+        const refResource = bundleContext.findReference('Observation', obsRef);
         if (refResource) {
-          obs.targetResource = refResource;
+          obsRef.targetResource = refResource;
           this.addParentResource(refResource, diagnosticReport);
         }
       });
     }
 
     if (diagnosticReport.imagingStudy) {
-      diagnosticReport.imagingStudy.forEach((imageStudy) => {
-        const refResource = bundleContext.findReference(
-          'ImagingStudy',
-          imageStudy.reference,
-        );
+      diagnosticReport.imagingStudy.forEach((imageStudyRRef) => {
+        const refResource = bundleContext.findReference('ImagingStudy',imageStudyRRef);
         if (refResource) {
-          imageStudy.targetResource = refResource;
+          imageStudyRRef.targetResource = refResource;
           this.addParentResource(refResource, diagnosticReport);
         }
       });
@@ -105,7 +96,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
 
   process(composition, bundleContext) {
     if (composition.encounter) {
-      const refResource = bundleContext.findReference('Encounter', composition.encounter.reference);
+      const refResource = bundleContext.findReference('Encounter', composition.encounter);
       if (refResource) {
         composition.encounter.targetResource = refResource;
         this.addParentResource(refResource, composition);
@@ -115,13 +106,13 @@ export class CompositionProcessor extends FhirResourceProcessor {
       const unresolvedCompositionSectionEntryRefs = [];
       composition.section.forEach((sec) => {
         if (sec.entry) {
-          sec.entry.forEach((secEntry) => {
-            const refResource = bundleContext.findReference(undefined, secEntry.reference);
+          sec.entry.forEach((secEntryRef) => {
+            const refResource = bundleContext.findReference(undefined, secEntryRef);
             if (refResource) {
-              secEntry.targetResource = refResource;
+              secEntryRef.targetResource = refResource;
               this.addParentResource(refResource, composition);
             } else {
-              unresolvedCompositionSectionEntryRefs.push[secEntry.reference];
+              unresolvedCompositionSectionEntryRefs.push[secEntryRef.reference];
             }
           });
         }
@@ -144,7 +135,7 @@ export class MedicationRequestProcessor extends FhirResourceProcessor {
         medicationRequest.medicationReference.reference, 'Medication');
       if (!medication) {
         // try to find within bundle
-        medication = bundleContext.findReference('Medication', medicationRequest.medicationReference.reference);
+        medication = bundleContext.findReference('Medication', medicationRequest.medicationReference);
       }
       if (medication) {
         medicationRequest.medicationReference.targetResource = medication;
@@ -166,7 +157,7 @@ export class DocumentReferenceProcessor extends FhirResourceProcessor {
         documentReference.author[0].reference, 'Practitioner');
       if (!author) {
         // try to find within bundle
-        author = bundleContext.findReference('Practitioner', documentReference.author[0].reference);
+        author = bundleContext.findReference('Practitioner', documentReference.author[0]);
       }
       if (author) {
         documentReference.author[0].targetResource = author;
@@ -175,7 +166,7 @@ export class DocumentReferenceProcessor extends FhirResourceProcessor {
     }
 
     if (documentReference.context && documentReference.context.encounter) {
-      const refResource = bundleContext.findReference('Encounter', documentReference.context.encounter[0].reference);
+      const refResource = bundleContext.findReference('Encounter', documentReference.context.encounter[0]);
       if (refResource) {
         documentReference.context.encounter[0].targetResource = refResource;
         this.addParentResource(refResource, documentReference);

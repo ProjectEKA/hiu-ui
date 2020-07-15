@@ -3,12 +3,14 @@ export class BundleContext {
     this.bundle = bundle;
   }
 
-  findReference(resourceType, reference) {
+  findReference(targetResourceType, ref) {
+    const resourceType = targetResourceType ? targetResourceType : this.getResourceType(targetResourceType, ref);
+    if (!resourceType) return undefined;
     const entry = this.bundle.entry.find((e) => {
       if (e.resource.resourceType.toLowerCase() === resourceType.toLowerCase()) {
         const resourceId = this.getEntryResourceId(e);
         if (resourceId) {
-          return reference.includes(resourceId);
+          return ref.reference.includes(resourceId);
         }
       }
       return false;
@@ -30,5 +32,16 @@ export class BundleContext {
       }
     }
     return undefined;
+  }
+
+  getResourceType(targetResourceType, reference) {
+    if (targetResourceType) return targetResourceType;
+    if (reference.type) return reference.type;
+    const ref = reference.reference;
+    if (ref.startsWith("#")) {
+       console.error("Unexpected resource reference to contained resources. Can not resolve:" + ref);
+       return undefined;
+    }
+    return ref.substring(0, ref.indexOf("/"));
   }
 }
