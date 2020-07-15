@@ -14,22 +14,51 @@ import MedicationNote from './MedicationNote';
 import MedicationDose from './MedicationDose';
 
 
+const displayCodeableConcept = (codeableConcept, defaultText) => {
+  if (codeableConcept.text) {
+    return codeableConcept.text;
+  }
+  if (codeableConcept.coding) {
+    return codeableConcept.coding[0].display
+      ? codeableConcept.coding[0].display
+      : codeableConcept.coding[0].code;
+  }
+  return defaultText;
+};
+
 const findMedicationName = (mr) => {
   const medicationConcept 
     = (mr.medicationReference && mr.medicationReference.targetResource) 
       ? mr.medicationReference.targetResource.code 
       : mr.medicationCodeableConcept;
   if (!medicationConcept) return "Unspecified";
-  if (medicationConcept.text) {
-    return medicationConcept.text;
-  }
-  if (medicationConcept.coding) {
-    return medicationConcept.coding[0].display
-      ? medicationConcept.coding[0].display
-      : medicationConcept.coding[0].code;
-  }
-  return 'Unspecified';
+  return displayCodeableConcept(medicationConcept, 'Unspecified');
+};
+
   
+const MedicationReason = ({reasons, reasonCodes}) => {
+  if (reasons) {
+    return (
+      <li>
+        Reasons:&nbsp;
+        <span>
+          {reasons.map((ref) => displayCodeableConcept(ref.targetResource.code, '')).reduce((acc, value) => `${acc}, ${value}`)}
+        </span>
+      </li>
+    );
+  }
+
+  if (reasonCodes) {
+    return (
+      <li>
+        Reasons:&nbsp;
+        <span>
+          {reasonCodes.map((code) => displayCodeableConcept(code, '')).reduce((acc, value) => `${acc}, ${value}`)}
+        </span>
+      </li>
+    );
+  }
+  return null;
 };
 
 // eslint-disable-next-line max-len
@@ -59,6 +88,9 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
               <TableCell className="table-cell">
                 {findMedicationName(mr)}
                 {` (${mr.status})`}
+                <ul className="mediation-list-item">
+                  {<MedicationReason reasons={mr.reasonReference} reasonCodes={mr.reasonCode}/>}
+                </ul>
               </TableCell>
               <TableCell className="table-cell">
                 <MedicationDose dosageInstructions={mr.dosageInstruction} />

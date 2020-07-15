@@ -4,7 +4,7 @@ import {
 } from './FhirResourcesUtils';
 import { BundleContext } from './BundleContext';
 import {
-  CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor, DocumentReferenceProcessor,
+  CompositionProcessor, ImagingStudyProcessor, DiagnosticReportProcessor, MedicationRequestProcessor, DocumentReferenceProcessor, ConditionProcessor,
 } from './FhirResourceProcessors';
 
 class HealthInfoProcessor {
@@ -163,6 +163,7 @@ const fhirProcessors = [
   new ImagingStudyProcessor(),
   new MedicationRequestProcessor(),
   new DocumentReferenceProcessor(),
+  new ConditionProcessor()
 ];
 
 function getDateFromString(dateString) {
