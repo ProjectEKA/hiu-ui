@@ -52,7 +52,7 @@ describe('MedicationRequestsComponent', () => {
 
   it('should show correct data of medication requests', () => {
     expect(wrapper.find('.table-cell').at(0).text()).toEqual('22/01/2020');
-    expect(wrapper.find('.table-cell').at(1).text()).toEqual('display (active)');
+    expect(wrapper.find('.table-cell').at(1).text()).toEqual('display (active)<MedicationReason />');
 
     mockData[0].medicationReference.targetResource = {
       code: {
@@ -64,7 +64,7 @@ describe('MedicationRequestsComponent', () => {
       },
     };
     wrapper.setProps({ medicationRequests: mockData });
-    expect(wrapper.find('.table-cell').at(1).text()).toEqual('code (active)');
+    expect(wrapper.find('.table-cell').at(1).text()).toEqual('code (active)<MedicationReason />');
   });
 
   it('should show default data if medication requests is not valid', () => {
@@ -74,11 +74,11 @@ describe('MedicationRequestsComponent', () => {
 
     mockData[0].medicationReference.targetResource.code.coding = null;
     wrapper.setProps({ medicationRequests: mockData });
-    expect(wrapper.find('.table-cell').at(1).text()).toEqual('Unspecified (active)');
+    expect(wrapper.find('.table-cell').at(1).text()).toEqual('Unspecified (active)<MedicationReason />');
 
     mockData[0].medicationReference.targetResource = null;
     wrapper.setProps({ medicationRequests: mockData });
-    expect(wrapper.find('.table-cell').at(1).text()).toEqual('Unspecified (active)');
+    expect(wrapper.find('.table-cell').at(1).text()).toEqual('Unspecified (active)<MedicationReason />');
 
     wrapper.setProps({ medicationRequests: undefined });
     expect(wrapper.find(TableStyles).exists()).toEqual(false);

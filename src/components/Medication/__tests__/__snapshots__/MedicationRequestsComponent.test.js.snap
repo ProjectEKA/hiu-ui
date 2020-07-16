@@ -375,6 +375,11 @@ exports[`MedicationRequestsComponent should render properly 1`] = `
           >
             display
              (active)
+            <ul
+              className="mediation-list-item"
+            >
+              <MedicationReason />
+            </ul>
           </WithStyles(ForwardRef(TableCell))>
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"

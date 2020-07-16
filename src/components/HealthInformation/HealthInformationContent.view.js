@@ -61,6 +61,14 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         return false;
       }
       if (entry.parentResources) {
+        const resourceTypes = entry.parentResources.map((pr) => pr.resourceType);
+        const unique = (value, index, list) => {
+          return list.indexOf(value) === index
+        }
+        const uniqueTypes = resourceTypes.filter(unique);
+        if ((uniqueTypes.length == 1) && (uniqueTypes.indexOf('MedicationRequest') >=0) ) {
+          return false;
+        }
         return !identifyParentOfType(entry, 'Composition');
       }
       return true;

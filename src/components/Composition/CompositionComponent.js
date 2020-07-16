@@ -20,7 +20,12 @@ const CompositionComponent = ({ composition, consentReqId, resources }) => {
     };
     const getTitle = () => composition.title;
     const getStatus = () => composition.status;
-    const getAuthors = () => composition.author && composition.author.map((author) => author.display);
+    const getAuthor = (ref) => {
+      if (!ref.targetResource) return undefined;
+      if (!ref.targetResource.name) return undefined;
+      return ref.targetResource.name[0].text;
+    }
+    const getAuthors = () => composition.author && composition.author.map((author) => author.display || getAuthor(author));
     const getDate =() => formatDateString(composition.date, true);
 
     const independentDataOfType = (resourceType) => {

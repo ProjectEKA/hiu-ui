@@ -102,6 +102,18 @@ export class CompositionProcessor extends FhirResourceProcessor {
         this.addParentResource(refResource, composition);
       }
     }
+    if (composition.author) {
+      composition.author.forEach((ref) => {
+        let author = this.findContainedResource(composition, ref.reference, 'Practitioner');
+        if (!author) {
+          author = bundleContext.findReference('Practitioner', ref);
+        }
+        if (author) {
+          ref.targetResource = author;
+          this.addParentResource(author, composition);
+        }
+      });
+    }
     if (composition.section) {
       const unresolvedCompositionSectionEntryRefs = [];
       composition.section.forEach((sec) => {
@@ -142,6 +154,20 @@ export class MedicationRequestProcessor extends FhirResourceProcessor {
         this.addParentResource(medication, medicationRequest);
       }
     }
+    
+    if (medicationRequest.reasonReference) {
+      medicationRequest.reasonReference.forEach((reasonRef) => {
+        let conditionReason = this.findContainedResource(medicationRequest, reasonRef.reference, 'Condition');
+        if (!conditionReason) {
+          // try to find within bundle
+          conditionReason = bundleContext.findReference('Condition', reasonRef);
+        }
+        if (conditionReason) {
+          reasonRef.targetResource = conditionReason;
+          this.addParentResource(conditionReason, medicationRequest);
+        }
+      });
+    }
   }
 }
 
@@ -171,6 +197,27 @@ export class DocumentReferenceProcessor extends FhirResourceProcessor {
         documentReference.context.encounter[0].targetResource = refResource;
         this.addParentResource(refResource, documentReference);
       }
+    }
+  }
+}
+
+export class ConditionProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === 'condition';
+  }
+
+  process(condition, bundleContext) {
+    if (condition.recorder) {
+      condition.recorder.forEach((ref) => {
+        let author = this.findContainedResource(condition, ref.reference, 'Practitioner');
+        if (!author) {
+          author = bundleContext.findReference('Practitioner', ref);
+        }
+        if (author) {
+          ref.targetResource = author;
+          this.addParentResource(author, condition);
+        }
+      });
     }
   }
 }
