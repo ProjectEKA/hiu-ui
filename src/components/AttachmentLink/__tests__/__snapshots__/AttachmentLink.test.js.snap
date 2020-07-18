@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttachmentLink should render properly 1`] = `
+<a
+  href="#"
+  onClick={[Function]}
+>
+  Link
+</a>
+`;

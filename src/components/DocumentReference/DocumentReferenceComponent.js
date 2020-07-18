@@ -4,7 +4,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import DocumentReferenceComponentStyles from './DocumentReferenceComponent.style';
+import AttachmentLink from '../AttachmentLink';
 import { formatDateString, getCodingDisplay } from '../common/HealthInfo/FhirResourcesUtils';
+
 
 const DocumentReferenceComponent = ({ data, consentReqId }) => {
 
@@ -31,13 +33,11 @@ const DocumentReferenceComponent = ({ data, consentReqId }) => {
       <ul>
         {entry.content.map((contentAttachment) => (
           <li key={contentAttachment.attachment.url}>
-            <a
-              href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}/health-information/fetch/${consentReqId}${contentAttachment.attachment.url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {contentAttachment.attachment.title ? contentAttachment.attachment.title : 'Link'}
-            </a>
+            <AttachmentLink 
+              consentReqId={consentReqId} 
+              attachmentPath={contentAttachment.attachment.url} 
+              linkTitle={contentAttachment.attachment.title ? contentAttachment.attachment.title : 'Link'} 
+            />
           </li>
         ))}
       </ul>
