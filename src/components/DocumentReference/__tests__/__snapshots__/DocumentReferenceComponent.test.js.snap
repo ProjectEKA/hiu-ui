@@ -383,13 +383,11 @@ exports[`DocumentReferenceComponent should render properly 1`] = `
           <li
             key="/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
           >
-            <a
-              href="http://localhost:3000/hiu-api/health-information/fetch/123/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              BILATERAL DIGITAL MAMMOGRAPHY and 3D TOMOSYNTHESIS
-            </a>
+            <AttachmentLink
+              attachmentPath="/attachments/58d5e603-c994-4969-8199-95f7e0b0b738.pdf"
+              consentReqId="123"
+              linkTitle="BILATERAL DIGITAL MAMMOGRAPHY and 3D TOMOSYNTHESIS"
+            />
           </li>
         </ul>
       </div>

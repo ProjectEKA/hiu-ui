@@ -90,11 +90,11 @@ describe('DocumentReferenceComponent', () => {
   it('should Link text if title is not available of performer', () => {
     mockData[0].content[0].attachment.title = null;
     wrapper.setProps({ data: mockData });
-    expect(wrapper.find('a').at(0).text()).toEqual('Link');
+    expect(wrapper.find('AttachmentLink').at(0).props().linkTitle).toEqual('Link');
 
     mockData[0].content= undefined;
     wrapper.setProps({ data: mockData });
-    expect(wrapper.find('a').exists()).toEqual(false);
+    expect(wrapper.find('AttachmentLink').exists()).toEqual(false);
   });
 
   it('should not render anything if data is undefined', () => {
