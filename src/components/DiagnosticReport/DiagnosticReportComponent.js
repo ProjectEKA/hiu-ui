@@ -7,6 +7,7 @@ import DiagnosticReportComponentStyles from './DiagnosticReportComponent.style';
 import getNestedObject from '../../utils/getNestedObject';
 import ObservationTable from '../ObservationTable/ObservationTable';
 import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
+import AttachmentLink from '../AttachmentLink';
 
 const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const performerArray = [];
@@ -25,13 +26,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
       <ul>
         {entry.presentedForm.map((link) => (
           <li key={link.url}>
-            <a
-              href={`${BACKEND_BASE_URL}${BACKEND_API_PATH}/health-information/fetch/${consentReqId}${link.url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {link.title ? link.title : 'Link'}
-            </a>
+            <AttachmentLink attachmentPath={link.url} consentReqId={consentReqId} linkTitle={link.title ? link.title : 'Link'} />
           </li>
         ))}
       </ul>
