@@ -132,7 +132,7 @@ class HealthInfoProcessor {
             }
             if (!dateFormatter) {
               parent = identifyParentOfType(e.resource, 'Composition');
-              dateFormatter = resourceDateFormatter[parent.resourceType.toLowerCase()]; 
+              dateFormatter = parent && resourceDateFormatter[parent.resourceType.toLowerCase()]; 
             }
 
             if (dateFormatter) {
