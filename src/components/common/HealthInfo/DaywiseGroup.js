@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {
-  identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter,
+  identifyFirstParent, baseEntities, processingOrder, getFormattedDateString, resourceDateFormatter, identifyParentOfType,
 } from './FhirResourcesUtils';
 import { BundleContext } from './BundleContext';
 import {
@@ -122,16 +122,21 @@ class HealthInfoProcessor {
               resourceProcessor.process(e.resource, new BundleContext(bundle));
             }
             let dateFormatter;
-            let firstParent;
+            let parent;
             if (e.resource.parentResources) {
-              firstParent = identifyFirstParent(e.resource);
-              dateFormatter = resourceDateFormatter[firstParent.resourceType.toLowerCase()];
+              parent = identifyFirstParent(e.resource);
+              dateFormatter = resourceDateFormatter[parent.resourceType.toLowerCase()];
             } else {
               dateFormatter = resourceDateFormatter[e.resource.resourceType.toLowerCase()];
             }
+            if (!dateFormatter) {
+              parent = identifyParentOfType(e.resource, 'Composition');
+              dateFormatter = resourceDateFormatter[parent.resourceType.toLowerCase()]; 
+            }
+
             if (dateFormatter) {
               const resourceDate = e.resource.parentResources
-                  ? dateFormatter(firstParent)
+                  ? dateFormatter(parent)
                   : dateFormatter(e.resource);
               if (resourceDate) {
                 this.addResourceEntryForDate(

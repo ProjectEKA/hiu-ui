@@ -112,7 +112,7 @@ DocumentReferenceComponent.propTypes = {
     content: PropTypes.arrayOf(PropTypes.shape({
       attachment: PropTypes.object,
     })),
-    context: PropTypes.shape({ encounter: PropTypes.object }),
+    context: PropTypes.shape({ encounter: PropTypes.array }),
   })),
   consentReqId: PropTypes.string,
 };

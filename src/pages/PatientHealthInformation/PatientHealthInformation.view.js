@@ -133,11 +133,9 @@ PatientHealthInformation.propTypes = {
   success: PropTypes.bool,
   error: PropTypes.bool,
   dateArray: PropTypes.arrayOf(
-    PropTypes.shape({
-      resourceType: PropTypes.string,
-    })
-  ).isRequired,
-  defaultSelectedDate: PropTypes.string.isRequired,
+    PropTypes.any
+  ),
+  defaultSelectedDate: PropTypes.string,
   healthInfo: PropTypes.shape(
     PropTypes.arrayOf(
       PropTypes.shape({
@@ -145,24 +143,24 @@ PatientHealthInformation.propTypes = {
           PropTypes.shape({
             resourceType: PropTypes.string,
           })
-        ).isRequired,
-        hipId: PropTypes.string.isRequired,
-        hipName: PropTypes.string.isRequired,
+        ),
+        hipId: PropTypes.string,
+        hipName: PropTypes.string,
       })
     )
-  ).isRequired,
+  ),
   patientData: PropTypes.shape({
     id: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-  }).isRequired,
+  }),
   loadHealthData: PropTypes.shape({
     id: PropTypes.string,
     groupFunction: PropTypes.func,
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
       requestId: PropTypes.string.isRequired,
     }),
   }).isRequired,
