@@ -10,6 +10,7 @@ const processingOrder = [
   'servicerequest',
   'observation',
   'medicationrequest',
+  'medication',
   'encounter',
   'patient',
   'person',

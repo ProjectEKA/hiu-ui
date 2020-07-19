@@ -116,6 +116,7 @@ class HealthInfoProcessor {
           }
         } else {
           this.sortBundleEntryForProcessing(bundle);
+          console.log(  "procecssing bundle: " + bundle.id)
           bundle.entry.forEach((e) => {
             const resourceProcessor = this.getResourceProcessor(e);
             if (resourceProcessor) {
