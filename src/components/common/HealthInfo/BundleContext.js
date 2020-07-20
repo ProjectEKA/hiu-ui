@@ -24,7 +24,7 @@ export class BundleContext {
     }
 
     if (entry.fullUrl) {
-      console.warn("Falling back on default implementation of looking into fullUrl. Resource id is undefined. This should have never happenned. Bundle entry fullUrl=" + entry.fullUrl);
+      console.warn("Resource.id is null. Falling back on default implementation of fullUrl format urn:uuid:uuid. Bundle entry fullUrl=" + entry.fullUrl);
       // TODO very simplistic regex, looking for the last colon till the end. will work for urn:uuid:id or similar. 
       const matches = entry.fullUrl.match(/[^:]+$/);
       if (matches) {

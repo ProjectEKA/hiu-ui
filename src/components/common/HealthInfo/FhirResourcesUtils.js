@@ -1,16 +1,17 @@
 const processingOrder = [
   'bundle',
   'composition',
-  'encounter',
+  'procedure',
   'diagnosticreport',
   'documentreference',
   'imagingstudy',
   'media',
   'condition',
   'servicerequest',
-  'procedure',
   'observation',
   'medicationrequest',
+  'medication',
+  'encounter',
   'patient',
   'person',
   'organization',
@@ -28,7 +29,7 @@ const baseEntities = [
   'location',
 ];
 
-const rootResources = ['composition', 'encounter', 'diagnosticreport', 'imagingstudy', 'procedure', 'observation', "documentreference"];
+const rootResources = ['composition', 'procedure', 'diagnosticreport', 'documentreference', 'medicationrequest', 'imagingstudy', 'observation', 'encounter'];
 
 const getFormattedDateString = function (dateString) {
   if (!dateString) {
