@@ -8,7 +8,7 @@ import AttachmentLink from '../AttachmentLink';
 import { formatDateString, getCodingDisplay } from '../common/HealthInfo/FhirResourcesUtils';
 
 
-const DocumentReferenceComponent = ({ data, consentReqId }) => {
+const DocumentReferenceComponent = ({ data, consentReqId, enclosed }) => {
 
   function extractAuthor(entry) {
     if (!entry.author) return undefined;
@@ -58,38 +58,48 @@ const DocumentReferenceComponent = ({ data, consentReqId }) => {
             variant="h6"
             component="h6"
           >
-            Clinical Document :
+            {enclosed && 'Enclosed '} Clinical Document :
             {' '}
             {entry.type ? entry.type.text : ''}
           </Typography>
           <div className="document-reference">
             <ul className="report-details-list">
-              <li>
-                <span>Author: </span>
-                {extractAuthor(entry)}
-              </li>
-              <li>
-                <span>Date: </span>
-                {entry.date
-                  ? formatDateString(entry.date)
-                  : ''}
-              </li>
-              <li>
-                <span>Description: </span>
-                {entry.description}
-              </li>
-              <li>
-                <span>Status: </span>
-                {entry.status}
-              </li>
-              <li>
-                <span>Document Status: </span>
-                {entry.docStatus}
-              </li>
-              <li>
-                <span>Context: </span>
-                {extractContext(entry.context)}
-              </li>
+              {extractAuthor(entry) && 
+                <li>
+                  <span>Author: </span>
+                  {extractAuthor(entry)}
+                </li>
+              }
+              {entry.date && 
+                <li>
+                  <span>Date: </span>
+                  {formatDateString(entry.date)}
+                </li>
+              }
+              {entry.description &&
+                <li>
+                  <span>Description: </span>
+                  {entry.description}
+                </li>
+              }
+              {entry.status &&
+                <li>
+                  <span>Status: </span>
+                  {entry.status}
+                </li>
+              }
+              {entry.docStatus &&
+                <li>
+                  <span>Document Status: </span>
+                  {entry.docStatus}
+                </li>
+              }
+              {extractContext(entry.context) &&
+                <li>
+                  <span>Context: </span>
+                  {extractContext(entry.context)}
+                </li>
+              }
             </ul>
             {renderContent(entry)}
           </div>
@@ -115,6 +125,7 @@ DocumentReferenceComponent.propTypes = {
     context: PropTypes.shape({ encounter: PropTypes.array }),
   })),
   consentReqId: PropTypes.string,
+  enclosed: PropTypes.bool
 };
 
 DocumentReferenceComponent.defaultProps = {

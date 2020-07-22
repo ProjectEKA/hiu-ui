@@ -65,6 +65,7 @@ describe('DocumentReferenceComponent', () => {
     <DocumentReferenceComponent
       data={mockData}
       consentReqId="123"
+      enclosed={false}
     />,
   );
 
@@ -82,9 +83,8 @@ describe('DocumentReferenceComponent', () => {
     mockData[0].date = null;
     mockData[0].author = undefined;
     wrapper.setProps({ data: mockData });
-    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Author: ');
-    expect(wrapper.find('.report-details-list li').at(1).text()).toEqual('Date: ');
-    expect(wrapper.find('.report-details-list li').at(2).text()).toEqual('Description: Human readable description - about the document');
+    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Description: Human readable description - about the document');
+    expect(wrapper.find('.report-details-list li').at(1).text()).toEqual('Status: current');
   });
 
   it('should Link text if title is not available of performer', () => {

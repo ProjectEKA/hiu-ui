@@ -60,6 +60,7 @@ exports[`HealthInformationContent should render properly 1`] = `
     <DocumentReferenceComponent
       consentReqId="123"
       data={Array []}
+      enclosed={false}
     />
   </div>
 </styled.div>

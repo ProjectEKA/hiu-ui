@@ -328,7 +328,7 @@ exports[`DocumentReferenceComponent should render properly 1`] = `
       component="h6"
       variant="h6"
     >
-      Clinical Document :
+       Clinical Document :
        
       Clinical Note
     </WithStyles(ForwardRef(Typography))>
