@@ -80,8 +80,8 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
           </TableRow>
         </TableHead>
         <TableBody>
-          {medicationRequests.map((mr) => (
-            <TableRow key={mr.authoredOn}>
+          {medicationRequests.map((mr, index) => (
+            <TableRow key={index}>
               <TableCell className="table-cell">
                 {mr.authoredOn ? formatDateString(mr.authoredOn) : ''}
               </TableCell>

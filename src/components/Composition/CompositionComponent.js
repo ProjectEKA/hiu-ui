@@ -9,6 +9,8 @@ import ConditionsComponent from "../Condition/ConditionsComponent";
 import DiagnosticReportComponent from "../DiagnosticReport/DiagnosticReportComponent";
 import Divider from '@material-ui/core/Divider';
 import { getDate } from 'date-fns';
+import DocumentReferenceComponent from '../DocumentReference/DocumentReferenceComponent';
+import BinaryComponent from '../Binary/BinaryComponent';
 
 const CompositionComponent = ({ composition, consentReqId, resources }) => {
     const isDischargeSummary = () => {
@@ -58,6 +60,8 @@ const CompositionComponent = ({ composition, consentReqId, resources }) => {
           <MedicationRequestsComponent medicationRequests={independentDataOfType('MedicationRequest')} />
           <ConditionsComponent conditionList={independentDataOfType('Condition')} />
           <DiagnosticReportComponent consentReqId={consentReqId} data={independentDataOfType('DiagnosticReport')} />
+          <DocumentReferenceComponent consentReqId={consentReqId} data={independentDataOfType('DocumentReference')} enclosed={true} />
+          <BinaryComponent consentReqId={consentReqId} data={independentDataOfType('Binary')} enclosed={true} />
           {<Divider style={{ marginTop: 50 }} />}
         </div>
       );

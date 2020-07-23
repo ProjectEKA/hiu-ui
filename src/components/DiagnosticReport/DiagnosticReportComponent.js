@@ -44,13 +44,13 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
         }
       });
     }
-    return referenceList.filter((ref) => (ref.resourceType === resourceType));
+    return referenceList.filter((ref) => (ref.resourceType.toLowerCase() === resourceType.toLowerCase()));
   }
 
   const renderObservations = (entry) => {
     const ObsList = getResultsList(
       getNestedObject(entry, 'result'),
-      'Observations',
+      'Observation',
     );
 
     return <ObservationTable data={ObsList} />;
@@ -141,6 +141,11 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
                 <span>Performer: </span>
                 {extractPerformer(entry)}
               </li>
+              { entry.conclusion &&
+                 <li>
+                  <span>Conclusion: {entry.conclusion}</span>
+               </li>
+              }
             </ul>
             {renderObservations(entry)}
             {renderPresentedForm(entry)}

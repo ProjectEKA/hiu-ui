@@ -37,7 +37,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         ObservationsWithNoParentResource.push(entry);
       }
 
-      if (entry.resourceType === 'DiagnosticReport') {
+      if (entry.resourceType === 'DiagnosticReport' && !entry.parentResources) {
         DiagnosticReport.push(entry);
       }
     });
@@ -104,7 +104,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         />
         <ConditionsComponent conditionList={conditionList} />
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
-        <DocumentReferenceComponent consentReqId={consentReqId} data={documentList} />
+        <DocumentReferenceComponent consentReqId={consentReqId} data={documentList} enclosed={false}/>
       </div>
     </HealthInformationContentStyles>
   );
