@@ -363,7 +363,7 @@ exports[`MedicationRequestsComponent should render properly 1`] = `
       </WithStyles(ForwardRef(TableHead))>
       <WithStyles(ForwardRef(TableBody))>
         <WithStyles(ForwardRef(TableRow))
-          key="2020-01-22"
+          key="0"
         >
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"
