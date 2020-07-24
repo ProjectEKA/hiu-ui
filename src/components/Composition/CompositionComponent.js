@@ -12,7 +12,7 @@ import { getDate } from 'date-fns';
 import DocumentReferenceComponent from '../DocumentReference/DocumentReferenceComponent';
 import BinaryComponent from '../Binary/BinaryComponent';
 import { Box } from '@material-ui/core';
-import EncounterComponent from '../encounter/EncounterComponent';
+import EncounterComponent from '../Encounter/EncounterComponent';
 
 const CompositionComponent = ({ composition, consentReqId, resources }) => {
     const isDischargeSummary = () => {
