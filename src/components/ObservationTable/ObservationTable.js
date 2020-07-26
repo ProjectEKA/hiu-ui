@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import valueForObs from './ObsValueHandlers';
 import TableStyles from '../common/Styles/Table.style';
-import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
+import { formatDateString, getConceptDisplay } from '../common/HealthInfo/FhirResourcesUtils';
 
 export const Components = ({ components }) => (components
   ? components.map((component) => (
@@ -52,17 +52,13 @@ const ObservationTable = ({ data }) => {
               <TableRow
                 key={`${entry.status}-${entry.id}`}
                 className={entry.id ? 'children-row' : 'parent-row'}
-              >
-                {entry.id ? (
-                  <TableCell className="table-cell" />
-                ) : (
-                  <TableCell className="table-cell">
-                    {entry.effectiveDateTime
-                      ? formatDateString(entry.effectiveDateTime)
-                      : ''}
-                  </TableCell>
-                )}
-                <TableCell className="table-cell">{entry.code.text}</TableCell>
+              > 
+                <TableCell className="table-cell">
+                  {entry.effectiveDateTime
+                    ? formatDateString(entry.effectiveDateTime, true)
+                    : ''}
+                </TableCell>
+                <TableCell className="table-cell">{getConceptDisplay(entry.code)}</TableCell>
                 <TableCell className="table-cell">
                   {valueForObs(entry)}
                   <ul>

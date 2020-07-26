@@ -123,6 +123,7 @@ export class CompositionProcessor extends FhirResourceProcessor {
             if (refResource) {
               secEntryRef.targetResource = refResource;
               this.addParentResource(refResource, composition);
+              this.addParentResource(refResource, sec);
             } else {
               unresolvedCompositionSectionEntryRefs.push[secEntryRef.reference];
             }

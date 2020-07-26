@@ -32,7 +32,7 @@ const getEncDiagnosis = (encounter) => {
 const EncounterComponent = ({ composition }) => {
   return composition.encounter ? (
     <div>
-      Encounter:
+      <Typography variant="h6">Encounter:</Typography>
       <ul>
         <li key={composition.id + 'Encounter' + '1'}>
         {getEncDetails(composition.encounter.targetResource)}

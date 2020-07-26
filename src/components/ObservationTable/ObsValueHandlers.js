@@ -3,7 +3,7 @@ const obsProperties = [
   {
     key: 'valueQuantity',
     getValue(o) {
-      return o.value.toString();
+      return o.valueQuantity.value.toString();
     },
   },
   {
