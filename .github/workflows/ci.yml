@@ -1,0 +1,34 @@
+name: Master build
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::$(echo $GITHUB_SHA | head -c7)
+      - name: NCG Docker Registry
+        env:
+          DOCKER_REGISTRY_URL: docker.io
+          NCG_PASSWORD: ${{ secrets.DOCKER_NCG_PASSWORD }}
+          NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+        run: docker login -u $NCG_USERNAME -p $NCGPASSWORD $DOCKER_REGISTRY_URL
+      - name: Build docker image for NCG
+        env:
+          CONTAINER_REPO_NAME: hiu-ui
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker build \
+        --build-arg BACKEND_BASE_URL=https://ncg-dev.projecteka.in/ \
+        --build-arg BASE_NAME=/hiu --build-arg BACKEND_API_PATH=hiu-api \
+        --build-arg DICOM_SERVER_PATH=/dicom-web \
+        --build-arg VIEWER_PAGE=/viewer/ \
+        --build-arg TITLE=NCG \
+        -t $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
+      - name: Push Docker image to NCG Registry
+        env:
+          CONTAINER_REPO_NAME: gateway
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker push $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION

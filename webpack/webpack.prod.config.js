@@ -1,9 +1,6 @@
 var webpack = require("webpack");
 var commonWebpackConfig = require("./webpack.common");
-const dotenv = require("dotenv").config();
-if (dotenv.error) {
-  throw dotenv.error;
-}
+const _ = require("dotenv").config();
 
 if (!process.env.BACKEND_BASE_URL) {
   throw "BACKEND_BASE_URL not found";
