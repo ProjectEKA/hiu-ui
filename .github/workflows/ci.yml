@@ -15,7 +15,7 @@ jobs:
           DOCKER_REGISTRY_URL: docker.io
           NCG_PASSWORD: ${{ secrets.DOCKER_NCG_PASSWORD }}
           NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
-        run: docker login -u $NCG_USERNAME -p $NCGPASSWORD $DOCKER_REGISTRY_URL
+        run: docker login -u $NCG_USERNAME -p $NCG_PASSWORD $DOCKER_REGISTRY_URL
       - name: Build docker image for NCG
         env:
           CONTAINER_REPO_NAME: hiu-ui
