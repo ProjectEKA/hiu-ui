@@ -46,6 +46,8 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
         return 'Request Denied';
       case 'REVOKED':
       return 'Consent Revoked';
+      case 'EXPIRED':
+      return 'Consent Expired';
       default:
         return 'Request sent';
     }
