@@ -6,6 +6,7 @@ export class BundleContext {
   findReference(targetResourceType, ref) {
     const resourceType = targetResourceType ? targetResourceType : this.getResourceType(targetResourceType, ref);
     if (!resourceType) return undefined;
+    if (!ref.reference) return undefined;
     const entry = this.bundle.entry.find((e) => {
       if (e.resource.resourceType.toLowerCase() === resourceType.toLowerCase()) {
         const resourceId = this.getEntryResourceId(e);
