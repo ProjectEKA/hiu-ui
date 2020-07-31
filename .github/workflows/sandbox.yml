@@ -1,0 +1,32 @@
+name: Release build
+
+on:
+  push:
+    tags:
+      - sandbox-*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set the version
+        id: get_version
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+      - name: Get the version
+        run: echo 'Release version' $RELEASE_VERSION
+      - name: NHA Docker Registry
+        env:
+          DOCKER_REGISTRY_URL: docker.io
+          NHA_PASSWORD: ${{ secrets.DOCKER_NHA_PASSWORD }}
+          NHA_USERNAME: ${{ secrets.DOCKER_NHA_USERNAME }}
+        run: docker login -u $NHA_USERNAME -p $NHA_PASSWORD $DOCKER_REGISTRY_URL
+      - name: Build docker image for NHA
+        env:
+          CONTAINER_REPO_NAME: hiu-ui
+          NHA_USERNAME: ${{ secrets.DOCKER_NHA_USERNAME }}
+        run: docker build --build-arg BACKEND_BASE_URL=https://dev.pmjay.gov.in/ --build-arg BASE_NAME=/hiu --build-arg BACKEND_API_PATH=hiu-api --build-arg DICOM_SERVER_PATH=/dicom-web --build-arg VIEWER_PAGE=/viewer/ --build-arg TITLE=NHA -t $NHA_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
+      - name: Push Docker image to NHA Registry
+        env:
+          CONTAINER_REPO_NAME: hiu-ui
+          NHA_USERNAME: ${{ secrets.DOCKER_NHA_USERNAME }}
+        run: docker push $NHA_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION

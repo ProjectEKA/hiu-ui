@@ -18,7 +18,7 @@ const Header = () => {
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             <Link href={BASE_NAME}>
-              LOGO
+              NHA
             </Link>
           </Typography>
           <Button color="primary" variant="contained" onClick={logout}>Logout</Button>
