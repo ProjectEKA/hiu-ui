@@ -24,7 +24,7 @@ jobs:
         env:
           CONTAINER_REPO_NAME: hiu-ui
           NHA_USERNAME: ${{ secrets.DOCKER_NHA_USERNAME }}
-        run: docker build --build-arg BACKEND_BASE_URL=https://uat.ndhm.gov.in/ --build-arg BASE_NAME=/hiu --build-arg BACKEND_API_PATH=api-hiu --build-arg DICOM_SERVER_PATH=/dicom-web --build-arg VIEWER_PAGE=/viewer/ --build-arg TITLE=NHA -t $NHA_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
+        run: docker build --build-arg BACKEND_BASE_URL=https://preprod.ndhm.gov.in/ --build-arg BASE_NAME=/hiu --build-arg BACKEND_API_PATH=api-hiu --build-arg DICOM_SERVER_PATH=/dicom-web --build-arg VIEWER_PAGE=/viewer/ --build-arg TITLE=NHA -t $NHA_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
       - name: Push Docker image to NHA Registry
         env:
           CONTAINER_REPO_NAME: hiu-ui
