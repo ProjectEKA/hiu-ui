@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ConditionNote from '../ConditionNote.view';
+import AdditionalNotes from '../AdditionalNotes.view';
 
 describe('ConditionNote', () => {
   let wrapper;
@@ -17,13 +17,13 @@ describe('ConditionNote', () => {
       ],
     };
     wrapper = shallow(
-      <ConditionNote condition={mockData} />,
+      <AdditionalNotes condition={mockData} />,
     );
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should return empty object if condition data is undefined', () => {
-    wrapper = shallow(<ConditionNote />);
+    wrapper = shallow(<AdditionalNotes />);
     expect(wrapper.find('li').exists()).toEqual(false);
   });
 });

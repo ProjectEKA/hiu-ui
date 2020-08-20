@@ -11,6 +11,7 @@ import BinaryComponent from '../Binary/BinaryComponent';
 import { Box } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import AllergiesComponent from '../AllergyIntolerance';
 
 const CompositionSectionComponent = ({ composition, consentReqId, resources }) => {
     const resourcesInComposition = resources;
@@ -49,6 +50,7 @@ const CompositionSectionComponent = ({ composition, consentReqId, resources }) =
                     <ObservationTable data={resourcesInSection('Observation', section)} />
                     <MedicationRequestsComponent medicationRequests={resourcesInSection('MedicationRequest', section)} />
                     <ConditionsComponent conditionList={resourcesInSection('Condition', section)} />
+                    <AllergiesComponent allergies={resourcesInSection('AllergyIntolerance', section)} />
                     <DiagnosticReportComponent consentReqId={consentReqId} data={resourcesInSection('DiagnosticReport', section)} />
                     <DocumentReferenceComponent consentReqId={consentReqId} data={resourcesInSection('DocumentReference', section)} enclosed={true} />
                     <BinaryComponent consentReqId={consentReqId} data={resourcesInSection('Binary', section)} enclosed={true} /> 
