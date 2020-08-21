@@ -1,14 +1,14 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-const ConditionNote = ({ condition }) => {
-  if (condition.note && condition.note.length > 0) {
+const AdditionalNotes = ({ resource }) => {
+  if (resource.note && resource.note.length > 0) {
     return (
       <li>
         Note:&nbsp;
         <span>
           {' '}
-          {condition.note
+          {resource.note
             .map((n) => n.text)
             .reduce((acc, value) => `${acc}, ${value}`)}
           {' '}
@@ -23,12 +23,12 @@ const conditionShape = PropTypes.shape({
   note: PropTypes.arrayOf(PropTypes.string),
 });
 
-ConditionNote.propTypes = {
-  condition: PropTypes.shape(conditionShape),
+AdditionalNotes.propTypes = {
+  resource: PropTypes.shape(conditionShape),
 };
 
-ConditionNote.defaultProps = {
-  condition: {},
+AdditionalNotes.defaultProps = {
+  resource: {},
 };
 
-export default ConditionNote;
+export default AdditionalNotes;

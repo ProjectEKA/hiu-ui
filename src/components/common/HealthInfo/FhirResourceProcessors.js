@@ -223,6 +223,26 @@ export class ConditionProcessor extends FhirResourceProcessor {
   }
 }
 
+export class AllergyProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === 'allergyintolerance';
+  }
+
+  process(allergy, bundleContext) {
+    if (allergy.recorder) {
+        const { reference } = allergy.recorder;
+        let author = this.findContainedResource(allergy, reference, 'Practitioner');
+        if (!author) {
+          author = bundleContext.findReference('Practitioner', allergy.recorder);
+        }
+        if (author) {
+          allergy.recorder.targetResource = author;
+          this.addParentResource(author, allergy);
+        }
+    }
+  }
+}
+
 export class EncounterProcessor extends FhirResourceProcessor {
   supports(resource) {
     return resource.resourceType.toLowerCase() === 'encounter';
