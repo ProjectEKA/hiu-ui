@@ -75,7 +75,6 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
         }
       });
     }
-    console.log(imageUrl)
     return imageUrl;
   }
 
