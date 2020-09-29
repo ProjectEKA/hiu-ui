@@ -56,6 +56,29 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
     return <ObservationTable data={ObsList} />;
   };
 
+  const getDicomAddress = (entry) => {
+    var imageUrl = undefined;
+    const imagingStudyList = getResultsList(
+        getNestedObject(entry, 'imagingStudy'),
+        'ImagingStudy',
+    );
+    if (imagingStudyList) {
+      imagingStudyList.forEach((imagingStudyObj) => {
+        const endpointList = getResultsList(
+            getNestedObject(imagingStudyObj,'endpoint'),
+            'Endpoint',
+        );
+        if (endpointList) {
+          endpointList.forEach((endpointObj) => {
+            imageUrl = endpointObj.address;
+          });
+        }
+      });
+    }
+    console.log(imageUrl)
+    return imageUrl;
+  }
+
   function getMediaList(results, resourceType) {
     const referenceList = [];
     if (results) {
@@ -145,6 +168,11 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
                  <li>
                   <span>Conclusion: {entry.conclusion}</span>
                </li>
+              }
+              { getDicomAddress(entry) &&
+              <li>
+                <span> <a href={getDicomAddress(entry)}>DICOM image</a> </span>
+              </li>
               }
             </ul>
             {renderObservations(entry)}
