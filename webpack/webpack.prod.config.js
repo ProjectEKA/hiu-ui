@@ -28,7 +28,8 @@ module.exports = {
       BASE_NAME: JSON.stringify(process.env.BASE_NAME),
       BACKEND_API_PATH: JSON.stringify(process.env.BACKEND_API_PATH),
       DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
-      REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE)
+      REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE),
+      SUPPORT_EMAIL: JSON.stringify(process.env.SUPPORT_EMAIL)
     })
   ]
 };

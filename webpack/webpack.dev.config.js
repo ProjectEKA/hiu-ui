@@ -36,6 +36,7 @@ module.exports = {
       DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
       DICOM_BASE_URL: JSON.stringify(process.env.DICOM_BASE_URL),
       REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE),
+      SUPPORT_EMAIL: JSON.stringify(process.env.SUPPORT_EMAIL)
     }),
   ],
   devServer: {
