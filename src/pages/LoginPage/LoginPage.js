@@ -21,6 +21,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import _ from 'lodash';
 
 function Copyright() {
   return (
@@ -35,34 +36,44 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+function SupportInformation() {
+  return (
+    <Container component="title" maxWidth="md">
+      <Typography component="h1" variant="h5">
+        For login credentials please send email to  <b>{SUPPORT_EMAIL}</b> with client id
+      </Typography>
+    </Container>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   textField: {
-    margin: 0,
+    margin: 0
   },
   formControl: {
-    margin: theme.spacing(1, 0),
+    margin: theme.spacing(1, 0)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2)
   },
   error: {
     paddingTop: 20,
-    color: '#f44336',
-  },
+    color: '#f44336'
+  }
 }));
 
 export default function SignIn({ onSignIn, error }) {
@@ -71,102 +82,104 @@ export default function SignIn({ onSignIn, error }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
   const isAuth = localStorage.getItem('auth-token');
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      {isAuth && <Redirect to="/" />}
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        {error && (
-          <span className={classes.error}>Invalid username or password.</span>
-        )}
-        <form className={classes.form}>
-          <FormControl
-            fullWidth
-            className={classes.formControl}
-            variant="outlined"
-          >
-            <TextField
-              className={classes.textField}
-              error={error}
-              variant="outlined"
-              margin="normal"
-              required
+    <div>
+      { _.isNil(SUPPORT_EMAIL) ? undefined : SupportInformation()}
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        {isAuth && <Redirect to="/" />}
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          {error && (
+            <span className={classes.error}>Invalid username or password.</span>
+          )}
+          <form className={classes.form}>
+            <FormControl
               fullWidth
-              id="userName"
-              label="User Name"
-              name="userName"
-              autoComplete="userName"
-              autoFocus
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl
-            fullWidth
-            className={classes.formControl}
-            variant="outlined"
-          >
-            <InputLabel required htmlFor="password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              error={error}
+              className={classes.formControl}
               variant="outlined"
-              required
-              name="password"
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              endAdornment={(
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => {
-                      setShowPassword(!showPassword);
-                    }}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              )}
-            />
-          </FormControl>
-          {/* <FormControlLabel
+            >
+              <TextField
+                className={classes.textField}
+                error={error}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="userName"
+                label="User Name"
+                name="userName"
+                autoComplete="userName"
+                autoFocus
+                value={userName}
+                onChange={e => setUserName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl
+              fullWidth
+              className={classes.formControl}
+              variant="outlined"
+            >
+              <InputLabel required htmlFor="password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                error={error}
+                variant="outlined"
+                required
+                name="password"
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() => {
+                        setShowPassword(!showPassword);
+                      }}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
-          <Button
-            disabled={userName === '' || password === ''}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={(e) => {
-              e.preventDefault();
-              onSignIn({ userName, password });
-            }}
-          >
-            Sign In
-          </Button>
-          {/* <Grid container>
+            <Button
+              disabled={userName === '' || password === ''}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={e => {
+                e.preventDefault();
+                onSignIn({ userName, password });
+              }}
+            >
+              Sign In
+            </Button>
+            {/* <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
@@ -178,20 +191,21 @@ export default function SignIn({ onSignIn, error }) {
               </Link>
             </Grid>
           </Grid> */}
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </div>
   );
 }
 
 SignIn.propTypes = {
   error: PropTypes.bool,
-  onSignIn: PropTypes.func.isRequired,
+  onSignIn: PropTypes.func.isRequired
 };
 
 SignIn.defaultProps = {
-  error: false,
+  error: false
 };
