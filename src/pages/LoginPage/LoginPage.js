@@ -39,7 +39,7 @@ function Copyright() {
 function SupportInformation() {
   return (
     <Container component="title" maxWidth="md">
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" style={{textAlign: 'center'}}>
         For login credentials please send email to  <b>{SUPPORT_EMAIL}</b> with client id
       </Typography>
     </Container>
