@@ -23,24 +23,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import _ from 'lodash';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      {new Date().getFullYear()}
-      {' - '}
-      <Link color="inherit" href=".">
-        NCG
-      </Link>
-    </Typography>
-  );
-}
-
 function SupportInformation() {
   return (
     <Container component="title" maxWidth="md">
       <Typography component="h1" variant="h5" style={{textAlign: 'center'}}>
-        For login credentials please send email to  <b>{SUPPORT_EMAIL}</b> with client id
+          For access please send an email to <b>{SUPPORT_EMAIL}</b> with your registered client id
       </Typography>
     </Container>
   );
@@ -193,9 +180,6 @@ export default function SignIn({ onSignIn, error }) {
           </Grid> */}
           </form>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
       </Container>
     </div>
   );
