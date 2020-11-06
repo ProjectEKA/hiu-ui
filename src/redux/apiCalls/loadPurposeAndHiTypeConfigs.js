@@ -3,7 +3,7 @@ import { defaultHeaders } from '../../constants';
 
 const loadPurposeAndHiTypeValueSets = () => apiWrapper(
   'get',
-  '/ValueSet/valuesets.json',
+  '/ValueSet',
   {},
   {
     ...defaultHeaders,
