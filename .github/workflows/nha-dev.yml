@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Set env
-        run: echo ::set-env name=RELEASE_VERSION::$(echo $GITHUB_SHA | head -c7)
+        run: echo "RELEASE_VERSION=$(echo $GITHUB_SHA | head -c7)" >> $GITHUB_ENV
       - name: Get the version
         run: echo 'Release version' $RELEASE_VERSION
       - name: NHA Docker Registry
