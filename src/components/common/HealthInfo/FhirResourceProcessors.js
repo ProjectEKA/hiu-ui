@@ -172,6 +172,41 @@ export class MedicationRequestProcessor extends FhirResourceProcessor {
   }
 }
 
+export class ImmunizationProcessor extends FhirResourceProcessor {
+  supports(resource) {
+    return resource.resourceType.toLowerCase() === 'immunization';
+  }
+
+  process(immunization, bundleContext) {  
+    if (immunization.reasonReference) {
+      immunization.reasonReference.forEach((reasonRef) => {
+        let conditionReason = this.findContainedResource(immunization, reasonRef.reference, 'Condition');
+        if (!conditionReason) {
+          // try to find within bundle
+          conditionReason = bundleContext.findReference('Condition', reasonRef);
+        }
+        if (conditionReason) {
+          reasonRef.targetResource = conditionReason;
+          this.addParentResource(conditionReason, immunization);
+        }
+      });
+    }
+
+    if (immunization.manufacturer) {
+      const {reference} = immunization.manufacturer;
+      let manufacturerOrg = this.findContainedResource(immunization, reference, 'Organization');
+      if (!manufacturerOrg) {
+        // try to find within bundle
+        manufacturerOrg = bundleContext.findReference('Organization', immunization.manufacturer);
+      }
+      if (manufacturerOrg) {
+        immunization.manufacturer.targetResource = manufacturerOrg;
+        this.addParentResource(manufacturerOrg, immunization);
+      }
+    }
+  }
+}
+
 
 export class DocumentReferenceProcessor extends FhirResourceProcessor {
   supports(resource) {
