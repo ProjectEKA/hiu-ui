@@ -191,6 +191,19 @@ export class ImmunizationProcessor extends FhirResourceProcessor {
         }
       });
     }
+
+    if (immunization.manufacturer) {
+      const {reference} = immunization.manufacturer;
+      let manufacturerOrg = this.findContainedResource(immunization, reference, 'Organization');
+      if (!manufacturerOrg) {
+        // try to find within bundle
+        manufacturerOrg = bundleContext.findReference('Organization', immunization.manufacturer);
+      }
+      if (manufacturerOrg) {
+        immunization.manufacturer.targetResource = manufacturerOrg;
+        this.addParentResource(manufacturerOrg, immunization);
+      }
+    }
   }
 }
 
