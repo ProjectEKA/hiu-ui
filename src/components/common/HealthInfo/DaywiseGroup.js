@@ -16,7 +16,8 @@ import {
   DocumentReferenceProcessor,
   ConditionProcessor,
   EncounterProcessor,
-  AllergyProcessor
+  AllergyProcessor,
+  ImmunizationProcessor
 } from './FhirResourceProcessors';
 
 class HealthInfoProcessor {
@@ -203,7 +204,8 @@ const fhirProcessors = [
   new DocumentReferenceProcessor(),
   new ConditionProcessor(),
   new EncounterProcessor(),
-  new AllergyProcessor()
+  new AllergyProcessor(),
+  new ImmunizationProcessor()
 ];
 
 function getDateFromString(dateString) {
