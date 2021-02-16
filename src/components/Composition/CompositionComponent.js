@@ -45,9 +45,9 @@ const CompositionComponent = ({ composition, consentReqId, resources }) => {
             date={getDate()}
           />
           <Box border={1} padding={1}>
-          <EncounterComponent composition={composition}/>  
-          <CompositionSectionComponent composition={composition} consentReqId={consentReqId} resources={resources}/>
-          {<Divider style={{ marginTop: 50 }} />}
+            <EncounterComponent composition={composition}/>  
+            <CompositionSectionComponent composition={composition} consentReqId={consentReqId} resources={resources}/>
+            {<Divider style={{ marginTop: 50 }} />}
           </Box>
         </div>
       );

@@ -13,6 +13,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AllergiesComponent from '../AllergyIntolerance';
 import ImmunizationRecordComponent from '../ImmunizationRecord';
+import ImmunizationRecommendationComponent from '../ImmunizationRecommendation';
 
 const CompositionSectionComponent = ({ composition, consentReqId, resources }) => {
     const resourcesInComposition = resources;
@@ -53,6 +54,7 @@ const CompositionSectionComponent = ({ composition, consentReqId, resources }) =
                     <ConditionsComponent conditionList={resourcesInSection('Condition', section)} />
                     <AllergiesComponent allergies={resourcesInSection('AllergyIntolerance', section)} />
                     <ImmunizationRecordComponent immunizationList={resourcesInSection('Immunization', section)} />
+                    <ImmunizationRecommendationComponent recommendationList={resourcesInSection('ImmunizationRecommendation', section)} />
                     <DiagnosticReportComponent consentReqId={consentReqId} data={resourcesInSection('DiagnosticReport', section)} />
                     <DocumentReferenceComponent consentReqId={consentReqId} data={resourcesInSection('DocumentReference', section)} enclosed={true} />
                     <BinaryComponent consentReqId={consentReqId} data={resourcesInSection('Binary', section)} enclosed={true} /> 
