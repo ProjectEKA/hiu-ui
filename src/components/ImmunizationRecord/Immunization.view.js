@@ -40,7 +40,7 @@ const getReasonFromReference = immunization => {
     case 'DiagnosticReport':
       return reasonResource.conclusion;
     case 'Observation':
-      return getConceptDisplay(reasonResource.code);
+      return getConceptDisplay(reasonResource.code) + ': ' + valueForObs(reasonResource);
     case 'Condition':
       return getConceptDisplay(reasonResource.code);
   }
