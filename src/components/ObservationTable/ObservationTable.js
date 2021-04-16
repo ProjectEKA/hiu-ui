@@ -10,17 +10,18 @@ import Paper from '@material-ui/core/Paper';
 import valueForObs from './ObsValueHandlers';
 import TableStyles from '../common/Styles/Table.style';
 import { formatDateString, getConceptDisplay } from '../common/HealthInfo/FhirResourcesUtils';
+import {getConceptText} from "../ObservationTable/ObservationTableHelperFunctions";
 
 export const Components = ({ components }) => (components
   ? components.map((component) => (
     <li style={{ backgroundColor: 'primary' }} key={component.valueString}>
       <span>
-        {component.code.text}
+        {getConceptText(component.code)}
         {' '}
         :
         {' '}
       </span>
-      <span>{component.valueString}</span>
+      <span>{valueForObs(component)}</span>
     </li>
   ))
   : null);
