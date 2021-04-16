@@ -1,15 +1,16 @@
+import { getConceptDisplay } from "../common/HealthInfo/FhirResourcesUtils";
 /* istanbul ignore file */
 const obsProperties = [
   {
     key: 'valueQuantity',
     getValue(o) {
-      return o.valueQuantity.value.toString();
+      return o.valueQuantity.value.toString() + " " + o.valueQuantity.unit;
     },
   },
   {
-    key: 'valueCodableConcept',
-    getValue() {
-      return 'Yet to handle';
+    key: 'valueCodeableConcept',
+    getValue(o) {
+      return getConceptDisplay(o.valueCodeableConcept);
     },
   },
   {
@@ -71,7 +72,7 @@ const obsProperties = [
     getValue(o) {
       return o.valueSampleData.data;
     },
-  },
+  }
 ];
 
 function valueForObs(obs) {
