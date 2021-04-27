@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="tests.webapptests.testcase.RequestFormTest">
+        <methods>
+          <include name="beforeSuit"/>
+          <include name="afterClass"/>
+          <include name="afterSuit"/>
+          <include name="beforeTest"/>
+          <include name="afterTest"/>
+          <include name="beforeMethod"/>
+          <include name="sendRequest"/>
+          <include name="beforeClass"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- tests.webapptests.testcase.RequestFormTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
