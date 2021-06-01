@@ -3,9 +3,9 @@ WORKDIR /app
 COPY . ./
 RUN npm install
 
-ARG BACKEND_BASE_URL='http://host.docker.internal:8003'
+ARG BACKEND_BASE_URL='https://ndhm-dev.bahmni-covid19.in'
 ARG BASE_NAME='@'
-ARG BACKEND_API_PATH='/'
+ARG BACKEND_API_PATH='/hiu-api'
 ARG DICOM_SERVER_PATH='/'
 ARG VIEWER_PAGE='/viewer/'
 ARG TITLE='NCG'
@@ -18,7 +18,7 @@ ENV REACT_APP_SITE_TITLE=${TITLE}
 ENV DICOM_VIEWER_PAGE=${VIEWER_PAGE}
 RUN npm run build
 
-# stage: 2 — the production environment
+# stage: 2 ?~@~T the production environment
 FROM node:13.12.0-alpine
 RUN npm install -g serve
 COPY --from=build-deps /app/dist/ dist/
