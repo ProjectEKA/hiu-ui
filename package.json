@@ -61,7 +61,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "http-server": "^0.12.1",
-    "jest": "^24.9.0",
+    "jest": "^27.0.4",
     "webpack-cli": "^3.3.11"
   },
   "jest": {
