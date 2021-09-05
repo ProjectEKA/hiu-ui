@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . ./
 RUN npm install
 
-ARG BACKEND_BASE_URL='https://qa-02.hip.bahmni-covid19.in'
+ARG BACKEND_BASE_URL='https://ndhm-dev.bahmni-covid19.in'
 ARG BASE_NAME='@'
 ARG BACKEND_API_PATH='/hiu-api'
 ARG DICOM_SERVER_PATH='/'
