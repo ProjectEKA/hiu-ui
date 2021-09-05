@@ -88,8 +88,7 @@ const PatientHealthInformation = ({
   const handleSnackbarClose = () => setSnackbarOpen(false);
 
   let content = renderLoadingMessage();
-
-  if (isHealthInfoAvailable) {
+  if (isHealthInfoAvailable && !error) {
     content = renderHealthInfo(
       patientData,
       dateArray,
