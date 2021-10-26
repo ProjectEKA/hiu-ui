@@ -20,7 +20,6 @@ function verify(accessToken) {
 
 const PrivateRoute = ({ component: Component, history, ...rest }) => {
   const accessToken = localStorage.getItem('auth-token');
-
   const render = (props) => {
     const { isTokenValid, isUserVerified } = verify(accessToken);
     if (!isTokenValid) {

@@ -361,11 +361,7 @@ exports[`RequestType should render properly 1`] = `
                         value="Patient History"
                       >
                         <WithStyles(ForwardRef(SwitchBase))
-                          checkedIcon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          checkedIcon={<UNDEFINED />}
                           className="check-box"
                           classes={
                             Object {
@@ -375,11 +371,7 @@ exports[`RequestType should render properly 1`] = `
                             }
                           }
                           color="primary"
-                          icon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          icon={<UNDEFINED />}
                           inputProps={
                             Object {
                               "data-indeterminate": false,
@@ -389,26 +381,18 @@ exports[`RequestType should render properly 1`] = `
                           value="Patient History"
                         >
                           <ForwardRef(SwitchBase)
-                            checkedIcon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            checkedIcon={<UNDEFINED />}
                             className="check-box"
                             classes={
                               Object {
-                                "checked": "PrivateSwitchBase-checked-117 Mui-checked",
-                                "disabled": "PrivateSwitchBase-disabled-118 Mui-disabled",
-                                "input": "PrivateSwitchBase-input-119",
-                                "root": "PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary",
+                                "checked": "PrivateSwitchBase-checked-2 Mui-checked",
+                                "disabled": "PrivateSwitchBase-disabled-3 Mui-disabled",
+                                "input": "PrivateSwitchBase-input-4",
+                                "root": "PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary",
                               }
                             }
                             color="primary"
-                            icon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            icon={<UNDEFINED />}
                             inputProps={
                               Object {
                                 "data-indeterminate": false,
@@ -418,7 +402,7 @@ exports[`RequestType should render properly 1`] = `
                             value="Patient History"
                           >
                             <WithStyles(ForwardRef(IconButton))
-                              className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                              className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                               color="primary"
                               component="span"
                               onBlur={[Function]}
@@ -426,7 +410,7 @@ exports[`RequestType should render properly 1`] = `
                               tabIndex={null}
                             >
                               <ForwardRef(IconButton)
-                                className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                                className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                                 classes={
                                   Object {
                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -448,7 +432,7 @@ exports[`RequestType should render properly 1`] = `
                               >
                                 <WithStyles(ForwardRef(ButtonBase))
                                   centerRipple={true}
-                                  className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                  className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                   component="span"
                                   disabled={false}
                                   focusRipple={true}
@@ -458,7 +442,7 @@ exports[`RequestType should render properly 1`] = `
                                 >
                                   <ForwardRef(ButtonBase)
                                     centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                    className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                     classes={
                                       Object {
                                         "disabled": "Mui-disabled",
@@ -475,7 +459,7 @@ exports[`RequestType should render properly 1`] = `
                                   >
                                     <span
                                       aria-disabled={false}
-                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                       onBlur={[Function]}
                                       onDragLeave={[Function]}
                                       onFocus={[Function]}
@@ -493,18 +477,14 @@ exports[`RequestType should render properly 1`] = `
                                         className="MuiIconButton-label"
                                       >
                                         <input
-                                          className="PrivateSwitchBase-input-119"
+                                          className="PrivateSwitchBase-input-4"
                                           data-indeterminate={false}
                                           onChange={[Function]}
                                           type="checkbox"
                                           value="Patient History"
                                         />
-                                        <ForwardRef
-                                          fontSize="default"
-                                        >
-                                          <WithStyles(ForwardRef(SvgIcon))
-                                            fontSize="default"
-                                          >
+                                        <ForwardRef(CheckBoxOutlineBlankIcon)>
+                                          <WithStyles(ForwardRef(SvgIcon))>
                                             <ForwardRef(SvgIcon)
                                               classes={
                                                 Object {
@@ -519,10 +499,9 @@ exports[`RequestType should render properly 1`] = `
                                                   "root": "MuiSvgIcon-root",
                                                 }
                                               }
-                                              fontSize="default"
                                             >
                                               <svg
-                                                aria-hidden="true"
+                                                aria-hidden={true}
                                                 className="MuiSvgIcon-root"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
@@ -533,7 +512,7 @@ exports[`RequestType should render properly 1`] = `
                                               </svg>
                                             </ForwardRef(SvgIcon)>
                                           </WithStyles(ForwardRef(SvgIcon))>
-                                        </ForwardRef>
+                                        </ForwardRef(CheckBoxOutlineBlankIcon)>
                                       </span>
                                       <WithStyles(memo)
                                         center={true}
@@ -802,11 +781,7 @@ exports[`RequestType should render properly 1`] = `
                         value="Medications"
                       >
                         <WithStyles(ForwardRef(SwitchBase))
-                          checkedIcon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          checkedIcon={<UNDEFINED />}
                           className="check-box"
                           classes={
                             Object {
@@ -816,11 +791,7 @@ exports[`RequestType should render properly 1`] = `
                             }
                           }
                           color="primary"
-                          icon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          icon={<UNDEFINED />}
                           inputProps={
                             Object {
                               "data-indeterminate": false,
@@ -830,26 +801,18 @@ exports[`RequestType should render properly 1`] = `
                           value="Medications"
                         >
                           <ForwardRef(SwitchBase)
-                            checkedIcon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            checkedIcon={<UNDEFINED />}
                             className="check-box"
                             classes={
                               Object {
-                                "checked": "PrivateSwitchBase-checked-117 Mui-checked",
-                                "disabled": "PrivateSwitchBase-disabled-118 Mui-disabled",
-                                "input": "PrivateSwitchBase-input-119",
-                                "root": "PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary",
+                                "checked": "PrivateSwitchBase-checked-2 Mui-checked",
+                                "disabled": "PrivateSwitchBase-disabled-3 Mui-disabled",
+                                "input": "PrivateSwitchBase-input-4",
+                                "root": "PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary",
                               }
                             }
                             color="primary"
-                            icon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            icon={<UNDEFINED />}
                             inputProps={
                               Object {
                                 "data-indeterminate": false,
@@ -859,7 +822,7 @@ exports[`RequestType should render properly 1`] = `
                             value="Medications"
                           >
                             <WithStyles(ForwardRef(IconButton))
-                              className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                              className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                               color="primary"
                               component="span"
                               onBlur={[Function]}
@@ -867,7 +830,7 @@ exports[`RequestType should render properly 1`] = `
                               tabIndex={null}
                             >
                               <ForwardRef(IconButton)
-                                className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                                className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                                 classes={
                                   Object {
                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -889,7 +852,7 @@ exports[`RequestType should render properly 1`] = `
                               >
                                 <WithStyles(ForwardRef(ButtonBase))
                                   centerRipple={true}
-                                  className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                  className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                   component="span"
                                   disabled={false}
                                   focusRipple={true}
@@ -899,7 +862,7 @@ exports[`RequestType should render properly 1`] = `
                                 >
                                   <ForwardRef(ButtonBase)
                                     centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                    className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                     classes={
                                       Object {
                                         "disabled": "Mui-disabled",
@@ -916,7 +879,7 @@ exports[`RequestType should render properly 1`] = `
                                   >
                                     <span
                                       aria-disabled={false}
-                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                       onBlur={[Function]}
                                       onDragLeave={[Function]}
                                       onFocus={[Function]}
@@ -934,18 +897,14 @@ exports[`RequestType should render properly 1`] = `
                                         className="MuiIconButton-label"
                                       >
                                         <input
-                                          className="PrivateSwitchBase-input-119"
+                                          className="PrivateSwitchBase-input-4"
                                           data-indeterminate={false}
                                           onChange={[Function]}
                                           type="checkbox"
                                           value="Medications"
                                         />
-                                        <ForwardRef
-                                          fontSize="default"
-                                        >
-                                          <WithStyles(ForwardRef(SvgIcon))
-                                            fontSize="default"
-                                          >
+                                        <ForwardRef(CheckBoxOutlineBlankIcon)>
+                                          <WithStyles(ForwardRef(SvgIcon))>
                                             <ForwardRef(SvgIcon)
                                               classes={
                                                 Object {
@@ -960,10 +919,9 @@ exports[`RequestType should render properly 1`] = `
                                                   "root": "MuiSvgIcon-root",
                                                 }
                                               }
-                                              fontSize="default"
                                             >
                                               <svg
-                                                aria-hidden="true"
+                                                aria-hidden={true}
                                                 className="MuiSvgIcon-root"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
@@ -974,7 +932,7 @@ exports[`RequestType should render properly 1`] = `
                                               </svg>
                                             </ForwardRef(SvgIcon)>
                                           </WithStyles(ForwardRef(SvgIcon))>
-                                        </ForwardRef>
+                                        </ForwardRef(CheckBoxOutlineBlankIcon)>
                                       </span>
                                       <WithStyles(memo)
                                         center={true}
@@ -1243,11 +1201,7 @@ exports[`RequestType should render properly 1`] = `
                         value="Diagnosis Lab"
                       >
                         <WithStyles(ForwardRef(SwitchBase))
-                          checkedIcon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          checkedIcon={<UNDEFINED />}
                           className="check-box"
                           classes={
                             Object {
@@ -1257,11 +1211,7 @@ exports[`RequestType should render properly 1`] = `
                             }
                           }
                           color="primary"
-                          icon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          icon={<UNDEFINED />}
                           inputProps={
                             Object {
                               "data-indeterminate": false,
@@ -1271,26 +1221,18 @@ exports[`RequestType should render properly 1`] = `
                           value="Diagnosis Lab"
                         >
                           <ForwardRef(SwitchBase)
-                            checkedIcon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            checkedIcon={<UNDEFINED />}
                             className="check-box"
                             classes={
                               Object {
-                                "checked": "PrivateSwitchBase-checked-117 Mui-checked",
-                                "disabled": "PrivateSwitchBase-disabled-118 Mui-disabled",
-                                "input": "PrivateSwitchBase-input-119",
-                                "root": "PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary",
+                                "checked": "PrivateSwitchBase-checked-2 Mui-checked",
+                                "disabled": "PrivateSwitchBase-disabled-3 Mui-disabled",
+                                "input": "PrivateSwitchBase-input-4",
+                                "root": "PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary",
                               }
                             }
                             color="primary"
-                            icon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            icon={<UNDEFINED />}
                             inputProps={
                               Object {
                                 "data-indeterminate": false,
@@ -1300,7 +1242,7 @@ exports[`RequestType should render properly 1`] = `
                             value="Diagnosis Lab"
                           >
                             <WithStyles(ForwardRef(IconButton))
-                              className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                              className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                               color="primary"
                               component="span"
                               onBlur={[Function]}
@@ -1308,7 +1250,7 @@ exports[`RequestType should render properly 1`] = `
                               tabIndex={null}
                             >
                               <ForwardRef(IconButton)
-                                className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                                className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                                 classes={
                                   Object {
                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -1330,7 +1272,7 @@ exports[`RequestType should render properly 1`] = `
                               >
                                 <WithStyles(ForwardRef(ButtonBase))
                                   centerRipple={true}
-                                  className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                  className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                   component="span"
                                   disabled={false}
                                   focusRipple={true}
@@ -1340,7 +1282,7 @@ exports[`RequestType should render properly 1`] = `
                                 >
                                   <ForwardRef(ButtonBase)
                                     centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                    className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                     classes={
                                       Object {
                                         "disabled": "Mui-disabled",
@@ -1357,7 +1299,7 @@ exports[`RequestType should render properly 1`] = `
                                   >
                                     <span
                                       aria-disabled={false}
-                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                       onBlur={[Function]}
                                       onDragLeave={[Function]}
                                       onFocus={[Function]}
@@ -1375,18 +1317,14 @@ exports[`RequestType should render properly 1`] = `
                                         className="MuiIconButton-label"
                                       >
                                         <input
-                                          className="PrivateSwitchBase-input-119"
+                                          className="PrivateSwitchBase-input-4"
                                           data-indeterminate={false}
                                           onChange={[Function]}
                                           type="checkbox"
                                           value="Diagnosis Lab"
                                         />
-                                        <ForwardRef
-                                          fontSize="default"
-                                        >
-                                          <WithStyles(ForwardRef(SvgIcon))
-                                            fontSize="default"
-                                          >
+                                        <ForwardRef(CheckBoxOutlineBlankIcon)>
+                                          <WithStyles(ForwardRef(SvgIcon))>
                                             <ForwardRef(SvgIcon)
                                               classes={
                                                 Object {
@@ -1401,10 +1339,9 @@ exports[`RequestType should render properly 1`] = `
                                                   "root": "MuiSvgIcon-root",
                                                 }
                                               }
-                                              fontSize="default"
                                             >
                                               <svg
-                                                aria-hidden="true"
+                                                aria-hidden={true}
                                                 className="MuiSvgIcon-root"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
@@ -1415,7 +1352,7 @@ exports[`RequestType should render properly 1`] = `
                                               </svg>
                                             </ForwardRef(SvgIcon)>
                                           </WithStyles(ForwardRef(SvgIcon))>
-                                        </ForwardRef>
+                                        </ForwardRef(CheckBoxOutlineBlankIcon)>
                                       </span>
                                       <WithStyles(memo)
                                         center={true}
@@ -1684,11 +1621,7 @@ exports[`RequestType should render properly 1`] = `
                         value="Radiology Lab"
                       >
                         <WithStyles(ForwardRef(SwitchBase))
-                          checkedIcon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          checkedIcon={<UNDEFINED />}
                           className="check-box"
                           classes={
                             Object {
@@ -1698,11 +1631,7 @@ exports[`RequestType should render properly 1`] = `
                             }
                           }
                           color="primary"
-                          icon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          icon={<UNDEFINED />}
                           inputProps={
                             Object {
                               "data-indeterminate": false,
@@ -1712,26 +1641,18 @@ exports[`RequestType should render properly 1`] = `
                           value="Radiology Lab"
                         >
                           <ForwardRef(SwitchBase)
-                            checkedIcon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            checkedIcon={<UNDEFINED />}
                             className="check-box"
                             classes={
                               Object {
-                                "checked": "PrivateSwitchBase-checked-117 Mui-checked",
-                                "disabled": "PrivateSwitchBase-disabled-118 Mui-disabled",
-                                "input": "PrivateSwitchBase-input-119",
-                                "root": "PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary",
+                                "checked": "PrivateSwitchBase-checked-2 Mui-checked",
+                                "disabled": "PrivateSwitchBase-disabled-3 Mui-disabled",
+                                "input": "PrivateSwitchBase-input-4",
+                                "root": "PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary",
                               }
                             }
                             color="primary"
-                            icon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            icon={<UNDEFINED />}
                             inputProps={
                               Object {
                                 "data-indeterminate": false,
@@ -1741,7 +1662,7 @@ exports[`RequestType should render properly 1`] = `
                             value="Radiology Lab"
                           >
                             <WithStyles(ForwardRef(IconButton))
-                              className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                              className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                               color="primary"
                               component="span"
                               onBlur={[Function]}
@@ -1749,7 +1670,7 @@ exports[`RequestType should render properly 1`] = `
                               tabIndex={null}
                             >
                               <ForwardRef(IconButton)
-                                className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                                className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                                 classes={
                                   Object {
                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -1771,7 +1692,7 @@ exports[`RequestType should render properly 1`] = `
                               >
                                 <WithStyles(ForwardRef(ButtonBase))
                                   centerRipple={true}
-                                  className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                  className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                   component="span"
                                   disabled={false}
                                   focusRipple={true}
@@ -1781,7 +1702,7 @@ exports[`RequestType should render properly 1`] = `
                                 >
                                   <ForwardRef(ButtonBase)
                                     centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                    className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                     classes={
                                       Object {
                                         "disabled": "Mui-disabled",
@@ -1798,7 +1719,7 @@ exports[`RequestType should render properly 1`] = `
                                   >
                                     <span
                                       aria-disabled={false}
-                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                       onBlur={[Function]}
                                       onDragLeave={[Function]}
                                       onFocus={[Function]}
@@ -1816,18 +1737,14 @@ exports[`RequestType should render properly 1`] = `
                                         className="MuiIconButton-label"
                                       >
                                         <input
-                                          className="PrivateSwitchBase-input-119"
+                                          className="PrivateSwitchBase-input-4"
                                           data-indeterminate={false}
                                           onChange={[Function]}
                                           type="checkbox"
                                           value="Radiology Lab"
                                         />
-                                        <ForwardRef
-                                          fontSize="default"
-                                        >
-                                          <WithStyles(ForwardRef(SvgIcon))
-                                            fontSize="default"
-                                          >
+                                        <ForwardRef(CheckBoxOutlineBlankIcon)>
+                                          <WithStyles(ForwardRef(SvgIcon))>
                                             <ForwardRef(SvgIcon)
                                               classes={
                                                 Object {
@@ -1842,10 +1759,9 @@ exports[`RequestType should render properly 1`] = `
                                                   "root": "MuiSvgIcon-root",
                                                 }
                                               }
-                                              fontSize="default"
                                             >
                                               <svg
-                                                aria-hidden="true"
+                                                aria-hidden={true}
                                                 className="MuiSvgIcon-root"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
@@ -1856,7 +1772,7 @@ exports[`RequestType should render properly 1`] = `
                                               </svg>
                                             </ForwardRef(SvgIcon)>
                                           </WithStyles(ForwardRef(SvgIcon))>
-                                        </ForwardRef>
+                                        </ForwardRef(CheckBoxOutlineBlankIcon)>
                                       </span>
                                       <WithStyles(memo)
                                         center={true}
@@ -2125,11 +2041,7 @@ exports[`RequestType should render properly 1`] = `
                         value="Observations"
                       >
                         <WithStyles(ForwardRef(SwitchBase))
-                          checkedIcon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          checkedIcon={<UNDEFINED />}
                           className="check-box"
                           classes={
                             Object {
@@ -2139,11 +2051,7 @@ exports[`RequestType should render properly 1`] = `
                             }
                           }
                           color="primary"
-                          icon={
-                            <UNDEFINED
-                              fontSize="default"
-                            />
-                          }
+                          icon={<UNDEFINED />}
                           inputProps={
                             Object {
                               "data-indeterminate": false,
@@ -2153,26 +2061,18 @@ exports[`RequestType should render properly 1`] = `
                           value="Observations"
                         >
                           <ForwardRef(SwitchBase)
-                            checkedIcon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            checkedIcon={<UNDEFINED />}
                             className="check-box"
                             classes={
                               Object {
-                                "checked": "PrivateSwitchBase-checked-117 Mui-checked",
-                                "disabled": "PrivateSwitchBase-disabled-118 Mui-disabled",
-                                "input": "PrivateSwitchBase-input-119",
-                                "root": "PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary",
+                                "checked": "PrivateSwitchBase-checked-2 Mui-checked",
+                                "disabled": "PrivateSwitchBase-disabled-3 Mui-disabled",
+                                "input": "PrivateSwitchBase-input-4",
+                                "root": "PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary",
                               }
                             }
                             color="primary"
-                            icon={
-                              <UNDEFINED
-                                fontSize="default"
-                              />
-                            }
+                            icon={<UNDEFINED />}
                             inputProps={
                               Object {
                                 "data-indeterminate": false,
@@ -2182,7 +2082,7 @@ exports[`RequestType should render properly 1`] = `
                             value="Observations"
                           >
                             <WithStyles(ForwardRef(IconButton))
-                              className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                              className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                               color="primary"
                               component="span"
                               onBlur={[Function]}
@@ -2190,7 +2090,7 @@ exports[`RequestType should render properly 1`] = `
                               tabIndex={null}
                             >
                               <ForwardRef(IconButton)
-                                className="PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
+                                className="PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box"
                                 classes={
                                   Object {
                                     "colorInherit": "MuiIconButton-colorInherit",
@@ -2212,7 +2112,7 @@ exports[`RequestType should render properly 1`] = `
                               >
                                 <WithStyles(ForwardRef(ButtonBase))
                                   centerRipple={true}
-                                  className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                  className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                   component="span"
                                   disabled={false}
                                   focusRipple={true}
@@ -2222,7 +2122,7 @@ exports[`RequestType should render properly 1`] = `
                                 >
                                   <ForwardRef(ButtonBase)
                                     centerRipple={true}
-                                    className="MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                    className="MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                     classes={
                                       Object {
                                         "disabled": "Mui-disabled",
@@ -2239,7 +2139,7 @@ exports[`RequestType should render properly 1`] = `
                                   >
                                     <span
                                       aria-disabled={false}
-                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-116 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
+                                      className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorPrimary check-box MuiIconButton-colorPrimary"
                                       onBlur={[Function]}
                                       onDragLeave={[Function]}
                                       onFocus={[Function]}
@@ -2257,18 +2157,14 @@ exports[`RequestType should render properly 1`] = `
                                         className="MuiIconButton-label"
                                       >
                                         <input
-                                          className="PrivateSwitchBase-input-119"
+                                          className="PrivateSwitchBase-input-4"
                                           data-indeterminate={false}
                                           onChange={[Function]}
                                           type="checkbox"
                                           value="Observations"
                                         />
-                                        <ForwardRef
-                                          fontSize="default"
-                                        >
-                                          <WithStyles(ForwardRef(SvgIcon))
-                                            fontSize="default"
-                                          >
+                                        <ForwardRef(CheckBoxOutlineBlankIcon)>
+                                          <WithStyles(ForwardRef(SvgIcon))>
                                             <ForwardRef(SvgIcon)
                                               classes={
                                                 Object {
@@ -2283,10 +2179,9 @@ exports[`RequestType should render properly 1`] = `
                                                   "root": "MuiSvgIcon-root",
                                                 }
                                               }
-                                              fontSize="default"
                                             >
                                               <svg
-                                                aria-hidden="true"
+                                                aria-hidden={true}
                                                 className="MuiSvgIcon-root"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
@@ -2297,7 +2192,7 @@ exports[`RequestType should render properly 1`] = `
                                               </svg>
                                             </ForwardRef(SvgIcon)>
                                           </WithStyles(ForwardRef(SvgIcon))>
-                                        </ForwardRef>
+                                        </ForwardRef(CheckBoxOutlineBlankIcon)>
                                       </span>
                                       <WithStyles(memo)
                                         center={true}
