@@ -510,8 +510,8 @@ exports[`ConditionsComponent should render properly 1`] = `
                   }
                 />
               </li>
-              <ConditionNote
-                condition={
+              <AdditionalNotes
+                resource={
                   Object {
                     "category": Array [
                       Object {

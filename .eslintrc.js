@@ -24,6 +24,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/*.test.js', '**/*.test.jsx','**/*.spec.js', '**/*.spec.jsx']}],
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': [

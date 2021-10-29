@@ -1,22 +1,32 @@
 import React from 'react';
-import _ from 'lodash';
 import * as PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 const RESET_PASSWORD_PATH = '/reset-password';
 
+function verify(accessToken) {
+  try {
+    const decodedToken = jwtDecode(accessToken);
+    const { isVerified, exp } = decodedToken;
+    const currentTime = Date.now().valueOf();
+
+    return {isTokenValid: currentTime < exp, isUserVerified: isVerified};
+    
+  } catch (e) {
+    return {isTokenValid: false, isUserVerified: false};
+  }
+}
+
 const PrivateRoute = ({ component: Component, history, ...rest }) => {
   const accessToken = localStorage.getItem('auth-token');
-  const isAuth = !_.isEmpty(accessToken);
-
   const render = (props) => {
-    if (!isAuth) {
+    const { isTokenValid, isUserVerified } = verify(accessToken);
+    if (!isTokenValid) {
       return <Redirect to="/login" />;
     }
-    const decodedToken = jwtDecode(accessToken);
-    const { isVerified } = decodedToken;
-    if (!isVerified) {
+
+    if (!isUserVerified) {
       return rest.path === RESET_PASSWORD_PATH ? (
         <Component {...props} />
       ) : (
