@@ -1,13 +1,13 @@
-import React from 'react';
-import * as PropTypes from 'prop-types';
-import { Route, Redirect, withRouter } from 'react-router-dom';
-import { verify, getAccessToken } from '../../auth';
+import React from "react";
+import * as PropTypes from "prop-types";
+import { Route, Redirect, withRouter } from "react-router-dom";
+import { verify, getAccessToken } from "../../auth";
 
-const RESET_PASSWORD_PATH = '/reset-password';
+const RESET_PASSWORD_PATH = "/reset-password";
 
 const PrivateRoute = ({ component: Component, history, ...rest }) => {
   const accessToken = getAccessToken();
-  
+
   const render = (props) => {
     const { isTokenValid, isUserVerified } = verify(accessToken);
     if (!isTokenValid) {

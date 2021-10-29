@@ -10,10 +10,10 @@ const BinaryComponent = ({ data, consentReqId, enclosed }) => {
     <div>
       <span>Attachments (Binary) : </span>
       <AttachmentLink 
-              consentReqId={consentReqId} 
-              attachmentPath={atob(entry.data)} 
-              linkTitle={'Link to Attachment'} 
-            />
+        consentReqId={consentReqId} 
+        attachmentPath={atob(entry.data)} 
+        linkTitle="Link to Attachment"
+      />
     </div>
   ) : (
     <div />
@@ -23,8 +23,8 @@ const BinaryComponent = ({ data, consentReqId, enclosed }) => {
     data.map((entry, index) => (
       <BinaryComponentStyles key={index}>
         <div className="binary-reference">
-            {renderContent(entry)}
-          </div>
+          {renderContent(entry)}
+        </div>
       </BinaryComponentStyles>
     ))
   ) : (

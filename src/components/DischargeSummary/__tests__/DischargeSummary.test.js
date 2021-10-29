@@ -13,7 +13,7 @@ describe('DischargeSummary', () => {
             startDate="2018-04-01T15:30:10+01:00"
             endDate="2018-04-10T15:30:10+01:00"
             authors={['abc', 'xyz']}
-            status={'final'}
+            status="final"
           />
         );
     });

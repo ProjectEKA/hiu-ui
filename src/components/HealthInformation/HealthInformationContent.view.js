@@ -107,7 +107,7 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         />
         <ConditionsComponent conditionList={conditionList} />
         <MedicationRequestsComponent medicationRequests={medicationRequests} />
-        <DocumentReferenceComponent consentReqId={consentReqId} data={documentList} enclosed={false}/>
+        <DocumentReferenceComponent consentReqId={consentReqId} data={documentList} enclosed={false} />
       </div>
     </HealthInformationContentStyles>
   );

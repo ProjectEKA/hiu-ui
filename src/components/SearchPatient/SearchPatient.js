@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
-import SearchPatientStyles from './SearchPatient.style';
 import {
   IconButton,
   TextField,
@@ -9,6 +8,7 @@ import {
   Select,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import SearchPatientStyles from './SearchPatient.style';
 
 const SearchPatient = ({
   onSearch,

@@ -118,11 +118,11 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
               ''
             )
           }))}
-        title={
+        title={(
           <Typography className={classes.title} variant="h5">
             Consent List
           </Typography>
-        }
+        )}
         actions={[
           {
             icon: 'refresh',

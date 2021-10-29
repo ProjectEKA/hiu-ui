@@ -58,48 +58,50 @@ const DocumentReferenceComponent = ({ data, consentReqId, enclosed }) => {
             variant="h6"
             component="h6"
           >
-            {enclosed && 'Enclosed '} Clinical Document :
+            {enclosed && 'Enclosed '}
+            {' '}
+            Clinical Document :
             {' '}
             {entry.type ? entry.type.text : ''}
           </Typography>
           <div className="document-reference">
             <ul className="report-details-list">
-              {extractAuthor(entry) && 
+              {extractAuthor(entry) && (
                 <li>
                   <span>Author: </span>
                   {extractAuthor(entry)}
                 </li>
-              }
-              {entry.date && 
+              )}
+              {entry.date && (
                 <li>
                   <span>Date: </span>
                   {formatDateString(entry.date)}
                 </li>
-              }
-              {entry.description &&
+              )}
+              {entry.description && (
                 <li>
                   <span>Description: </span>
                   {entry.description}
                 </li>
-              }
-              {entry.status &&
+              )}
+              {entry.status && (
                 <li>
                   <span>Status: </span>
                   {entry.status}
                 </li>
-              }
-              {entry.docStatus &&
+              )}
+              {entry.docStatus && (
                 <li>
                   <span>Document Status: </span>
                   {entry.docStatus}
                 </li>
-              }
-              {extractContext(entry.context) &&
+              )}
+              {extractContext(entry.context) && (
                 <li>
                   <span>Context: </span>
                   {extractContext(entry.context)}
                 </li>
-              }
+              )}
             </ul>
             {renderContent(entry)}
           </div>

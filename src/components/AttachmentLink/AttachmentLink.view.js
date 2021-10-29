@@ -32,7 +32,7 @@ const AttachmentLink = ({ consentReqId, attachmentPath, linkTitle }) => {
     );
   };
 
-  return <a href={'#'} onClick={openAttachment}>{linkTitle}</a>;
+  return <a href="#" onClick={openAttachment}>{linkTitle}</a>;
 };
 
 AttachmentLink.propTypes = {

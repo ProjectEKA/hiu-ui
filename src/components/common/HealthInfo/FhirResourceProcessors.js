@@ -286,7 +286,7 @@ export class EncounterProcessor extends FhirResourceProcessor {
   process(encounter, bundleContext) {
     if (encounter.diagnosis) {
       encounter.diagnosis.forEach((diag) => {
-        let condition = bundleContext.findReference('Condition', diag.condition);
+        const condition = bundleContext.findReference('Condition', diag.condition);
         if (condition) {
           diag.condition.targetResource = condition;
           this.addParentResource(condition, encounter);

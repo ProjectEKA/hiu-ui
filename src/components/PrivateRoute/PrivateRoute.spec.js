@@ -22,7 +22,8 @@ describe("JWT tests", () => {
     localStorage.setItem("auth-token", "");
     const wrapper = mount(
       <MemoryRouter>
-        <PrivateRoute component={Button} />{" "}
+        <PrivateRoute component={Button} />
+        {" "}
       </MemoryRouter>
     );
     expect(wrapper.exists(Button)).toBe(false);
@@ -34,7 +35,8 @@ describe("JWT tests", () => {
     localStorage.setItem("auth-token", "someToken");
     const wrapper = mount(
       <MemoryRouter>
-        <PrivateRoute component={Button} />{" "}
+        <PrivateRoute component={Button} />
+        {" "}
       </MemoryRouter>
     );
     expect(wrapper.exists(Button)).toBe(false);

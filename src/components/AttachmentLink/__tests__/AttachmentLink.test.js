@@ -6,9 +6,9 @@ describe('AttachmentLink', () => {
   it('should render properly', () => {
     const wrapper = shallow(
       <AttachmentLink
-        consentReqId={'some-uuid'}
-        attachmentPath={'/attachments/some-path'}
-        linkTitle={'Link'}
+        consentReqId="some-uuid"
+        attachmentPath="/attachments/some-path"
+        linkTitle="Link"
       />
     );
     expect(wrapper).toMatchSnapshot();

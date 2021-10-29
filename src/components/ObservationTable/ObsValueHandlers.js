@@ -4,7 +4,7 @@ const obsProperties = [
   {
     key: 'valueQuantity',
     getValue(o) {
-      return o.valueQuantity.value.toString() + " " + o.valueQuantity.unit;
+      return `${o.valueQuantity.value.toString()  } ${  o.valueQuantity.unit}`;
     },
   },
   {

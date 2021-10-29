@@ -89,7 +89,7 @@ const MedicationRequestsComponent = ({ medicationRequests }) => (medicationReque
                 {findMedicationName(mr)}
                 {` (${mr.status})`}
                 <ul className="mediation-list-item">
-                  {<MedicationReason reasons={mr.reasonReference} reasonCodes={mr.reasonCode}/>}
+                  <MedicationReason reasons={mr.reasonReference} reasonCodes={mr.reasonCode} />
                 </ul>
               </TableCell>
               <TableCell className="table-cell">
