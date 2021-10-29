@@ -1,25 +1,13 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import jwtDecode from 'jwt-decode';
 import { Route, Redirect, withRouter } from 'react-router-dom';
+import { verify, getAccessToken } from '../../auth';
 
 const RESET_PASSWORD_PATH = '/reset-password';
 
-function verify(accessToken) {
-  try {
-    const decodedToken = jwtDecode(accessToken);
-    const { isVerified, exp } = decodedToken;
-    const currentTime = Date.now().valueOf();
-
-    return {isTokenValid: currentTime < exp, isUserVerified: isVerified};
-    
-  } catch (e) {
-    return {isTokenValid: false, isUserVerified: false};
-  }
-}
-
 const PrivateRoute = ({ component: Component, history, ...rest }) => {
-  const accessToken = localStorage.getItem('auth-token');
+  const accessToken = getAccessToken();
+  
   const render = (props) => {
     const { isTokenValid, isUserVerified } = verify(accessToken);
     if (!isTokenValid) {
