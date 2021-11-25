@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const processingOrder = [
   'bundle',
   'composition',
@@ -156,12 +158,12 @@ const formatDateString = function (aDate, includeTime) {
   if (aDate) {
     const dateString = aDate.toString();
     if (dateString.length > 0) {
-      const dt = new Date(dateString);
-      let dtStr = `${leftPadZero(dt.getDate())}/${leftPadZero(dt.getMonth() + 1)}/${dt.getFullYear()}`;
+      const momentDate = moment.utc(aDate);
+      let dt = momentDate.utcOffset(TIMEZONE_OFFSET).format('DD/MM/YYYY');
       if (includeTime) {
-        dtStr = `${dtStr} ${leftPadZero(dt.getHours())}:${leftPadZero(dt.getMinutes())}`;
+        dt = momentDate.utcOffset(TIMEZONE_OFFSET).format('DD/MM/YYYY hh:mm A');
       }
-      return dtStr;
+      return dt;
     }
     return '';
   }

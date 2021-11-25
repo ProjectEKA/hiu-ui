@@ -21,6 +21,9 @@ if (!process.env.BASE_NAME) {
 if (!process.env.REACT_APP_SITE_TITLE) {
   throw "REACT_APP_SITE_TITLE not found";
 }
+if (!process.env.TIMEZONE_OFFSET) {
+  process.env.TIMEZONE_OFFSET = '0';
+}
 
 var parentDir = path.join(__dirname, "../");
 
@@ -36,7 +39,8 @@ module.exports = {
       DICOM_SERVER_PATH: JSON.stringify(process.env.DICOM_SERVER_PATH),
       DICOM_BASE_URL: JSON.stringify(process.env.DICOM_BASE_URL),
       REACT_APP_SITE_TITLE: JSON.stringify(process.env.REACT_APP_SITE_TITLE),
-      SUPPORT_EMAIL: JSON.stringify(process.env.SUPPORT_EMAIL)
+      SUPPORT_EMAIL: JSON.stringify(process.env.SUPPORT_EMAIL),
+      TIMEZONE_OFFSET: JSON.stringify(process.env.TIMEZONE_OFFSET)
     }),
   ],
   devServer: {
