@@ -61,6 +61,7 @@ describe('DocumentReferenceComponent', () => {
   ];
   global.BACKEND_BASE_URL = 'http://localhost:3000/';
   global.BACKEND_API_PATH = 'hiu-api';
+  global.TIMEZONE_OFFSET = '+05:30';
   const wrapper = shallow(
     <DocumentReferenceComponent
       data={mockData}

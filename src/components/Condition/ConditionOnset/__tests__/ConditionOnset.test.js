@@ -5,6 +5,7 @@ import ConditionOnset from '../ConditionOnset.view';
 describe('ConditionOnset', () => {
   let wrapper;
   let mockData;
+  global.TIMEZONE_OFFSET = '+05:30';
 
   it('should render properly', () => {
     mockData = {

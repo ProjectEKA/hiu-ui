@@ -5,6 +5,7 @@ import DischargeSummary from "../DischargeSummary.view";
 
 describe('DischargeSummary', () => {
     let wrapper;
+    global.TIMEZONE_OFFSET = '+05:30';
 
     beforeEach(() => {
         wrapper = shallow(

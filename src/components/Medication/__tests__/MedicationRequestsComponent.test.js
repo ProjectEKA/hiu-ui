@@ -4,6 +4,7 @@ import MedicationRequestsComponent from '../MedicationRequestsComponent';
 import TableStyles from '../../common/Styles/Table.style';
 
 describe('MedicationRequestsComponent', () => {
+  global.TIMEZONE_OFFSET = '+05:30';
   const mockData = [
     {
       resourceType: 'MedicationRequest',
