@@ -50,6 +50,14 @@ REACT_APP_SITE_TITLE= 'NCG'
 ```
 The above should be self explanatory, essentially it says that the HIU-Service is running on http://localhost:8003
 
+Add the following to the .env file for the specific timezone. The following is for IST TimeZone UTC+5:30
+
+```aidl
+TIMEZONE_OFFSET= '+05:30'
+```
+
+Note: If you haven't specify TimeZone, it will be UTC by default
+
 If you are testing with the reference HIU-Service, and thats running locally on a different port, most likely Chrome will not allow you to make Http calls because of CORS restrictions. To do this, there are many ways - for example, use a proxy like HAProxy and put your HIU-UI and HIU-Server behind the proxy and route the calls appropriately. 
 
 For development purpose, you can start chrome with disabled web security. 

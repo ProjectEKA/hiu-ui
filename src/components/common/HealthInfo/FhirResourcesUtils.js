@@ -150,9 +150,6 @@ const getConceptDisplay = function (codeableConcept) {
   return coding.display || coding.code;
 };
 
-const leftPadZero = (n) => {
-  return n > 9 ? `${n}` : `0${n}`;
-};
 
 const formatDateString = function (aDate, includeTime) {
   if (aDate) {
