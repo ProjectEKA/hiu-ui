@@ -4,7 +4,7 @@ import ConditionsComponent from '../ConditionsComponent';
 import TableStyles from '../../common/Styles/Table.style';
 
 describe('ConditionsComponent', () => {
-  global.TIMEZONE_OFFSET = '+05:30';
+  global.TIMEZONE_OFFSET = '-05:00';
   const mockData = [
     {
       code: {
@@ -69,7 +69,7 @@ describe('ConditionsComponent', () => {
   });
 
   it('should render correct data in table body', () => {
-    expect(wrapper.find('.table-cell').at(0).text()).toEqual('19/02/2020');
+    expect(wrapper.find('.table-cell').at(0).text()).toEqual('18/02/2020');
     expect(wrapper.find('.table-cell').at(1).text()).toContain('day1');
     expect(wrapper.find('.table-cell').at(2).text()).toContain('Severity: severity');
     expect(wrapper.find('.table-cell').at(2).text()).toContain('Clinical Status: clinical status');

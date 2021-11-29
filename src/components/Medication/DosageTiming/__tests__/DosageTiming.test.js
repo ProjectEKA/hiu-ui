@@ -10,7 +10,7 @@ describe('DosageTiming', () => {
       event: ['1','2019-01-21T12:00:00+01:00','2019-01-22T12:00:00+01:00'],
     },
   };
-  global.TIMEZONE_OFFSET = '+05:30';
+  global.TIMEZONE_OFFSET = '-05:00';
   const wrapper = shallow(
     <DosageTiming dosage={mockData} />,
   );

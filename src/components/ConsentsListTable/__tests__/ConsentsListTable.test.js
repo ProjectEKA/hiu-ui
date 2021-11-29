@@ -18,7 +18,7 @@ describe('ConsentsListTable', () => {
       navLink: '',
     },
   ];
-  global.TIMEZONE_OFFSET = '+05:30';
+  global.TIMEZONE_OFFSET = '-05:00';
   const wrapper = shallow(
     <ConsentsListTable consentsList={mockData} loadConsents={loadConsents} theme="" />,
   );
@@ -33,9 +33,9 @@ describe('ConsentsListTable', () => {
     console.log(wrapper.find(MaterialTable).props().data[0].expiredOn);
     expect(wrapper.find(MaterialTable).props().data[0].name).toEqual('John Smith');
     expect(wrapper.find(MaterialTable).props().data[0].status).toEqual('Consent Granted');
-    expect(wrapper.find(MaterialTable).props().data[0].grantedOn).toEqual('19/02/2020 06:00 AM');
-    expect(wrapper.find(MaterialTable).props().data[0].expiredOn).toEqual('20/02/2020 08:47 AM');
-    expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('18/02/2020 08:47 AM');
+    expect(wrapper.find(MaterialTable).props().data[0].grantedOn).toEqual('18/02/2020 07:30 PM');
+    expect(wrapper.find(MaterialTable).props().data[0].expiredOn).toEqual('19/02/2020 10:17 PM');
+    expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('17/02/2020 10:17 PM');
     expect(wrapper.find(MaterialTable).props().data[0].navLink).not.toEqual('');
   });
 
@@ -48,7 +48,7 @@ describe('ConsentsListTable', () => {
     expect(wrapper.find(MaterialTable).props().data[0].status).toEqual('Request Denied');
     expect(wrapper.find(MaterialTable).props().data[0].grantedOn).toEqual('-');
     expect(wrapper.find(MaterialTable).props().data[0].expiredOn).toEqual('-');
-    expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('18/02/2020 08:47 AM');
+    expect(wrapper.find(MaterialTable).props().data[0].createdOn).toEqual('17/02/2020 10:17 PM');
     expect(wrapper.find(MaterialTable).props().data[0].navLink).toEqual('');
   });
 

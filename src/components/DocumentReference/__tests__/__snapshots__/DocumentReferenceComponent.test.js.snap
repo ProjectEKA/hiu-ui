@@ -2,7 +2,7 @@
 
 exports[`DocumentReferenceComponent should render properly 1`] = `
 <styled.div
-  key="2019-12-24T09:43:41+05:30"
+  key="2019-12-24T09:43:41"
 >
   <WithStyles(ForwardRef(TableContainer))
     className="document-reference-table-container"

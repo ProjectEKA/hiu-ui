@@ -59,9 +59,9 @@ exports[`ConsentsListTable should render properly 1`] = `
     data={
       Array [
         Object {
-          "createdOn": "18/02/2020 08:47 AM",
-          "expiredOn": "20/02/2020 08:47 AM",
-          "grantedOn": "19/02/2020 06:00 AM",
+          "createdOn": "17/02/2020 10:17 PM",
+          "expiredOn": "19/02/2020 10:17 PM",
+          "grantedOn": "18/02/2020 07:30 PM",
           "id": undefined,
           "name": "John Smith",
           "navLink": <ForwardRef

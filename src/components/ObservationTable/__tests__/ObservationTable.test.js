@@ -20,7 +20,7 @@ describe('ObservationTable', () => {
             ]
         },
     ];
-    global.TIMEZONE_OFFSET = '+05:30';
+    global.TIMEZONE_OFFSET = '-05:00';
     const wrapper = shallow(
       <ObservationTable data={mockData} />
     );
@@ -34,7 +34,7 @@ describe('ObservationTable', () => {
         expect(wrapper.find('.table-cell').at(0).text()).toEqual('');
         mockData[0].effectiveDateTime = "2020-01-03";
         wrapper.setProps({data:mockData});
-        expect(wrapper.find('.table-cell').at(0).text()).toEqual('03/01/2020 05:30 AM');
+        expect(wrapper.find('.table-cell').at(0).text()).toEqual('02/01/2020 07:00 PM');
     });
 
     it('should render class name according to the condition', () => {
@@ -44,7 +44,7 @@ describe('ObservationTable', () => {
         wrapper.setProps({data:mockData});
         expect(wrapper.find('.parent-row').exists()).toEqual(false);
         expect(wrapper.find('.children-row').exists()).toEqual(true);
-        expect(wrapper.find('.table-cell').at(0).text()).toEqual('03/01/2020 05:30 AM');
+        expect(wrapper.find('.table-cell').at(0).text()).toEqual('02/01/2020 07:00 PM');
     });
 
     it('should render code text in table data', () => {
