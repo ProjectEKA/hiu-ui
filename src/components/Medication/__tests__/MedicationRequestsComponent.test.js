@@ -4,6 +4,7 @@ import MedicationRequestsComponent from '../MedicationRequestsComponent';
 import TableStyles from '../../common/Styles/Table.style';
 
 describe('MedicationRequestsComponent', () => {
+  global.TIMEZONE_OFFSET = '-05:00';
   const mockData = [
     {
       resourceType: 'MedicationRequest',
@@ -51,7 +52,7 @@ describe('MedicationRequestsComponent', () => {
   });
 
   it('should show correct data of medication requests', () => {
-    expect(wrapper.find('.table-cell').at(0).text()).toEqual('22/01/2020');
+    expect(wrapper.find('.table-cell').at(0).text()).toEqual('21/01/2020');
     expect(wrapper.find('.table-cell').at(1).text()).toEqual('display (active)<MedicationReason />');
 
     mockData[0].medicationReference.targetResource = {

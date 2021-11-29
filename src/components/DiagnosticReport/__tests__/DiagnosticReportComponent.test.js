@@ -41,6 +41,7 @@ describe('DiagnosticReportComponent', () => {
   ];
   global.BACKEND_BASE_URL = 'http://localhost:3000/';
   global.BACKEND_API_PATH = 'hiu-api';
+  global.TIMEZONE_OFFSET = '-05:00';
   const wrapper = shallow(
     <DiagnosticReportComponent
       data={mockData}
@@ -53,7 +54,7 @@ describe('DiagnosticReportComponent', () => {
   });
 
   it('should show report details list with correct data', () => {
-    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Date: 03/11/2019');
+    expect(wrapper.find('.report-details-list li').at(0).text()).toEqual('Date: 02/11/2019');
     expect(wrapper.find('.report-details-list li').at(1).text()).toEqual('Status: final');
     expect(wrapper.find('.report-details-list li').at(2).text()).toEqual('Performer: text');
   });

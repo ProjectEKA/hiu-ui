@@ -28,7 +28,7 @@ describe('DocumentReferenceComponent', () => {
         display: 'Shriya',
         reference: "Patient/RVH1003", 
       },
-      date: "2019-12-24T09:43:41+05:30",
+      date: "2019-12-24T09:43:41",
       description: "Human readable description - about the document",
       context: {
         encounter: [
@@ -38,8 +38,8 @@ describe('DocumentReferenceComponent', () => {
           }
         ],
         period: {
-          start: "2019-12-24T08:43:41+05:30",
-          end: "2019-12-24T10:43:41+05:30",
+          start: "2019-12-24T08:43:41",
+          end: "2019-12-24T10:43:41",
         }
       },
       content: [ 
@@ -61,6 +61,7 @@ describe('DocumentReferenceComponent', () => {
   ];
   global.BACKEND_BASE_URL = 'http://localhost:3000/';
   global.BACKEND_API_PATH = 'hiu-api';
+  global.TIMEZONE_OFFSET = '-05:00';
   const wrapper = shallow(
     <DocumentReferenceComponent
       data={mockData}
