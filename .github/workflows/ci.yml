@@ -21,7 +21,7 @@ jobs:
         env:
           CONTAINER_REPO_NAME: hiu-ui
           NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
-        run: docker build --build-arg BACKEND_BASE_URL=https://ndhm-dev.bahmni-covid19.in/ --build-arg BASE_NAME=/hiu --build-arg BACKEND_API_PATH=hiu-api --build-arg DICOM_SERVER_PATH=/dicom-web --build-arg VIEWER_PAGE=/viewer/ --build-arg TITLE=BahmniHIU -t $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
+        run: docker build -t $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
       - name: Push Docker image to NCG Registry
         env:
           CONTAINER_REPO_NAME: hiu-ui
