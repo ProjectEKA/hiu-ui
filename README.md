@@ -1,4 +1,4 @@
-This is a forked repo from project-eka, includs few ui-enchancements.
+This is a forked repo from project-eka, includes few ui-enchancements and session management.
 
 ## Available Scripts
 
