@@ -28,7 +28,7 @@ exports[`ConsentsListTable should render properly 1`] = `
         },
         Object {
           "field": "id",
-          "title": "Jataayu ID",
+          "title": "Patient Identifier",
         },
         Object {
           "field": "status",

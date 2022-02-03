@@ -27,7 +27,7 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
 
   const headerRow = {
     name: 'Name',
-    jataayuId: 'Jataayu ID',
+    jataayuId: 'Patient Identifier',
     requestStatus: 'Request Status',
     consentGrantedDate: 'Consent granted on',
     consentExpiryDate: 'Consent expiry on',
