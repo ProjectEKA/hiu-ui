@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
+import Config from "../../Config";
 
 const Header = () => {
   const logout = () => {
@@ -17,7 +18,7 @@ const Header = () => {
       <AppBar color="textPrimary">
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
-            <Link href={BASE_NAME}>
+            <Link href={Config.BASE_NAME}>
               LOGO
             </Link>
           </Typography>

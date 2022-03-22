@@ -1,4 +1,5 @@
 import moment from "moment";
+import Config from "../../../Config";
 
 const processingOrder = [
   'bundle',
@@ -156,9 +157,9 @@ const formatDateString = function (aDate, includeTime) {
     const dateString = aDate.toString();
     if (dateString.length > 0) {
       const momentDate = moment.utc(aDate);
-      let dt = momentDate.utcOffset(TIMEZONE_OFFSET).format('DD/MM/YYYY');
+      let dt = momentDate.utcOffset(Config.TIMEZONE_OFFSET).format('DD/MM/YYYY');
       if (includeTime) {
-        dt = momentDate.utcOffset(TIMEZONE_OFFSET).format('DD/MM/YYYY hh:mm A');
+        dt = momentDate.utcOffset(Config.TIMEZONE_OFFSET).format('DD/MM/YYYY hh:mm A');
       }
       return dt;
     }

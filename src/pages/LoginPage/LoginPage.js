@@ -18,12 +18,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import _ from "lodash";
 import { getAccessToken, verify } from "../../auth";
+import Config from "../../Config";
 
 function SupportInformation() {
   return (
     <Container component="title" maxWidth="md">
       <Typography component="h1" variant="h5" style={{ textAlign: "center" }}>
-        For access please send an email to <b>{SUPPORT_EMAIL}</b> with your
+        For access please send an email to <b>{Config.SUPPORT_EMAIL}</b> with your
         registered client id
       </Typography>
     </Container>
@@ -74,7 +75,7 @@ export default function SignIn({ onSignIn, error }) {
 
   return (
     <div>
-      {_.isNil(SUPPORT_EMAIL) ? undefined : SupportInformation()}
+      {_.isNil(Config.SUPPORT_EMAIL) ? undefined : SupportInformation()}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         {isTokenValid && <Redirect to="/" />}
