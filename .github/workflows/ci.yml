@@ -14,26 +14,26 @@ jobs:
       - name: NCG Docker Registry
         env:
           DOCKER_REGISTRY_URL: docker.io
-          NCG_PASSWORD: ${{ secrets.DOCKER_NCG_PASSWORD }}
-          NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+          NCG_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          NCG_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker login -u $NCG_USERNAME -p $NCG_PASSWORD $DOCKER_REGISTRY_URL
       - name: Build docker image for NCG
         env:
           CONTAINER_REPO_NAME: hiu-ui
-          NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+          NCG_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker build -t $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION .
       - name: Push Docker image to NCG Registry
         env:
           CONTAINER_REPO_NAME: hiu-ui
-          NCG_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+          NCG_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $NCG_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION
       - name: Tag Docker Container with latest tag
         env:
           CONTAINER_REPO_NAME: hiu-ui
-          DOCKER_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker tag $DOCKER_USERNAME/$CONTAINER_REPO_NAME:$RELEASE_VERSION $DOCKER_USERNAME/$CONTAINER_REPO_NAME:latest
       - name: Push Latest Docker Container to Registry
         env:
           CONTAINER_REPO_NAME: hiu-ui
-          DOCKER_USERNAME: ${{ secrets.DOCKER_NCG_USERNAME }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: docker push $DOCKER_USERNAME/$CONTAINER_REPO_NAME:latest
