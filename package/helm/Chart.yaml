@@ -1,0 +1,5 @@
+apiVersion: v2
+name: hiu-ui
+description: Helm chart for hiu-ui
+type: application
+version: 1.0.0

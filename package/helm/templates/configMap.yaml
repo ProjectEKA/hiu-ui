@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+data:
+  BACKEND_BASE_URL: "{{ .Values.config.BACKEND_BASE_URL }}"
+  BASE_NAME: "{{ .Values.config.BASE_NAME }}"
+  BACKEND_API_PATH: "{{ .Values.config.BACKEND_API_PATH }}"
+  DICOM_SERVER_PATH: "{{ .Values.config.DICOM_SERVER_PATH }}"
+  VIEWER_PAGE: "{{ .Values.config.VIEWER_PAGE }}"
+  TITLE: "{{ .Values.config.TITLE }}"
+  TIMEZONE_OFFSET: "{{ .Values.config.TIMEZONE_OFFSET }}"
