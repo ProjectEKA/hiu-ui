@@ -6,7 +6,7 @@ RUN npm run build
 
 # stage: 2 ?~@~T the production environment
 FROM node:13.12.0-alpine
-RUN npm install -g serve
+RUN npm install -g serve@13.0.4
 COPY --from=build-deps /app/dist/ dist/
 EXPOSE 5000
 
