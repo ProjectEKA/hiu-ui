@@ -11,6 +11,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { teal } from "@material-ui/core/colors";
 // main app
 import App from "./src/App";
+import Config from "./src/Config";
 
 const theme = createMuiTheme({
   palette: {
@@ -28,7 +29,7 @@ const theme = createMuiTheme({
   }
 });
 
-document.querySelector('title').innerHTML=REACT_APP_SITE_TITLE;
+document.querySelector('title').innerHTML= Config.TITLE;
 
 ReactDOM.render(
   <Provider store={store}>

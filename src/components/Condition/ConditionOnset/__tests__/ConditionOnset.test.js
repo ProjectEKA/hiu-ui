@@ -5,6 +5,7 @@ import ConditionOnset from '../ConditionOnset.view';
 describe('ConditionOnset', () => {
   let wrapper;
   let mockData;
+  global.TIMEZONE_OFFSET = '-05:00';
 
   it('should render properly', () => {
     mockData = {
@@ -32,7 +33,7 @@ describe('ConditionOnset', () => {
       onsetDateTime: '2020-02-20T00:30:08.000+0000',
     };
     wrapper = shallow(<ConditionOnset condition={mockData} />);
-    expect(wrapper.find('span').at(0).text()).toEqual('Onset time: 20/02/2020');
+    expect(wrapper.find('span').at(0).text()).toEqual('Onset time: 19/02/2020');
   });
 
   it('should show onsetAge', () => {
@@ -54,7 +55,7 @@ describe('ConditionOnset', () => {
       },
     };
     wrapper = shallow(<ConditionOnset condition={mockData} />);
-    expect(wrapper.find('span').at(0).text()).toEqual('Period start: 01/02/2020, end: 20/02/2020');
+    expect(wrapper.find('span').at(0).text()).toEqual('Period start: 31/01/2020, end: 19/02/2020');
   });
 
   it('should show onsetRange', () => {

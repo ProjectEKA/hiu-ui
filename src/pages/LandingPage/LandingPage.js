@@ -105,9 +105,11 @@ const LandingPage = ({
       </Button>
       <Modal open={modalOpen} onClose={handleClose}>
         <div style={modalStyle} className={classes.paper}>
-          <IconButton aria-label="close"
-                      onClick={handleClose}
-                      className={classes.closeButton}>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            className={classes.closeButton}
+          >
             <CancelIcon />
           </IconButton>
           <RequestAccess />

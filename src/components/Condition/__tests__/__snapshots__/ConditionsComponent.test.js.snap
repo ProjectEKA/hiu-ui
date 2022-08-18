@@ -368,7 +368,7 @@ exports[`ConditionsComponent should render properly 1`] = `
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"
           >
-            19/02/2020
+            18/02/2020
           </WithStyles(ForwardRef(TableCell))>
           <WithStyles(ForwardRef(TableCell))
             className="table-cell"
@@ -510,8 +510,8 @@ exports[`ConditionsComponent should render properly 1`] = `
                   }
                 />
               </li>
-              <ConditionNote
-                condition={
+              <AdditionalNotes
+                resource={
                   Object {
                     "category": Array [
                       Object {

@@ -4,7 +4,7 @@ export class BundleContext {
   }
 
   findReference(targetResourceType, ref) {
-    const resourceType = targetResourceType ? targetResourceType : this.getResourceType(targetResourceType, ref);
+    const resourceType = targetResourceType || this.getResourceType(targetResourceType, ref);
     if (!resourceType) return undefined;
     if (!ref.reference) return undefined;
     const entry = this.bundle.entry.find((e) => {
@@ -25,7 +25,7 @@ export class BundleContext {
     }
 
     if (entry.fullUrl) {
-      console.warn("Resource.id is null. Falling back on default implementation of fullUrl format urn:uuid:uuid. Bundle entry fullUrl=" + entry.fullUrl);
+      console.warn(`Resource.id is null. Falling back on default implementation of fullUrl format urn:uuid:uuid. Bundle entry fullUrl=${  entry.fullUrl}`);
       // TODO very simplistic regex, looking for the last colon till the end. will work for urn:uuid:id or similar. 
       const matches = entry.fullUrl.match(/[^:]+$/);
       if (matches) {
@@ -40,7 +40,7 @@ export class BundleContext {
     if (reference.type) return reference.type;
     const ref = reference.reference;
     if (ref.startsWith("#")) {
-       console.error("Unexpected resource reference to contained resources. Can not resolve:" + ref);
+       console.error(`Unexpected resource reference to contained resources. Can not resolve:${  ref}`);
        return undefined;
     }
     return ref.substring(0, ref.indexOf("/"));

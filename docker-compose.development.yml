@@ -1,0 +1,15 @@
+version: '3'
+services:
+  hiu-ui:
+    image: "hiu-ui:latest"
+    environment:
+        BACKEND_BASE_URL: "<backend base url>"
+        BASE_NAME: '/hiu'
+        BACKEND_API_PATH: "/hiu-api"
+        DICOM_SERVER_PATH: '/'
+        VIEWER_PAGE: "/viewer/"
+        TITLE: 'NCG'
+        TIMEZONE_OFFSET: "+05:30"
+    ports:
+        - "8000:5000"
+

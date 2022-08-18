@@ -53,12 +53,12 @@ const RequestAccess = ({
     });
   };
   const handleStarteDateChange = (date) => {
-    var startDate = date;
+    const startDate = date;
     setSelectedStartDate(startDate);
   };
   const handleEndDateChange = (date) => {
-    var startDate = selectedStartDate;
-    var endDate = date;
+    const startDate = selectedStartDate;
+    const endDate = date;
     if (startDate.getTime() < endDate.getTime()) {
       setSelectedEndDate(endDate);
     }
@@ -84,7 +84,7 @@ const RequestAccess = ({
               </InputLabel>
             </Grid>
             <Grid item xs={12} sm={6} md={5}>
-              <SearchPatient/>
+              <SearchPatient />
             </Grid>
           </Grid>
           <Grid container spacing={2} alignItems="center">

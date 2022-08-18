@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { defaultHeaders } from '../constants';
+import Config from "../Config";
 
 export default (
   method,
   url,
   data,
   headers = defaultHeaders,
-  baseURL = BACKEND_BASE_URL + BACKEND_API_PATH,
+  baseURL = Config.BACKEND_BASE_URL + Config.BACKEND_API_PATH,
 ) => axios({
   headers,
   method,

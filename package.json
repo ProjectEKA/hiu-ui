@@ -7,7 +7,7 @@
     "test": "jest --passWithNoTests",
     "test:update:snapshot": "npm test -- -u",
     "test:watch": "jest --watch",
-    "build": "rm -rf dist && MODE=PROD webpack --config ./webpack/webpack.prod.config.js",
+    "build": "rm -rf dist && MODE=PROD webpack --config ./webpack/webpack.common.js",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js",
     "start": "http-server dist",
     "lint": "eslint src",

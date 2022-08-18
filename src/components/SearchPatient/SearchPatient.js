@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
-import SearchPatientStyles from './SearchPatient.style';
 import {
   IconButton,
   TextField,
@@ -9,6 +8,7 @@ import {
   Select,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import SearchPatientStyles from './SearchPatient.style';
 
 const SearchPatient = ({
   onSearch,
@@ -23,6 +23,7 @@ const SearchPatient = ({
 }) => {
   const [localPatientId, setPatientId] = useState(patientId);
   const [textInput, setTextInput] = useState('');
+  const [isHealthIDNumber, setIsHealthIDNumber] = useState(false);
   const [selectedCmSuffixValue, setSelectedCmSuffixValue] = useState(
     cmConfigList.length > 0 ? cmConfigList[0].userIdSuffix : ''
   );
@@ -47,6 +48,11 @@ const SearchPatient = ({
   };
 
   const onChangeSearch = (e) => {
+    if(!isNaN(e.target.value[0])) {
+      setIsHealthIDNumber(true);
+    }
+    else
+      setIsHealthIDNumber(false);
     setTextInput(e.target.value);
     onSearchResetState();
   };
@@ -72,13 +78,13 @@ const SearchPatient = ({
             }
           }}
         />
-        <Select value={selectedCmSuffixValue} onChange={handleCmListSelection}>
+        {!isHealthIDNumber && <Select value={selectedCmSuffixValue} onChange={handleCmListSelection}>
           {cmConfigList.map((value) => (
             <MenuItem key={value.userIdSuffix} value={value.userIdSuffix}>
               {value.userIdSuffix}
             </MenuItem>
           ))}
-        </Select>
+        </Select>}
         <IconButton
           disabled={textInput.length === 0 || loading}
           type="button"

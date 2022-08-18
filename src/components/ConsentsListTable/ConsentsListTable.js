@@ -27,7 +27,7 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
 
   const headerRow = {
     name: 'Name',
-    jataayuId: 'Jataayu ID',
+    jataayuId: 'Patient Identifier',
     requestStatus: 'Request Status',
     consentGrantedDate: 'Consent granted on',
     consentExpiryDate: 'Consent expiry on',
@@ -118,11 +118,11 @@ const ConsentsListTable = ({ loadConsents, consentsList, loading }) => {
               ''
             )
           }))}
-        title={
+        title={(
           <Typography className={classes.title} variant="h5">
             Consent List
           </Typography>
-        }
+        )}
         actions={[
           {
             icon: 'refresh',

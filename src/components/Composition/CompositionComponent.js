@@ -1,9 +1,9 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import {formatDateString} from '../common/HealthInfo/FhirResourcesUtils';
-import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
 import Divider from '@material-ui/core/Divider';
 import { Box } from '@material-ui/core';
+import {formatDateString} from '../common/HealthInfo/FhirResourcesUtils';
+import DischargeSummary from "../DischargeSummary/DischargeSummary.view";
 import EncounterComponent from '../Encounter/EncounterComponent';
 import CompositionSectionComponent from './CompositionSectionComponent';
 
@@ -37,19 +37,19 @@ const CompositionComponent = ({ composition, consentReqId, resources }) => {
     };
 
     return (
-        <div style={{ marginBottom: 50 }}>
-          <DischargeSummary
-            title={getTitle()}
-            authors={getAuthors()}
-            status={getStatus()}
-            date={getDate()}
-          />
-          <Box border={1} padding={1}>
-          <EncounterComponent composition={composition}/>  
-          <CompositionSectionComponent composition={composition} consentReqId={consentReqId} resources={resources}/>
-          {<Divider style={{ marginTop: 50 }} />}
-          </Box>
-        </div>
+      <div style={{ marginBottom: 50 }}>
+        <DischargeSummary
+          title={getTitle()}
+          authors={getAuthors()}
+          status={getStatus()}
+          date={getDate()}
+        />
+        <Box border={1} padding={1}>
+          <EncounterComponent composition={composition} />  
+          <CompositionSectionComponent composition={composition} consentReqId={consentReqId} resources={resources} />
+          <Divider style={{ marginTop: 50 }} />
+        </Box>
+      </div>
       );
 };
 export default CompositionComponent;

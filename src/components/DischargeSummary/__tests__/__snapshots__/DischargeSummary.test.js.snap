@@ -14,7 +14,8 @@ exports[`DischargeSummary should render properly 1`] = `
       color="inherit"
       variant="h6"
     >
-      Document: 
+      Document:
+       
       Discharge Summary
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(Grid))>
@@ -25,9 +26,10 @@ exports[`DischargeSummary should render properly 1`] = `
     <span
       className="makeStyles-period-5"
     >
-      Admitted from 
+      Admitted from
       01/04/2018
-       to 
+       
+      to
       10/04/2018
     </span>
     <div>

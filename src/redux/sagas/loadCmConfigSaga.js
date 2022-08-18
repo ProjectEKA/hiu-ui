@@ -1,5 +1,5 @@
-import { APP_CONFIG_ACTION_TYPES } from "../actions/configAppActions";
 import { call, put } from "redux-saga/effects";
+import { APP_CONFIG_ACTION_TYPES } from "../actions/configAppActions";
 import loadCmConfigApi from "../apiCalls/loadCmConfig";
 
 function* fetchConfigRequest(action) {

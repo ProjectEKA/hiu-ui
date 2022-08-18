@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import { ACTION_TYPES } from '../actions/onSignInActions';
 import signInApi from '../apiCalls/signInApi';
 import history from '../../history';
+import Config from "../../Config";
 
 function* onSignIn(action) {
   try {
@@ -26,7 +27,7 @@ function* onSignInSuccess(action) {
     'auth-token',
     action.payload.data.accessToken
   );
-  history.push(BASE_NAME);
+  history.push(Config.BASE_NAME);
 }
 
 export default {

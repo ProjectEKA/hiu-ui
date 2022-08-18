@@ -4,8 +4,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import RequestTypeStyles from './RequestType.style';
 import Grid from '@material-ui/core/Grid';
+import RequestTypeStyles from './RequestType.style';
 
 const RequestType = ({ requestTypes, handleChange }) => (
   <Grid container>

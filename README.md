@@ -1,4 +1,24 @@
-## Available Scripts
+This is a forked repo from project-eka, includes few ui-enchancements and session management.
+
+## To run locally:
+
+update src path in index.html as `/bundle.js`
+
+### 1. using docker
+
+To build a image, you can run:
+
+### `docker build -t hiu-ui .`
+
+To run the container, 
+
+you can update docker-compose.development.yml environment variable if needed, you can run:
+
+### `docker-compose -f docker-compose.development.yml up hiu-ui`
+
+Note: BACKEND_BASE_URL, BASE_NAME are mandatory in docker-compose.development.yml
+
+###2. using npm
 
 In the project directory, you can run:
 
@@ -36,19 +56,27 @@ devServer: {
 Launches the test runner in the interactive watch mode.
 
 
-## Plugging in the reference HIU-UI to HIU-Server
+## Plugging in the reference HIU-UI to Local-HIU-Server
 
-create a file ".env" in the root directory. with the following contents
+update src/Config.js. with the following contents
 
 ```
-BACKEND_BASE_URL = 'http://localhost:8003'
-BASE_NAME = '/hiu'
-BACKEND_API_PATH= '/'
-DICOM_VIEWER_PAGE= '/viewer/'
-DICOM_SERVER_PATH= '/dicom-web'
-REACT_APP_SITE_TITLE= 'NCG'
+BACKEND_BASE_URL: 'http://localhost:8003',
+BASE_NAME: '/hiu',
+BACKEND_API_PATH: '/',
+DICOM_VIEWER_PAGE: '/viewer/',
+DICOM_SERVER_PATH: '/dicom-web',
+TITLE: 'NCG'
 ```
 The above should be self explanatory, essentially it says that the HIU-Service is running on http://localhost:8003
+
+Add the following to the Config file for the specific timezone. The following is for IST TimeZone UTC+5:30
+
+```aidl
+TIMEZONE_OFFSET: '+05:30'
+```
+
+Note: If you haven't specify TimeZone, it will be UTC by default
 
 If you are testing with the reference HIU-Service, and thats running locally on a different port, most likely Chrome will not allow you to make Http calls because of CORS restrictions. To do this, there are many ways - for example, use a proxy like HAProxy and put your HIU-UI and HIU-Server behind the proxy and route the calls appropriately. 
 

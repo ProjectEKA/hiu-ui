@@ -8,6 +8,7 @@ import getNestedObject from '../../utils/getNestedObject';
 import ObservationTable from '../ObservationTable/ObservationTable';
 import { formatDateString } from '../common/HealthInfo/FhirResourcesUtils';
 import AttachmentLink from '../AttachmentLink';
+import Config from "../../Config";
 
 const DiagnosticReportComponent = ({ data, consentReqId }) => {
   const performerArray = [];
@@ -57,7 +58,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   };
 
   const getDicomAddress = (entry) => {
-    var imageUrl = undefined;
+    let imageUrl;
     const imagingStudyList = getResultsList(
         getNestedObject(entry, 'imagingStudy'),
         'ImagingStudy',
@@ -97,7 +98,7 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
   function generateImageUrl(url) {
     const urlArray = url.split('/');
     const StudyInstanceUID = urlArray.slice(-1).pop();
-    const dicomCtx = btoa(DICOM_SERVER_PATH);
+    const dicomCtx = btoa(Config.DICOM_SERVER_PATH);
 
     const dicomUrl = `${window.location.origin
     }/viewer/${
@@ -163,16 +164,23 @@ const DiagnosticReportComponent = ({ data, consentReqId }) => {
                 <span>Performer: </span>
                 {extractPerformer(entry)}
               </li>
-              { entry.conclusion &&
-                 <li>
-                  <span>Conclusion: {entry.conclusion}</span>
-               </li>
-              }
-              { getDicomAddress(entry) &&
+              { entry.conclusion && (
               <li>
-                <span> <a href={getDicomAddress(entry)}>DICOM image</a> </span>
+                <span>
+                  Conclusion:
+                  {entry.conclusion}
+                </span>
               </li>
-              }
+               )}
+              { getDicomAddress(entry) && (
+              <li>
+                <span> 
+                  {' '}
+                  <a href={getDicomAddress(entry)}>DICOM image</a>
+                  {' '}
+                </span>
+              </li>
+            )}
             </ul>
             {renderObservations(entry)}
             {renderPresentedForm(entry)}

@@ -9,6 +9,7 @@ import LandingPage from './pages/LandingPage/LandingPageContainer';
 import PatientHealthInformation from './pages/PatientHealthInformation';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import history from './history';
+import Config from "./Config";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -22,7 +23,7 @@ function App() {
     <>
       <CssBaseline />
       <Container className={classes.container}>
-        <HashRouter basename={BASE_NAME}>
+        <HashRouter basename={Config.BASE_NAME}>
           <Route history={history} component={LoginPage} path="/login" />
           <PrivateRoute
             component={ResetPassword}
