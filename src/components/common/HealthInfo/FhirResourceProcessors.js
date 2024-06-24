@@ -180,14 +180,33 @@ export class ImmunizationProcessor extends FhirResourceProcessor {
   process(immunization, bundleContext) {  
     if (immunization.reasonReference) {
       immunization.reasonReference.forEach((reasonRef) => {
-        let conditionReason = this.findContainedResource(immunization, reasonRef.reference, 'Condition');
-        if (!conditionReason) {
+        let reasonResource = this.findContainedResource(immunization, reasonRef.reference, 'Condition');
+        reasonResource = reasonResource || this.findContainedResource(immunization, reasonRef.reference, 'Observation');
+        reasonResource = reasonResource || this.findContainedResource(immunization, reasonRef.reference, 'DiagnosticReport');
+        
+        if (!reasonResource) {
           // try to find within bundle
-          conditionReason = bundleContext.findReference('Condition', reasonRef);
+          reasonResource = bundleContext.findReference('Condition', reasonRef);
+          reasonResource = reasonResource || bundleContext.findReference('Observation', reasonRef);
+          reasonResource = reasonResource || bundleContext.findReference('DiagnosticReport', reasonRef);
         }
-        if (conditionReason) {
-          reasonRef.targetResource = conditionReason;
-          this.addParentResource(conditionReason, immunization);
+        if (reasonResource) {
+          reasonRef.targetResource = reasonResource;
+          this.addParentResource(reasonResource, immunization);
+        }
+      });
+    }
+
+    if(immunization.reaction){
+      immunization.reaction.forEach(reaction => {
+        let reactionResource = this.findContainedResource(immunization, reaction.detail.reference, 'Observation');
+        if (!reactionResource) {
+          // try to find within bundle
+          reactionResource = bundleContext.findReference('Observation', reaction.detail);
+        }
+        if (reactionResource) {
+          reaction.detail.targetResource = reactionResource;
+          this.addParentResource(reactionResource, immunization);
         }
       });
     }

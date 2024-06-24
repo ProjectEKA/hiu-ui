@@ -72,6 +72,9 @@ const HealthInformationContent = ({ consentReqId, hipName, data }) => {
         if ((uniqueTypes.length == 1) && (uniqueTypes.indexOf('Encounter') >=0) ) {
           return false;
         }
+        if ((uniqueTypes.length == 1) && (uniqueTypes.indexOf('Immunization') >=0) ) {
+          return false;
+        }
         return !identifyParentOfType(entry, 'Composition');
       }
       return true;

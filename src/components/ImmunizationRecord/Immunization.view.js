@@ -8,39 +8,75 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import _ from 'lodash';
+import _, { get } from 'lodash';
 import {
   formatDateString,
   getConceptDisplay
 } from '../common/HealthInfo/FhirResourcesUtils';
 import TableStyles from '../common/Styles/Table.style';
+import valueForObs from '../ObservationTable/ObsValueHandlers';
 
-const getManufacturerName = (immunization) => {
-  if(immunization.manufacturer && immunization.manufacturer.targetResource){
+const getManufacturerName = immunization => {
+  if (immunization.manufacturer && immunization.manufacturer.targetResource) {
     return immunization.manufacturer.targetResource.name;
   }
-  return "NA";
-}
+  return 'NA';
+};
 
-const getReason = (immunization) => {
-  return _.isEmpty(immunization.reasonCode) ? "NA" : getConceptDisplay(immunization.reasonCode[0]);
-}
+const getReason = immunization => {
+  return _.isEmpty(immunization.reasonCode)
+    ? getReasonFromReference(immunization)
+    : getConceptDisplay(immunization.reasonCode[0]);
+};
 
-const getDoseNumber = (immunization) => {
-  if(_.isEmpty(immunization.protocolApplied)){
-    return "NA";
+const getReasonFromReference = immunization => {
+  if (_.isEmpty(immunization.reasonReference)) {
+    return 'NA';
   }
-  
-  if(immunization.protocolApplied[0].doseNumberPositiveInt){
+
+  const reasonResource = _.first(immunization.reasonReference).targetResource;
+
+  switch (reasonResource.resourceType) {
+    case 'DiagnosticReport':
+      return reasonResource.conclusion;
+    case 'Observation':
+      return getConceptDisplay(reasonResource.code) + ': ' + valueForObs(reasonResource);
+    case 'Condition':
+      return getConceptDisplay(reasonResource.code);
+  }
+
+  return 'NA';
+};
+
+const getReactions = immunization => {
+  if (_.isNil(immunization.reaction)) {
+    return [];
+  }
+
+  return immunization.reaction.map(reaction => {
+    return (
+      getConceptDisplay(reaction.detail.targetResource.code) +
+      ': ' +
+      valueForObs(reaction.detail.targetResource)
+    );
+  });
+};
+
+const getDoseNumber = immunization => {
+  if (_.isEmpty(immunization.protocolApplied)) {
+    return 'NA';
+  }
+
+  if (immunization.protocolApplied[0].doseNumberPositiveInt) {
     return immunization.protocolApplied[0].doseNumberPositiveInt;
   }
 
-  if(immunization.protocolApplied[0].doseNumberString){
+  if (immunization.protocolApplied[0].doseNumberString) {
     return immunization.protocolApplied[0].doseNumberString;
   }
-  
-  return "NA";
-}
+
+  return 'NA';
+};
 
 const ImmunizationRecordComponent = ({ immunizationList }) =>
   immunizationList && immunizationList.length > 0 ? (
@@ -61,6 +97,7 @@ const ImmunizationRecordComponent = ({ immunizationList }) =>
               <TableCell align="left">Manufacturer</TableCell>
               <TableCell align="left">Dose Number</TableCell>
               <TableCell align="left">Reason</TableCell>
+              <TableCell align="left">Reactions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -88,6 +125,13 @@ const ImmunizationRecordComponent = ({ immunizationList }) =>
                 </TableCell>
                 <TableCell className="table-cell">
                   {getReason(immunization)}
+                </TableCell>
+                <TableCell className="table-cell">
+                  <ul>
+                    {getReactions(immunization).map(reaction => {
+                      return <li>{reaction}</li>;
+                    })}
+                  </ul>
                 </TableCell>
               </TableRow>
             ))}
